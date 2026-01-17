@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CollectableHandler : MonoBehaviour
 {
@@ -10,14 +9,26 @@ public class CollectableHandler : MonoBehaviour
 
     private bool _hasNotified;
     private bool _wasCollected;
+    private bool _isCollectable;
+
+    private InputActions _actions;
+
+    private void Awake()
+    {
+        _actions = new InputActions();
+    }
 
     private void OnEnable()
     {
+        _actions.Player.Enable();
+        _actions.Player.Collect.performed += HandleCollectInput;
         playerMoved_EC.OnEventRaised += HandlePlayerMoved;
     }
 
     private void OnDisable()
     {
+        _actions.Player.Disable();
+        _actions.Player.Collect.performed -= HandleCollectInput;
         playerMoved_EC.OnEventRaised -= HandlePlayerMoved;
     }
 
@@ -44,11 +55,17 @@ public class CollectableHandler : MonoBehaviour
             Notify();
         }
 
+        _isCollectable = false;
         if (delta.sqrMagnitude <= data.collectionRange * data.collectionRange)
         {
-            Collect();
-        }
+            _isCollectable = true;
+        }       
+    }
 
+    private void HandleCollectInput(InputAction.CallbackContext context)
+    {
+        Debug.Log("Collect attempt");
+        if(_isCollectable) Collect();
     }
 
     private void Notify()

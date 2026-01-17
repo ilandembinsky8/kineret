@@ -10,6 +10,8 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private float pitchSpeed;
     [SerializeField] private Rigidbody rb;
 
+    [SerializeField] private GameObject pitchBody;
+
     private float _turnDirection;
     private float _pitchDirection;
 
@@ -38,7 +40,7 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Pitch.canceled -= HandlePitchInput;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Rotate();
         Move();
@@ -47,14 +49,23 @@ public class PlayerMovementHandler : MonoBehaviour
     private void Rotate()
     {
         Vector3 eulerAngleVelocity = new Vector3(pitchSpeed * _pitchDirection, turnSpeed * _turnDirection, 0f);
-        Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.fixedDeltaTime);
-        rb.MoveRotation(rb.rotation * deltaRotation);
+        /* Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.fixedDeltaTime);
+
+
+         Quaternion pitchRotation = Quaternion.AngleAxis(pitchSpeed * _pitchDirection, transform.right);
+         Quaternion turnRotation = Quaternion.AngleAxis(turnSpeed * _turnDirection, transform.up);*/
+        transform.Rotate(transform.up, Time.deltaTime * turnSpeed * _turnDirection,Space.World);
+
+        pitchBody.transform.Rotate(pitchBody.transform.right, Time.deltaTime * pitchSpeed * _pitchDirection, Space.World);
+        //rb.MoveRotation(rb.rotation * turnRotation * pitchRotation);
     }
 
     private void Move()
     {
-        Vector3 move = moveSpeed * Time.fixedDeltaTime * transform.forward;
-        rb.MovePosition(transform.position + move);
+        transform.Translate(moveSpeed * Time.deltaTime * (transform.InverseTransformDirection(pitchBody.transform.forward)));
+
+        /*Vector3 move = moveSpeed * Time.fixedDeltaTime * transform.forward;
+        rb.MovePosition(transform.position + move);*/
         playerMoved_EC.RaiseEvent(transform.position);
     }
 

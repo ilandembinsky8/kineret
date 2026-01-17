@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84afb70fcb60de3419d276dc3365596b, type: 3}
   m_Name: CollectableData
   m_EditorClassIdentifier: 
-  notificationRange: 1000
-  collectionRange: 500
+  notificationRange: 3000
+  collectionRange: 1500
