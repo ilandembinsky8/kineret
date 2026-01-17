@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovementHandler : MonoBehaviour
 {
+    [SerializeField] private Vector3EventChannel playerMoved_EC;
+
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnSpeed;
     [SerializeField] private float pitchSpeed;
@@ -18,8 +17,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void Awake()
     {
-        _actions = new InputActions();
-       
+        _actions = new InputActions();      
     }
 
     private void OnEnable()
@@ -57,6 +55,7 @@ public class PlayerMovementHandler : MonoBehaviour
     {
         Vector3 move = moveSpeed * Time.fixedDeltaTime * transform.forward;
         rb.MovePosition(transform.position + move);
+        playerMoved_EC.RaiseEvent(transform.position);
     }
 
     private void HandlePitchInput(InputAction.CallbackContext context)
