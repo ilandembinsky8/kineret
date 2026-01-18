@@ -1143,7 +1143,8 @@ PrefabInstance:
         type: 3}
       propertyPath: infoScreenData
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 7c098300b977e2e45926467f8c973e65,
+        type: 2}
     - target: {fileID: 2002420201625396977, guid: 64cd5387b0451474787f3c0e889c75d8,
         type: 3}
       propertyPath: collectPopupData
@@ -1234,7 +1235,7 @@ PrefabInstance:
         type: 3}
       propertyPath: infoScreenData
       value: 
-      objectReference: {fileID: 11400000, guid: 7c098300b977e2e45926467f8c973e65,
+      objectReference: {fileID: 11400000, guid: dad145f3d7f3f484ea427c91d79404be,
         type: 2}
     - target: {fileID: 2002420201625396977, guid: 64cd5387b0451474787f3c0e889c75d8,
         type: 3}
