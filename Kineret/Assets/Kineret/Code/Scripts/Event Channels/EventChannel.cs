@@ -14,3 +14,5 @@ public class EventChannel<T> : ScriptableObject
             OnEventRaised.Invoke(value);
     }
 }
+
+

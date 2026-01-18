@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovementHandler : MonoBehaviour
 {
     [SerializeField] private Vector3EventChannel playerMoved_EC;
+    [SerializeField] private BoolEventChannel GamePause_EC;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnSpeed;
@@ -16,6 +17,7 @@ public class PlayerMovementHandler : MonoBehaviour
     private float _pitchDirection;
 
     private InputActions _actions;
+    private bool _isPaused;
 
     private void Awake()
     {
@@ -29,7 +31,9 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Turn.canceled += HandleTurnInput;
         _actions.Player.Pitch.performed += HandlePitchInput;
         _actions.Player.Pitch.canceled += HandlePitchInput;
-    }
+
+        GamePause_EC.OnEventRaised += HandlePause;
+}
 
     private void OnDisable()
     {
@@ -38,34 +42,26 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Turn.canceled -= HandleTurnInput;
         _actions.Player.Pitch.performed -= HandlePitchInput;
         _actions.Player.Pitch.canceled -= HandlePitchInput;
+
+        GamePause_EC.OnEventRaised -= HandlePause;
     }
 
     void Update()
     {
+        if (_isPaused) return;
         Rotate();
         Move();
     }
 
     private void Rotate()
     {
-        Vector3 eulerAngleVelocity = new Vector3(pitchSpeed * _pitchDirection, turnSpeed * _turnDirection, 0f);
-        /* Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.fixedDeltaTime);
-
-
-         Quaternion pitchRotation = Quaternion.AngleAxis(pitchSpeed * _pitchDirection, transform.right);
-         Quaternion turnRotation = Quaternion.AngleAxis(turnSpeed * _turnDirection, transform.up);*/
         transform.Rotate(transform.up, Time.deltaTime * turnSpeed * _turnDirection,Space.World);
-
         pitchBody.transform.Rotate(pitchBody.transform.right, Time.deltaTime * pitchSpeed * _pitchDirection, Space.World);
-        //rb.MoveRotation(rb.rotation * turnRotation * pitchRotation);
     }
 
     private void Move()
     {
         transform.Translate(moveSpeed * Time.deltaTime * (transform.InverseTransformDirection(pitchBody.transform.forward)));
-
-        /*Vector3 move = moveSpeed * Time.fixedDeltaTime * transform.forward;
-        rb.MovePosition(transform.position + move);*/
         playerMoved_EC.RaiseEvent(transform.position);
     }
 
@@ -77,5 +73,10 @@ public class PlayerMovementHandler : MonoBehaviour
     private void HandleTurnInput(InputAction.CallbackContext context)
     {
         _turnDirection = context.ReadValue<float>();
+    }
+
+    private void HandlePause(bool value)
+    {
+        _isPaused = value;
     }
 }

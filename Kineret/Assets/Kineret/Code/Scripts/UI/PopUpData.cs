@@ -4,10 +4,15 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "PopUpData", menuName = "Assets/Scriptable Objects/PopUps/Data")]
-public class PopUpData : ScriptableObject
+public class PopupData : ScriptableObject
 {
+    public PopUpType Type;
     public Sprite IconSprite;
-    public string TitleText;
-    public string DescriptionText;
+    public string Title;
+    public string Description;
     public float Duration;
+}
+public enum PopUpType
+{
+    Info, TitleOnly, Full, HighFull
 }

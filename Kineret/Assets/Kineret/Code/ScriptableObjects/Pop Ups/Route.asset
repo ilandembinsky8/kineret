@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a681b552265949a4e82f6b134e9074c3, type: 3}
   m_Name: Route
   m_EditorClassIdentifier: 
+  Type: 1
   IconSprite: {fileID: 21300000, guid: 9efb0163cea561540b93fc72aa9b874a, type: 3}
-  TitleText: "\u05D4\u05D9\u05E9\u05D0\u05E8\u05D5 \u05D1\u05E0\u05EA\u05D9\u05D1
-    \u05D4\u05DE\u05E1\u05D5\u05DE\u05DF"
-  DescriptionText: 
+  Title: "\u05D4\u05D9\u05E9\u05D0\u05E8\u05D5 \u05D1\u05E0\u05EA\u05D9\u05D1 \u05D4\u05DE\u05E1\u05D5\u05DE\u05DF"
+  Description: 
   Duration: 5

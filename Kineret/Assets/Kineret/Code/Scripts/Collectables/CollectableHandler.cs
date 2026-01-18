@@ -4,8 +4,12 @@ using UnityEngine.InputSystem;
 
 public class CollectableHandler : MonoBehaviour
 {
+    [SerializeField] private PopupDataEventChannel LoadPopup_EC;
     [SerializeField] private Vector3EventChannel playerMoved_EC;
-    [SerializeField] private CollectableData data;
+    [SerializeField] protected CollectableData collectableData;
+
+    [SerializeField] private PopupData notificationPopupData;
+    [SerializeField] protected PopupData collectPopupData;
 
     private bool _hasNotified;
     private bool _wasCollected;
@@ -34,13 +38,13 @@ public class CollectableHandler : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (data == null) return;
+        if (collectableData == null) return;
 
         Handles.color = Color.red;
-        Handles.DrawWireDisc(transform.position,new Vector3(0f,1f,0f), data.notificationRange);
+        Handles.DrawWireDisc(transform.position,new Vector3(0f,1f,0f), collectableData.notificationRange);
 
         Handles.color = Color.green;
-        Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), data.collectionRange);
+        Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), collectableData.collectionRange);
     }
 
     private void HandlePlayerMoved(Vector3 playerPosition)
@@ -50,21 +54,27 @@ public class CollectableHandler : MonoBehaviour
 
         Vector3 delta = playerPositionXZ - collectablePositionXZ;
 
-        if(delta.sqrMagnitude <= data.notificationRange * data.notificationRange)
+        CheckNotifyRange(delta);
+        CheckCollectRange(delta);          
+    }
+    protected virtual void CheckNotifyRange(Vector3 delta)
+    {
+        if (delta.sqrMagnitude <= collectableData.notificationRange * collectableData.notificationRange)
         {
             Notify();
         }
-
+    }
+    protected virtual void CheckCollectRange(Vector3 delta)
+    {
         _isCollectable = false;
-        if (delta.sqrMagnitude <= data.collectionRange * data.collectionRange)
+        if (delta.sqrMagnitude <= collectableData.collectionRange * collectableData.collectionRange)
         {
             _isCollectable = true;
-        }       
+        }
     }
 
     private void HandleCollectInput(InputAction.CallbackContext context)
     {
-        Debug.Log("Collect attempt");
         if(_isCollectable) Collect();
     }
 
@@ -72,15 +82,15 @@ public class CollectableHandler : MonoBehaviour
     {
         if (_hasNotified) return;
 
+        LoadPopup_EC.RaiseEvent(notificationPopupData);
         _hasNotified = true;
-        Debug.Log("Notification");
     }
 
-    private void Collect()
+    protected virtual void Collect()
     {
         if (_wasCollected) return;
+        LoadPopup_EC.RaiseEvent(collectPopupData);
         _wasCollected = true;
-        Debug.Log("Collected");
         OnDisable();
     }
 }

@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopUpHandler : MonoBehaviour
+public class PopupHandler : MonoBehaviour
 {
-    [SerializeField] private PopUpData data;
+    [SerializeField] private PopupData data;
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private Image iconImage;
@@ -14,10 +13,9 @@ public class PopUpHandler : MonoBehaviour
     private void Awake()
     {
         if (data != null) LoadData(data);
-        
     }
 
-    public void LoadData(PopUpData data)
+    public void LoadData(PopupData data)
     {
         if (data == null)
         {
@@ -25,13 +23,18 @@ public class PopUpHandler : MonoBehaviour
             return;
         }
         
-        if (data.TitleText != null && titleText != null) 
+        if (data.Title != null && titleText != null) 
         {
-            titleText.text = data.TitleText;
+            titleText.text = data.Title;
             titleText.fontStyle = FontStyles.Bold;
         } 
-        if (data.DescriptionText != null && descriptionText != null) descriptionText.text = data.DescriptionText;
-        if (data.IconSprite != null && iconImage != null) iconImage.sprite = data.IconSprite;
+        if (data.Description != null && descriptionText != null) descriptionText.text = data.Description;
+        if (data.IconSprite != null && iconImage != null)
+        {
+            iconImage.sprite = data.IconSprite;
+            ((RectTransform)iconImage.transform).sizeDelta = new Vector2(iconImage.sprite.texture.width, iconImage.sprite.texture.height);
+        }
+       
 
         StartCoroutine(Duration(data.Duration));
     }
