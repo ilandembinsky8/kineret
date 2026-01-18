@@ -683,7 +683,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1558201994}
-  infoScreen: {fileID: 0}
+  infoScreen: {fileID: 6690099219044943191, guid: 579882e32e0ff5242a8c4449e5bd66bf,
+    type: 3}
   infoPopupPrefab: {fileID: 8543433660853412863, guid: 837eee843736b394aaae4b818f9ad73b,
     type: 3}
   titleOnlyPopupPrefab: {fileID: 1739591514345862652, guid: c4f58ffb35b3ed341aed8233313e9ed4,

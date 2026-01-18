@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class PopupsManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
 
-    [SerializeField] private GameObject infoScreen;
+    [SerializeField] private InfoScreenHandler infoScreen;
     [SerializeField] private PopupHandler infoPopupPrefab;
     [SerializeField] private PopupHandler titleOnlyPopupPrefab;
     [SerializeField] private PopupHandler fullPopupPrefab;
@@ -59,6 +59,7 @@ public class PopupsManager : MonoBehaviour
 
     private void LoadInfoScreen(InfoScreenData data)
     {
-        Debug.Log("SHOWING INFO SCREEN");
+        InfoScreenHandler handler = Instantiate(infoScreen, canvas.transform);
+        infoScreen.LoadData(data);
     }
 }

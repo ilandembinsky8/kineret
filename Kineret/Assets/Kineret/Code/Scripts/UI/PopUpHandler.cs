@@ -10,13 +10,22 @@ public class PopupHandler : MonoBehaviour
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private Image iconImage;
 
+    private bool _wasLoadedOnAwake;
+
     private void Awake()
     {
-        if (data != null) LoadData(data);
+        if (data != null)
+        {
+            LoadData(data);
+            _wasLoadedOnAwake = true;
+        }
+       
     }
 
     public void LoadData(PopupData data)
     {
+        if (_wasLoadedOnAwake) return;
+
         if (data == null)
         {
             Destroy(gameObject);
@@ -28,14 +37,15 @@ public class PopupHandler : MonoBehaviour
             titleText.text = data.Title;
             titleText.fontStyle = FontStyles.Bold;
         } 
+
         if (data.Description != null && descriptionText != null) descriptionText.text = data.Description;
+
         if (data.IconSprite != null && iconImage != null)
         {
             iconImage.sprite = data.IconSprite;
             ((RectTransform)iconImage.transform).sizeDelta = new Vector2(iconImage.sprite.texture.width, iconImage.sprite.texture.height);
         }
        
-
         StartCoroutine(Duration(data.Duration));
     }
 
