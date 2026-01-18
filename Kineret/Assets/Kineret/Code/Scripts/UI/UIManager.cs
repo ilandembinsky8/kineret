@@ -4,7 +4,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
 
-    [SerializeField] private InfoScreenHandler infoScreen;
+    [SerializeField] private InfoScreenHandler infoScreenPrefab;
     [SerializeField] private PopupHandler infoPopupPrefab;
     [SerializeField] private PopupHandler titleOnlyPopupPrefab;
     [SerializeField] private PopupHandler fullPopupPrefab;
@@ -59,7 +59,7 @@ public class UIManager : MonoBehaviour
 
     private void LoadInfoScreen(InfoScreenData data)
     {
-        InfoScreenHandler handler = Instantiate(infoScreen, canvas.transform);
-        infoScreen.LoadData(data);
+        InfoScreenHandler handler = Instantiate(infoScreenPrefab, canvas.transform);
+        handler.LoadData(data);
     }
 }

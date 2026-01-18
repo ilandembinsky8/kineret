@@ -53,6 +53,7 @@ MonoBehaviour:
   LoadInfoScreen_EC: {fileID: 11400000, guid: d533fb953a462064e85f0330d1be9659, type: 2}
   GamePause_EC: {fileID: 11400000, guid: c647ad7c5a5c73f48ac7fa533fad8a6c, type: 2}
   infoScreenData: {fileID: 0}
+  visuals: {fileID: 4198783435181284254}
 --- !u!1 &4198783435181284254
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +66,7 @@ GameObject:
   - component: {fileID: 7099444577599813215}
   - component: {fileID: 204199623067790667}
   m_Layer: 0
-  m_Name: Visual
+  m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
