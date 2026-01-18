@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a681b552265949a4e82f6b134e9074c3, type: 3}
+  m_Name: Interest Point Info
+  m_EditorClassIdentifier: 
+  Type: 0
+  IconSprite: {fileID: 21300000, guid: 26148048ee4b0b546a403ec90e1e3b11, type: 3}
+  Title: "\u05D9\u05E2\u05E8 \u05D1\u05D9\u05E8\u05D9\u05D9\u05D4"
+  Description: "\u05DE\u05D9\u05D6\u05DD \u05D7\u05D3\u05E9\u05E0\u05D5\u05EA \u05DC\u05D6\u05D9\u05D4\u05D5\u05D9
+    \u05D5\u05EA\u05D2\u05D5\u05D1\u05D4 \u05DE\u05D4\u05D9\u05E8\u05D4 \u05DC\u05E9\u05E8\u05D9\u05E4\u05D5\u05EA
+    \u05D9\u05E2\u05E8 \u05D4\u05DE\u05EA\u05D1\u05E1\u05E1 \u05E2\u05DC \u05D6\u05D9\u05D4\u05D5\u05D9
+    \u05D7\u05EA\u05D9\u05DE\u05D4 \u05E7\u05D5\u05DC\u05D9\u05EA \u05D9\u05D9\u05D7\u05D5\u05D3\u05D9\u05EA
+    \u05E9\u05DC \u05E9\u05E8\u05D9\u05E4\u05D4 \u05D6\u05D5\u05DB\u05D4 \u05D4\u05DE\u05E7\u05D5\u05DD
+    \u05D4\u05E8\u05D0\u05E9\u05D5\u05DF \u05D1\u05EA\u05D5\u05DB\u05E0\u05D9\u05EA
+    \u05E6'\u05D0\u05DC\u05E0\u05D2' \u05E9\u05DC \u05E7\u05E7\"\u05DC \u05EA\u05D7\u05D9\u05DC\u05EA
+    \u05E4\u05E2\u05D9\u05DC\u05D5\u05EA 2024"
+  Duration: 3

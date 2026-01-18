@@ -4,12 +4,14 @@ using UnityEngine.InputSystem;
 
 public class CollectableHandler : MonoBehaviour
 {
-    [SerializeField] private PopupDataEventChannel LoadPopup_EC;
+    [SerializeField] protected PopupDataEventChannel LoadPopup_EC;
     [SerializeField] private Vector3EventChannel playerMoved_EC;
     [SerializeField] protected CollectableData collectableData;
 
     [SerializeField] private PopupData notificationPopupData;
     [SerializeField] protected PopupData collectPopupData;
+
+    [SerializeField] private GameObject visuals;
 
     private bool _hasNotified;
     private bool _wasCollected;
@@ -89,6 +91,7 @@ public class CollectableHandler : MonoBehaviour
     protected virtual void Collect()
     {
         if (_wasCollected) return;
+        visuals.gameObject.SetActive(false);
         LoadPopup_EC.RaiseEvent(collectPopupData);
         _wasCollected = true;
         OnDisable();
