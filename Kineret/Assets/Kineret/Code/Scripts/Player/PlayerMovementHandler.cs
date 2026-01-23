@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementHandler : MonoBehaviour
 {
-    [SerializeField] private Vector3EventChannel playerMoved_EC;
+    [SerializeField] private TransformEventChannel playerMoved_EC;
+    [SerializeField] private TransformEventChannel cameraPitched_EC;
     [SerializeField] private BoolEventChannel GamePause_EC;
 
     [SerializeField] private float moveSpeed;
@@ -32,7 +33,7 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Pitch.performed += HandlePitchInput;
         _actions.Player.Pitch.canceled += HandlePitchInput;
 
-        GamePause_EC.OnEventRaised += HandlePause;
+        GamePause_EC.OnEventRaised += HandleGamePause;
 }
 
     private void OnDisable()
@@ -43,7 +44,7 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Pitch.performed -= HandlePitchInput;
         _actions.Player.Pitch.canceled -= HandlePitchInput;
 
-        GamePause_EC.OnEventRaised -= HandlePause;
+        GamePause_EC.OnEventRaised -= HandleGamePause;
     }
 
     void Update()
@@ -51,18 +52,20 @@ public class PlayerMovementHandler : MonoBehaviour
         if (_isPaused) return;
         Rotate();
         Move();
+        
     }
 
     private void Rotate()
     {
         transform.Rotate(transform.up, Time.deltaTime * turnSpeed * _turnDirection,Space.World);
         pitchBody.transform.Rotate(pitchBody.transform.right, Time.deltaTime * pitchSpeed * _pitchDirection, Space.World);
+        cameraPitched_EC.RaiseEvent(pitchBody.transform);
     }
 
     private void Move()
     {
         transform.Translate(moveSpeed * Time.deltaTime * (transform.InverseTransformDirection(pitchBody.transform.forward)));
-        playerMoved_EC.RaiseEvent(transform.position);
+        playerMoved_EC.RaiseEvent(transform);
     }
 
     private void HandlePitchInput(InputAction.CallbackContext context)
@@ -75,8 +78,8 @@ public class PlayerMovementHandler : MonoBehaviour
         _turnDirection = context.ReadValue<float>();
     }
 
-    private void HandlePause(bool value)
+    private void HandleGamePause(bool isPaused)
     {
-        _isPaused = value;
+        _isPaused = isPaused;
     }
 }

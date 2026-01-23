@@ -31,15 +31,14 @@ public class InfoScreenHandler : MonoBehaviour
 
     public void LoadData(InfoScreenData data)
     {
-        Debug.Log("Loading Data");
+
         if(_wasLoadedOnAwake) return;
-        Debug.Log("Passed Awake Check");
+
         if (data == null)
         {
             Destroy(gameObject);
             return;
         }
-        Debug.Log("Data isnt null");
 
         if (data.Title != null && titleText != null)
         {

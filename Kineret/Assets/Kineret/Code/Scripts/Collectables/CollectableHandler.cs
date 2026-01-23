@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class CollectableHandler : MonoBehaviour
 {
     [SerializeField] protected PopupDataEventChannel LoadPopup_EC;
-    [SerializeField] private Vector3EventChannel playerMoved_EC;
+    [SerializeField] private TransformEventChannel playerMoved_EC;
     [SerializeField] protected CollectableData collectableData;
 
     [SerializeField] private PopupData notificationPopupData;
@@ -49,9 +49,9 @@ public class CollectableHandler : MonoBehaviour
         Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), collectableData.collectionRange);
     }
 
-    private void HandlePlayerMoved(Vector3 playerPosition)
+    private void HandlePlayerMoved(Transform playerTransform)
     {
-        Vector3 playerPositionXZ = new Vector3(playerPosition.x, 0f, playerPosition.z);
+        Vector3 playerPositionXZ = new Vector3(playerTransform.position.x, 0f, playerTransform.position.z);
         Vector3 collectablePositionXZ = new Vector3(transform.position.x, 0f, transform.position.z);
 
         Vector3 delta = playerPositionXZ - collectablePositionXZ;

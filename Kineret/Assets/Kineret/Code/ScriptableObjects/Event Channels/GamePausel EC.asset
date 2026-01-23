@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084040135f4967d41aa3b31f36dc2833, type: 3}
-  m_Name: LoadInfoScreenEventChannel
+  m_Script: {fileID: 11500000, guid: 93e423ede6496f24a803e2ab011041ab, type: 3}
+  m_Name: GamePausel EC
   m_EditorClassIdentifier: 

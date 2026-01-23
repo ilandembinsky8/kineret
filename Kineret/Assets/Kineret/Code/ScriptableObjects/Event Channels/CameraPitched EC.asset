@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93e423ede6496f24a803e2ab011041ab, type: 3}
-  m_Name: GamePauselEC
+  m_Script: {fileID: 11500000, guid: 58f2c605d40a95d4698e6b3eed7ad1d6, type: 3}
+  m_Name: CameraPitched EC
   m_EditorClassIdentifier: 
