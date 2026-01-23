@@ -6,7 +6,9 @@ public class DestinationHandler : CollectableHandler
     [SerializeField] private InfoScreenDataEventChannel LoadInfoScreen_EC;
     [SerializeField] private BoolEventChannel GamePause_EC;
     [SerializeField] private InfoScreenData infoScreenData;
-    
+
+    protected override void Start()
+    {}
 
     protected override void CheckNotifyRange(Vector3 delta)
     {}

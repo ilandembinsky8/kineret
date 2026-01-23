@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GilboaInfoScreen
   m_EditorClassIdentifier: 
   Background: {fileID: 21300000, guid: f5229f5d52185584f9c3e91a70692454, type: 3}
-  Logo: {fileID: 21300000, guid: 27d582356ad15114db62c12ac6654aa3, type: 3}
+  Logo: {fileID: 21300000, guid: f192217eb95b5b543b78e7eb8ce8488b, type: 3}
   Icon: {fileID: 21300000, guid: 573a8e834db64fa4d93888302c815311, type: 3}
   Title: "\u05E6\u05DE\u05D7 \u05DE. \u05D8\u05DB\u05E0\u05D5\u05DC\u05D5\u05D2\u05D9\u05D5\u05EA
     \u05D7\u05E7\u05DC\u05D0\u05D9\u05D5\u05EA"

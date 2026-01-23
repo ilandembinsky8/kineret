@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +23,10 @@ public class CollectableHandler : MonoBehaviour
     private void Awake()
     {
         _actions = new InputActions();
+    }
+    protected virtual void Start()
+    {
+        visuals.SetActive(false);
     }
 
     private void OnEnable()
@@ -83,17 +88,23 @@ public class CollectableHandler : MonoBehaviour
     private void Notify()
     {
         if (_hasNotified) return;
-
-        LoadPopup_EC.RaiseEvent(notificationPopupData);
+        visuals.SetActive(true);
+        StartCoroutine(DelayedNotification(notificationPopupData.NotifyDelay));
         _hasNotified = true;
     }
 
     protected virtual void Collect()
     {
         if (_wasCollected) return;
-        visuals.gameObject.SetActive(false);
+        visuals.SetActive(false);
         LoadPopup_EC.RaiseEvent(collectPopupData);
         _wasCollected = true;
         OnDisable();
+    }
+
+    private IEnumerator DelayedNotification(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        LoadPopup_EC.RaiseEvent(notificationPopupData);
     }
 }

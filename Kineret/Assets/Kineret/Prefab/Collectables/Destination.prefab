@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2961009856213448800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72505.96, y: 1500, z: 27322.186}
+  m_LocalPosition: {x: 72505.96, y: 0, z: 27322.186}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50,10 +50,10 @@ MonoBehaviour:
   collectableData: {fileID: 11400000, guid: bc5081525924c904393511b4415bc924, type: 2}
   notificationPopupData: {fileID: 0}
   collectPopupData: {fileID: 11400000, guid: 97790ccc290f02b448eb7b61a26f72de, type: 2}
+  visuals: {fileID: 4198783435181284254}
   LoadInfoScreen_EC: {fileID: 11400000, guid: d533fb953a462064e85f0330d1be9659, type: 2}
   GamePause_EC: {fileID: 11400000, guid: c647ad7c5a5c73f48ac7fa533fad8a6c, type: 2}
   infoScreenData: {fileID: 11400000, guid: 7a1043c29ff9eb24f908e692c9e09b2a, type: 2}
-  visuals: {fileID: 4198783435181284254}
 --- !u!1 &4198783435181284254
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,8 +81,8 @@ Transform:
   m_GameObject: {fileID: 4198783435181284254}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 0, y: 3500, z: 0}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2471919273698547775}

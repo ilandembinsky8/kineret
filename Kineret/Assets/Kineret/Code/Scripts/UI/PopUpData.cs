@@ -11,6 +11,7 @@ public class PopupData : ScriptableObject
     public string Title;
     public string Description;
     public float Duration;
+    public float NotifyDelay;
 }
 public enum PopUpType
 {
