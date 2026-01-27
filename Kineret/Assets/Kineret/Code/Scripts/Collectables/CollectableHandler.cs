@@ -7,6 +7,7 @@ public class CollectableHandler : MonoBehaviour
 {
     [SerializeField] protected PopupDataEventChannel LoadPopup_EC;
     [SerializeField] private TransformEventChannel playerMoved_EC;
+    [SerializeField] private IntEventChannel gotScore_EC;
     [SerializeField] protected CollectableData collectableData;
 
     [SerializeField] private PopupData notificationPopupData;
@@ -96,6 +97,8 @@ public class CollectableHandler : MonoBehaviour
     protected virtual void Collect()
     {
         if (_wasCollected) return;
+
+        gotScore_EC.RaiseEvent(collectableData.score);
         visuals.SetActive(false);
         LoadPopup_EC.RaiseEvent(collectPopupData);
         _wasCollected = true;

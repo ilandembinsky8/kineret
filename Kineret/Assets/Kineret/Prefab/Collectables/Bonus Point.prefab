@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadPopup_EC: {fileID: 11400000, guid: 434ae0b1dce8a5d4c8f23f04d7878aa3, type: 2}
   playerMoved_EC: {fileID: 11400000, guid: 6c3815ed880b1b34db7f693e4a38d9a4, type: 2}
+  gotScore_EC: {fileID: 11400000, guid: d9b5e4ff6b8db82459a3f609c91c8417, type: 2}
   collectableData: {fileID: 11400000, guid: c1fd888e51a60f145886b8e92a3b58e0, type: 2}
   notificationPopupData: {fileID: 11400000, guid: 92e9f81e9678ead47a8ec1549c6b5247,
     type: 2}

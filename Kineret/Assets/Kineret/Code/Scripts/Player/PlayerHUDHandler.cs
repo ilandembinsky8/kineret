@@ -9,6 +9,7 @@ public class PlayerHUDHandler : MonoBehaviour
     [SerializeField] private TransformEventChannel cameraPitched_EC;
     [SerializeField] private TransformEventChannel playerMoved_EC;
     [SerializeField] private BoolEventChannel gamePause_EC;
+    [SerializeField] private IntEventChannel scoreChanged_EC;
 
     [SerializeField] private TMP_Text altitudeText;
     [SerializeField] private TMP_Text higherPitchText;
@@ -16,9 +17,8 @@ public class PlayerHUDHandler : MonoBehaviour
     [SerializeField] private TMP_Text lowerPitchText;
 
     [SerializeField] private TMP_Text timerText;
-
-    [SerializeField] private string scoreTitleText;
     [SerializeField] private TMP_Text scoreText;
+
     private int _time;
     private bool _isPaused;
 
@@ -32,6 +32,7 @@ public class PlayerHUDHandler : MonoBehaviour
         playerMoved_EC.OnEventRaised += HandlePlayerMoved;
         cameraPitched_EC.OnEventRaised += HandleCameraPitched;
         gamePause_EC.OnEventRaised += HandleGamePause;
+        scoreChanged_EC.OnEventRaised += HandleScoreChanged;
     }
 
     private void OnDisable()
@@ -39,7 +40,14 @@ public class PlayerHUDHandler : MonoBehaviour
         playerMoved_EC.OnEventRaised -= HandlePlayerMoved;
         cameraPitched_EC.OnEventRaised -= HandleCameraPitched;
         gamePause_EC.OnEventRaised -= HandleGamePause;
+        scoreChanged_EC.OnEventRaised -= HandleScoreChanged;
     }
+
+    private void HandleScoreChanged(int score)
+    {
+        scoreText.text = string.Format("{0:0000}", score);
+    }
+
     private void HandleCameraPitched(Transform cameraTransform)
     {
         int pitch = Mathf.FloorToInt(cameraTransform.localEulerAngles.x);
@@ -55,7 +63,7 @@ public class PlayerHUDHandler : MonoBehaviour
         }
 
 
-            currentPitchText.text = pitch.ToString();
+        currentPitchText.text = pitch.ToString();
         higherPitchText.text = (pitch + 1).ToString();
         lowerPitchText.text = (pitch - 1).ToString();
     }

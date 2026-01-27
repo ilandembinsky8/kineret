@@ -7,4 +7,5 @@ public class CollectableData : ScriptableObject
 {
     public float notificationRange;
     public float collectionRange;
+    public int score;
 }

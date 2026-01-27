@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notificationRange: 15000
   collectionRange: 7000
+  score: 10
