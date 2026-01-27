@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DestinationHandler : CollectableHandler
 {
-    [SerializeField] private InfoScreenDataEventChannel LoadInfoScreen_EC;
+    [SerializeField] private InfoScreenDataEventChannel DestinationReached_EC;
     [SerializeField] private BoolEventChannel GamePause_EC;
     [SerializeField] private InfoScreenData infoScreenData;
 
@@ -34,7 +34,7 @@ public class DestinationHandler : CollectableHandler
         if (infoScreenData != null)
         {
             GamePause_EC.RaiseEvent(true);
-            LoadInfoScreen_EC.RaiseEvent(infoScreenData);
+            DestinationReached_EC.RaiseEvent(infoScreenData);
         }          
     } 
 }

@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class InfoScreenHandler : MonoBehaviour
 {
-    [SerializeField] private BoolEventChannel GamePause_EC;
+    [SerializeField] private BoolEventChannel gamePause_EC;
+    [SerializeField] private VoidEventChannel gameOver_EC;
 
     [SerializeField] private InfoScreenData data;
 
@@ -69,7 +70,7 @@ public class InfoScreenHandler : MonoBehaviour
         if (data.Logo != null && logoImage != null)
         {
             logoImage.sprite = data.Logo;
-            ((RectTransform)logoImage.transform).sizeDelta = new Vector2(logoImage.sprite.texture.width, logoImage.sprite.texture.height);
+            ((RectTransform)logoImage.transform).sizeDelta = new Vector2(logoImage.sprite.texture.width * data.logoSizeMultiplier, logoImage.sprite.texture.height * data.logoSizeMultiplier);
         }
 
         if (data.Background != null && backgroundImage != null)
@@ -80,7 +81,12 @@ public class InfoScreenHandler : MonoBehaviour
 
     public void CloseScreen()
     {
-        GamePause_EC.RaiseEvent(false);
+        gamePause_EC.RaiseEvent(false);
         Destroy(gameObject);
+    }
+
+    public void GameOver()
+    {
+        gameOver_EC.RaiseEvent();
     }
 }

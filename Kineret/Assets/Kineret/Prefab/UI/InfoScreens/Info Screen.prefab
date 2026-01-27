@@ -257,7 +257,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6690099219044943191}
         m_TargetAssemblyTypeName: InfoScreenHandler, Assembly-CSharp
-        m_MethodName: CloseScreen
+        m_MethodName: GameOver
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -568,7 +568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b13c4d8c8c751245a5bca1022b9728d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GamePause_EC: {fileID: 11400000, guid: c647ad7c5a5c73f48ac7fa533fad8a6c, type: 2}
+  gamePause_EC: {fileID: 11400000, guid: c647ad7c5a5c73f48ac7fa533fad8a6c, type: 2}
+  gameOver_EC: {fileID: 11400000, guid: d2263ad3087e9824ab7c49713ec4c77c, type: 2}
   data: {fileID: 0}
   titleText: {fileID: 6031767316281596551}
   subtitleText: {fileID: 7204820290178915218}
@@ -576,6 +577,8 @@ MonoBehaviour:
   iconImage: {fileID: 4034366893557278110}
   logoImage: {fileID: 8525970850721530602}
   backgroundImage: {fileID: 4269523739807868274}
+  continueGameButton: {fileID: 9002773788870890169}
+  endGameButton: {fileID: 2352230391437588245}
 --- !u!1 &4726153659393783452
 GameObject:
   m_ObjectHideFlags: 0

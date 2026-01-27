@@ -569,6 +569,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f84dcce6bf7024981538af97fd0363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destinationSelected_EC: {fileID: 11400000, guid: 254ac4a87038dd94d835bd2961f8951b,
+    type: 2}
+  destinationDeselected_EC: {fileID: 11400000, guid: 89fff0f767b1b13409f726f62cb23e0f,
+    type: 2}
+  enableDestinationSelection_EC: {fileID: 11400000, guid: 30db6846684d5714db321701866561b6,
+    type: 2}
   selectedImage: {fileID: 3592142817973109207}
   unselectedImage: {fileID: 5254328322714530433}
 --- !u!1 &8018122461234288281

@@ -9,5 +9,6 @@ public class InfoScreenData : ScriptableObject
     public string Title;
     public string Subtitle;
     public string Description;
+    public float logoSizeMultiplier;
     public bool IsFinal { get; set; }
 }

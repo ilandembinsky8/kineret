@@ -51,7 +51,8 @@ MonoBehaviour:
   notificationPopupData: {fileID: 0}
   collectPopupData: {fileID: 11400000, guid: 97790ccc290f02b448eb7b61a26f72de, type: 2}
   visuals: {fileID: 4198783435181284254}
-  LoadInfoScreen_EC: {fileID: 11400000, guid: d533fb953a462064e85f0330d1be9659, type: 2}
+  DestinationReached_EC: {fileID: 11400000, guid: 6915ce986a80e024097b02562f60e004,
+    type: 2}
   GamePause_EC: {fileID: 11400000, guid: c647ad7c5a5c73f48ac7fa533fad8a6c, type: 2}
   infoScreenData: {fileID: 11400000, guid: 7a1043c29ff9eb24f908e692c9e09b2a, type: 2}
 --- !u!1 &4198783435181284254
