@@ -88,5 +88,6 @@ public class InfoScreenHandler : MonoBehaviour
     public void GameOver()
     {
         gameOver_EC.RaiseEvent();
+        Destroy(gameObject);
     }
 }

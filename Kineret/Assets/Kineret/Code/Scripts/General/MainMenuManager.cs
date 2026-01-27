@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public static bool IsLoadingDestinationSelection = false;
+
     [SerializeField] private GameSettings gameSettings;
 
     [Header("Event Channels")]
@@ -27,10 +29,9 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
-        mainMenuCanvas.SetActive(true);
-        destinationSelectCanvas.SetActive(false);
+        mainMenuCanvas.SetActive(!IsLoadingDestinationSelection);
+        destinationSelectCanvas.SetActive(IsLoadingDestinationSelection);
         controlButtonsCanvas.SetActive(true);
-
         explanationPopup.SetActive(true);
         destinationsSummaryPopup.SetActive(false);
         toturialPopup.SetActive(false);
@@ -49,6 +50,13 @@ public class MainMenuManager : MonoBehaviour
     {
         destinationSelected_EC.OnEventRaised -= HandleDestinationSelection;
         destinationDeselected_EC.OnEventRaised -= HandleDestinationDeselection;
+    }
+
+    private void Start()
+    {
+        
+
+        if (IsLoadingDestinationSelection) StartDestinationSelection();
     }
 
     public void StartDestinationSelection()
