@@ -54,8 +54,6 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        
-
         if (IsLoadingDestinationSelection) StartDestinationSelection();
     }
 
