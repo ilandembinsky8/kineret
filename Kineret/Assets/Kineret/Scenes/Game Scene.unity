@@ -269,6 +269,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bonus Point (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 320365643101002794, guid: 897b937492984644f9a641b940fcfd32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3341179971914494909, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -570,13 +575,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170162054}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 381832858}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!114 &170162059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,14 +859,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381832857}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.2588191, z: 0, w: 0.9659258}
+  m_LocalRotation: {x: 0, y: 0.14780942, z: 0, w: 0.9890159}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 170162057}
   m_Father: {fileID: 2013572509}
-  m_LocalEulerAnglesHint: {x: 0, y: 30, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 17, z: 0}
 --- !u!1 &436720072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,6 +1313,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interest Point (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4642300130430279945, guid: 7c48ac09acea2c448be029d51dd60512,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7496325448959510307, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1386,7 +1396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &673909660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2782,12 +2792,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154507787}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2058054690}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1175098556
 GameObject:
@@ -3007,7 +3017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1237080104
 Transform:
   m_ObjectHideFlags: 0
@@ -3876,6 +3886,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bonus Point (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 320365643101002794, guid: 897b937492984644f9a641b940fcfd32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3341179971914494909, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3949,6 +3964,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Interest Point (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642300130430279945, guid: 7c48ac09acea2c448be029d51dd60512,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7496325448959510307, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
@@ -4039,7 +4059,7 @@ Transform:
   m_GameObject: {fileID: 2013572507}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56711.902, y: 2000, z: 2006.4688}
+  m_LocalPosition: {x: 72592, y: 1066.4, z: 22034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4559,6 +4579,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048280628}
   m_CullTransparentMesh: 1
+--- !u!1 &2058054689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2058054690}
+  m_Layer: 0
+  m_Name: Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2058054690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058054689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -385, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1154507790}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107330108
 GameObject:
   m_ObjectHideFlags: 0
@@ -4674,6 +4726,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Interest Point
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642300130430279945, guid: 7c48ac09acea2c448be029d51dd60512,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7496325448959510307, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
@@ -4817,6 +4874,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bonus Point
       objectReference: {fileID: 0}
+    - target: {fileID: 320365643101002794, guid: 897b937492984644f9a641b940fcfd32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3341179971914494909, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4884,7 +4946,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1708214510}
   - {fileID: 673909662}
-  - {fileID: 1154507790}
+  - {fileID: 2058054690}
   - {fileID: 1558201995}
   - {fileID: 2107330112}
   - {fileID: 981786190}
