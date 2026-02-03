@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: DestinationRangeData
   m_EditorClassIdentifier: 
   notificationRange: 0
-  collectionRange: 1000
+  collectionRange: 2000
+  score: 50

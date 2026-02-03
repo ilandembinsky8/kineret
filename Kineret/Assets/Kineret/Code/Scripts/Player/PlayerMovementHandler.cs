@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerMovementHandler : MonoBehaviour
 {
@@ -8,17 +9,21 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private BoolEventChannel GamePause_EC;
 
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float turnSpeed;
+    [SerializeField] private float maxRoll;
+    [SerializeField] private float rollSpeed;
+    [SerializeField] private float yawSpeed;
     [SerializeField] private float pitchSpeed;
     [SerializeField] private Rigidbody rb;
 
     [SerializeField] private GameObject pitchBody;
+    [SerializeField] private GameObject yawBody;
 
-    private float _turnDirection;
+    private float _yawDirection;
     private float _pitchDirection;
 
     private InputActions _actions;
     private bool _isPaused;
+    private float _currentRoll;
 
     private void Awake()
     {
@@ -50,14 +55,24 @@ public class PlayerMovementHandler : MonoBehaviour
     void Update()
     {
         if (_isPaused) return;
-        Rotate();
+        //Roll();
+        Yaw();
+        Pitch();
         Move();
         
     }
 
-    private void Rotate()
+    private void Roll()
     {
-        transform.Rotate(transform.up, Time.deltaTime * turnSpeed * _turnDirection,Space.World);
+        _currentRoll = Mathf.Clamp(_currentRoll + Time.deltaTime * rollSpeed * -_yawDirection,-maxRoll,maxRoll);
+        transform.rotation = Quaternion.Euler(0f, 0f, _currentRoll); 
+    }
+    private void Yaw()
+    {
+        yawBody.transform.Rotate(transform.up, Time.deltaTime * yawSpeed * _yawDirection, Space.World);
+    }
+    private void Pitch()
+    {
         pitchBody.transform.Rotate(pitchBody.transform.right, Time.deltaTime * pitchSpeed * _pitchDirection, Space.World);
         cameraPitched_EC.RaiseEvent(pitchBody.transform);
     }
@@ -75,7 +90,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void HandleTurnInput(InputAction.CallbackContext context)
     {
-        _turnDirection = context.ReadValue<float>();
+        _yawDirection = context.ReadValue<float>();
     }
 
     private void HandleGamePause(bool isPaused)
