@@ -272,7 +272,7 @@ PrefabInstance:
     - target: {fileID: 320365643101002794, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3341179971914494909, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
@@ -1316,7 +1316,7 @@ PrefabInstance:
     - target: {fileID: 4642300130430279945, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7496325448959510307, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
@@ -3017,7 +3017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1237080104
 Transform:
   m_ObjectHideFlags: 0
@@ -3889,7 +3889,7 @@ PrefabInstance:
     - target: {fileID: 320365643101002794, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3341179971914494909, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
@@ -3968,7 +3968,7 @@ PrefabInstance:
     - target: {fileID: 4642300130430279945, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7496325448959510307, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
@@ -4059,7 +4059,7 @@ Transform:
   m_GameObject: {fileID: 2013572507}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72592, y: 1066.4, z: 22034}
+  m_LocalPosition: {x: 56527, y: 1066.4, z: 1892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4730,7 +4730,7 @@ PrefabInstance:
     - target: {fileID: 4642300130430279945, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7496325448959510307, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
@@ -4877,7 +4877,7 @@ PrefabInstance:
     - target: {fileID: 320365643101002794, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3341179971914494909, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
