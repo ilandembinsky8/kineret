@@ -44,16 +44,16 @@ public class CollectableHandler : MonoBehaviour
         playerMoved_EC.OnEventRaised -= HandlePlayerMoved;
     }
 
-    private void OnDrawGizmos()
-    {
-        if (collectableData == null) return;
+    //private void OnDrawGizmos()
+    //{
+    //    if (collectableData == null) return;
 
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(transform.position,new Vector3(0f,1f,0f), collectableData.notificationRange);
+    //    Handles.color = Color.red;
+    //    Handles.DrawWireDisc(transform.position,new Vector3(0f,1f,0f), collectableData.notificationRange);
 
-        Handles.color = Color.green;
-        Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), collectableData.collectionRange);
-    }
+    //    Handles.color = Color.green;
+    //    Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), collectableData.collectionRange);
+    //}
 
     private void HandlePlayerMoved(Transform playerTransform)
     {

@@ -6,6 +6,7 @@ public class MainMenuManager : MonoBehaviour
     public static bool IsLoadingDestinationSelection = false;
 
     [SerializeField] private GameSettings gameSettings;
+    [SerializeField] private float showTutorialBTNTimer;
 
     [Header("Event Channels")]
     [SerializeField] private VoidEventChannel destinationSelected_EC;
@@ -83,9 +84,17 @@ public class MainMenuManager : MonoBehaviour
     private void EndDestinationSelection()
     {
         enableDestinationSelection_EC.RaiseEvent(false);
-        showToturialButton.SetActive(true);
+        StartCoroutine(ShowButtomCoro());
         destinationsSummaryPopup.SetActive(true);
         explanationPopup.SetActive(false);
+    }
+    System.Collections.IEnumerator ShowButtomCoro()
+    {
+        yield return new WaitForSeconds(showTutorialBTNTimer);
+        destinationsSummaryPopup.SetActive(false);
+        toturialPopup.SetActive(true);
+        yield return new WaitForSeconds(showTutorialBTNTimer);
+        showToturialButton.SetActive(true);
     }
 
     public void StartGame()
