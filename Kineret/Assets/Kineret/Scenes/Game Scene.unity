@@ -3862,7 +3862,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &1558201995
 RectTransform:
@@ -4541,10 +4541,10 @@ MonoBehaviour:
   playerMoved_EC: {fileID: 11400000, guid: 6c3815ed880b1b34db7f693e4a38d9a4, type: 2}
   cameraPitched_EC: {fileID: 11400000, guid: 2d2d3b2639d7a1249ab339606fecc6de, type: 2}
   GamePause_EC: {fileID: 11400000, guid: c647ad7c5a5c73f48ac7fa533fad8a6c, type: 2}
-  moveSpeed: 300
+  moveSpeed: 680
   maxRoll: 30
   rollSpeed: 20
-  yawSpeed: 10
+  yawSpeed: 35
   pitchSpeed: 5
   rb: {fileID: 2013572511}
   pitchBody: {fileID: 170162054}
