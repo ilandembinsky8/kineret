@@ -7,6 +7,7 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private TransformEventChannel playerMoved_EC;
     [SerializeField] private TransformEventChannel cameraPitched_EC;
     [SerializeField] private BoolEventChannel GamePause_EC;
+    [SerializeField] private FloatEventChannel moveSpeedChange_EC;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxRoll;
@@ -39,7 +40,8 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Pitch.canceled += HandlePitchInput;
 
         GamePause_EC.OnEventRaised += HandleGamePause;
-}
+        moveSpeedChange_EC.OnEventRaised += ChangeMoveSpeedByLeg;
+    }
 
     private void OnDisable()
     {
@@ -50,6 +52,7 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Pitch.canceled -= HandlePitchInput;
 
         GamePause_EC.OnEventRaised -= HandleGamePause;
+        moveSpeedChange_EC.OnEventRaised -= ChangeMoveSpeedByLeg;
     }
 
     void Update()
@@ -96,5 +99,10 @@ public class PlayerMovementHandler : MonoBehaviour
     private void HandleGamePause(bool isPaused)
     {
         _isPaused = isPaused;
+    }
+    private void ChangeMoveSpeedByLeg(float newMoveSpeed)
+    {
+        moveSpeed = newMoveSpeed;
+        Debug.Log("changed speed to moveSpeed");
     }
 }

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameSettings gameSettings;
     [SerializeField] private InfoScreenDataEventChannel destinationReached_EC;
     [SerializeField] private InfoScreenDataEventChannel loadInfoScreen_EC;
+    [SerializeField] private FloatEventChannel moveSpeedChange_EC;
 
     [SerializeField] private IntEventChannel scoreChanged_EC;
     [SerializeField] private IntEventChannel gotScore_EC;
@@ -14,12 +15,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMP_Text finalScoreText;
     [SerializeField] private GameObject summmaryCanvas;
+
+    [SerializeField] private Transform[] destinations;
     private int _destinationsReachedCount;
     private int _score;
+    [SerializeField] float legTime;
 
     private void Awake()
     {
         summmaryCanvas.SetActive(false);
+        legTime = IniManager.GetFloat("Flight Settings", "SecondsForLeg",15);
     }
 
     private void OnEnable()
@@ -39,6 +44,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         HandleGotScore(0);
+        ChangeMoveSpeedByLeg();
     }
 
     public void GoToMainMenu(bool _isLoadingDestinationSelection)
@@ -58,6 +64,22 @@ public class GameManager : MonoBehaviour
         _destinationsReachedCount++;
         data.IsFinal = _destinationsReachedCount == gameSettings.DestinationCount;
         loadInfoScreen_EC.RaiseEvent(data);
+        ChangeMoveSpeedByLeg();
+    }
+    private void ChangeMoveSpeedByLeg()
+    {
+        Vector3 currentDesY0 = destinations[_destinationsReachedCount].position;
+        currentDesY0.y = 0;
+        Vector3 nextDesY0;
+        if (_destinationsReachedCount != gameSettings.DestinationCount)
+        {
+            nextDesY0 = destinations[_destinationsReachedCount + 1].position;
+            nextDesY0.y = 0;
+            float distance = Vector3.Distance(currentDesY0, nextDesY0);
+            float newMoveSpeed = distance / legTime;
+            moveSpeedChange_EC?.RaiseEvent(newMoveSpeed);
+            Debug.Log("distance from current to next destination: " + distance);
+        }
     }
 
     private void HandleGameOver()

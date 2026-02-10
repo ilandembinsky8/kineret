@@ -1575,11 +1575,17 @@ MonoBehaviour:
   destinationReached_EC: {fileID: 11400000, guid: 6915ce986a80e024097b02562f60e004,
     type: 2}
   loadInfoScreen_EC: {fileID: 11400000, guid: d533fb953a462064e85f0330d1be9659, type: 2}
+  moveSpeedChange_EC: {fileID: 11400000, guid: da0d379c7ed43e242934360b576dbe9d, type: 2}
   scoreChanged_EC: {fileID: 11400000, guid: 15fe7929a99861a4f934cce6fe9832d7, type: 2}
   gotScore_EC: {fileID: 11400000, guid: d9b5e4ff6b8db82459a3f609c91c8417, type: 2}
   gameOver_EC: {fileID: 11400000, guid: d2263ad3087e9824ab7c49713ec4c77c, type: 2}
   finalScoreText: {fileID: 1223821963}
   summmaryCanvas: {fileID: 2107330108}
+  destinations:
+  - {fileID: 1775565947}
+  - {fileID: 1886467958}
+  - {fileID: 1729602470}
+  legTime: 0
 --- !u!1 &554069112
 GameObject:
   m_ObjectHideFlags: 0
@@ -4546,6 +4552,7 @@ MonoBehaviour:
   playerMoved_EC: {fileID: 11400000, guid: 6c3815ed880b1b34db7f693e4a38d9a4, type: 2}
   cameraPitched_EC: {fileID: 11400000, guid: 2d2d3b2639d7a1249ab339606fecc6de, type: 2}
   GamePause_EC: {fileID: 11400000, guid: c647ad7c5a5c73f48ac7fa533fad8a6c, type: 2}
+  moveSpeedChange_EC: {fileID: 11400000, guid: da0d379c7ed43e242934360b576dbe9d, type: 2}
   moveSpeed: 680
   maxRoll: 30
   rollSpeed: 20
