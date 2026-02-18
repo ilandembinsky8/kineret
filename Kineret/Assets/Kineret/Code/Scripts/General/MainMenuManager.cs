@@ -6,8 +6,8 @@ public class MainMenuManager : MonoBehaviour
     public static bool IsLoadingDestinationSelection = false;
 
     [SerializeField] private GameSettings gameSettings;
-    [SerializeField] private float showTutorialBTNTimer;
-
+    [SerializeField] private float showTutorialDelay;
+    [SerializeField] private float showGameButtonDelay;
     [Header("Event Channels")]
     [SerializeField] private VoidEventChannel destinationSelected_EC;
     [SerializeField] private VoidEventChannel destinationDeselected_EC;
@@ -20,8 +20,8 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private GameObject explanationPopup;
-    [SerializeField] private GameObject destinationsSummaryPopup;
-    [SerializeField] private GameObject toturialPopup;
+    [SerializeField] private PopupTweenHandler destinationsSummaryPopup;
+    [SerializeField] private PopupTweenHandler toturialPopup;
    
     [SerializeField] private GameObject showToturialButton;
     [SerializeField] private GameObject startGameButton;
@@ -34,8 +34,8 @@ public class MainMenuManager : MonoBehaviour
         destinationSelectCanvas.SetActive(IsLoadingDestinationSelection);
         controlButtonsCanvas.SetActive(true);
         explanationPopup.SetActive(true);
-        destinationsSummaryPopup.SetActive(false);
-        toturialPopup.SetActive(false);
+        destinationsSummaryPopup.gameObject.SetActive(false);
+        toturialPopup.gameObject.SetActive(false);
 
         showToturialButton.SetActive(false);
         startGameButton.SetActive(false);
@@ -85,15 +85,18 @@ public class MainMenuManager : MonoBehaviour
     {
         enableDestinationSelection_EC.RaiseEvent(false);
         StartCoroutine(ShowButtomCoro());
-        destinationsSummaryPopup.SetActive(true);
+        destinationsSummaryPopup.gameObject.SetActive(true);
+        destinationsSummaryPopup.Play((int)PlayMode.Default);
+        destinationsSummaryPopup.StartCoroutine(destinationsSummaryPopup.PlayIconYoyo(showTutorialDelay));
         explanationPopup.SetActive(false);
     }
     System.Collections.IEnumerator ShowButtomCoro()
     {
-        yield return new WaitForSeconds(showTutorialBTNTimer);
-        destinationsSummaryPopup.SetActive(false);
-        toturialPopup.SetActive(true);
-        yield return new WaitForSeconds(showTutorialBTNTimer);
+        yield return new WaitForSeconds(showTutorialDelay);
+        destinationsSummaryPopup.gameObject.SetActive(false);
+        toturialPopup.gameObject.SetActive(true);
+        toturialPopup.Play((int)PlayMode.Default);
+        yield return new WaitForSeconds(showGameButtonDelay);
         showToturialButton.SetActive(true);
     }
 

@@ -107,6 +107,6 @@ public class InfoScreenHandler : MonoBehaviour
         Tween tween = parent.DOMoveY(parent.sizeDelta.y/2f, enterDuration);
         yield return tween.WaitForCompletion();
 
-        tweenHandler.StartCoroutine(tweenHandler.EnterAnimation());
+        tweenHandler.StartCoroutine(tweenHandler.PlayAnimation());
     }
 }
