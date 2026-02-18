@@ -18,6 +18,7 @@ public class PopupTweenHandler : MonoBehaviour
     [SerializeField] private float contentDelay;
     [SerializeField] private float iconStartingY;
     [SerializeField] private float infoScreenMaskStartingTop;
+    [SerializeField] private bool playOnStart;
 
     private Vector2 _originalBGSizeDelta;
     private float _originalIconLocalPositionY;
@@ -34,10 +35,11 @@ public class PopupTweenHandler : MonoBehaviour
 
         if (infoScreenMask != null) infoScreenMask.padding = new Vector4(0,0 ,0 , infoScreenMaskStartingTop);
         background.sizeDelta = new Vector2 (background.sizeDelta.x, 0);
-        StartCoroutine(EnterAnimation());
+
+        if(playOnStart) StartCoroutine(EnterAnimation());
     }
 
-    private IEnumerator EnterAnimation()
+    public IEnumerator EnterAnimation()
     {
         background.DOSizeDelta(_originalBGSizeDelta, backgroundTweenDuration).SetEase(Ease.OutBack);
         icon.DOLocalMoveY(_originalIconLocalPositionY, iconTweenDuration).SetEase(Ease.OutBack);

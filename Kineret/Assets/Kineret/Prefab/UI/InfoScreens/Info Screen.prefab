@@ -518,10 +518,10 @@ RectTransform:
   - {fileID: 8905464478924030651}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 3840, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1110025745330818625
 CanvasRenderer:
@@ -584,6 +584,9 @@ MonoBehaviour:
   backgroundImage: {fileID: 4269523739807868274}
   continueGameButton: {fileID: 9002773788870890169}
   endGameButton: {fileID: 2352230391437588245}
+  parent: {fileID: 6364803107709457401}
+  tweenHandler: {fileID: 451475727834922370}
+  enterDuration: 1
 --- !u!114 &451475727834922370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,6 +610,7 @@ MonoBehaviour:
   contentDelay: 2
   iconStartingY: 400
   infoScreenMaskStartingTop: 2500
+  playOnStart: 0
 --- !u!1 &4726153659393783452
 GameObject:
   m_ObjectHideFlags: 0

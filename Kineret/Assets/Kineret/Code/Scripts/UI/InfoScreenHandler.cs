@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +21,10 @@ public class InfoScreenHandler : MonoBehaviour
 
     [SerializeField] private GameObject continueGameButton;
     [SerializeField] private GameObject endGameButton;
-    
+
+    [SerializeField] private RectTransform parent;
+    [SerializeField] private PopupTweenHandler tweenHandler;
+    [SerializeField] private float enterDuration;
     private bool _wasLoadedOnAwake;
 
     private void Awake()
@@ -31,9 +36,14 @@ public class InfoScreenHandler : MonoBehaviour
             Debug.Log("Data isnt null at awake");
             LoadData(data);
             _wasLoadedOnAwake = true;
-        }    
-    }
+        }
 
+       
+    }
+    private void Start()
+    {
+        StartCoroutine(EnterAnimation());
+    }
     public void LoadData(InfoScreenData data)
     {
         if(_wasLoadedOnAwake) return;
@@ -89,5 +99,14 @@ public class InfoScreenHandler : MonoBehaviour
     {
         gameOver_EC.RaiseEvent();
         Destroy(gameObject);
+    }
+
+    private IEnumerator EnterAnimation()
+    {
+        parent.anchoredPosition = new Vector2(parent.anchoredPosition.x, parent.sizeDelta.y);
+        Tween tween = parent.DOMoveY(parent.sizeDelta.y/2f, enterDuration);
+        yield return tween.WaitForCompletion();
+
+        tweenHandler.StartCoroutine(tweenHandler.EnterAnimation());
     }
 }

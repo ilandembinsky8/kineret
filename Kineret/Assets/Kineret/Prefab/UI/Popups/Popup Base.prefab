@@ -209,10 +209,13 @@ MonoBehaviour:
   titleText: {fileID: 8724049663967910880}
   subTitleText: {fileID: 0}
   descriptionText: {fileID: 4819347895034124011}
+  infoScreenMask: {fileID: 0}
   backgroundTweenDuration: 1
   iconTweenDuration: 1.2
   contentDelay: 0.9
   iconStartingY: -300
+  infoScreenMaskStartingTop: 0
+  playOnStart: 1
 --- !u!1 &5831105511592844616
 GameObject:
   m_ObjectHideFlags: 0
