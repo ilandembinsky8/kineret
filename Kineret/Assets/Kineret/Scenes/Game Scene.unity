@@ -3106,6 +3106,7 @@ MonoBehaviour:
   loadPopup_EC: {fileID: 11400000, guid: 434ae0b1dce8a5d4c8f23f04d7878aa3, type: 2}
   loadInfoScreen_EC: {fileID: 11400000, guid: d533fb953a462064e85f0330d1be9659, type: 2}
   routePopupData: {fileID: 11400000, guid: 2d8bf9a7e5563754ab3fc93af3e4d60d, type: 2}
+  routePopupDelay: 2
 --- !u!1 &1154507787
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,7 +3871,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0

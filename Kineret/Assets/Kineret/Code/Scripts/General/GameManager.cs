@@ -61,23 +61,23 @@ public class GameManager : MonoBehaviour
 
     private void HandleDestinationReached(InfoScreenData data)
     {
+        ChangeMoveSpeedByLeg();
         _destinationsReachedCount++;
         data.IsFinal = _destinationsReachedCount == gameSettings.DestinationCount;
-        loadInfoScreen_EC.RaiseEvent(data);
-        ChangeMoveSpeedByLeg();
+        loadInfoScreen_EC.RaiseEvent(data);       
     }
     private void ChangeMoveSpeedByLeg()
     {
         Vector3 currentDesY0 = destinations[_destinationsReachedCount].position;
         currentDesY0.y = 0;
         Vector3 nextDesY0;
-        if (_destinationsReachedCount != gameSettings.DestinationCount)
+        if (_destinationsReachedCount < gameSettings.DestinationCount-1)
         {
             nextDesY0 = destinations[_destinationsReachedCount + 1].position;
             nextDesY0.y = 0;
             float distance = Vector3.Distance(currentDesY0, nextDesY0);
             float newMoveSpeed = distance / legTime;
-            moveSpeedChange_EC?.RaiseEvent(newMoveSpeed);
+            moveSpeedChange_EC.RaiseEvent(newMoveSpeed);
             Debug.Log("distance from current to next destination: " + distance);
         }
     }

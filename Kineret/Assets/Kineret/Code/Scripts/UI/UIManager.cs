@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -14,12 +15,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private InfoScreenDataEventChannel loadInfoScreen_EC;
 
     [SerializeField] private PopupData routePopupData;
+    [SerializeField] private float routePopupDelay;
 
     private PopupHandler _currentPopup;
 
-    private void Awake()
+    private void Start()
     {
-        LoadPopup(routePopupData);
+        StartCoroutine(LoadRoutePopup());
     }
 
     private void OnEnable()
@@ -32,6 +34,12 @@ public class UIManager : MonoBehaviour
     {
         loadPopup_EC.OnEventRaised -= LoadPopup;
         loadInfoScreen_EC.OnEventRaised -= LoadInfoScreen;
+    }
+
+    private IEnumerator LoadRoutePopup()
+    {
+        yield return new WaitForSeconds(routePopupDelay);
+        LoadPopup(routePopupData);
     }
 
     private void LoadPopup(PopupData data)

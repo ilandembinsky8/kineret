@@ -30,10 +30,10 @@ public class DestinationHandler : CollectableHandler
 
     private IEnumerator LoadInfoScreen(float delay)
     {
+        GamePause_EC.RaiseEvent(true);
         yield return new WaitForSeconds(delay);
         if (infoScreenData != null)
         {
-            GamePause_EC.RaiseEvent(true);
             DestinationReached_EC.RaiseEvent(infoScreenData);
         }          
     } 
