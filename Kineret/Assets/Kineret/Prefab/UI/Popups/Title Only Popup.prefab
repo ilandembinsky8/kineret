@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: subText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 462869385194529032, guid: 81bdbee9f8058074f847f9f56386e664,
+        type: 3}
+      propertyPath: TMPtexts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1765064640656201698, guid: 81bdbee9f8058074f847f9f56386e664,
         type: 3}
       propertyPath: m_Name

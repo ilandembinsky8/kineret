@@ -601,15 +601,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 5696523211269675366}
   icon: {fileID: 7053103485877682425}
-  titleText: {fileID: 1628819590277137041}
-  subTitleText: {fileID: 8461525944167161739}
-  descriptionText: {fileID: 4049377741894099845}
+  TMPtexts:
+  - {fileID: 6031767316281596551}
+  - {fileID: 7204820290178915218}
+  - {fileID: 5900584321978757919}
   infoScreenMask: {fileID: 8940440212793698732}
   backgroundTweenDuration: 2
   iconTweenDuration: 2
   contentDelay: 2
   iconStartingY: 400
   infoScreenMaskStartingTop: 2500
+  startingHeightForWidthFirst: 0
+  iconMaxPulse: 0
   playOnStart: 0
 --- !u!1 &4726153659393783452
 GameObject:

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -104,4 +105,6 @@ public class MainMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Game Scene");
     }
+
+
 }

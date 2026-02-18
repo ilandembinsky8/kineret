@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,9 +13,11 @@ public enum PlayMode
 public class PopupTweenHandler : MonoBehaviour
 {
 
+    private const float LETTER_DELAY = 0.03f;
+
     [SerializeField] private RectTransform background;
     [SerializeField] private RectTransform icon;
-    [SerializeField] private TMP_Text[] texts;
+    [SerializeField] private TMP_Text[] TMPtexts;
     [SerializeField] private RectMask2D infoScreenMask;
 
     [SerializeField] private float backgroundTweenDuration;
@@ -51,7 +54,7 @@ public class PopupTweenHandler : MonoBehaviour
             infoScreenMask.padding = new Vector4(0, 0, 0, infoScreenMaskStartingTop);
         }
 
-        foreach (var text in texts)
+        foreach (var text in TMPtexts)
         {
             text.gameObject.SetActive(false);
         }
@@ -96,10 +99,7 @@ public class PopupTweenHandler : MonoBehaviour
 
         yield return new WaitForSeconds(contentDelay);
 
-        foreach (var text in texts)
-        {
-            text.gameObject.SetActive(true);
-        }
+        StartCoroutine(PlayText());
     }
 
     public IEnumerator PlayWidthFirstAnimation()
@@ -115,11 +115,7 @@ public class PopupTweenHandler : MonoBehaviour
 
 
         yield return new WaitForSeconds(contentDelay);
-
-        foreach (var text in texts)
-        {
-            text.gameObject.SetActive(true);
-        }
+        StartCoroutine(PlayText());    
     }
 
     public IEnumerator PlayIconYoyo(float duration)
@@ -136,5 +132,71 @@ public class PopupTweenHandler : MonoBehaviour
 
         icon.localScale = originalScale;
     }
+    private IEnumerator PlayText()
+    {
+        Queue<char>[] texts =  new Queue<char>[TMPtexts.Length];
+        string currentText;
+        for (int i = 0; i < TMPtexts.Length; i++)
+        {
+            TMPtexts[i].gameObject.SetActive(true);
+            currentText = TMPtexts[i].text;
+            texts[i] = new Queue<char>(currentText.Length);
 
+            foreach (var ch in currentText)
+            {
+                texts[i].Enqueue(ch);
+            }
+
+            TMPtexts[i].text = "";
+        }
+
+        bool isMarkdownActive = false;
+        string markdownEnd = string.Empty;
+        for (int i = 0; i < TMPtexts.Length; i++)
+        {
+            while(texts[i].Count > 0)
+            {
+                char ch = texts[i].Dequeue();
+
+                if(ch == '<' && texts[i].Peek() != '/')
+                {
+                    Debug.Log("Markdown is Starting");
+                    string markdownStart = $"{ch}{texts[i].Dequeue()}{texts[i].Dequeue()}";
+                    TMPtexts[i].text += markdownStart;
+                    markdownEnd += '<';
+                    markdownEnd += '/';
+                    markdownEnd += markdownStart[1];
+                    markdownEnd += '>';
+                    TMPtexts[i].text += markdownEnd;
+                    isMarkdownActive = true;
+                    ch = texts[i].Dequeue();
+                }
+
+                if (ch == '<' && texts[i].Peek() == '/')
+                {
+                    Debug.Log("Markdown is Ending");
+                    texts[i].Dequeue();
+                    texts[i].Dequeue();
+                    texts[i].Dequeue();
+                    texts[i].Dequeue();       
+                    isMarkdownActive = false;
+                    markdownEnd = string.Empty;
+                    ch = texts[i].Dequeue();
+                }
+
+                if (isMarkdownActive)
+                {
+                    Debug.Log(TMPtexts[i].text);
+                    TMPtexts[i].text = TMPtexts[i].text.Substring(0, TMPtexts[i].text.Length - 4);
+                    TMPtexts[i].text += ch;
+                    TMPtexts[i].text += markdownEnd;
+                }
+                else
+                {
+                    TMPtexts[i].text += ch;
+                }                
+                yield return new WaitForSeconds(LETTER_DELAY);
+            }      
+        }
+    }
 }
