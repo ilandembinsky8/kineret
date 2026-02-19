@@ -1581,6 +1581,7 @@ MonoBehaviour:
   startingHeightForWidthFirst: 0
   iconMaxPulse: 1.1
   playOnStart: 0
+  textMode: 0
 --- !u!1 &1161864031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,6 +1896,7 @@ MonoBehaviour:
   startingHeightForWidthFirst: 0
   iconMaxPulse: 0
   playOnStart: 0
+  textMode: 0
 --- !u!1 &1294253059
 GameObject:
   m_ObjectHideFlags: 0
@@ -3179,6 +3181,7 @@ MonoBehaviour:
   startingHeightForWidthFirst: 150
   iconMaxPulse: 0
   playOnStart: 0
+  textMode: 0
 --- !u!1 &1744129346
 GameObject:
   m_ObjectHideFlags: 0

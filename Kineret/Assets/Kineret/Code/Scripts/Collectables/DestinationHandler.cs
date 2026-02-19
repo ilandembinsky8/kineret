@@ -26,6 +26,7 @@ public class DestinationHandler : CollectableHandler
     {
         base.Collect();
         StartCoroutine(LoadInfoScreen(collectPopupData.Duration));
+        //Play flag animation
     }
 
     private IEnumerator LoadInfoScreen(float delay)

@@ -218,6 +218,7 @@ MonoBehaviour:
   startingHeightForWidthFirst: 0
   iconMaxPulse: 0
   playOnStart: 1
+  textMode: 1
 --- !u!1 &5831105511592844616
 GameObject:
   m_ObjectHideFlags: 0

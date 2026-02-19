@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +10,16 @@ public enum PlayMode
 {
     Default,WidthOpenFirst
 }
-
+public enum TextMode
+{
+    Run, Fade
+}
 public class PopupTweenHandler : MonoBehaviour
 {
 
     private const float LETTER_DELAY = 0.03f;
+    private const float TEXT_DELAY = 0.4f;
+    private const float TEXT_FADE = 0.3f;
 
     [SerializeField] private RectTransform background;
     [SerializeField] private RectTransform icon;
@@ -30,6 +36,7 @@ public class PopupTweenHandler : MonoBehaviour
     [SerializeField] private float iconMaxPulse;
 
     [SerializeField] private bool playOnStart;
+    [SerializeField] private TextMode textMode;
 
     private Vector2 _originalBGSizeDelta;
     private float _originalIconLocalPositionY;
@@ -99,7 +106,7 @@ public class PopupTweenHandler : MonoBehaviour
 
         yield return new WaitForSeconds(contentDelay);
 
-        StartCoroutine(PlayText());
+        PlayText();
     }
 
     public IEnumerator PlayWidthFirstAnimation()
@@ -115,7 +122,7 @@ public class PopupTweenHandler : MonoBehaviour
 
 
         yield return new WaitForSeconds(contentDelay);
-        StartCoroutine(PlayText());    
+        PlayText();
     }
 
     public IEnumerator PlayIconYoyo(float duration)
@@ -132,7 +139,32 @@ public class PopupTweenHandler : MonoBehaviour
 
         icon.localScale = originalScale;
     }
-    private IEnumerator PlayText()
+
+    private void PlayText()
+    {
+        switch (textMode)
+        {
+            case TextMode.Fade:
+                StartCoroutine(PlayFadingText());
+                break;
+            case TextMode.Run:
+                StartCoroutine(PlayRunningText());
+                break;
+        }
+    }
+
+    private IEnumerator PlayFadingText()
+    {
+        foreach (var text in TMPtexts)
+        {
+            text.gameObject.SetActive(true);
+            text.color = text.color.WithAlpha(0f);
+            text.DOFade(1f, TEXT_FADE);
+            yield return new WaitForSeconds(TEXT_DELAY);
+        }
+    }
+
+    private IEnumerator PlayRunningText()
     {
         Queue<char>[] texts =  new Queue<char>[TMPtexts.Length];
         string currentText;
