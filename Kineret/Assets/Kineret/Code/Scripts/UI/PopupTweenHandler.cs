@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public enum PlayMode
@@ -41,6 +42,8 @@ public class PopupTweenHandler : MonoBehaviour
     private Vector2 _originalBGSizeDelta;
     private float _originalIconLocalPositionY;
     private Tween _iconTween;
+
+    public event UnityAction OnTextFinishedLoading;
 
     private void Awake()
     {
@@ -162,6 +165,7 @@ public class PopupTweenHandler : MonoBehaviour
             text.DOFade(1f, TEXT_FADE);
             yield return new WaitForSeconds(TEXT_DELAY);
         }
+        OnTextFinishedLoading?.Invoke();
     }
 
     private IEnumerator PlayRunningText()
@@ -192,7 +196,6 @@ public class PopupTweenHandler : MonoBehaviour
 
                 if(ch == '<' && texts[i].Peek() != '/')
                 {
-                    Debug.Log("Markdown is Starting");
                     string markdownStart = $"{ch}{texts[i].Dequeue()}{texts[i].Dequeue()}";
                     TMPtexts[i].text += markdownStart;
                     markdownEnd += '<';
@@ -206,7 +209,6 @@ public class PopupTweenHandler : MonoBehaviour
 
                 if (ch == '<' && texts[i].Peek() == '/')
                 {
-                    Debug.Log("Markdown is Ending");
                     texts[i].Dequeue();
                     texts[i].Dequeue();
                     texts[i].Dequeue();
@@ -218,7 +220,6 @@ public class PopupTweenHandler : MonoBehaviour
 
                 if (isMarkdownActive)
                 {
-                    Debug.Log(TMPtexts[i].text);
                     TMPtexts[i].text = TMPtexts[i].text.Substring(0, TMPtexts[i].text.Length - 4);
                     TMPtexts[i].text += ch;
                     TMPtexts[i].text += markdownEnd;
@@ -230,5 +231,7 @@ public class PopupTweenHandler : MonoBehaviour
                 yield return new WaitForSeconds(LETTER_DELAY);
             }      
         }
+
+        OnTextFinishedLoading?.Invoke();
     }
 }

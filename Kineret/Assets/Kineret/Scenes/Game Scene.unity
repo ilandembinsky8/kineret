@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 283810114}
   - component: {fileID: 283810113}
   - component: {fileID: 283810112}
+  - component: {fileID: 283810115}
   m_Layer: 5
   m_Name: Flag Animation
   m_TagString: Untagged
@@ -661,7 +662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 77}
+  m_AnchoredPosition: {x: 0, y: 289}
   m_SizeDelta: {x: 3045.353, y: 1200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!95 &283810112
@@ -723,6 +724,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283810110}
   m_CullTransparentMesh: 1
+--- !u!114 &283810115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283810110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f34f88ff42d01a4fb28eb40faec088c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flagAnimator: {fileID: 283810112}
+  animationSpeed: 0.5
 --- !u!1001 &289033612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1682,7 +1697,7 @@ MonoBehaviour:
   - {fileID: 1775565947}
   - {fileID: 1886467958}
   - {fileID: 1729602470}
-  legTime: 0
+  legTime: 45
 --- !u!1 &554069112
 GameObject:
   m_ObjectHideFlags: 0

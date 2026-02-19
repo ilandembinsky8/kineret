@@ -10,15 +10,21 @@ public class FlagHandler : MonoBehaviour
 
     [SerializeField] private Animator flagAnimator;
 
+    [SerializeField] private float animationSpeed;
+    private void Awake()
+    {
+        flagAnimator.speed = animationSpeed;
+    }
+
     private void OnEnable()
     {
         PlayFlagAnimation += PlayAnimation;
-        EndFlagAnimation += PlayAnimation;
+        EndFlagAnimation += EndAnimation;
     }
     private void OnDisable()
     {
         PlayFlagAnimation -= PlayAnimation;
-        EndFlagAnimation -= PlayAnimation;
+        EndFlagAnimation -= EndAnimation;
     }
 
     private void PlayAnimation()

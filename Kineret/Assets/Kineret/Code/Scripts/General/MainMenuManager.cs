@@ -69,8 +69,6 @@ public class MainMenuManager : MonoBehaviour
     {
         _selectedDestinationsCount++;
 
-        Debug.Log("Destinations Selected" + _selectedDestinationsCount);
-
         if (_selectedDestinationsCount == gameSettings.DestinationCount) 
             EndDestinationSelection();
 
@@ -79,7 +77,6 @@ public class MainMenuManager : MonoBehaviour
     private void HandleDestinationDeselection()
     {
         _selectedDestinationsCount--;
-        Debug.Log("Destinations Selected" + _selectedDestinationsCount);
     }
 
     private void EndDestinationSelection()

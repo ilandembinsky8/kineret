@@ -1,7 +1,9 @@
 using DG.Tweening;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class InfoScreenHandler : MonoBehaviour
@@ -19,18 +21,20 @@ public class InfoScreenHandler : MonoBehaviour
     [SerializeField] private Image logoImage;
     [SerializeField] private Image backgroundImage;
 
-    [SerializeField] private GameObject continueGameButton;
-    [SerializeField] private GameObject endGameButton;
+    [SerializeField] private Button continueGameButton;
+    [SerializeField] private Button endGameButton;
 
     [SerializeField] private RectTransform parent;
     [SerializeField] private PopupTweenHandler tweenHandler;
     [SerializeField] private float enterDuration;
     private bool _wasLoadedOnAwake;
 
+
+
     private void Awake()
     {
-        continueGameButton.SetActive(false);
-        endGameButton.SetActive(false);
+        continueGameButton.gameObject.SetActive(false);
+        endGameButton.gameObject.SetActive(false);
         if (data != null)
         {
             Debug.Log("Data isnt null at awake");
@@ -44,6 +48,14 @@ public class InfoScreenHandler : MonoBehaviour
     {
         StartCoroutine(EnterAnimation());
     }
+    private void OnEnable()
+    {
+        tweenHandler.OnTextFinishedLoading += HandleTextFinishedLoading;
+    }
+    private void OnDisable()
+    {
+        tweenHandler.OnTextFinishedLoading -= HandleTextFinishedLoading;
+    }
     public void LoadData(InfoScreenData data)
     {
         if(_wasLoadedOnAwake) return;
@@ -54,8 +66,8 @@ public class InfoScreenHandler : MonoBehaviour
             return;
         }
 
-        continueGameButton.SetActive(!data.IsFinal);
-        endGameButton.SetActive(data.IsFinal);
+        continueGameButton.gameObject.SetActive(!data.IsFinal);
+        endGameButton.gameObject.SetActive(data.IsFinal);
 
         if (data.Title != null && titleText != null)
         {
@@ -89,6 +101,7 @@ public class InfoScreenHandler : MonoBehaviour
         }
     }
 
+   
     public void CloseScreen()
     {
         gamePause_EC.RaiseEvent(false);
@@ -103,10 +116,19 @@ public class InfoScreenHandler : MonoBehaviour
 
     private IEnumerator EnterAnimation()
     {
+        continueGameButton.interactable = false;
+        endGameButton.interactable = false;
         parent.anchoredPosition = new Vector2(parent.anchoredPosition.x, parent.sizeDelta.y);
         Tween tween = parent.DOMoveY(parent.sizeDelta.y/2f, enterDuration);
         yield return tween.WaitForCompletion();
-
+        FlagHandler.EndFlagAnimation();
+       
         tweenHandler.StartCoroutine(tweenHandler.PlayAnimation());
+    }
+
+    private void HandleTextFinishedLoading()
+    {
+        continueGameButton.interactable = true;
+        endGameButton.interactable = true;
     }
 }

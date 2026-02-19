@@ -582,8 +582,8 @@ MonoBehaviour:
   iconImage: {fileID: 4034366893557278110}
   logoImage: {fileID: 8525970850721530602}
   backgroundImage: {fileID: 4269523739807868274}
-  continueGameButton: {fileID: 9002773788870890169}
-  endGameButton: {fileID: 2352230391437588245}
+  continueGameButton: {fileID: 8513258774999340232}
+  endGameButton: {fileID: 2316718251090760227}
   parent: {fileID: 6364803107709457401}
   tweenHandler: {fileID: 451475727834922370}
   enterDuration: 1
@@ -614,6 +614,7 @@ MonoBehaviour:
   startingHeightForWidthFirst: 0
   iconMaxPulse: 0
   playOnStart: 0
+  textMode: 0
 --- !u!1 &4726153659393783452
 GameObject:
   m_ObjectHideFlags: 0
