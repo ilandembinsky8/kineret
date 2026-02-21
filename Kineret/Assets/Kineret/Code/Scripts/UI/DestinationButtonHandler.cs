@@ -52,6 +52,11 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         enableDestinationSelection_EC.OnEventRaised -= HandleEnableDestinationSelection;
     }
 
+    private void OnDestroy()
+    {
+        selectedIcon.DOKill();
+    }
+
     public void OnClick()
     {
         if (_isSelected) Deselect();

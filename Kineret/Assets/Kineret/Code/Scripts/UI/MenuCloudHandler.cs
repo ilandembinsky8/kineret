@@ -16,6 +16,11 @@ public class MenuCloudHandler : MonoBehaviour
         enableDestinationSelection_EC.OnEventRaised -= HandleEnable;
     }
 
+    private void OnDestroy()
+    {
+        transform.DOKill();
+    }
+
     private void HandleEnable(bool enabled)
     {
         if (enabled) StartMoving();
