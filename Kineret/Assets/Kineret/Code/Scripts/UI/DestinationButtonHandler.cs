@@ -33,7 +33,6 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
 
     private bool _isSelectable;
     private bool _isSelected;
-    private bool _isHovered;
 
     private Vector2 upperPanelOriginalSize;
     private Vector2 lowerPanelOriginalSize;
@@ -64,8 +63,10 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         upperText.color = upperText.color.WithAlpha(0);
         lowerText.color = lowerText.color.WithAlpha(0);
         selectedIcon.color = selectedIcon.color.WithAlpha(0);
+        availableIcon.color = selectedIcon.color.WithAlpha(1f);
         upperPanel.sizeDelta = new Vector2(upperPanel.sizeDelta.x, 0);
         lowerPanel.sizeDelta = new Vector2(lowerPanel.sizeDelta.x, 0);
+        descriptionPanelMask.padding = Vector4.zero;
     }
 
     private void HandleEnableDestinationSelection(bool isEnabled)
@@ -92,9 +93,9 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     {
         if (!_isSelectable) return;
         _isSelected = true;
-        //Run Selected Animation
 
-
+        //Move to values
+        PlaySelectStatusAnimation(true,0.5f);
         destinationSelected_EC.RaiseEvent();
     }
     private void Deselect()
@@ -103,32 +104,21 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         _isSelected = false;
 
         //Run Deselected Animation (there is non currently)
-
-        //SetUp();
+        PlaySelectStatusAnimation(false, 0.5f);
         destinationDeselected_EC.RaiseEvent();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!_isSelectable) return;
-
-        _isHovered = true;
-
-        if (_isSelected) return;
-
+        if (!_isSelectable || _isSelected) return;
 
         PlayHoverAnimation(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!_isSelectable) return;
-
-        _isHovered = false;
-
-        if (_isSelected) return;
+        if (!_isSelectable || _isSelected) return;
 
         PlayHoverAnimation(false);
-
     }
 
     private void PlayHoverAnimation(bool isEnter)
@@ -181,8 +171,26 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
             lowerText.DOFade(0, textDuration);
 
             yield return new WaitForSeconds(textDuration);
-            upperPanel.DOSizeDelta(new Vector2(upperPanelOriginalSize.x,0), panelDuration).SetEase(Ease.OutBack);
-            lowerPanel.DOSizeDelta(new Vector2(lowerPanelOriginalSize.x, 0), panelDuration).SetEase(Ease.OutBack);
+            upperPanel.DOSizeDelta(new Vector2(upperPanelOriginalSize.x,0), panelDuration);
+            lowerPanel.DOSizeDelta(new Vector2(lowerPanelOriginalSize.x, 0), panelDuration);
         }
+    }
+
+    private void PlaySelectStatusAnimation(bool _isSelectted, float duration)
+    {
+        float padding;
+        if (_isSelectted)
+        {
+            padding = descriptionPanelMask.rectTransform.sizeDelta.y / 2;
+        }
+        else
+        {
+            padding = 0;
+        }
+        DOTween.To(
+            () => descriptionPanelMask.padding,
+            v => descriptionPanelMask.padding = v,
+            new Vector4(0, padding, 0, padding),
+            duration);
     }
 }
