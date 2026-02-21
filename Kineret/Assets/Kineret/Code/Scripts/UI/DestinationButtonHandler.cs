@@ -1,5 +1,7 @@
+using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,15 +14,34 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     [SerializeField] private BoolEventChannel enableDestinationSelection_EC;
 
     [Header("UI Elements")]
-    [SerializeField] private GameObject detailedImage;
-    [SerializeField] private GameObject selectedImage;
-    [SerializeField] private GameObject overImage;
-    [SerializeField] private GameObject selectedOver;
-    [SerializeField] private GameObject unselectedImage;
-    [SerializeField] private GameObject tipTMP;
+
+    [SerializeField] private Image availableIcon;
+    [SerializeField] private Image selectedIcon;
+
+    [SerializeField] private RectTransform upperPanel;
+    [SerializeField] private RectTransform titlePanel;
+    [SerializeField] private RectTransform lowerPanel;
+    [SerializeField] private TMP_Text upperText;
+    [SerializeField] private TMP_Text titleText;
+    [SerializeField] private TMP_Text lowerText;
+
+    [SerializeField] private RectMask2D descriptionPanelMask;
+
+    [Header("Values")]
+    [SerializeField] private float topMaskPaddingTarget;
+    [SerializeField] private float botMaskPaddingTarget;
 
     private bool _isSelectable;
     private bool _isSelected;
+    private bool _isHovered;
+
+    private Vector2 upperPanelOriginalSize;
+    private Vector2 lowerPanelOriginalSize;
+    private void Awake()
+    {
+        upperPanelOriginalSize = upperPanel.sizeDelta;
+        lowerPanelOriginalSize = lowerPanel.sizeDelta;
+    }
 
     private void OnEnable()
     {
@@ -38,6 +59,15 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         else Select();
     }
 
+    private void SetUp()
+    {
+        upperText.color = upperText.color.WithAlpha(0);
+        lowerText.color = lowerText.color.WithAlpha(0);
+        selectedIcon.color = selectedIcon.color.WithAlpha(0);
+        upperPanel.sizeDelta = new Vector2(upperPanel.sizeDelta.x, 0);
+        lowerPanel.sizeDelta = new Vector2(lowerPanel.sizeDelta.x, 0);
+    }
+
     private void HandleEnableDestinationSelection(bool isEnabled)
     {
         _isSelectable = isEnabled;
@@ -45,20 +75,13 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         {
             _isSelected = false;
             gameObject.SetActive(true);
-            detailedImage.SetActive(false);
-            unselectedImage.SetActive(true);
+            SetUp();
             return;
         }
 
         if (_isSelected)
         {
             Debug.Log("Selected Destination: " + gameObject.name);
-            overImage.SetActive(false);
-            detailedImage.SetActive(true);
-            selectedImage.SetActive(false);
-            unselectedImage.SetActive(false);
-            selectedOver.SetActive(true);
-            tipTMP.SetActive(false);
             return;
         }
 
@@ -68,49 +91,98 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     private void Select()
     {
         if (!_isSelectable) return;
-
         _isSelected = true;
-        overImage.SetActive(false);
-        detailedImage.SetActive(true);
-        //selectedImage.SetActive(true);
-        selectedOver.SetActive(true);
-        tipTMP.SetActive(false);
+        //Run Selected Animation
+
+
         destinationSelected_EC.RaiseEvent();
     }
     private void Deselect()
     {
         if (!_isSelectable) return;
         _isSelected = false;
-        tipTMP.SetActive(true);
+
+        //Run Deselected Animation (there is non currently)
+
+        //SetUp();
         destinationDeselected_EC.RaiseEvent();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!_isSelectable) return;
-        if (_isSelected)
-        {
-            selectedOver.SetActive(true);
-            selectedImage.SetActive(false);
-        }
-        else
-        {
-            overImage.SetActive(true);
-        }
-        detailedImage.SetActive(true);
-        unselectedImage.SetActive(false);
+
+        _isHovered = true;
+
+        if (_isSelected) return;
+
+
+        PlayHoverAnimation(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!_isSelectable) return;
-        if (!_isSelected)
+
+        _isHovered = false;
+
+        if (_isSelected) return;
+
+        PlayHoverAnimation(false);
+
+    }
+
+    private void PlayHoverAnimation(bool isEnter)
+    {
+        StopAllCoroutines();
+        selectedIcon.DOKill();
+        availableIcon.DOKill();
+        upperPanel.DOKill();
+        lowerPanel.DOKill();
+        upperText.DOKill();
+        lowerText.DOKill();
+
+        //Move to values
+        StartCoroutine(StatusIconFade(isEnter, 0.5f,1f, 0.5f));
+        StartCoroutine(PanelsAnimation(isEnter, 0.5f, 0.3f));
+    }
+
+    private IEnumerator StatusIconFade(bool isEnter,float fadeDuration,float pulseDuration,float minPulse)
+    {
+        if (isEnter)
         {
-            unselectedImage.SetActive(true);
+            Tween tween = selectedIcon.DOFade(1, fadeDuration);
+            availableIcon.DOFade(0, fadeDuration);
+
+            yield return tween.WaitForCompletion();
+
+            selectedIcon.DOFade(minPulse, pulseDuration).SetLoops(-1,LoopType.Yoyo);
         }
         else
-            selectedImage.SetActive(true);
-        detailedImage.SetActive(false);
-        selectedOver.SetActive(false);
-        overImage.SetActive(false);
+        {
+            selectedIcon.DOFade(0, fadeDuration);
+            availableIcon.DOFade(1, fadeDuration);
+        }
+    }
+    private IEnumerator PanelsAnimation(bool isEnter, float panelDuration, float textDuration)
+    {
+        if (isEnter)
+        {
+            upperPanel.DOSizeDelta(upperPanelOriginalSize, panelDuration).SetEase(Ease.OutBack);
+            lowerPanel.DOSizeDelta(lowerPanelOriginalSize, panelDuration).SetEase(Ease.OutBack);
+
+            yield return new WaitForSeconds(panelDuration);
+
+            upperText.DOFade(1, textDuration);
+            lowerText.DOFade(1, textDuration);
+        }
+        else
+        {
+            upperText.DOFade(0, textDuration);
+            lowerText.DOFade(0, textDuration);
+
+            yield return new WaitForSeconds(textDuration);
+            upperPanel.DOSizeDelta(new Vector2(upperPanelOriginalSize.x,0), panelDuration).SetEase(Ease.OutBack);
+            lowerPanel.DOSizeDelta(new Vector2(lowerPanelOriginalSize.x, 0), panelDuration).SetEase(Ease.OutBack);
+        }
     }
 }

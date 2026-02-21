@@ -68,7 +68,7 @@ public class MainMenuManager : MonoBehaviour
     private void HandleDestinationSelection()
     {
         _selectedDestinationsCount++;
-
+        Debug.Log("Destinations selected:" + _selectedDestinationsCount);
         if (_selectedDestinationsCount == gameSettings.DestinationCount) 
             EndDestinationSelection();
 
@@ -77,10 +77,12 @@ public class MainMenuManager : MonoBehaviour
     private void HandleDestinationDeselection()
     {
         _selectedDestinationsCount--;
+        Debug.Log("Destinations selected:" + _selectedDestinationsCount);
     }
 
     private void EndDestinationSelection()
     {
+        Debug.Log("Ending destination selection");
         enableDestinationSelection_EC.RaiseEvent(false);
         StartCoroutine(ShowButtomCoro());
         destinationsSummaryPopup.gameObject.SetActive(true);
