@@ -111,7 +111,7 @@ public class InfoScreenHandler : MonoBehaviour
     public void GameOver()
     {
         gameOver_EC.RaiseEvent();
-        Destroy(gameObject);
+        Destroy(gameObject,3f);
     }
 
     private IEnumerator EnterAnimation()
@@ -121,7 +121,7 @@ public class InfoScreenHandler : MonoBehaviour
         parent.anchoredPosition = new Vector2(parent.anchoredPosition.x, parent.sizeDelta.y);
         Tween tween = parent.DOMoveY(parent.sizeDelta.y/2f, enterDuration);
         yield return tween.WaitForCompletion();
-        FlagHandler.EndFlagAnimation();
+        FlagHandler.EndFlagAnimation.Invoke();
        
         tweenHandler.StartCoroutine(tweenHandler.PlayAnimation());
     }

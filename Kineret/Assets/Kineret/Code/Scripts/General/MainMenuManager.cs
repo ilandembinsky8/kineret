@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,6 +27,10 @@ public class MainMenuManager : MonoBehaviour
    
     [SerializeField] private GameObject showToturialButton;
     [SerializeField] private GameObject startGameButton;
+    [SerializeField] private RectTransform blackPanel;
+
+    [Header("Values")]
+    [SerializeField] private float blackFadeDuration;
 
     private int _selectedDestinationsCount;
 
@@ -69,7 +74,7 @@ public class MainMenuManager : MonoBehaviour
     {
         _selectedDestinationsCount++;
         Debug.Log("Destinations selected:" + _selectedDestinationsCount);
-        if (_selectedDestinationsCount == gameSettings.DestinationCount) 
+        if (_selectedDestinationsCount == gameSettings.SelectionDestinationCount) 
             EndDestinationSelection();
 
     }
@@ -99,11 +104,20 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForSeconds(showGameButtonDelay);
         showToturialButton.SetActive(true);
     }
-
     public void StartGame()
     {
+        StartCoroutine(BlackFade());
+    }
+    private IEnumerator BlackFade()
+    {
+        blackPanel.gameObject.SetActive(true);
+        Vector2 size = blackPanel.sizeDelta;
+        blackPanel.sizeDelta = Vector2.zero;
+        Tween tween = blackPanel.DOSizeDelta(size, blackFadeDuration);
+        yield return tween.WaitForCompletion();
         SceneManager.LoadScene("Game Scene");
     }
+    
 
 
 }

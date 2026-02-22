@@ -1,4 +1,6 @@
+using DG.Tweening;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -17,25 +19,43 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PopupData routePopupData;
     [SerializeField] private float routePopupDelay;
 
-    private PopupHandler _currentPopup;
+    [SerializeField] private RectTransform blackPanel;
+    [SerializeField] private float blackFadeDuration;
 
-    private void Start()
-    {
-        StartCoroutine(LoadRoutePopup());
-    }
+    private PopupHandler _currentPopup;
 
     private void OnEnable()
     {
         loadPopup_EC.OnEventRaised += LoadPopup;
         loadInfoScreen_EC.OnEventRaised += LoadInfoScreen;
+        GameManager.OnStartGame += HandleStartGame;
     }
 
     private void OnDisable()
     {
         loadPopup_EC.OnEventRaised -= LoadPopup;
         loadInfoScreen_EC.OnEventRaised -= LoadInfoScreen;
+        GameManager.OnStartGame -= HandleStartGame;
     }
 
+
+    private void Start()
+    {
+        StartCoroutine(BlackFade());
+    }
+
+    private IEnumerator BlackFade()
+    {
+        blackPanel.gameObject.SetActive(true);
+        Tween tween = blackPanel.DOSizeDelta(Vector2.zero, blackFadeDuration);
+        yield return tween.WaitForCompletion();
+        GameManager.OnStartGame.Invoke();
+    }
+
+    private void HandleStartGame()
+    {
+        StartCoroutine(LoadRoutePopup());
+    }
     private IEnumerator LoadRoutePopup()
     {
         yield return new WaitForSeconds(routePopupDelay);

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI.Table;
@@ -11,13 +12,14 @@ public class PlayerMovementHandler : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxRoll;
-    [SerializeField] private float rollSpeed;
+    [SerializeField] private float rollDuration;
     [SerializeField] private float yawSpeed;
     [SerializeField] private float pitchSpeed;
     [SerializeField] private Rigidbody rb;
 
-    [SerializeField] private GameObject pitchBody;
-    [SerializeField] private GameObject yawBody;
+    [SerializeField] private Transform pitchBody;
+    [SerializeField] private Transform yawBody;
+    [SerializeField] private Transform rollBody;
 
     private float _yawDirection;
     private float _pitchDirection;
@@ -25,10 +27,12 @@ public class PlayerMovementHandler : MonoBehaviour
     private InputActions _actions;
     private bool _isPaused;
     private float _currentRoll;
+    private float _priorYawDirection;
 
     private void Awake()
     {
-        _actions = new InputActions();      
+        _actions = new InputActions();
+        Roll();
     }
 
     private void OnEnable()
@@ -57,32 +61,45 @@ public class PlayerMovementHandler : MonoBehaviour
 
     void Update()
     {
-        if (_isPaused) return;
-        //Roll();
+        if (_isPaused) return; 
         Yaw();
         Pitch();
-        Move();
-        
+        Roll();
+        Move();     
     }
 
     private void Roll()
     {
-        _currentRoll = Mathf.Clamp(_currentRoll + Time.deltaTime * rollSpeed * -_yawDirection,-maxRoll,maxRoll);
-        transform.rotation = Quaternion.Euler(0f, 0f, _currentRoll); 
+        if(_yawDirection == _priorYawDirection) return; 
+
+        rollBody.DOKill();
+
+        if (_yawDirection != 0 )
+        {
+            Vector3 roll = new Vector3(0, 0, maxRoll * Mathf.Sign(-_yawDirection));
+            rollBody.DOLocalRotate(roll, rollDuration);
+        }
+        else
+        {
+            rollBody.DOLocalRotate(Vector3.zero, rollDuration);
+        }
+        _priorYawDirection = _yawDirection;
+        //_currentRoll = Mathf.Clamp(_currentRoll + Time.deltaTime * rollSpeed * -_yawDirection,-maxRoll,maxRoll);
+        //rollBody.localRotation = Quaternion.Euler(0f, 0f, _currentRoll);
     }
     private void Yaw()
     {
-        yawBody.transform.Rotate(transform.up, Time.deltaTime * yawSpeed * _yawDirection, Space.World);
+        yawBody.Rotate(transform.up, Time.deltaTime * yawSpeed * _yawDirection, Space.World);
     }
     private void Pitch()
     {
-        pitchBody.transform.Rotate(pitchBody.transform.right, Time.deltaTime * pitchSpeed * _pitchDirection, Space.World);
-        cameraPitched_EC.RaiseEvent(pitchBody.transform);
+        pitchBody.Rotate(pitchBody.right, Time.deltaTime * pitchSpeed * _pitchDirection, Space.World);
+        cameraPitched_EC.RaiseEvent(pitchBody);
     }
 
     private void Move()
     {
-        transform.Translate(moveSpeed * Time.deltaTime * (transform.InverseTransformDirection(pitchBody.transform.forward)));
+        transform.Translate(moveSpeed * Time.deltaTime * (transform.InverseTransformDirection(pitchBody.forward)));
         playerMoved_EC.RaiseEvent(transform);
     }
 

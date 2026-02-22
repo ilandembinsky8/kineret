@@ -3,7 +3,8 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "GameSettings", menuName = "Assets/Scriptable Objects/GameSettings")]
-public class GameSettings : ScriptableObject 
+public class GameSettings : ScriptableObject
 {
-    public int DestinationCount;
+    [field: SerializeField] public int SelectionDestinationCount { get; private set; }
+    [field: SerializeField] public int GameDestinationCount { get; private set; }
 }

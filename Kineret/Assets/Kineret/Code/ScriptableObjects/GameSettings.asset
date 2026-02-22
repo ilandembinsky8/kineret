@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f9961d1c6d9704285d93e4bcb7569c, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  DestinationCount: 3
+  <SelectionDestinationCount>k__BackingField: 3
+  <GameDestinationCount>k__BackingField: 1
