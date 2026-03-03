@@ -135,11 +135,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bonus Point (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 320365643101002794, guid: 897b937492984644f9a641b940fcfd32,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3341179971914494909, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -630,11 +625,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Interest Point (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4642300130430279945, guid: 7c48ac09acea2c448be029d51dd60512,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7496325448959510307, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
@@ -1503,11 +1493,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bonus Point (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 320365643101002794, guid: 897b937492984644f9a641b940fcfd32,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3341179971914494909, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1581,11 +1566,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Interest Point (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4642300130430279945, guid: 7c48ac09acea2c448be029d51dd60512,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7496325448959510307, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
@@ -2073,11 +2053,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interest Point
       objectReference: {fileID: 0}
-    - target: {fileID: 4642300130430279945, guid: 7c48ac09acea2c448be029d51dd60512,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7496325448959510307, guid: 7c48ac09acea2c448be029d51dd60512,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2543,11 +2518,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bonus Point
-      objectReference: {fileID: 0}
-    - target: {fileID: 320365643101002794, guid: 897b937492984644f9a641b940fcfd32,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3341179971914494909, guid: 897b937492984644f9a641b940fcfd32,
         type: 3}
