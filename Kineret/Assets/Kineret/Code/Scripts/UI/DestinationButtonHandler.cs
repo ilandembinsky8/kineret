@@ -34,12 +34,16 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     private bool _isSelectable;
     private bool _isSelected;
 
+    private Color32 selectedColor = new Color32(20, 190, 215, 255);
+    private Image selectedDestinationTitleBGImage;
     private Vector2 upperPanelOriginalSize;
     private Vector2 lowerPanelOriginalSize;
+
     private void Awake()
     {
         upperPanelOriginalSize = upperPanel.sizeDelta;
         lowerPanelOriginalSize = lowerPanel.sizeDelta;
+        selectedDestinationTitleBGImage = titlePanel.GetComponent<Image>();
     }
 
     private void OnEnable()
@@ -116,17 +120,17 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     {
         if (!_isSelectable || _isSelected) return;
 
-        PlayHoverAnimation(true);
+        PlayHoverAnimation(true, true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!_isSelectable || _isSelected) return;
 
-        PlayHoverAnimation(false);
+        PlayHoverAnimation(false, false);
     }
 
-    private void PlayHoverAnimation(bool isEnter)
+    private void PlayHoverAnimation(bool isEnter, bool isSelected)
     {
         StopAllCoroutines();
         selectedIcon.DOKill();
@@ -137,7 +141,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         lowerText.DOKill();
 
         //Move to values
-        StartCoroutine(StatusIconFade(isEnter, 0.5f,1f, 0.5f));
+        StartCoroutine(StatusIconFade(isSelected, 0.5f,1f, 0.5f));
         StartCoroutine(PanelsAnimation(isEnter, 0.5f, 0.3f));
     }
 
@@ -183,19 +187,22 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
 
     private void PlaySelectStatusAnimation(bool _isSelectted, float duration)
     {
-        float padding;
-        if (_isSelectted)
-        {
-            padding = descriptionPanelMask.rectTransform.sizeDelta.y / 2;
-        }
-        else
-        {
-            padding = 0;
-        }
-        DOTween.To(
-            () => descriptionPanelMask.padding,
-            v => descriptionPanelMask.padding = v,
-            new Vector4(0, padding, 0, padding),
-            duration);
+        PlayHoverAnimation(false, _isSelectted);
+        selectedDestinationTitleBGImage.DOColor(_isSelectted ? selectedColor : Color.white, duration);
+
+        //float padding;
+        //if (_isSelectted)
+        //{
+        //    padding = descriptionPanelMask.rectTransform.sizeDelta.y / 2;
+        //}
+        //else
+        //{
+        //    padding = 0;
+        //}
+        //DOTween.To(
+        //    () => descriptionPanelMask.padding,
+        //    v => descriptionPanelMask.padding = v,
+        //    new Vector4(0, padding, 0, padding),
+        //    duration);
     }
 }
