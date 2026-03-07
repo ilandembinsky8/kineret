@@ -18,8 +18,8 @@ public enum TextMode
 public class PopupTweenHandler : MonoBehaviour
 {
 
-    private const float LETTER_DELAY = 0.03f;
-    private const float TEXT_DELAY = 0.4f;
+    private const float LETTER_DELAY = 0.01f;
+    private const float TEXT_DELAY = 0.2f;
     private const float TEXT_FADE = 0.3f;
 
     [SerializeField] private RectTransform background;
