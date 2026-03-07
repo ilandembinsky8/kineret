@@ -34,7 +34,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     private bool _isSelectable;
     private bool _isSelected;
 
-    private Color32 selectedColor = new Color32(20, 190, 215, 255);
+    private Color32 selectedColor = new Color32(40, 215, 245, 255);
     private Image selectedDestinationTitleBGImage;
     private Vector2 upperPanelOriginalSize;
     private Vector2 lowerPanelOriginalSize;
