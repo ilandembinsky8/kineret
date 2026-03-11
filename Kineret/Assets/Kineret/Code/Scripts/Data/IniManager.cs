@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
+using System.IO;
 
 public static class IniManager
 {
@@ -52,4 +52,5 @@ public static class IniManager
                 return value;
         return fallback;
     }
+
 }
