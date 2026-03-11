@@ -27,7 +27,7 @@ public class MainMenuManager : MonoBehaviour
    
     [SerializeField] private GameObject showToturialButton;
     [SerializeField] private GameObject startGameButton;
-    [SerializeField] private RectTransform blackPanel;
+    [SerializeField] private Animator blackPanel;
 
     [Header("Values")]
     [SerializeField] private float blackFadeDuration;
@@ -106,15 +106,12 @@ public class MainMenuManager : MonoBehaviour
     }
     public void StartGame()
     {
+        blackPanel.gameObject.SetActive(true);
         StartCoroutine(BlackFade());
     }
     private IEnumerator BlackFade()
     {
-        blackPanel.gameObject.SetActive(true);
-        Vector2 size = blackPanel.sizeDelta;
-        blackPanel.sizeDelta = Vector2.zero;
-        Tween tween = blackPanel.DOSizeDelta(size, blackFadeDuration);
-        yield return tween.WaitForCompletion();
+        yield return new WaitForSeconds(2.5f);
         SceneManager.LoadScene("Game Scene");
     }
     

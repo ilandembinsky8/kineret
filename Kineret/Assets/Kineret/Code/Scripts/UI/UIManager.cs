@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PopupData routePopupData;
     [SerializeField] private float routePopupDelay;
 
-    [SerializeField] private RectTransform blackPanel;
+    [SerializeField] private Animator blackPanel;
     [SerializeField] private float blackFadeDuration;
 
     private PopupHandler _currentPopup;
@@ -41,15 +41,16 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        blackPanel.gameObject.SetActive(true);
         StartCoroutine(BlackFade());
     }
 
     private IEnumerator BlackFade()
     {
-        blackPanel.gameObject.SetActive(true);
-        Tween tween = blackPanel.DOSizeDelta(Vector2.zero, blackFadeDuration);
-        yield return tween.WaitForCompletion();
+        //blackPanel.GetCurrentAnimatorClipInfo(0)[0].clip.length
+        yield return new WaitForSeconds(2.1f);
         GameManager.OnStartGame.Invoke();
+        blackPanel.gameObject.SetActive(false);
     }
 
     private void HandleStartGame()

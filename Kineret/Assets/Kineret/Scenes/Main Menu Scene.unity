@@ -253,12 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaddf173f4d1b2409097a62effa4376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1311035574 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2637861614984601655, guid: 0d1a2fbf3c9a1804e94b0f7a392de2ce,
-    type: 3}
-  m_PrefabInstance: {fileID: 1689010977836586101}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1486405204
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +796,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1a2fbf3c9a1804e94b0f7a392de2ce, type: 3}
+--- !u!224 &1689010977836586102 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2637861614984601655, guid: 0d1a2fbf3c9a1804e94b0f7a392de2ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 1689010977836586101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7586178285026870686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -814,7 +814,7 @@ PrefabInstance:
         type: 3}
       propertyPath: blackPanel
       value: 
-      objectReference: {fileID: 1311035574}
+      objectReference: {fileID: 1689010977836586102}
     - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
       propertyPath: toturialPopup
