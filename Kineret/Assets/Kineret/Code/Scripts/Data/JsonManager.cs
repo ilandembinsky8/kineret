@@ -67,14 +67,14 @@ public class JsonManager : MonoBehaviour
             return false;
         }
 
-        foreach (var destination in Data.DestinationsPoolData)
+        /*foreach (var destination in Data.DestinationsPoolData)
         {
             if (destination.DidYouKnowPoints == null || destination.DidYouKnowPoints.Count != 3)
             {
                 Debug.LogWarning("Destination doesn't contain exactly 3 DidYouKnowPoints.");
                 return false;
             }
-        }
+        }*/
         #endregion
 
         Debug.Log($"{nameof(JsonManager)}: JSON loaded successfully.");
@@ -86,6 +86,10 @@ public class JsonManager : MonoBehaviour
 [Serializable]
 public class GameData
 {
+    //Tomer: I believe not using a list and having a field for each location would:
+    //A. Remove the need of the ID in the json, as now I can match them to the enum by field.
+    //B. Make it obvious which data goes where as that would be the name of the field and not a random spot in the collection
+    //For example the field would be named TzemahData, can't imagine someone not realizing what data to put there.
     public List<DestinationData> DestinationsPoolData;
     public List<ChallengePoints> ChallengesPoolData;
     public List<CollectablePoints> BonusPoolData;
@@ -93,21 +97,33 @@ public class GameData
 }
 
 [Serializable]
-public class DestinationData
+public struct DestinationData
 {
     public int Id;
-    public string DestinationName;
-    public string UiDescription;
+    public string Name;
+    public string Description;
     public Vector3 UiPosition;
     public Vector3 WorldPosition;
 
-    public RangeData DestinationPointRangeData;
-    public PopupText DestinationInfoScreen;
-
-    /// <summary>
-    /// always 3 collectibles per destination, in order of appearance
-    /// </summary>
-    public List<CollectablePoints> DidYouKnowPoints;
+    public string InfoScreenSubtitle;
+    public string InfoScreenText;
+    
+    public DestinationInfoPointData FirstInfoPoint;
+    public DestinationInfoPointData SecondInfoPoint;
+    public DestinationInfoPointData ThirdInfoPoint;
+}
+[Serializable]
+public struct DestinationInfoPointData
+{
+    public string Title;
+    public string Description;
+}
+[Serializable]
+public struct InterestPointData
+{
+    public string Name;
+    public Vector3 WorldPosition;
+    public string Text;
 }
 
 [Serializable]

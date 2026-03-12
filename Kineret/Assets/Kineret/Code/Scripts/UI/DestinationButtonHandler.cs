@@ -19,7 +19,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     [SerializeField] private Image selectedIcon;
 
     [SerializeField] private RectTransform upperPanel;
-    [SerializeField] private RectTransform titlePanel;
+    [SerializeField] private Image titleBackground;
     [SerializeField] private RectTransform lowerPanel;
     [SerializeField] private TMP_Text upperText;
     [SerializeField] private TMP_Text titleText;
@@ -31,11 +31,11 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     [SerializeField] private float topMaskPaddingTarget;
     [SerializeField] private float botMaskPaddingTarget;
 
+    private Destination _destination;
     private bool _isSelectable;
     private bool _isSelected;
 
     private Color32 selectedColor = new Color32(40, 215, 245, 255);
-    private Image selectedDestinationTitleBGImage;
     private Vector2 upperPanelOriginalSize;
     private Vector2 lowerPanelOriginalSize;
 
@@ -43,7 +43,6 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     {
         upperPanelOriginalSize = upperPanel.sizeDelta;
         lowerPanelOriginalSize = lowerPanel.sizeDelta;
-        selectedDestinationTitleBGImage = titlePanel.GetComponent<Image>();
     }
 
     private void OnEnable()
@@ -59,6 +58,15 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     private void OnDestroy()
     {
         selectedIcon.DOKill();
+    }
+
+    public void LoadDestination(Destination destination)
+    {
+        _destination = destination;
+        DestinationSO destinationSO = LocationsManager.GetDestination(destination);
+        transform.localPosition = destinationSO.DestinationData.UiPosition;
+        titleText.text = destinationSO.DestinationData.Name;
+        lowerText.text = destinationSO.DestinationData.Description;
     }
 
     public void OnClick()
@@ -188,21 +196,21 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     private void PlaySelectStatusAnimation(bool _isSelectted, float duration)
     {
         PlayHoverAnimation(false, _isSelectted);
-        selectedDestinationTitleBGImage.DOColor(_isSelectted ? selectedColor : Color.white, duration);
+        titleBackground.DOColor(_isSelectted ? selectedColor : Color.white, duration);
 
-        //float padding;
-        //if (_isSelectted)
-        //{
-        //    padding = descriptionPanelMask.rectTransform.sizeDelta.y / 2;
-        //}
-        //else
-        //{
-        //    padding = 0;
-        //}
-        //DOTween.To(
-        //    () => descriptionPanelMask.padding,
-        //    v => descriptionPanelMask.padding = v,
-        //    new Vector4(0, padding, 0, padding),
-        //    duration);
+        /*float padding;
+        if (_isSelectted)
+        {
+            padding = descriptionPanelMask.rectTransform.sizeDelta.y / 2;
+        }
+        else
+        {
+            padding = 0;
+        }
+        DOTween.To(
+            () => descriptionPanelMask.padding,
+            v => descriptionPanelMask.padding = v,
+            new Vector4(0, padding, 0, padding),
+            duration);*/
     }
 }
