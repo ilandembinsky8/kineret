@@ -16,7 +16,7 @@ MonoBehaviour:
     Id: 0
     Name: BioCastle Water Technologies
     Description: BioCastle Water Technologies
-    UiPosition: {x: 0, y: 0, z: 0}
+    UiPosition: {x: -1495.45, y: -205.2, z: 0}
     WorldPosition: {x: 0, y: 0, z: 0}
     InfoScreenSubtitle: 
     InfoScreenText: 

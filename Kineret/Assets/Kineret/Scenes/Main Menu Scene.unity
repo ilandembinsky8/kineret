@@ -558,31 +558,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 56170346657960561, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 705313424}
-    - target: {fileID: 1877680819397539163, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1375
-      objectReference: {fileID: 0}
-    - target: {fileID: 1877680819397539163, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -625
-      objectReference: {fileID: 0}
-    - target: {fileID: 5039142770849370577, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 808
-      objectReference: {fileID: 0}
-    - target: {fileID: 5039142770849370577, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -263
-      objectReference: {fileID: 0}
     - target: {fileID: 6753103378394003606, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
         type: 3}
       propertyPath: m_Name
@@ -688,16 +663,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8937956547730891425, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 705313424}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1e8cd8ed660d9240b3fa50c9d88b084, type: 3}
+--- !u!224 &1167579631646187821 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3259448751098409391, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+    type: 3}
+  m_PrefabInstance: {fileID: 1167579631646187820}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1689010977836586101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -925,6 +901,88 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Agre
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e37df05ebde1a94eb00cfca6c51c37f,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Golan
+      value: 
+      objectReference: {fileID: 11400000, guid: 20946407ab96d5447b1dd70b9d885259,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Eshkol
+      value: 
+      objectReference: {fileID: 11400000, guid: cabde7ed2e3abf441a6a6364d7d9c0da,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Gilboa
+      value: 
+      objectReference: {fileID: 11400000, guid: de2ac3886a4b55f4593f68cde0dbb854,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Salmon
+      value: 
+      objectReference: {fileID: 11400000, guid: ea53a65ef81de964eb64749a7a79ca5d,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Shamir
+      value: 
+      objectReference: {fileID: 11400000, guid: 1442977a5b8d10643894c94688417cf0,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Tzemah
+      value: 
+      objectReference: {fileID: 11400000, guid: b6b99d7b351cfe445a1327f96cfee9ac,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 1167579631646187821}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Afimilk
+      value: 
+      objectReference: {fileID: 11400000, guid: 872fac30b15594f41998e060ecbf3423,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Ginosar
+      value: 
+      objectReference: {fileID: 11400000, guid: eb867dc31a0fd954097764d812a91bb4,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: AgmonHula
+      value: 
+      objectReference: {fileID: 11400000, guid: 67068a189847f1946a75e07a175bc439,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: BioCastle
+      value: 
+      objectReference: {fileID: 11400000, guid: e1320eea0828ecc438c0b94ff9a6ffc0,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: IsTesting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: destinationButtonPrefab
+      value: 
+      objectReference: {fileID: 5862747467400081615, guid: 93cbcf2689b23ee4f8f27e16edcefd51,
+        type: 3}
     - target: {fileID: 5160449359014002492, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
       propertyPath: m_Name

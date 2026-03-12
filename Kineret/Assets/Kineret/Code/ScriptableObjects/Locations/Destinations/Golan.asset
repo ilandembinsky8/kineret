@@ -16,7 +16,7 @@ MonoBehaviour:
     Id: 0
     Name: "\u05DF\u05DC\u05D5\u05D2 \u05D9\u05DE"
     Description: "\u05DF\u05DC\u05D5\u05D2 \u05D9\u05DE"
-    UiPosition: {x: 0, y: 0, z: 0}
+    UiPosition: {x: -201.55, y: -268, z: 0}
     WorldPosition: {x: 0, y: 0, z: 0}
     InfoScreenSubtitle: 
     InfoScreenText: 
