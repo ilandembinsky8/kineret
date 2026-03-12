@@ -1,0 +1,475 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8891590688265773232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 405785059591266783}
+  - component: {fileID: 5591743942486372702}
+  m_Layer: 0
+  m_Name: LoadingDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &405785059591266783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8891590688265773232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5591743942486372702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8891590688265773232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b345d826f47dd844a89ab116af3b68c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data:
+    Afimilk:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    AgmonHula:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    Agre:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    BioCastle:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    Eshkol:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    Gilboa:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    Ginosar:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    Golan:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    Salmon:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    Shamir:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    Tzemah:
+      Name: 
+      Description: 
+      UiPosition: {x: 0, y: 0, z: 0}
+      WorldPosition: {x: 0, y: 0, z: 0}
+      InfoScreenSubtitle: 
+      InfoScreenText: 
+      FirstInfoPoint:
+        Title: 
+        Description: 
+      SecondInfoPoint:
+        Title: 
+        Description: 
+      ThirdInfoPoint:
+        Title: 
+        Description: 
+    Biriya:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CollectionPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      InfoPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    Keshet:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CollectionPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      InfoPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    SwitzForest:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CollectionPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      InfoPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    Tzipori:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CollectionPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      InfoPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    HayadataCollecableData:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CollectionPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      InfoPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    CarbonBonusData:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CollectionPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    EnergyBonusData:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CollectionPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    WaterBonusData:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CollectionPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    SoilBonusData:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CollectionPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    FrontWindChallengeData:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CompletedPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    SideWindChallengeData:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CompletedPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+    BirdChallengeData:
+      RangeData:
+        NotificationRange: 0
+        CollectionRange: 0
+        Score: 0
+      NotificationPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+      CompletedPopup:
+        Type: 0
+        Title: 
+        Description: 
+        Duration: 0
+        Delay: 0
+  BonusPointRange: {fileID: 11400000, guid: c1fd888e51a60f145886b8e92a3b58e0, type: 2}
+  DestinationRange: {fileID: 11400000, guid: bc5081525924c904393511b4415bc924, type: 2}
+  InterestPointRange: {fileID: 11400000, guid: faf39ae07186f3d42ac82fd07375da83, type: 2}
+  Afimilk: {fileID: 11400000, guid: 872fac30b15594f41998e060ecbf3423, type: 2}
+  AgmonHula: {fileID: 11400000, guid: 67068a189847f1946a75e07a175bc439, type: 2}
+  Agre: {fileID: 11400000, guid: 1e37df05ebde1a94eb00cfca6c51c37f, type: 2}
+  BioCastle: {fileID: 11400000, guid: e1320eea0828ecc438c0b94ff9a6ffc0, type: 2}
+  Eshkol: {fileID: 11400000, guid: cabde7ed2e3abf441a6a6364d7d9c0da, type: 2}
+  Gilboa: {fileID: 11400000, guid: de2ac3886a4b55f4593f68cde0dbb854, type: 2}
+  Ginosar: {fileID: 11400000, guid: eb867dc31a0fd954097764d812a91bb4, type: 2}
+  Golan: {fileID: 11400000, guid: 20946407ab96d5447b1dd70b9d885259, type: 2}
+  Salmon: {fileID: 11400000, guid: ea53a65ef81de964eb64749a7a79ca5d, type: 2}
+  Shamir: {fileID: 11400000, guid: 1442977a5b8d10643894c94688417cf0, type: 2}
+  Tzemah: {fileID: 11400000, guid: b6b99d7b351cfe445a1327f96cfee9ac, type: 2}
+  Biriya: {fileID: 11400000, guid: 18943a90a1c410f479441aaa9a5f8965, type: 2}
+  Keshet: {fileID: 11400000, guid: ef11ddf9cb60151419dd27bba70f1acb, type: 2}
+  SwitzForest: {fileID: 11400000, guid: 0eaf57289cd3034488a2f2f59e967439, type: 2}
+  Tzipori: {fileID: 11400000, guid: aa94735d908a0db4f978b4d931f773a7, type: 2}
