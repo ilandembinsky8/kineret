@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   <SelectionDestinationCount>k__BackingField: 3
-  <GameDestinationCount>k__BackingField: 1
+  <GameDestinationCount>k__BackingField: 3
