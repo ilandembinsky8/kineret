@@ -783,7 +783,7 @@ MonoBehaviour:
   availableIcon: {fileID: 3170942694695240938}
   selectedIcon: {fileID: 5758058409938325417}
   upperPanel: {fileID: 8018547570614190397}
-  titleBackground: {fileID: 0}
+  titleBackground: {fileID: 6342311198520145313}
   lowerPanel: {fileID: 3092022340590653836}
   upperText: {fileID: 1079329475400306120}
   titleText: {fileID: 8183982521311881243}
