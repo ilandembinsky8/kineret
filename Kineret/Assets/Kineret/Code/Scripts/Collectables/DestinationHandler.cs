@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class DestinationHandler : CollectableHandler
 {
-    [SerializeField] private InfoScreenDataEventChannel DestinationReached_EC;
-    [SerializeField] private BoolEventChannel GamePause_EC;
-    [SerializeField] private InfoScreenData infoScreenData;
+    public int Destination { get; set; }
 
     protected override void Start()
-    {}
+    {
+        //Overrides to not run base.Start
+    }
 
     protected override void CheckNotifyRange(Vector3 delta)
-    {}
+    {
+        //Overrides to not run base.CheckNotifyRange
+    }
 
     protected override void CheckCollectRange(Vector3 delta)
     {
-
-        if (delta.sqrMagnitude <= collectableData.collectionRange * collectableData.collectionRange)
+        if (delta.sqrMagnitude <= _collectableData.CollectionRange * _collectableData.CollectionRange)
         {
             Collect();
         }
@@ -24,18 +25,15 @@ public class DestinationHandler : CollectableHandler
 
     protected override void Collect()
     {
-        base.Collect();
-        StartCoroutine(LoadInfoScreen(collectPopupData.Duration));
-        FlagHandler.PlayFlagAnimation();
+        base.Collect(); 
+        FlagHandler.PlayFlagAnimation.Invoke();
+        EventsRelay.OnGamePause.Invoke(true);
+        StartCoroutine(DestinationReachedCoroutine(_collectPopupData.PopupTextData.Duration));   
     }
 
-    private IEnumerator LoadInfoScreen(float delay)
+    private IEnumerator DestinationReachedCoroutine(float delay)
     {
-        GamePause_EC.RaiseEvent(true);
         yield return new WaitForSeconds(delay);
-        if (infoScreenData != null)
-        {
-            DestinationReached_EC.RaiseEvent(infoScreenData);
-        }          
+        EventsRelay.OnDestinationReached.Invoke(Destination);        
     } 
 }

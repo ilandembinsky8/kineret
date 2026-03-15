@@ -558,6 +558,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 56170346657960561, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 705313424}
     - target: {fileID: 6753103378394003606, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
         type: 3}
       propertyPath: m_Name
@@ -825,7 +830,7 @@ PrefabInstance:
         type: 3}
       propertyPath: startGameButton
       value: 
-      objectReference: {fileID: 667851282}
+      objectReference: {fileID: 1692922825}
     - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
       propertyPath: explanationPopup
@@ -835,7 +840,7 @@ PrefabInstance:
         type: 3}
       propertyPath: showToturialButton
       value: 
-      objectReference: {fileID: 1692922825}
+      objectReference: {fileID: 667851282}
     - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
       propertyPath: controlButtonsCanvas
@@ -939,6 +944,12 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
+      propertyPath: Shvitz
+      value: 
+      objectReference: {fileID: 11400000, guid: aa94735d908a0db4f978b4d931f773a7,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
       propertyPath: Tzemah
       value: 
       objectReference: {fileID: 11400000, guid: b6b99d7b351cfe445a1327f96cfee9ac,
@@ -959,6 +970,24 @@ PrefabInstance:
       propertyPath: Ginosar
       value: 
       objectReference: {fileID: 11400000, guid: eb867dc31a0fd954097764d812a91bb4,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Seymour
+      value: 
+      objectReference: {fileID: 11400000, guid: ef11ddf9cb60151419dd27bba70f1acb,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Tzipori
+      value: 
+      objectReference: {fileID: 11400000, guid: 0eaf57289cd3034488a2f2f59e967439,
+        type: 2}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: Firewave
+      value: 
+      objectReference: {fileID: 11400000, guid: 18943a90a1c410f479441aaa9a5f8965,
         type: 2}
     - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}

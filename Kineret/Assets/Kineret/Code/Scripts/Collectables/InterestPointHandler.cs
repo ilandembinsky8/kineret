@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class InterestPointHandler : CollectableHandler
 {
-    [SerializeField] PopupData infoPopupData;
+    [SerializeField] protected PopupData infoPopupData;
+
+    public void Init(InterestPointSO interestPoint, InfoCollectableData collectableData)
+    {
+        infoPopupData.PopupTextData = collectableData.InfoPopup;
+        Init(collectableData.RangeData, collectableData.CollectionPopup, collectableData.NotificationPopup);
+        infoPopupData.PopupTextData.Description = interestPoint.InterestPointData.InfoText;
+        infoPopupData.IconSprite = interestPoint.Icon;
+        _collectPopupData.PopupTextData.Description = interestPoint.InterestPointData.CollectText;
+    }
 
     protected override void Collect()
     {
         base.Collect();
-        StartCoroutine(LoadInfoPopup(collectPopupData.Duration));
+        StartCoroutine(LoadInfoPopup(_collectPopupData.PopupTextData.Duration));
     }
 
     private IEnumerator LoadInfoPopup(float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (infoPopupData != null)
-        {
-            LoadPopup_EC.RaiseEvent(infoPopupData);
-        }
+        LoadPopup_EC.RaiseEvent(infoPopupData);
     }
 }

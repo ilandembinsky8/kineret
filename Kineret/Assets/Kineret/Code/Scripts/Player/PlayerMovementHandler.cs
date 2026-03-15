@@ -7,7 +7,6 @@ public class PlayerMovementHandler : MonoBehaviour
 {
     [SerializeField] private TransformEventChannel playerMoved_EC;
     [SerializeField] private TransformEventChannel cameraPitched_EC;
-    [SerializeField] private BoolEventChannel GamePause_EC;
     [SerializeField] private FloatEventChannel moveSpeedChange_EC;
 
     [SerializeField] private float moveSpeed;
@@ -43,7 +42,7 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Pitch.performed += HandlePitchInput;
         _actions.Player.Pitch.canceled += HandlePitchInput;
 
-        GamePause_EC.OnEventRaised += HandleGamePause;
+        EventsRelay.OnGamePause += HandleGamePause;
         moveSpeedChange_EC.OnEventRaised += ChangeMoveSpeedByLeg;
     }
 
@@ -55,7 +54,7 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Pitch.performed -= HandlePitchInput;
         _actions.Player.Pitch.canceled -= HandlePitchInput;
 
-        GamePause_EC.OnEventRaised -= HandleGamePause;
+        EventsRelay.OnGamePause -= HandleGamePause;
         moveSpeedChange_EC.OnEventRaised -= ChangeMoveSpeedByLeg;
     }
 

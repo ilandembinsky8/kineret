@@ -48,12 +48,35 @@ MonoBehaviour:
   LoadPopup_EC: {fileID: 11400000, guid: 434ae0b1dce8a5d4c8f23f04d7878aa3, type: 2}
   playerMoved_EC: {fileID: 11400000, guid: 6c3815ed880b1b34db7f693e4a38d9a4, type: 2}
   gotScore_EC: {fileID: 11400000, guid: d9b5e4ff6b8db82459a3f609c91c8417, type: 2}
-  collectableData: {fileID: 11400000, guid: faf39ae07186f3d42ac82fd07375da83, type: 2}
-  notificationPopupData: {fileID: 11400000, guid: 4656b1407cc7d854ab56851e752527a2,
-    type: 2}
-  collectPopupData: {fileID: 11400000, guid: 1438ddddeefd4164195214324f2752d5, type: 2}
+  _collectableData:
+    NotificationRange: 0
+    CollectionRange: 0
+    Score: 0
+  _notificationPopupData:
+    PopupTextData:
+      Type: 0
+      Title: 
+      Description: 
+      Duration: 0
+      Delay: 0
+    IconSprite: {fileID: 21300000, guid: 3ef30e54003457d42b158a2bfdad7ee7, type: 3}
+  _collectPopupData:
+    PopupTextData:
+      Type: 0
+      Title: 
+      Description: 
+      Duration: 0
+      Delay: 0
+    IconSprite: {fileID: 21300000, guid: 3ef30e54003457d42b158a2bfdad7ee7, type: 3}
   visuals: {fileID: 7302643889492277946}
-  infoPopupData: {fileID: 11400000, guid: e127b078b557d824fa41eb6a4cb884ef, type: 2}
+  infoPopupData:
+    PopupTextData:
+      Type: 0
+      Title: 
+      Description: 
+      Duration: 0
+      Delay: 0
+    IconSprite: {fileID: 0}
 --- !u!1 &7302643889492277946
 GameObject:
   m_ObjectHideFlags: 0

@@ -56,8 +56,14 @@ MonoBehaviour:
   highFullPopupPrefab: {fileID: 3001104253557725788, guid: ff691e2d251f3c7448eab52c14e91a6e,
     type: 3}
   loadPopup_EC: {fileID: 11400000, guid: 434ae0b1dce8a5d4c8f23f04d7878aa3, type: 2}
-  loadInfoScreen_EC: {fileID: 11400000, guid: d533fb953a462064e85f0330d1be9659, type: 2}
-  routePopupData: {fileID: 11400000, guid: 2d8bf9a7e5563754ab3fc93af3e4d60d, type: 2}
+  routePopupData:
+    PopupTextData:
+      Type: 0
+      Title: 
+      Description: 
+      Duration: 0
+      Delay: 0
+    IconSprite: {fileID: 0}
   routePopupDelay: 2
   blackPanel: {fileID: 0}
   blackFadeDuration: 1.5
@@ -105,22 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8855f7fefe425e14081ac4bb3124f8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSettings: {fileID: 11400000, guid: b7bdae77a44f5974aadfd382aa79b1f3, type: 2}
-  destinationReached_EC: {fileID: 11400000, guid: 6915ce986a80e024097b02562f60e004,
-    type: 2}
-  loadInfoScreen_EC: {fileID: 11400000, guid: d533fb953a462064e85f0330d1be9659, type: 2}
   moveSpeedChange_EC: {fileID: 11400000, guid: da0d379c7ed43e242934360b576dbe9d, type: 2}
-  GamePause_EC: {fileID: 11400000, guid: c647ad7c5a5c73f48ac7fa533fad8a6c, type: 2}
   scoreChanged_EC: {fileID: 11400000, guid: 15fe7929a99861a4f934cce6fe9832d7, type: 2}
   gotScore_EC: {fileID: 11400000, guid: d9b5e4ff6b8db82459a3f609c91c8417, type: 2}
-  gameOver_EC: {fileID: 11400000, guid: d2263ad3087e9824ab7c49713ec4c77c, type: 2}
   finalScoreText: {fileID: 0}
   summmaryCanvas: {fileID: 0}
-  destinations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  legTime: 45
 --- !u!1 &4741162059801226953
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,5 +289,209 @@ Transform:
   - {fileID: 3728528029450328443}
   - {fileID: 4860254153136959944}
   - {fileID: 1100323791403541523}
+  - {fileID: 2982090654458445137}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8251818019661858195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2982090654458445137}
+  - component: {fileID: 6926826424119832472}
+  m_Layer: 0
+  m_Name: Locations Loader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2982090654458445137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8251818019661858195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8799919053329141205}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6926826424119832472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8251818019661858195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f4075268a3f9e4996ee3364f7cdf97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  player: {fileID: 0}
+  path: {fileID: 0}
+  destinationPrefab: {fileID: 2002420201625396977, guid: 64cd5387b0451474787f3c0e889c75d8,
+    type: 3}
+  interestPointPrefab: {fileID: 8584846575352165437, guid: 7c48ac09acea2c448be029d51dd60512,
+    type: 3}
+  bonusPrefab: {fileID: 8767699296894813213, guid: 897b937492984644f9a641b940fcfd32,
+    type: 3}
+  infoPointPrefab: {fileID: 4480077423330200430, guid: ad5f4f35bfd47c24e9d52e307ba5169c,
+    type: 3}
+  destinationCollectables:
+  - RangeData:
+      NotificationRange: 0
+      CollectionRange: 2000
+      Score: 50
+    CollectionPopup:
+      Type: 1
+      Title: "\u05DF\u05E9\u05D0\u05E8\u05D4 \u05D3\u05E2\u05D9\u05DC \u05DD\u05EA\u05E2\u05D2\u05D4"
+      Description: 
+      Duration: 3
+      Delay: 0
+  - RangeData:
+      NotificationRange: 0
+      CollectionRange: 2000
+      Score: 50
+    CollectionPopup:
+      Type: 1
+      Title: "\u05D9\u05E0\u05E9\u05D4 \u05D3\u05E2\u05D9\u05DC \u05DD\u05EA\u05E2\u05D2\u05D4"
+      Description: 
+      Duration: 3
+      Delay: 0
+  - RangeData:
+      NotificationRange: 0
+      CollectionRange: 2000
+      Score: 50
+    CollectionPopup:
+      Type: 1
+      Title: "\u05D9\u05E9\u05D9\u05DC\u05E9\u05D4 \u05D3\u05E2\u05D9\u05DC \u05DD\u05EA\u05E2\u05D2\u05D4"
+      Description: 
+      Duration: 3
+      Delay: 0
+  infoCollectable:
+    RangeData:
+      NotificationRange: 7500
+      CollectionRange: 3500
+      Score: 10
+    NotificationPopup:
+      Type: 3
+      Title: "\u05EA\u05E2\u05D3\u05D9\u05D4"
+      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05EA\u05E2\u05D3\u05D9\u05D4
+        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Duration: 3
+      Delay: 0
+    CollectionPopup:
+      Type: 2
+      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
+      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      Duration: 3
+      Delay: 0
+    InfoPopup:
+      Type: 0
+      Title: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1"
+      Description: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1"
+      Duration: 3
+      Delay: 0
+  interestCollectable:
+    RangeData:
+      NotificationRange: 7500
+      CollectionRange: 3500
+      Score: 10
+    NotificationPopup:
+      Type: 3
+      Title: "\u05DF\u05D9\u05D9\u05E0\u05E2 \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05DF\u05D9\u05D9\u05E0\u05E2
+        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Duration: 3
+      Delay: 0
+    CollectionPopup:
+      Type: 2
+      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
+      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      Duration: 3
+      Delay: 0
+    InfoPopup:
+      Type: 0
+      Title: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1"
+      Description: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1"
+      Duration: 3
+      Delay: 0
+  bonusCollectables:
+  - RangeData:
+      NotificationRange: 7500
+      CollectionRange: 3500
+      Score: 10
+    NotificationPopup:
+      Type: 3
+      Title: "\u05E1\u05D5\u05E0\u05D5\u05D1 \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05E1\u05D5\u05E0\u05D5\u05D1
+        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Duration: 0
+      Delay: 0
+    CollectionPopup:
+      Type: 2
+      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
+      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      Duration: 0
+      Delay: 0
+  - RangeData:
+      NotificationRange: 7500
+      CollectionRange: 3500
+      Score: 10
+    NotificationPopup:
+      Type: 3
+      Title: "\u05E1\u05D5\u05E0\u05D5\u05D1 \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05E1\u05D5\u05E0\u05D5\u05D1
+        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Duration: 0
+      Delay: 0
+    CollectionPopup:
+      Type: 2
+      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
+      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      Duration: 0
+      Delay: 0
+  - RangeData:
+      NotificationRange: 7500
+      CollectionRange: 3500
+      Score: 10
+    NotificationPopup:
+      Type: 3
+      Title: "\u05E1\u05D5\u05E0\u05D5\u05D1 \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05E1\u05D5\u05E0\u05D5\u05D1
+        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Duration: 0
+      Delay: 0
+    CollectionPopup:
+      Type: 2
+      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
+      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      Duration: 0
+      Delay: 0
+  - RangeData:
+      NotificationRange: 7500
+      CollectionRange: 3500
+      Score: 10
+    NotificationPopup:
+      Type: 3
+      Title: "\u05E1\u05D5\u05E0\u05D5\u05D1 \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05E1\u05D5\u05E0\u05D5\u05D1
+        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      Duration: 0
+      Delay: 0
+    CollectionPopup:
+      Type: 2
+      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
+      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      Duration: 0
+      Delay: 0

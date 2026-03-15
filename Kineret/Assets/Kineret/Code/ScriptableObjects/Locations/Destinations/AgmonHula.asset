@@ -13,23 +13,22 @@ MonoBehaviour:
   m_Name: AgmonHula
   m_EditorClassIdentifier: 
   DestinationData:
-    Id: 0
     Name: "\u05D4\u05DC\u05D5\u05D7\u05D4 \u05DF\u05D5\u05DE\u05D2\u05D0"
     Description: "\u05D4\u05DC\u05D5\u05D7\u05D4 \u05DF\u05D5\u05DE\u05D2\u05D0"
     UiPosition: {x: -1290.55, y: 261, z: 0}
-    WorldPosition: {x: 0, y: 0, z: 0}
+    WorldPosition: {x: 20000, y: 2000, z: 20000}
     InfoScreenSubtitle: 
     InfoScreenText: 
     FirstInfoPoint:
-      Title: 
-      Description: 
+      Title: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1"
+      Description: 1
     SecondInfoPoint:
-      Title: 
-      Description: 
+      Title: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1 "
+      Description: 2
     ThirdInfoPoint:
-      Title: 
-      Description: 
-  Background: {fileID: 0}
-  Logo: {fileID: 0}
-  Icon: {fileID: 0}
-  LogoScaleModifier: 0
+      Title: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1 "
+      Description: 3
+  Background: {fileID: 21300000, guid: f5229f5d52185584f9c3e91a70692454, type: 3}
+  Logo: {fileID: 21300000, guid: f192217eb95b5b543b78e7eb8ce8488b, type: 3}
+  Icon: {fileID: 21300000, guid: 573a8e834db64fa4d93888302c815311, type: 3}
+  LogoScaleModifier: 1

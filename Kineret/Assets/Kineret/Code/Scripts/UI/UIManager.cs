@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using UnityEditor.MPE;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -14,7 +15,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PopupHandler highFullPopupPrefab;
 
     [SerializeField] private PopupDataEventChannel loadPopup_EC;
-    [SerializeField] private InfoScreenDataEventChannel loadInfoScreen_EC;
 
     [SerializeField] private PopupData routePopupData;
     [SerializeField] private float routePopupDelay;
@@ -27,15 +27,13 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         loadPopup_EC.OnEventRaised += LoadPopup;
-        loadInfoScreen_EC.OnEventRaised += LoadInfoScreen;
-        GameManager.OnStartGame += HandleStartGame;
+        EventsRelay.OnLoadInfoScreen += LoadInfoScreen;
     }
 
     private void OnDisable()
     {
         loadPopup_EC.OnEventRaised -= LoadPopup;
-        loadInfoScreen_EC.OnEventRaised -= LoadInfoScreen;
-        GameManager.OnStartGame -= HandleStartGame;
+        EventsRelay.OnLoadInfoScreen -= LoadInfoScreen;
     }
 
 
@@ -49,14 +47,11 @@ public class UIManager : MonoBehaviour
     {
         //blackPanel.GetCurrentAnimatorClipInfo(0)[0].clip.length
         yield return new WaitForSeconds(2.1f);
-        GameManager.OnStartGame.Invoke();
+        EventsRelay.OnGamePause.Invoke(false);
+        StartCoroutine(LoadRoutePopup());
         blackPanel.gameObject.SetActive(false);
     }
 
-    private void HandleStartGame()
-    {
-        StartCoroutine(LoadRoutePopup());
-    }
     private IEnumerator LoadRoutePopup()
     {
         yield return new WaitForSeconds(routePopupDelay);
@@ -67,7 +62,7 @@ public class UIManager : MonoBehaviour
     {
         if(_currentPopup != null) Destroy(_currentPopup.gameObject);
 
-        switch (data.Type)
+        switch ((PopUpType)data.PopupTextData.Type)
         {
             case PopUpType.Info:
                 _currentPopup = Instantiate(infoPopupPrefab, canvas.transform);

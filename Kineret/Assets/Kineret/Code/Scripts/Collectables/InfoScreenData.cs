@@ -1,14 +1,15 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InfoScreenData", menuName = "Assets/Scriptable Objects/InfoScreen/Data")]
-public class InfoScreenData : ScriptableObject
+[Serializable]
+public struct InfoScreenData
 {
+    public string Title;
+    public string Subtitle;
+    public string Text;
     public Sprite Background;
     public Sprite Logo;
     public Sprite Icon;
-    public string Title;
-    public string Subtitle;
-    public string Description;
     public float logoSizeMultiplier;
-    public bool IsFinal { get; set; }
+    public bool isFinal;
 }

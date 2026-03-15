@@ -9,8 +9,6 @@ using UnityEngine.UI;
 public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Event Channels")]
-    [SerializeField] private VoidEventChannel destinationSelected_EC;
-    [SerializeField] private VoidEventChannel destinationDeselected_EC;
     [SerializeField] private BoolEventChannel enableDestinationSelection_EC;
 
     [Header("UI Elements")]
@@ -31,7 +29,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     [SerializeField] private float topMaskPaddingTarget;
     [SerializeField] private float botMaskPaddingTarget;
 
-    private Destination _destination;
+    private int _destination;
     private bool _isSelectable;
     private bool _isSelected;
 
@@ -60,7 +58,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         selectedIcon.DOKill();
     }
 
-    public void LoadDestination(Destination destination)
+    public void LoadDestination(int destination)
     {
         _destination = destination;
         DestinationSO destinationSO = LocationsManager.GetDestination(destination);
@@ -99,7 +97,6 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
 
         if (_isSelected)
         {
-            Debug.Log("Selected Destination: " + gameObject.name);
             return;
         }
 
@@ -111,18 +108,16 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         if (!_isSelectable) return;
         _isSelected = true;
 
-        //Move to values
         PlaySelectStatusAnimation(true,0.5f);
-        destinationSelected_EC.RaiseEvent();
+        EventsRelay.OnDestinationSelected.Invoke(_destination);
     }
     private void Deselect()
     {
         if (!_isSelectable) return;
         _isSelected = false;
 
-        //Run Deselected Animation (there is non currently)
         PlaySelectStatusAnimation(false, 0.5f);
-        destinationDeselected_EC.RaiseEvent();
+        EventsRelay.OnDestinationDeselected.Invoke();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

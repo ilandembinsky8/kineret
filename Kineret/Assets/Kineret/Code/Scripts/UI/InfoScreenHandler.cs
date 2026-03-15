@@ -8,11 +8,6 @@ using UnityEngine.UI;
 
 public class InfoScreenHandler : MonoBehaviour
 {
-    [SerializeField] private BoolEventChannel gamePause_EC;
-    [SerializeField] private VoidEventChannel gameOver_EC;
-
-    [SerializeField] private InfoScreenData data;
-
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text subtitleText;
     [SerializeField] private TMP_Text descriptionText;
@@ -27,22 +22,11 @@ public class InfoScreenHandler : MonoBehaviour
     [SerializeField] private RectTransform parent;
     [SerializeField] private PopupTweenHandler tweenHandler;
     [SerializeField] private float enterDuration;
-    private bool _wasLoadedOnAwake;
-
-
 
     private void Awake()
     {
         continueGameButton.gameObject.SetActive(false);
-        endGameButton.gameObject.SetActive(false);
-        if (data != null)
-        {
-            Debug.Log("Data isnt null at awake");
-            LoadData(data);
-            _wasLoadedOnAwake = true;
-        }
-
-       
+        endGameButton.gameObject.SetActive(false);    
     }
     private void Start()
     {
@@ -58,16 +42,8 @@ public class InfoScreenHandler : MonoBehaviour
     }
     public void LoadData(InfoScreenData data)
     {
-        if(_wasLoadedOnAwake) return;
-
-        if (data == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        continueGameButton.gameObject.SetActive(!data.IsFinal);
-        endGameButton.gameObject.SetActive(data.IsFinal);
+        continueGameButton.gameObject.SetActive(!data.isFinal);
+        endGameButton.gameObject.SetActive(data.isFinal);
 
         if (data.Title != null && titleText != null)
         {
@@ -81,7 +57,7 @@ public class InfoScreenHandler : MonoBehaviour
             subtitleText.fontStyle = FontStyles.Bold;
         }
         
-        if (data.Description != null && descriptionText != null) descriptionText.text = data.Description;
+        if (data.Text != null && descriptionText != null) descriptionText.text = data.Text;
 
         if (data.Icon != null && iconImage != null)
         {
@@ -104,13 +80,13 @@ public class InfoScreenHandler : MonoBehaviour
    
     public void CloseScreen()
     {
-        gamePause_EC.RaiseEvent(false);
+        EventsRelay.OnGamePause.Invoke(false);
         Destroy(gameObject);
     }
 
     public void GameOver()
     {
-        gameOver_EC.RaiseEvent();
+        EventsRelay.OnGameOver.Invoke();
         Destroy(gameObject,3f);
     }
 

@@ -1,17 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using System;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "PopUpData", menuName = "Assets/Scriptable Objects/PopUps/Data")]
-public class PopupData : ScriptableObject
+[Serializable]
+public struct PopupData
 {
-    public PopUpType Type;
+    public PopupTextData PopupTextData;
     public Sprite IconSprite;
-    public string Title;
-    public string Description;
-    public float Duration;
-    public float NotifyDelay;
 }
 public enum PopUpType
 {

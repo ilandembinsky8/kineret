@@ -73,7 +73,15 @@ public class PopupTweenHandler : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if(_iconTween != null) _iconTween.Kill();
+        if(background != null) background.DOKill();
+        if(infoScreenMask != null) infoScreenMask.DOKill();
+
+        foreach (var text in TMPtexts)
+        {
+            if (text != null) text.DOKill();
+        }
+
+        if (_iconTween != null) _iconTween.Kill();
     }
     public void Play(int mode)
     {

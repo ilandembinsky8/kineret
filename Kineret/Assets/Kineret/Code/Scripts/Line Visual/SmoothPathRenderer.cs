@@ -4,9 +4,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(LineRenderer))]
 public class WaypointPathController : MonoBehaviour
 {
-    [Header("References")]
-    public Transform player;                     // the racing car / character
-    public List<Transform> waypoints = new List<Transform>();
+    public LineRenderer lr;
 
     [Header("Curve")]
     public int samplesPerSegment = 20;
@@ -16,17 +14,13 @@ public class WaypointPathController : MonoBehaviour
     public bool destroyOnReach = false;           // if true, Destroy(waypoint.gameObject) when reached
     public bool deactivateOnReach = true;         // if true, waypoint.gameObject.SetActive(false) when reached
 
-    private LineRenderer lr;
+   
+    private List<Vector3> _waypoints = new List<Vector3>();
 
     void Awake()
     {
-        lr = GetComponent<LineRenderer>();
         lr.startWidth = 10;
         lr.endWidth = 10;
-        if (player == null && waypoints.Count > 0)
-        {
-            Debug.LogWarning("WaypointPathController: no player assigned. Assign to detect waypoint reach.");
-        }
     }
 
     private void Start()
@@ -34,17 +28,22 @@ public class WaypointPathController : MonoBehaviour
         DrawCurve();
     }
 
-    //void LateUpdate()
-    //{
-    //    if (player != null && waypoints.Count > 0)
-    //    {
-    //        CheckAndConsumeWaypoint();
-    //    }
+    public void Init(List<Vector3> waypoints)
+    {
+        _waypoints = waypoints;
+    }
 
-    //    DrawCurve();
-    //}
+    /*void LateUpdate()
+    {
+        if (player != null && waypoints.Count > 0)
+        {
+            CheckAndConsumeWaypoint();
+        }
 
-    void CheckAndConsumeWaypoint()
+        DrawCurve();
+    }*/
+
+   /* void CheckAndConsumeWaypoint()
     {
         // Next waypoint is waypoints[0]
         Transform next = waypoints[0];
@@ -54,9 +53,9 @@ public class WaypointPathController : MonoBehaviour
             waypoints.RemoveAt(0);
             return;
         }
-    }
+    }*/
 
-    public void CycleWaypoint()
+ /*   public void CycleWaypoint()
     {
         Transform reached = waypoints[0];
         waypoints.RemoveAt(0);
@@ -75,39 +74,27 @@ public class WaypointPathController : MonoBehaviour
             // append to end to create a loop
             waypoints.Add(reached);
         }
-    }
+    }*/
 
     void DrawCurve()
     {
-        if (player == null || waypoints.Count == 0)
-        {
-            lr.positionCount = 0;
-            return;
-        }
-
-        // Collect positions: first the player, then waypoints
-        List<Vector3> pts = new List<Vector3>();
-        pts.Add(player.position);
-        foreach (var w in waypoints)
-            if (w != null) pts.Add(w.position);
-
-        if (pts.Count < 2)
+        if (_waypoints.Count < 2)
         {
             lr.positionCount = 0;
             return;
         }
 
         // Compute automatic tangents for Bezier chaining
-        List<(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)> segments = GenerateBezierSegments(pts);
+        List<(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)> segments = GenerateBezierSegments(_waypoints);
 
         // Sample curve points
         List<Vector3> finalPoints = new List<Vector3>();
-        foreach (var seg in segments)
+        foreach (var (p0, p1, p2, p3) in segments)
         {
             for (int i = 0; i <= samplesPerSegment; i++)
             {
                 float t = i / (float)samplesPerSegment;
-                finalPoints.Add(Bezier(seg.p0, seg.p1, seg.p2, seg.p3, t));
+                finalPoints.Add(Bezier(p0, p1, p2, p3, t));
             }
         }
 

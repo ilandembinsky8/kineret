@@ -10,7 +10,7 @@ public class CameraGlide : MonoBehaviour
     [SerializeField] private int nextDestination;
     [SerializeField] WaypointPathController line;
 
-    private void Update()
+    /*private void Update()
     {
         transform.Translate(Time.deltaTime * speed * transform.forward);
         Vector3 direction = (destinations[nextDestination].position - transform.position).normalized;
@@ -29,5 +29,5 @@ public class CameraGlide : MonoBehaviour
             else
                 nextDestination = 1;
         }
-    }
+    }*/
 }

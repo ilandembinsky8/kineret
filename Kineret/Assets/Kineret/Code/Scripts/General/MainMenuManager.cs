@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,8 +10,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private float showTutorialDelay;
     [SerializeField] private float showGameButtonDelay;
     [Header("Event Channels")]
-    [SerializeField] private VoidEventChannel destinationSelected_EC;
-    [SerializeField] private VoidEventChannel destinationDeselected_EC;
     [SerializeField] private BoolEventChannel enableDestinationSelection_EC;
 
     [Header("Canvases")]
@@ -49,14 +46,14 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnEnable()
     {
-        destinationSelected_EC.OnEventRaised += HandleDestinationSelection;
-        destinationDeselected_EC.OnEventRaised += HandleDestinationDeselection;
+        EventsRelay.OnDestinationSelected += HandleDestinationSelection;
+        EventsRelay.OnDestinationDeselected += HandleDestinationDeselection;
     }
 
     private void OnDisable()
     {
-        destinationSelected_EC.OnEventRaised -= HandleDestinationSelection;
-        destinationDeselected_EC.OnEventRaised -= HandleDestinationDeselection;
+        EventsRelay.OnDestinationSelected -= HandleDestinationSelection;
+        EventsRelay.OnDestinationDeselected -= HandleDestinationDeselection;
     }
 
     private void Start()
@@ -70,39 +67,38 @@ public class MainMenuManager : MonoBehaviour
         enableDestinationSelection_EC.RaiseEvent(true);
     }
 
-    private void HandleDestinationSelection()
-    {
+    private void HandleDestinationSelection(int destination)
+    {  
+        LocationsManager.SelectedDestinations[_selectedDestinationsCount] = destination;
         _selectedDestinationsCount++;
-        Debug.Log("Destinations selected:" + _selectedDestinationsCount);
-        if (_selectedDestinationsCount == gameSettings.SelectionDestinationCount) 
+        if (_selectedDestinationsCount == LocationsManager.SELECTABLE_DESTINATIONS_COUNT)
+        {
             EndDestinationSelection();
-
+        }
     }
 
     private void HandleDestinationDeselection()
     {
         _selectedDestinationsCount--;
-        Debug.Log("Destinations selected:" + _selectedDestinationsCount);
     }
 
     private void EndDestinationSelection()
     {
-        Debug.Log("Ending destination selection");
         enableDestinationSelection_EC.RaiseEvent(false);
-        StartCoroutine(ShowButtomCoro());
+        StartCoroutine(LoadToturial());
         destinationsSummaryPopup.gameObject.SetActive(true);
         destinationsSummaryPopup.Play((int)PlayMode.Default);
-        destinationsSummaryPopup.StartCoroutine(destinationsSummaryPopup.PlayIconYoyo(showTutorialDelay));
+        //destinationsSummaryPopup.StartCoroutine(destinationsSummaryPopup.PlayIconYoyo(showTutorialDelay));
         explanationPopup.SetActive(false);
     }
-    System.Collections.IEnumerator ShowButtomCoro()
+    private IEnumerator LoadToturial()
     {
         yield return new WaitForSeconds(showTutorialDelay);
         destinationsSummaryPopup.gameObject.SetActive(false);
         toturialPopup.gameObject.SetActive(true);
         toturialPopup.Play((int)PlayMode.Default);
         yield return new WaitForSeconds(showGameButtonDelay);
-        showToturialButton.SetActive(true);
+        startGameButton.SetActive(true);
     }
     public void StartGame()
     {

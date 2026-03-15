@@ -8,10 +8,10 @@ public class CollectableHandler : MonoBehaviour
     [SerializeField] protected PopupDataEventChannel LoadPopup_EC;
     [SerializeField] private TransformEventChannel playerMoved_EC;
     [SerializeField] private IntEventChannel gotScore_EC;
-    [SerializeField] protected CollectableData collectableData;
 
-    [SerializeField] private PopupData notificationPopupData;
-    [SerializeField] protected PopupData collectPopupData;
+    [SerializeField] protected RangeCollectableData _collectableData;
+    [SerializeField] private PopupData _notificationPopupData;
+    [SerializeField] protected PopupData _collectPopupData;
 
     [SerializeField] private GameObject visuals;
 
@@ -44,16 +44,26 @@ public class CollectableHandler : MonoBehaviour
         playerMoved_EC.OnEventRaised -= HandlePlayerMoved;
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    if (collectableData == null) return;
+    private void OnDrawGizmos()
+    {
+        if(_collectableData.NotificationRange > 0)
+        {
+            Handles.color = Color.red;
+            Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), _collectableData.NotificationRange);
+        }
+        if (_collectableData.CollectionRange > 0)
+        {
+            Handles.color = Color.green;
+            Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), _collectableData.CollectionRange);
+        }           
+    }
 
-    //    Handles.color = Color.red;
-    //    Handles.DrawWireDisc(transform.position,new Vector3(0f,1f,0f), collectableData.notificationRange);
-
-    //    Handles.color = Color.green;
-    //    Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), collectableData.collectionRange);
-    //}
+    public void Init(RangeCollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
+    {
+        _collectableData = collectableData;
+        _notificationPopupData.PopupTextData = notificationPopupData;
+        _collectPopupData.PopupTextData = collectPopupData;
+    }
 
     private void HandlePlayerMoved(Transform playerTransform)
     {
@@ -67,7 +77,7 @@ public class CollectableHandler : MonoBehaviour
     }
     protected virtual void CheckNotifyRange(Vector3 delta)
     {
-        if (delta.sqrMagnitude <= collectableData.notificationRange * collectableData.notificationRange)
+        if (delta.sqrMagnitude <= _collectableData.NotificationRange * _collectableData.NotificationRange)
         {
             Notify();
         }
@@ -75,7 +85,7 @@ public class CollectableHandler : MonoBehaviour
     protected virtual void CheckCollectRange(Vector3 delta)
     {
         _isCollectable = false;
-        if (delta.sqrMagnitude <= collectableData.collectionRange * collectableData.collectionRange)
+        if (delta.sqrMagnitude <= _collectableData.CollectionRange * _collectableData.CollectionRange)
         {
             _isCollectable = true;
         }
@@ -90,7 +100,7 @@ public class CollectableHandler : MonoBehaviour
     {
         if (_hasNotified) return;
         visuals.SetActive(true);
-        StartCoroutine(DelayedNotification(notificationPopupData.NotifyDelay));
+        StartCoroutine(DelayedNotification(_notificationPopupData.PopupTextData.Delay));
         _hasNotified = true;
     }
 
@@ -98,9 +108,9 @@ public class CollectableHandler : MonoBehaviour
     {
         if (_wasCollected) return;
 
-        gotScore_EC.RaiseEvent(collectableData.score);
+        gotScore_EC.RaiseEvent(_collectableData.Score);
         visuals.SetActive(false);
-        LoadPopup_EC.RaiseEvent(collectPopupData);
+        LoadPopup_EC.RaiseEvent(_collectPopupData);
         _wasCollected = true;
         OnDisable();
     }
@@ -108,6 +118,6 @@ public class CollectableHandler : MonoBehaviour
     private IEnumerator DelayedNotification(float delay)
     {
         yield return new WaitForSeconds(delay);
-        LoadPopup_EC.RaiseEvent(notificationPopupData);
+        LoadPopup_EC.RaiseEvent(_notificationPopupData);
     }
 }

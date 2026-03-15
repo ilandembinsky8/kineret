@@ -8,7 +8,6 @@ public class PlayerHUDHandler : MonoBehaviour
 {
     [SerializeField] private TransformEventChannel cameraPitched_EC;
     [SerializeField] private TransformEventChannel playerMoved_EC;
-    [SerializeField] private BoolEventChannel gamePause_EC;
     [SerializeField] private IntEventChannel scoreChanged_EC;
 
     [SerializeField] private TMP_Text altitudeText;
@@ -31,7 +30,7 @@ public class PlayerHUDHandler : MonoBehaviour
     {
         playerMoved_EC.OnEventRaised += HandlePlayerMoved;
         cameraPitched_EC.OnEventRaised += HandleCameraPitched;
-        gamePause_EC.OnEventRaised += HandleGamePause;
+        EventsRelay.OnGamePause += HandleGamePause;
         scoreChanged_EC.OnEventRaised += HandleScoreChanged;
     }
 
@@ -39,7 +38,7 @@ public class PlayerHUDHandler : MonoBehaviour
     {
         playerMoved_EC.OnEventRaised -= HandlePlayerMoved;
         cameraPitched_EC.OnEventRaised -= HandleCameraPitched;
-        gamePause_EC.OnEventRaised -= HandleGamePause;
+        EventsRelay.OnGamePause -= HandleGamePause;
         scoreChanged_EC.OnEventRaised -= HandleScoreChanged;
     }
 

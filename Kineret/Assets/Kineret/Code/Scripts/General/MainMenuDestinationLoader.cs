@@ -19,28 +19,37 @@ public class MainMenuDestinationLoader : MonoBehaviour
     [SerializeField] private DestinationSO Tzemah;
     [SerializeField] private DestinationSO Afimilk;
 
+    [SerializeField] private InterestPointSO Firewave;
+    [SerializeField] private InterestPointSO Seymour;
+    [SerializeField] private InterestPointSO Shvitz;
+    [SerializeField] private InterestPointSO Tzipori;
+
     void Awake()
     {
 
         if (IsTesting)
         {
-            LocationsManager.AddDestination(Destination.AgmonHula, AgmonHula);
-            LocationsManager.AddDestination(Destination.Shamir, Shamir);
-            LocationsManager.AddDestination(Destination.Gilboa, Gilboa);
-            LocationsManager.AddDestination(Destination.Agre, Agre);
-            LocationsManager.AddDestination(Destination.Golan, Golan);
-            LocationsManager.AddDestination(Destination.BioCastle, BioCastle);
-            LocationsManager.AddDestination(Destination.Salmon, Salmon);
-            LocationsManager.AddDestination(Destination.Eshkol, Eshkol);
-            LocationsManager.AddDestination(Destination.Ginosar, Ginosar);
-            LocationsManager.AddDestination(Destination.Tzemah, Tzemah);
-            LocationsManager.AddDestination(Destination.Afimilk, Afimilk);
+            LocationsManager.AddDestination(0, AgmonHula);
+            LocationsManager.AddDestination(1, Shamir);
+            LocationsManager.AddDestination(2, Gilboa);
+            LocationsManager.AddDestination(3, Agre);
+            LocationsManager.AddDestination(4, Golan);
+            LocationsManager.AddDestination(5, BioCastle);
+            LocationsManager.AddDestination(6, Salmon);
+            LocationsManager.AddDestination(7, Eshkol);
+            LocationsManager.AddDestination(8, Ginosar);
+            LocationsManager.AddDestination(9, Tzemah);
+            LocationsManager.AddDestination(10, Afimilk);
+            LocationsManager.AddInterestPoint(0, Firewave);
+            LocationsManager.AddInterestPoint(1, Seymour);
+            LocationsManager.AddInterestPoint(2, Shvitz);
+            LocationsManager.AddInterestPoint(3, Tzipori);
         }
 
         for (int i = 0; i < LocationsManager.DestinationsCount; i++)
         {
             DestinationButtonHandler handler = Instantiate(destinationButtonPrefab, parent);
-            handler.LoadDestination((Destination)i);
+            handler.LoadDestination(i);
         }       
     }
 }

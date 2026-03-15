@@ -1,62 +1,50 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static UnityAction OnStartGame; 
-
-    [SerializeField] private GameSettings gameSettings;
-    [SerializeField] private InfoScreenDataEventChannel destinationReached_EC;
-    [SerializeField] private InfoScreenDataEventChannel loadInfoScreen_EC;
+    [SerializeField] private Transform player;
+    [Header("Event Channels")]
     [SerializeField] private FloatEventChannel moveSpeedChange_EC;
-    [SerializeField] private BoolEventChannel GamePause_EC;
 
     [SerializeField] private IntEventChannel scoreChanged_EC;
     [SerializeField] private IntEventChannel gotScore_EC;
-    [SerializeField] private VoidEventChannel gameOver_EC;
 
+    [Header("UI Elements")]
     [SerializeField] private TMP_Text finalScoreText;
     [SerializeField] private SummaryPanelHandler summmaryCanvas;
 
-    [SerializeField] private Transform[] destinations;
+    public DestinationHandler[] Destinations { get; set; }
     private int _destinationsReachedCount;
     private int _score;
-    [SerializeField] float legTime;
+    private float _legDuration;
 
     private void Awake()
     {
         summmaryCanvas.gameObject.SetActive(false);
-        legTime = IniManager.GetFloat("Flight Settings", "SecondsForLeg",15);
+        _legDuration = IniManager.GetFloat("Flight Settings", "SecondsForLeg",15);
     }
 
     private void OnEnable()
     {
         gotScore_EC.OnEventRaised += HandleGotScore;
-        destinationReached_EC.OnEventRaised += HandleDestinationReached;
-        gameOver_EC.OnEventRaised += HandleGameOver;
-        OnStartGame += HandleGameStart;
+        EventsRelay.OnDestinationReached += HandleDestinationReached;
+        EventsRelay.OnGameOver += HandleGameOver;
     }
 
     private void OnDisable()
     {
         gotScore_EC.OnEventRaised -= HandleGotScore;
-        destinationReached_EC.OnEventRaised -= HandleDestinationReached;
-        gameOver_EC.OnEventRaised -= HandleGameOver;
-        OnStartGame -= HandleGameStart;
+        EventsRelay.OnDestinationReached -= HandleDestinationReached;
+        EventsRelay.OnGameOver -= HandleGameOver;
     }
 
     private void Start()
     {
         HandleGotScore(0);
-        ChangeMoveSpeedByLeg();
-        GamePause_EC.RaiseEvent(true);
-    }
-
-    private void HandleGameStart()
-    {
-        GamePause_EC.RaiseEvent(false);
+        ChangeMoveSpeedByLeg(player.position, Destinations[0].transform.position);
+        EventsRelay.OnGamePause.Invoke(true);
     }
 
     public void GoToMainMenu(bool _isLoadingDestinationSelection)
@@ -71,24 +59,26 @@ public class GameManager : MonoBehaviour
         scoreChanged_EC.RaiseEvent(_score);
     }
 
-    private void HandleDestinationReached(InfoScreenData data)
+    private void HandleDestinationReached(int destination)
     {
-        ChangeMoveSpeedByLeg();
+        bool isFinal = _destinationsReachedCount == LocationsManager.SELECTABLE_DESTINATIONS_COUNT;
+        InfoScreenData data = LocationsManager.GetInfoScreenData(destination, isFinal);
+        ChangeMoveSpeedByLeg(Destinations[_destinationsReachedCount].transform.position, Destinations[_destinationsReachedCount+1].transform.position);
         _destinationsReachedCount++;
-        data.IsFinal = _destinationsReachedCount == gameSettings.GameDestinationCount;
-        loadInfoScreen_EC.RaiseEvent(data);       
+        
+        EventsRelay.OnLoadInfoScreen(data);       
     }
-    private void ChangeMoveSpeedByLeg()
+    private void ChangeMoveSpeedByLeg(Vector3 positionA, Vector3 positionB)
     {
-        Vector3 currentDesY0 = destinations[_destinationsReachedCount].position;
-        currentDesY0.y = 0;
-        Vector3 nextDesY0;
-        if (_destinationsReachedCount < gameSettings.GameDestinationCount-1)
+        Vector3 currentPosition = positionA;
+        currentPosition.y = 0;
+        Vector3 nextPosition;
+        if (_destinationsReachedCount < LocationsManager.SELECTABLE_DESTINATIONS_COUNT -1)
         {
-            nextDesY0 = destinations[_destinationsReachedCount + 1].position;
-            nextDesY0.y = 0;
-            float distance = Vector3.Distance(currentDesY0, nextDesY0);
-            float newMoveSpeed = distance / legTime;
+            nextPosition = positionB;
+            nextPosition.y = 0;
+            float distance = Vector3.Distance(currentPosition, nextPosition);
+            float newMoveSpeed = distance / _legDuration;
             moveSpeedChange_EC.RaiseEvent(newMoveSpeed);
             Debug.Log("distance from current to next destination: " + distance);
         }
