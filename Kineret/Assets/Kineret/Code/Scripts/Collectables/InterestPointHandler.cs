@@ -6,13 +6,13 @@ public class InterestPointHandler : CollectableHandler
 {
     [SerializeField] protected PopupData infoPopupData;
 
-    public void Init(InterestPointSO interestPoint, InfoCollectableData collectableData)
+    public void Init(InterestPointData interestPoint, InfoCollectableData collectableData)
     {
         infoPopupData.PopupTextData = collectableData.InfoPopup;
         Init(collectableData.RangeData, collectableData.CollectionPopup, collectableData.NotificationPopup);
-        infoPopupData.PopupTextData.Description = interestPoint.InterestPointData.InfoText;
+        infoPopupData.PopupTextData.Description = interestPoint.Data.InfoText;
         infoPopupData.IconSprite = interestPoint.Icon;
-        _collectPopupData.PopupTextData.Description = interestPoint.InterestPointData.CollectText;
+        _collectPopupData.PopupTextData.Description = interestPoint.Data.CollectText;
     }
 
     protected override void Collect()

@@ -61,10 +61,10 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     public void LoadDestination(int destination)
     {
         _destination = destination;
-        DestinationSO destinationSO = LocationsManager.GetDestination(destination);
-        transform.localPosition = destinationSO.DestinationData.UiPosition;
-        titleText.text = destinationSO.DestinationData.Name;
-        lowerText.text = destinationSO.DestinationData.Description;
+        DestinationData destinationData = LocationsManager.GetDestination(destination);
+        transform.localPosition = destinationData.Data.UiPosition;
+        titleText.text = destinationData.Data.Name;
+        lowerText.text = destinationData.Data.Description;
     }
 
     public void OnClick()

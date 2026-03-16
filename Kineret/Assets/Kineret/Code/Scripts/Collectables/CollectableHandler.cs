@@ -9,7 +9,7 @@ public class CollectableHandler : MonoBehaviour
     [SerializeField] private TransformEventChannel playerMoved_EC;
     [SerializeField] private IntEventChannel gotScore_EC;
 
-    [SerializeField] protected RangeCollectableData _collectableData;
+    [SerializeField] protected CollectableData _collectableData;
     [SerializeField] private PopupData _notificationPopupData;
     [SerializeField] protected PopupData _collectPopupData;
 
@@ -58,7 +58,7 @@ public class CollectableHandler : MonoBehaviour
         }           
     }
 
-    public void Init(RangeCollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
+    public void Init(CollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
     {
         _collectableData = collectableData;
         _notificationPopupData.PopupTextData = notificationPopupData;

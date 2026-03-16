@@ -20,10 +20,21 @@ public class GameDestinationLoader : MonoBehaviour
     [SerializeField] private InfoCollectableData interestCollectable;
     [SerializeField] private BonusCollectableData[] bonusCollectables;
 
+    public bool IsTesting;
+
     private DestinationHandler[] _destinations;
 
     private void Awake()
     {
+        if (IsTesting)
+        {
+            LocationsManager.DestinationCollectables = destinationCollectables;
+            LocationsManager.InfoCollectable = infoCollectable;
+            LocationsManager.InterestCollectable = interestCollectable;
+            LocationsManager.BonusCollectables = bonusCollectables;
+        }
+        
+
         GenerateDestinations();
         GenerateInterestPoints();
         GenerateRoute();
@@ -36,7 +47,7 @@ public class GameDestinationLoader : MonoBehaviour
         for (int i = 0; i < _destinations.Length; i++)
         {
             int destination = LocationsManager.SelectedDestinations[i];          
-            Vector3 position = LocationsManager.GetDestination(destination).DestinationData.WorldPosition;
+            Vector3 position = LocationsManager.GetDestination(destination).Data.WorldPosition;
             DestinationHandler destinationHandler = Instantiate(destinationPrefab,position,Quaternion.identity);
             destinationHandler.Destination = destination;
             _destinations[i] = destinationHandler;
@@ -46,9 +57,9 @@ public class GameDestinationLoader : MonoBehaviour
     {
         for (int i = 0; i < LocationsManager.InterestPointsCount; i++)
         {
-            InterestPointSO interestPoint = LocationsManager.GetInterestPoint(i);
-            InterestPointHandler interestPointHandler = Instantiate(interestPointPrefab, interestPoint.InterestPointData.WorldPosition, Quaternion.identity);
-            interestPointHandler.Init(interestPoint, interestCollectable);
+            InterestPointData interestPoint = LocationsManager.GetInterestPoint(i);
+            InterestPointHandler interestPointHandler = Instantiate(interestPointPrefab, interestPoint.Data.WorldPosition, Quaternion.identity);
+            interestPointHandler.Init(interestPoint, LocationsManager.InterestCollectable);
         }
     }
 
@@ -59,7 +70,7 @@ public class GameDestinationLoader : MonoBehaviour
 
         for (int i = 0; i < _destinations.Length; i++)
         {
-            DestinationCollectableData destinationCollectable = destinationCollectables[i];
+            DestinationCollectableData destinationCollectable = LocationsManager.DestinationCollectables[i];
             _destinations[i].Init(destinationCollectable.RangeData, destinationCollectable.CollectionPopup);
         }
 
@@ -82,7 +93,7 @@ public class GameDestinationLoader : MonoBehaviour
 
 
         List<int> bonusIndices = new List<int>();
-        for (int i = 0; i < bonusCollectables.Length; i++)
+        for (int i = 0; i < LocationsManager.BonusCollectables.Length; i++)
         {
             bonusIndices.Add(i);
         }
@@ -109,24 +120,24 @@ public class GameDestinationLoader : MonoBehaviour
         int bonusIndex = collectablesIndices[Random.Range(0, collectablesIndices.Count)];
         collectablesIndices.Remove(bonusIndex);
         CollectableHandler bonusPoint = Instantiate(bonusPrefab);
-        bonusPoint.Init(bonusCollectables[bonus].RangeData, bonusCollectables[bonus].CollectionPopup, bonusCollectables[bonus].NotificationPopup);
+        bonusPoint.Init(LocationsManager.BonusCollectables[bonus].CollectableData, LocationsManager.BonusCollectables[bonus].CollectionPopup, LocationsManager.BonusCollectables[bonus].NotificationPopup);
         collectables[bonusIndex] = bonusPoint;
 
         for (int i = 0; i < 3; i++)
         {
             InfoPointHandler infoPoint = Instantiate(infoPointPrefab);
             collectables[collectablesIndices[i]] = infoPoint;
-            DestinationSO destination = LocationsManager.GetDestination(destinationID);
+            DestinationData destination = LocationsManager.GetDestination(destinationID);
             switch (i)
             {
                 case 0:
-                    infoPoint.Init(destination.DestinationData.FirstInfoPoint, infoCollectable);
+                    infoPoint.Init(destination.Data.FirstInfoPoint, LocationsManager.InfoCollectable);
                     break;
                 case 1:
-                    infoPoint.Init(destination.DestinationData.SecondInfoPoint, infoCollectable);
+                    infoPoint.Init(destination.Data.SecondInfoPoint, LocationsManager.InfoCollectable);
                     break;
                 case 2:
-                    infoPoint.Init(destination.DestinationData.ThirdInfoPoint, infoCollectable);
+                    infoPoint.Init(destination.Data.ThirdInfoPoint, LocationsManager.InfoCollectable);
                     break;
             }
         }

@@ -8,9 +8,6 @@ public class JsonManager : MonoBehaviour
     public GameData Data;
 
     #region Serialized fields
-    [SerializeField] CollectableData BonusPointRange;
-    [SerializeField] CollectableData DestinationRange;
-    [SerializeField] CollectableData InterestPointRange;
 
     #region Destinations
     [Header("Destinations")]
@@ -89,17 +86,17 @@ public class JsonManager : MonoBehaviour
 [Serializable]
 public struct GameData
 {
-    public DestinationData Afimilk;
-    public DestinationData AgmonHula;
-    public DestinationData Agre;
-    public DestinationData BioCastle;
-    public DestinationData Eshkol;
-    public DestinationData Gilboa;
-    public DestinationData Ginosar;
-    public DestinationData Golan;
-    public DestinationData Salmon;
-    public DestinationData Shamir;
-    public DestinationData Tzemah;
+    public DestinationTextData Afimilk;
+    public DestinationTextData AgmonHula;
+    public DestinationTextData Agre;
+    public DestinationTextData BioCastle;
+    public DestinationTextData Eshkol;
+    public DestinationTextData Gilboa;
+    public DestinationTextData Ginosar;
+    public DestinationTextData Golan;
+    public DestinationTextData Salmon;
+    public DestinationTextData Shamir;
+    public DestinationTextData Tzemah;
 
     public InfoCollectableData Biriya;
     public InfoCollectableData Keshet;
@@ -123,7 +120,7 @@ public struct GameData
 /// Main data structure of a destination
 /// </summary>
 [Serializable]
-public struct DestinationData
+public struct DestinationTextData
 {
     public string Name;
     public string Description;
@@ -154,7 +151,7 @@ public struct DestinationInfoPointData
 [Serializable]
 public struct DestinationCollectableData
 {
-    public RangeCollectableData RangeData;
+    public CollectableData RangeData;
 
     public PopupTextData CollectionPopup;
 }
@@ -167,7 +164,7 @@ public struct DestinationCollectableData
 [Serializable]
 public struct InfoCollectableData
 {
-    public RangeCollectableData RangeData;
+    public CollectableData RangeData;
 
     public PopupTextData NotificationPopup;
     public PopupTextData CollectionPopup;
@@ -175,7 +172,7 @@ public struct InfoCollectableData
 }
 
 [Serializable]
-public struct InterestPointData
+public struct InterestPointTextData
 {
     public string Name;
     public Vector3 WorldPosition;
@@ -186,7 +183,7 @@ public struct InterestPointData
 [Serializable]
 public struct BonusCollectableData
 {
-    public RangeCollectableData RangeData;
+    public CollectableData CollectableData;
 
     public PopupTextData NotificationPopup;
     public PopupTextData CollectionPopup;
@@ -196,7 +193,7 @@ public struct BonusCollectableData
 public struct ChallengePointData
 {
     //public float timeLimit; //gonna sit in .ini
-    public RangeCollectableData RangeData;
+    public CollectableData CollectableData;
 
     public PopupTextData NotificationPopup;
     public PopupTextData CompletedPopup;
@@ -207,7 +204,7 @@ public struct ChallengePointData
 /// Mirrors CollectableData fields
 /// </summary>
 [Serializable]
-public struct RangeCollectableData
+public struct CollectableData
 {
     public float NotificationRange;
     public float CollectionRange;
