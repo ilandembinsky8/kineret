@@ -3,6 +3,8 @@ using UnityEngine;
 using System.IO;
 using System;
 
+using UnityEngine.SceneManagement;
+
 public class JsonManager : MonoBehaviour
 {
     public GameData Data;
@@ -49,6 +51,8 @@ public class JsonManager : MonoBehaviour
             //Salmon.DestinationData = Data.Salmon;
             Shamir.DestinationData = Data.Shamir;
             Tzemah.DestinationData = Data.Tzemah;
+
+            SceneManager.LoadScene("Main Menu Scene");
         }
     }
 

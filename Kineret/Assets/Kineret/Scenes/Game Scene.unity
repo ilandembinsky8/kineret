@@ -1791,9 +1791,74 @@ PrefabInstance:
       objectReference: {fileID: 3559719673135684604}
     - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
         type: 3}
+      propertyPath: IsTesting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 543464181}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[0].CollectableData.Score
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[1].CollectableData.Score
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[2].CollectableData.Score
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[3].CollectableData.Score
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[0].CollectableData.CollectionRange
+      value: 3500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[1].CollectableData.CollectionRange
+      value: 3500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[2].CollectableData.CollectionRange
+      value: 3500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[3].CollectableData.CollectionRange
+      value: 3500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[0].CollectableData.NotificationRange
+      value: 7500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[1].CollectableData.NotificationRange
+      value: 7500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[2].CollectableData.NotificationRange
+      value: 7500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: bonusCollectables.Array.data[3].CollectableData.NotificationRange
+      value: 7500
+      objectReference: {fileID: 0}
     - target: {fileID: 7738317420825844683, guid: 57e8b52a259075840bbdcfbf7e0f409f,
         type: 3}
       propertyPath: m_Name
