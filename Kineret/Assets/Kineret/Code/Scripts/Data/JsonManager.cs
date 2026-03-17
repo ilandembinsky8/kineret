@@ -46,7 +46,7 @@ public struct GameData
 {
     public List<DestinationTextData> DestinationDataList;
 
-    public List<InfoCollectableData> StaticCollectableDataList;
+    public List<InfoCollectableData> StaticIntrestPointsDataList;
 
     public List<BonusCollectableData> BonusDataList;
 

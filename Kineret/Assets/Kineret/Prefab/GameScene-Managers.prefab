@@ -58,12 +58,15 @@ MonoBehaviour:
   loadPopup_EC: {fileID: 11400000, guid: 434ae0b1dce8a5d4c8f23f04d7878aa3, type: 2}
   routePopupData:
     PopupTextData:
-      Type: 0
-      Title: 
-      Description: 
-      Duration: 0
+      Type: 1
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
+      Duration: 2
       Delay: 0
-    IconSprite: {fileID: 0}
+    IconSprite: {fileID: 21300000, guid: 9efb0163cea561540b93fc72aa9b874a, type: 3}
   routePopupDelay: 2
   blackPanel: {fileID: 0}
   blackFadeDuration: 1.5
@@ -111,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8855f7fefe425e14081ac4bb3124f8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   moveSpeedChange_EC: {fileID: 11400000, guid: da0d379c7ed43e242934360b576dbe9d, type: 2}
   scoreChanged_EC: {fileID: 11400000, guid: 15fe7929a99861a4f934cce6fe9832d7, type: 2}
   gotScore_EC: {fileID: 11400000, guid: d9b5e4ff6b8db82459a3f609c91c8417, type: 2}
@@ -336,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f4075268a3f9e4996ee3364f7cdf97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 7753103378442704945}
   player: {fileID: 0}
   path: {fileID: 0}
   destinationPrefab: {fileID: 2002420201625396977, guid: 64cd5387b0451474787f3c0e889c75d8,
@@ -351,147 +355,202 @@ MonoBehaviour:
   - RangeData:
       NotificationRange: 0
       CollectionRange: 2000
-      Score: 50
+      TimeForMaxScore: 0
+      MaxScore: 0
     CollectionPopup:
       Type: 1
-      Title: "\u05DF\u05E9\u05D0\u05E8\u05D4 \u05D3\u05E2\u05D9\u05DC \u05DD\u05EA\u05E2\u05D2\u05D4"
-      Description: 
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 3
       Delay: 0
   - RangeData:
       NotificationRange: 0
       CollectionRange: 2000
-      Score: 50
+      TimeForMaxScore: 0
+      MaxScore: 0
     CollectionPopup:
       Type: 1
-      Title: "\u05D9\u05E0\u05E9\u05D4 \u05D3\u05E2\u05D9\u05DC \u05DD\u05EA\u05E2\u05D2\u05D4"
-      Description: 
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 3
       Delay: 0
   - RangeData:
       NotificationRange: 0
       CollectionRange: 2000
-      Score: 50
+      TimeForMaxScore: 0
+      MaxScore: 0
     CollectionPopup:
       Type: 1
-      Title: "\u05D9\u05E9\u05D9\u05DC\u05E9\u05D4 \u05D3\u05E2\u05D9\u05DC \u05DD\u05EA\u05E2\u05D2\u05D4"
-      Description: 
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 3
       Delay: 0
   infoCollectable:
     RangeData:
       NotificationRange: 7500
       CollectionRange: 3500
-      Score: 10
+      TimeForMaxScore: 0
+      MaxScore: 0
     NotificationPopup:
       Type: 3
-      Title: "\u05EA\u05E2\u05D3\u05D9\u05D4"
-      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05EA\u05E2\u05D3\u05D9\u05D4
-        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 3
       Delay: 0
     CollectionPopup:
       Type: 2
-      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
-      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 3
       Delay: 0
     InfoPopup:
       Type: 0
-      Title: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1"
-      Description: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 3
       Delay: 0
   interestCollectable:
     RangeData:
       NotificationRange: 7500
       CollectionRange: 3500
-      Score: 10
+      TimeForMaxScore: 0
+      MaxScore: 0
     NotificationPopup:
       Type: 3
-      Title: "\u05DF\u05D9\u05D9\u05E0\u05E2 \u05EA\u05D3\u05D5\u05E7\u05E0"
-      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05DF\u05D9\u05D9\u05E0\u05E2
-        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 3
       Delay: 0
     CollectionPopup:
       Type: 2
-      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
-      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 3
       Delay: 0
     InfoPopup:
       Type: 0
-      Title: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1"
-      Description: "\u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1 \u05D4\u05DC\u05D1"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 3
       Delay: 0
   bonusCollectables:
-  - RangeData:
+  - CollectableData:
       NotificationRange: 7500
       CollectionRange: 3500
-      Score: 10
+      TimeForMaxScore: 0
+      MaxScore: 0
     NotificationPopup:
       Type: 3
-      Title: "\u05E1\u05D5\u05E0\u05D5\u05D1 \u05EA\u05D3\u05D5\u05E7\u05E0"
-      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05E1\u05D5\u05E0\u05D5\u05D1
-        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
     CollectionPopup:
       Type: 2
-      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
-      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
-  - RangeData:
+  - CollectableData:
       NotificationRange: 7500
       CollectionRange: 3500
-      Score: 10
+      TimeForMaxScore: 0
+      MaxScore: 0
     NotificationPopup:
       Type: 3
-      Title: "\u05E1\u05D5\u05E0\u05D5\u05D1 \u05EA\u05D3\u05D5\u05E7\u05E0"
-      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05E1\u05D5\u05E0\u05D5\u05D1
-        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
     CollectionPopup:
       Type: 2
-      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
-      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
-  - RangeData:
+  - CollectableData:
       NotificationRange: 7500
       CollectionRange: 3500
-      Score: 10
+      TimeForMaxScore: 0
+      MaxScore: 0
     NotificationPopup:
       Type: 3
-      Title: "\u05E1\u05D5\u05E0\u05D5\u05D1 \u05EA\u05D3\u05D5\u05E7\u05E0"
-      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05E1\u05D5\u05E0\u05D5\u05D1
-        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
     CollectionPopup:
       Type: 2
-      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
-      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
-  - RangeData:
+  - CollectableData:
       NotificationRange: 7500
       CollectionRange: 3500
-      Score: 10
+      TimeForMaxScore: 0
+      MaxScore: 0
     NotificationPopup:
       Type: 3
-      Title: "\u05E1\u05D5\u05E0\u05D5\u05D1 \u05EA\u05D3\u05D5\u05E7\u05E0"
-      Description: "\u05DA\u05D9\u05E0\u05E4\u05DC \u05E1\u05D5\u05E0\u05D5\u05D1
-        \u05EA\u05D3\u05D5\u05E7\u05E0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
     CollectionPopup:
       Type: 2
-      Title: "\u05D3\u05D5\u05D1\u05DB\u05D4 \u05DC\u05DB"
-      Description: "\u05D4\u05D3\u05D5\u05E7\u05E0\u05D4 \u05EA\u05D0 \u05EA\u05E4\u05E1\u05D0"
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
+  IsTesting: 1

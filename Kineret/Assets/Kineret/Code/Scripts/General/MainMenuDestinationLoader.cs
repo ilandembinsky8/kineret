@@ -29,8 +29,8 @@ public class MainMenuDestinationLoader : MonoBehaviour
 
         if (IsTesting)
         {
-            LocationsManager.AddDestination(0, AgmonHula);
-            LocationsManager.AddDestination(1, Shamir);
+            LocationsManager.AddDestination(9, AgmonHula);
+            //LocationsManager.AddDestination(1, Shamir);
             LocationsManager.AddDestination(2, Gilboa);
             LocationsManager.AddDestination(3, Agre);
             LocationsManager.AddDestination(4, Golan);
@@ -38,7 +38,7 @@ public class MainMenuDestinationLoader : MonoBehaviour
             LocationsManager.AddDestination(6, Salmon);
             LocationsManager.AddDestination(7, Eshkol);
             LocationsManager.AddDestination(8, Ginosar);
-            LocationsManager.AddDestination(9, Tzemah);
+            //LocationsManager.AddDestination(9, Tzemah);
             LocationsManager.AddDestination(10, Afimilk);
             LocationsManager.AddInterestPoint(0, Firewave);
             LocationsManager.AddInterestPoint(1, Seymour);

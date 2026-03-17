@@ -797,9 +797,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1a2fbf3c9a1804e94b0f7a392de2ce, type: 3}
---- !u!224 &1689010977836586102 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2637861614984601655, guid: 0d1a2fbf3c9a1804e94b0f7a392de2ce,
+--- !u!95 &1689010977836586102 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1012515758922546083, guid: 0d1a2fbf3c9a1804e94b0f7a392de2ce,
     type: 3}
   m_PrefabInstance: {fileID: 1689010977836586101}
   m_PrefabAsset: {fileID: 0}
@@ -908,110 +908,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
-      propertyPath: Agre
-      value: 
-      objectReference: {fileID: 11400000, guid: 1e37df05ebde1a94eb00cfca6c51c37f,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Golan
-      value: 
-      objectReference: {fileID: 11400000, guid: 20946407ab96d5447b1dd70b9d885259,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Eshkol
-      value: 
-      objectReference: {fileID: 11400000, guid: cabde7ed2e3abf441a6a6364d7d9c0da,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Gilboa
-      value: 
-      objectReference: {fileID: 11400000, guid: de2ac3886a4b55f4593f68cde0dbb854,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Salmon
-      value: 
-      objectReference: {fileID: 11400000, guid: ea53a65ef81de964eb64749a7a79ca5d,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Shamir
-      value: 
-      objectReference: {fileID: 11400000, guid: 1442977a5b8d10643894c94688417cf0,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Shvitz
-      value: 
-      objectReference: {fileID: 11400000, guid: aa94735d908a0db4f978b4d931f773a7,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Tzemah
-      value: 
-      objectReference: {fileID: 11400000, guid: b6b99d7b351cfe445a1327f96cfee9ac,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
       propertyPath: parent
       value: 
       objectReference: {fileID: 1167579631646187821}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Afimilk
-      value: 
-      objectReference: {fileID: 11400000, guid: 872fac30b15594f41998e060ecbf3423,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Ginosar
-      value: 
-      objectReference: {fileID: 11400000, guid: eb867dc31a0fd954097764d812a91bb4,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Seymour
-      value: 
-      objectReference: {fileID: 11400000, guid: ef11ddf9cb60151419dd27bba70f1acb,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Tzipori
-      value: 
-      objectReference: {fileID: 11400000, guid: 0eaf57289cd3034488a2f2f59e967439,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: Firewave
-      value: 
-      objectReference: {fileID: 11400000, guid: 18943a90a1c410f479441aaa9a5f8965,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: AgmonHula
-      value: 
-      objectReference: {fileID: 11400000, guid: 67068a189847f1946a75e07a175bc439,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: BioCastle
-      value: 
-      objectReference: {fileID: 11400000, guid: e1320eea0828ecc438c0b94ff9a6ffc0,
-        type: 2}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: IsTesting
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
-        type: 3}
-      propertyPath: destinationButtonPrefab
-      value: 
-      objectReference: {fileID: 5862747467400081615, guid: 93cbcf2689b23ee4f8f27e16edcefd51,
-        type: 3}
     - target: {fileID: 5160449359014002492, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
       propertyPath: m_Name
@@ -1030,30 +929,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1216479141192722431, guid: ec3f50ad446e3c649aee59d712ffb426,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2129997479019126715, guid: ec3f50ad446e3c649aee59d712ffb426,
         type: 3}
       propertyPath: m_Name
       value: Main Menu Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129997479019126715, guid: ec3f50ad446e3c649aee59d712ffb426,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
         type: 3}
@@ -1070,36 +949,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 1744094835}
-    - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: Play
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: PopupTweenHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7027345654616782332, guid: ec3f50ad446e3c649aee59d712ffb426,
         type: 3}
       propertyPath: m_Pivot.x

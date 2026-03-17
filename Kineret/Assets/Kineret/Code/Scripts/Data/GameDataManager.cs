@@ -6,11 +6,6 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(ImageDataManager))]
 public class GameDataManager : MonoBehaviour
 {
-    public static GameDataManager Instance;
-
-    public Dictionary<string, DestinationImageData> CurrentImageData { get { return _destinationImageDataDiction; } }
-    public GameData CurrentGameData { get { return _currentGameData; } }
-
     [SerializeField] private float loadingTime = 2f;
 
     private Dictionary<string, DestinationImageData> _destinationImageDataDiction;
@@ -23,14 +18,6 @@ public class GameDataManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
         _jsonManager = new JsonManager();
         _loadingWait = new WaitForSeconds(loadingTime);
         _imageDataManager = GetComponent<ImageDataManager>();
@@ -63,9 +50,23 @@ public class GameDataManager : MonoBehaviour
     /// </summary>
     private void ChangeSceneOnDataLoaded()
     {
-        if (_jsonLoaded && _imagesLoaded)
+        if (!_jsonLoaded || !_imagesLoaded) { return; }
+
+        LoadDataIntoLocationManager();
+        SceneManager.LoadScene("Main Menu Scene");
+    }
+
+    private void LoadDataIntoLocationManager()
+    {
+        for (int i = 0; i < _currentGameData.DestinationDataList.Count; i++)
         {
-            SceneManager.LoadScene("Main Menu Scene");
+            DestinationTextData destinationData = _currentGameData.DestinationDataList[i];
+
+            GetDestinationImageData(destinationData.UIDestinationInfoText.EngTitle, out DestinationImageData destinationImageData);
+            DestinationData fullDestinationData = new DestinationData { Data = destinationData, Background = destinationImageData.backgroundImage, 
+                Icon = destinationImageData.IconImage, Logo = destinationImageData.LogoImage, LogoScaleModifier = 1 };
+
+            LocationsManager.AddDestination(i, fullDestinationData);
         }
     }
 

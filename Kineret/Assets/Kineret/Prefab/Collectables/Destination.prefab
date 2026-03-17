@@ -156,20 +156,27 @@ MonoBehaviour:
   _collectableData:
     NotificationRange: 0
     CollectionRange: 0
-    Score: 0
+    TimeForMaxScore: 0
+    MaxScore: 0
   _notificationPopupData:
     PopupTextData:
       Type: 0
-      Title: 
-      Description: 
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
     IconSprite: {fileID: 0}
   _collectPopupData:
     PopupTextData:
       Type: 0
-      Title: 
-      Description: 
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
     IconSprite: {fileID: 21300000, guid: b5503f4d06143e942bac405433d30357, type: 3}

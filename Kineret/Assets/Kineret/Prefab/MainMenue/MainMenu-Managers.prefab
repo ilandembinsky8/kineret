@@ -47,10 +47,6 @@ MonoBehaviour:
   gameSettings: {fileID: 11400000, guid: b7bdae77a44f5974aadfd382aa79b1f3, type: 2}
   showTutorialDelay: 15
   showGameButtonDelay: 5
-  destinationSelected_EC: {fileID: 11400000, guid: 254ac4a87038dd94d835bd2961f8951b,
-    type: 2}
-  destinationDeselected_EC: {fileID: 11400000, guid: 89fff0f767b1b13409f726f62cb23e0f,
-    type: 2}
   enableDestinationSelection_EC: {fileID: 11400000, guid: 30db6846684d5714db321701866561b6,
     type: 2}
   mainMenuCanvas: {fileID: 0}
@@ -141,4 +137,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  destinationButtonPrefab: {fileID: 0}
+  destinationButtonPrefab: {fileID: 5862747467400081615, guid: 93cbcf2689b23ee4f8f27e16edcefd51,
+    type: 3}
+  IsTesting: 1
+  AgmonHula: {fileID: 11400000, guid: 67068a189847f1946a75e07a175bc439, type: 2}
+  Shamir: {fileID: 11400000, guid: 1442977a5b8d10643894c94688417cf0, type: 2}
+  Gilboa: {fileID: 11400000, guid: de2ac3886a4b55f4593f68cde0dbb854, type: 2}
+  Agre: {fileID: 11400000, guid: 1e37df05ebde1a94eb00cfca6c51c37f, type: 2}
+  Golan: {fileID: 11400000, guid: 20946407ab96d5447b1dd70b9d885259, type: 2}
+  BioCastle: {fileID: 11400000, guid: e1320eea0828ecc438c0b94ff9a6ffc0, type: 2}
+  Salmon: {fileID: 11400000, guid: ea53a65ef81de964eb64749a7a79ca5d, type: 2}
+  Eshkol: {fileID: 11400000, guid: cabde7ed2e3abf441a6a6364d7d9c0da, type: 2}
+  Ginosar: {fileID: 11400000, guid: eb867dc31a0fd954097764d812a91bb4, type: 2}
+  Tzemah: {fileID: 11400000, guid: b6b99d7b351cfe445a1327f96cfee9ac, type: 2}
+  Afimilk: {fileID: 11400000, guid: 872fac30b15594f41998e060ecbf3423, type: 2}
+  Firewave: {fileID: 11400000, guid: 18943a90a1c410f479441aaa9a5f8965, type: 2}
+  Seymour: {fileID: 11400000, guid: ef11ddf9cb60151419dd27bba70f1acb, type: 2}
+  Shvitz: {fileID: 11400000, guid: aa94735d908a0db4f978b4d931f773a7, type: 2}
+  Tzipori: {fileID: 11400000, guid: 0eaf57289cd3034488a2f2f59e967439, type: 2}

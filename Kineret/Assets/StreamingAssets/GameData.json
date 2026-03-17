@@ -101,7 +101,7 @@
     }
   ],
 
-  "StaticCollectableDataList": [
+  "StaticIntrestPointsDataList": [
     {
       "RangeData": {
         "NotificationRange": 7500.0,
