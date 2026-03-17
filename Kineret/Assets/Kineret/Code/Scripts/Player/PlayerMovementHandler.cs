@@ -9,7 +9,7 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private TransformEventChannel cameraPitched_EC;
     [SerializeField] private FloatEventChannel moveSpeedChange_EC;
 
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float legMoveSpeed;
     [SerializeField] private float maxRoll;
     [SerializeField] private float rollDuration;
     [SerializeField] private float yawSpeed;
@@ -20,6 +20,12 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private Transform yawBody;
     [SerializeField] private Transform rollBody;
 
+
+
+    private float _accelerationDirection;
+    private float _accelerationPercentage = 0.05f;
+    private float _maxMoveSpeedPercentage = 0.2f; //Move to INI
+    [SerializeField] private float _moveSpeed;
     private float _yawDirection;
     private float _pitchDirection;
 
@@ -41,6 +47,8 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Turn.canceled += HandleTurnInput;
         _actions.Player.Pitch.performed += HandlePitchInput;
         _actions.Player.Pitch.canceled += HandlePitchInput;
+        _actions.Player.Accelerate.performed += HandleSpeedInput;
+        _actions.Player.Accelerate.canceled += HandleSpeedInput;
 
         EventsRelay.OnGamePause += HandleGamePause;
         moveSpeedChange_EC.OnEventRaised += ChangeMoveSpeedByLeg;
@@ -53,6 +61,8 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Turn.canceled -= HandleTurnInput;
         _actions.Player.Pitch.performed -= HandlePitchInput;
         _actions.Player.Pitch.canceled -= HandlePitchInput;
+        _actions.Player.Accelerate.performed -= HandleSpeedInput;
+        _actions.Player.Accelerate.canceled -= HandleSpeedInput;
 
         EventsRelay.OnGamePause -= HandleGamePause;
         moveSpeedChange_EC.OnEventRaised -= ChangeMoveSpeedByLeg;
@@ -98,7 +108,10 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(moveSpeed * Time.deltaTime * (transform.InverseTransformDirection(pitchBody.forward)));
+        Debug.Log(_accelerationDirection);
+        _moveSpeed += legMoveSpeed * _accelerationPercentage * _accelerationDirection * Time.deltaTime;
+        _moveSpeed = Mathf.Clamp(_moveSpeed, legMoveSpeed * (1 - _maxMoveSpeedPercentage), legMoveSpeed * (1 + _maxMoveSpeedPercentage));
+        transform.Translate(_moveSpeed * Time.deltaTime * (transform.InverseTransformDirection(pitchBody.forward)));
         playerMoved_EC.RaiseEvent(transform);
     }
 
@@ -112,13 +125,19 @@ public class PlayerMovementHandler : MonoBehaviour
         _yawDirection = context.ReadValue<float>();
     }
 
+    private void HandleSpeedInput(InputAction.CallbackContext context)
+    {
+        _accelerationDirection = context.ReadValue<float>();
+    }
+
     private void HandleGamePause(bool isPaused)
     {
         _isPaused = isPaused;
     }
     private void ChangeMoveSpeedByLeg(float newMoveSpeed)
     {
-        moveSpeed = newMoveSpeed;
+        legMoveSpeed = newMoveSpeed;
+        _moveSpeed = legMoveSpeed;
         Debug.Log("changed speed to moveSpeed");
     }
 }
