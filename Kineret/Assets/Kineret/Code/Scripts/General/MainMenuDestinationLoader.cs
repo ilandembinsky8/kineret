@@ -46,7 +46,7 @@ public class MainMenuDestinationLoader : MonoBehaviour
             LocationsManager.AddInterestPoint(3, Tzipori);
         }
 
-        for (int i = 0; i < LocationsManager.DestinationsCount; i++)
+        for (int i = 0; i < LocationsManager.Destinations.Count; i++)
         {
             DestinationButtonHandler handler = Instantiate(destinationButtonPrefab, parent);
             handler.LoadDestination(i);

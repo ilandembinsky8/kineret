@@ -8,8 +8,8 @@ public static class LocationsManager
     public const int SELECTABLE_DESTINATIONS_COUNT = 3;
 
     public static Dictionary<string, Sprite> IconsMap = new(6);
-    private static readonly Dictionary<int, DestinationData> Destinations = new(16);
-    private static readonly Dictionary<int, InterestPointData> InteresPoints = new(8);
+    public static readonly Dictionary<int, DestinationData> Destinations = new(16);
+    public static readonly Dictionary<int, InterestPointData> InterestPoints = new(8);
 
     public static int[] SelectedDestinations = new int[SELECTABLE_DESTINATIONS_COUNT];
 
@@ -41,7 +41,7 @@ public static class LocationsManager
     }
     public static void AddInterestPoint(int interstPoint, InterestPointData data)
     {
-        InteresPoints.Add(interstPoint, data);
+        InterestPoints.Add(interstPoint, data);
     }
     public static void AddInterestPoint(int interstPoint, InterestPointSO interestPointSO)
     {
@@ -55,7 +55,7 @@ public static class LocationsManager
 
     public static InterestPointData GetInterestPoint(int interstPoint)
     {
-        return InteresPoints[interstPoint];
+        return InterestPoints[interstPoint];
     }
 
     public static InfoScreenData GetInfoScreenData(int destinationID, bool isFinal)

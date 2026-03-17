@@ -55,7 +55,7 @@ public class GameDestinationLoader : MonoBehaviour
     }
     private void GenerateInterestPoints()
     {
-        for (int i = 0; i < LocationsManager.InterestPointsCount; i++)
+        for (int i = 0; i < LocationsManager.InterestPoints.Count; i++)
         {
             InterestPointData interestPoint = LocationsManager.GetInterestPoint(i);
             InterestPointHandler interestPointHandler = Instantiate(interestPointPrefab, interestPoint.Data.WorldPosition, Quaternion.identity);
