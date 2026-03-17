@@ -1,359 +1,396 @@
 {
-  "Shamir": {
-    "Name": "מכון שמיר למחקר",
-    "Description": "מחקר יישומי רב-תחומי",
-    "UiPosition": {
-      "x": 350.0,
-      "y": 875.0,
-      "z": 0.0
-    },
-    "WorldPosition": {
-      "x": 82450.0,
-      "y": 500.0,
-      "z": 59000.0
-    },
-    "InfoScreenSubtitle": "מכון שמיר למחקר – מחקר יישומי רב־תחומי בלב הגולן",
-    "InfoScreenText": "מכון שמיר למחקר הוא מרכז מחקר יישומי רב־תחומי המחבר בין מדע, תעשייה וצרכים אזוריים, ופועל בתחומי חקלאות, סביבה, מים, ביוטכנולוגיה ובריאות. באמצעות מעבדות מתקדמות ושיתופי פעולה רחבים, ודרך טורא – זרוע המסחור והיישום האחראית על הקמת חברות, ליווי סטארטאפים והטמעת טכנולוגיות – המכון הופך ידע מדעי לפתרונות מעשיים, מקדם חדשנות בת־קיימא ומחזק את הכלכלה והידע בפריפריה הצפונית.",
-    "FirstInfoPoint": {
-      "Title": "מחקר מדעי",
-      "Description": "מחקר מדעי מתקדם מתקשה לעיתים לעבור משלב המעבדה ליישום בשטח, ללא גוף שמתרגם ידע תיאורטי לפתרונות ישימים בתנאים אמיתיים."
-    },
-    "SecondInfoPoint": {
-      "Title": "פתרונות מדעיים",
-      "Description": "פתרונות מדעיים אפקטיביים דורשים מחקר שמתקיים בסביבה שבה הם מיושמים בפועל — ולא רק במודלים כלליים או במעבדות מרוחקות מהשטח."
-    },
-    "ThirdInfoPoint": {
-      "Title": "פיתוחים בתחומי חקלאות",
-      "Description": "פיתוחים בתחומי חקלאות, סביבה, מים ובריאות זקוקים לתשתיות ניסוי, מדידה והוכחת היתכנות — ללא מסגרת מחקרית יישומית, רעיונות חדשניים מתקשים להבשיל."
-    }
-  },
+  "DestinationDataList": [
+    {
+      "UIDestinationInfoText": {
+        "HebTitle": "צמח טכנולוגיות חקלאיות",
+        "HebDescription": "מרכז אזורי למחקר, הדרכה ושירותים לחקלאים",
+        "EngTitle": "Tzemah",
+        "EngDescription": ""
+      },
+      "UiPosition": {
+        "x": -75.0,
+        "y": -455.0,
+        "z": 0.0
+      },
+      "WorldPosition": {
+        "x": 72600.0,
+        "y": 0.0,
+        "z": 27400.0
+      },
+      "WorldRotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
 
-  "Tzemah": {
-    "Name": "צמח טכנולוגיות חקלאיות",
-    "Description": "מרכז אזורי למחקר, הדרכה ושירותים לחקלאים",
-    "UiPosition": {
-      "x": -75.0,
-      "y": -455.0,
-      "z": 0.0
-    },
-    "WorldPosition": {
-      "x": 72600.0,
-      "y": 0.0,
-      "z": 27400.0
-    },
-    "InfoScreenSubtitle": "צמח מ. טכנולוגיות חקלאיות – מחקר, בדיקות וניהול ידע לחקלאות מדויקת ובת-קיימא",
-    "InfoScreenText": "צמח מפעילה מערך משולב של שירותי מעבדה, דיגום קרקע ומים, מחקר יישומי, וייעוץ אגרונומי מקצועי. באמצעות חוות מחקר פעילה ועשרות מחקרים שנתיים, החברה מפתחת שיטות גידול מותאמות אזור וזנים, מספקת ניטור מקצועי לצמצום סיכונים, ומשפרת את היעילות החקלאית. צמח מחברת בין נתונים, מחקר ושטח — כדי לאפשר חקלאות מדויקת, רווחית ועמידה לאורך זמן. 50+ שנות ניסיון כ-25 מומחים ISO 17025 – מעבדה מוסמכת מעבדות להשכרה במגוון אפשרויות חוות מחקר המשמשת פלטפורמה למחקרים ופיילוטים עבור חברות הזנק",
-    "FirstInfoPoint": {
-      "Title": "חוסר במחקר יישומי",
-      "Description": "כשאין מחקר יישומי שמחובר לשטח, מתקבלות החלטות על בסיס הנחות. התוצאה: ביצועים נמוכים, בזבוז משאבים, ושיטות גידול שלא מותאמות לאזור, לקרקע או לזן. טעויות כאלה אינן נקודתיות - הן פוגעות ברווחיות וביציבות החקלאית לשנים קדימה."
-    },
-    "SecondInfoPoint": {
-      "Title": "חקלאות בחוסר ודאות",
-      "Description": "ללא בדיקות ומעקב שוטף אחר קרקע, מים, דשנים וחומר צמחי – החקלאות פועלת בעיניים עצומות. חוסר הוודאות פוגע בבריאות הקרקע, מגביר סיכונים, ומוביל לירידה בכמות ובאיכות היבול."
-    },
-    "ThirdInfoPoint": {
-      "Title": "החלטות ללא דאטה",
-      "Description": "בלי ליווי אגרונומי ומערכת תומכת החלטה מבוססת נתונים, מתבזבזים מים ודשנים, הריסוס מופרז, ההשקיה לא מדויקת - וההוצאות עולות בזמן שהביצועים נשחקים."
-    }
-  },
+      "DestinationInfoScreenText": {
+        "HebTitle": "צמח מ. טכנולוגיות חקלאיות – מחקר, בדיקות וניהול ידע לחקלאות מדויקת ובת-קיימא",
+        "HebDescription": "צמח מפעילה מערך משולב של שירותי מעבדה, דיגום קרקע ומים, מחקר יישומי, וייעוץ אגרונומי מקצועי. באמצעות חוות מחקר פעילה ועשרות מחקרים שנתיים, החברה מפתחת שיטות גידול מותאמות אזור וזנים, מספקת ניטור מקצועי לצמצום סיכונים, ומשפרת את היעילות החקלאית. צמח מחברת בין נתונים, מחקר ושטח — כדי לאפשר חקלאות מדויקת, רווחית ועמידה לאורך זמן. 50+ שנות ניסיון כ-25 מומחים ISO 17025 – מעבדה מוסמכת מעבדות להשכרה במגוון אפשרויות חוות מחקר המשמשת פלטפורמה למחקרים ופיילוטים עבור חברות הזנק",
+        "EngTitle": "",
+        "EngDescription": ""
+      },
 
-  "Biriya": {
-    "RangeData": {
-      "NotificationRange": 7500.0,
-      "CollectionRange": 3500.0,
-      "Score": 10
+      "FirstInfoPoint": {
+        "HebTitle": "חוסר במחקר יישומי",
+        "HebDescription": "כשאין מחקר יישומי שמחובר לשטח, מתקבלות החלטות על בסיס הנחות. התוצאה: ביצועים נמוכים, בזבוז משאבים, ושיטות גידול שלא מותאמות לאזור, לקרקע או לזן. טעויות כאלה אינן נקודתיות - הן פוגעות ברווחיות וביציבות החקלאית לשנים קדימה.",
+        "EngTitle": "",
+        "EngDescription": ""
+      },
+      "SecondInfoPoint": {
+        "HebTitle": "חקלאות בחוסר ודאות",
+        "HebDescription": "ללא בדיקות ומעקב שוטף אחר קרקע, מים, דשנים וחומר צמחי – החקלאות פועלת בעיניים עצומות. חוסר הוודאות פוגע בבריאות הקרקע, מגביר סיכונים, ומוביל לירידה בכמות ובאיכות היבול.",
+        "EngTitle": "",
+        "EngDescription": ""
+      },
+      "ThirdInfoPoint": {
+        "HebTitle": "החלטות ללא דאטה",
+        "HebDescription": "בלי ליווי אגרונומי ומערכת תומכת החלטה מבוססת נתונים, מתבזבזים מים ודשנים, הריסוס מופרז, ההשקיה לא מדויקת - וההוצאות עולות בזמן שהביצועים נשחקים.",
+        "EngTitle": "",
+        "EngDescription": ""
+      }
     },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "נקודת עניין",
-      "Description": "נקודת עניין לפניכם.",
-      "Duration": 5.0,
-      "Delay": 0.5
-    },
-    "CollectionPopup": {
-      "Type": 0,
-      "Title": "מעולה",
-      "Description": "גיליתם נקודת עניין.",
-      "Duration": 5.0,
-      "Delay": 0.0
-    },
-    "InfoPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    }
-  },
 
-  "Keshet": {
-    "RangeData": {
-      "NotificationRange": 7500.0,
-      "CollectionRange": 3500.0,
-      "Score": 10
-    },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "נקודת עניין",
-      "Description": "גלו מידע נוסף באזור.",
-      "Duration": 5.0,
-      "Delay": 0.5
-    },
-    "CollectionPopup": {
-      "Type": 0,
-      "Title": "גיליתם",
-      "Description": "מידע נאסף.",
-      "Duration": 5.0,
-      "Delay": 0.0
-    },
-    "InfoPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    }
-  },
+    {
+      "UIDestinationInfoText": {
+        "HebTitle": "מכון שמיר למחקר",
+        "HebDescription": "מחקר יישומי רב-תחומי",
+        "EngTitle": "Shamir",
+        "EngDescription": ""
+      },
+      "UiPosition": {
+        "x": 350.0,
+        "y": 875.0,
+        "z": 0.0
+      },
+      "WorldPosition": {
+        "x": 82450.0,
+        "y": 500.0,
+        "z": 59000.0
+      },
+      "WorldRotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
 
-  "SwitzForest": {
-    "RangeData": {
-      "NotificationRange": 7500.0,
-      "CollectionRange": 3500.0,
-      "Score": 9
-    },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "Point of Interest",
-      "Description": "Discover the location.",
-      "Duration": 5.0,
-      "Delay": 0.5
-    },
-    "CollectionPopup": {
-      "Type": 0,
-      "Title": "Found",
-      "Description": "Location discovered.",
-      "Duration": 5.0,
-      "Delay": 0.0
-    },
-    "InfoPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    }
-  },
+      "DestinationInfoScreenText": {
+        "HebTitle": "מכון שמיר למחקר – מחקר יישומי רב־תחומי בלב הגולן",
+        "HebDescription": "מכון שמיר למחקר הוא מרכז מחקר יישומי רב־תחומי המחבר בין מדע, תעשייה וצרכים אזוריים, ופועל בתחומי חקלאות, סביבה, מים, ביוטכנולוגיה ובריאות. באמצעות מעבדות מתקדמות ושיתופי פעולה רחבים, ודרך טורא – זרוע המסחור והיישום האחראית על הקמת חברות, ליווי סטארטאפים והטמעת טכנולוגיות – המכון הופך ידע מדעי לפתרונות מעשיים, מקדם חדשנות בת־קיימא ומחזק את הכלכלה והידע בפריפריה הצפונית.",
+        "EngTitle": "",
+        "EngDescription": ""
+      },
 
-  "Tzipori": {
-    "RangeData": {
-      "NotificationRange": 0.0,
-      "CollectionRange": 0.0,
-      "Score": 0
-    },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    },
-    "CollectionPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    },
-    "InfoPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
+      "FirstInfoPoint": {
+        "HebTitle": "מחקר מדעי",
+        "HebDescription": "מחקר מדעי מתקדם מתקשה לעיתים לעבור משלב המעבדה ליישום בשטח, ללא גוף שמתרגם ידע תיאורטי לפתרונות ישימים בתנאים אמיתיים.",
+        "EngTitle": "",
+        "EngDescription": ""
+      },
+      "SecondInfoPoint": {
+        "HebTitle": "פתרונות מדעיים",
+        "HebDescription": "פתרונות מדעיים אפקטיביים דורשים מחקר שמתקיים בסביבה שבה הם מיושמים בפועל — ולא רק במודלים כלליים או במעבדות מרוחקות מהשטח.",
+        "EngTitle": "",
+        "EngDescription": ""
+      },
+      "ThirdInfoPoint": {
+        "HebTitle": "פיתוחים בתחומי חקלאות",
+        "HebDescription": "פיתוחים בתחומי חקלאות, סביבה, מים ובריאות זקוקים לתשתיות ניסוי, מדידה והוכחת היתכנות — ללא מסגרת מחקרית יישומית, רעיונות חדשניים מתקשים להבשיל.",
+        "EngTitle": "",
+        "EngDescription": ""
+      }
     }
-  },
+  ],
 
-  "HayadataCollecableData": {
-    "RangeData": {
-      "NotificationRange": 8000.0,
-      "CollectionRange": 4000.0,
-      "Score": 25
+  "StaticCollectableDataList": [
+    {
+      "RangeData": {
+        "NotificationRange": 7500.0,
+        "CollectionRange": 3500.0,
+        "TimeForMaxScore": 0.0,
+        "MaxScore": 10
+      },
+      "NotificationPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "נקודת עניין",
+          "HebDescription": "נקודת עניין לפניכם.",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.5
+      },
+      "CollectionPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "מעולה",
+          "HebDescription": "גיליתם נקודת עניין.",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.0
+      },
+      "InfoPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "ביריה",
+          "HebDescription": "",
+          "EngTitle": "Biriya",
+          "EngDescription": ""
+        },
+        "Duration": 0.0,
+        "Delay": 0.0
+      }
     },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
+    {
+      "RangeData": {
+        "NotificationRange": 7500.0,
+        "CollectionRange": 3500.0,
+        "TimeForMaxScore": 0.0,
+        "MaxScore": 10
+      },
+      "NotificationPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "נקודת עניין",
+          "HebDescription": "גלו מידע נוסף באזור.",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.5
+      },
+      "CollectionPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "גיליתם",
+          "HebDescription": "מידע נאסף.",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.0
+      },
+      "InfoPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "קשת",
+          "HebDescription": "",
+          "EngTitle": "Keshet",
+          "EngDescription": ""
+        },
+        "Duration": 0.0,
+        "Delay": 0.0
+      }
     },
-    "CollectionPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
+    {
+      "RangeData": {
+        "NotificationRange": 7500.0,
+        "CollectionRange": 3500.0,
+        "TimeForMaxScore": 0.0,
+        "MaxScore": 10
+      },
+      "NotificationPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "נקודת עניין",
+          "HebDescription": "גלו מידע נוסף באזור.",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.5
+      },
+      "CollectionPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "גיליתם",
+          "HebDescription": "מידע נאסף.",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.0
+      },
+      "InfoPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "ציפורי",
+          "HebDescription": "",
+          "EngTitle": "Tzipori",
+          "EngDescription": ""
+        },
+        "Duration": 0.0,
+        "Delay": 0.0
+      }
     },
-    "InfoPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
+    {
+      "RangeData": {
+        "NotificationRange": 7500.0,
+        "CollectionRange": 3500.0,
+        "TimeForMaxScore": 0.0,
+        "MaxScore": 9
+      },
+      "NotificationPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "",
+          "HebDescription": "",
+          "EngTitle": "Point of Interest",
+          "EngDescription": "Discover the location."
+        },
+        "Duration": 5.0,
+        "Delay": 0.5
+      },
+      "CollectionPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "",
+          "HebDescription": "",
+          "EngTitle": "Found",
+          "EngDescription": "Location discovered."
+        },
+        "Duration": 5.0,
+        "Delay": 0.0
+      },
+      "InfoPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "יער שוויץ",
+          "HebDescription": "",
+          "EngTitle": "Switz Forest",
+          "EngDescription": ""
+        },
+        "Duration": 0.0,
+        "Delay": 0.0
+      }
     }
-  },
+  ],
 
-  "CarbonBonusData": {
-    "RangeData": {
-      "NotificationRange": 7300.0,
-      "CollectionRange": 3300.0,
-      "Score": 12
+  "BonusDataList": [
+    {
+      "CollectableData": {
+        "NotificationRange": 7500.0,
+        "CollectionRange": 3500.0,
+        "TimeForMaxScore": 0.0,
+        "MaxScore": 5
+      },
+      "NotificationPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "נקודת בונוס קרובה",
+          "HebDescription": "אנרגיה- אספו את הבונוס לניקוד נוסף",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.5
+      },
+      "CollectionPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "כל הכבוד!",
+          "HebDescription": "אספתם בהצלחה 50 קילו-וואט של אנרגיה ירוקה",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.0
+      }
     },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "נקודת בונוס קרובה",
-      "Description": "אשראי פחמני- אספו את הבונוס לניקוד נוסף",
-      "Duration": 5.0,
-      "Delay": 0.5
+    {
+      "CollectableData": {
+        "NotificationRange": 7500.0,
+        "CollectionRange": 3500.0,
+        "TimeForMaxScore": 0.0,
+        "MaxScore": 11
+      },
+      "NotificationPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "נקודת בונוס קרובה",
+          "HebDescription": "מים מושבים- - אספו את הבונוס לניקוד נוסף",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.5
+      },
+      "CollectionPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "כל הכבוד!",
+          "HebDescription": "אספתם בהצלחה 110 מ'ק מים מושבים",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.0
+      }
     },
-    "CollectionPopup": {
-      "Type": 0,
-      "Title": "כל הכבוד!",
-      "Description": "אספתם בהצלחה 12 טונות של אשראי פחמני",
-      "Duration": 5.0,
-      "Delay": 0.0
+    {
+      "CollectableData": {
+        "NotificationRange": 7200.0,
+        "CollectionRange": 3200.0,
+        "TimeForMaxScore": 0.0,
+        "MaxScore": 8
+      },
+      "NotificationPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "נקודת בונוס קרובה",
+          "HebDescription": "קרקע משוקמת- - אספו את הבונוס לניקוד נוסף",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.5
+      },
+      "CollectionPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "כל הכבוד!",
+          "HebDescription": "אספתם בהצלחה 48 מטרים מרובעים של קרקע משוקמת",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.0
+      }
+    },
+    {
+      "CollectableData": {
+        "NotificationRange": 7300.0,
+        "CollectionRange": 3300.0,
+        "TimeForMaxScore": 0.0,
+        "MaxScore": 12
+      },
+      "NotificationPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "נקודת בונוס קרובה",
+          "HebDescription": "אשראי פחמני- אספו את הבונוס לניקוד נוסף",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.5
+      },
+      "CollectionPopup": {
+        "Type": 0,
+        "TextData": {
+          "HebTitle": "כל הכבוד!",
+          "HebDescription": "אספתם בהצלחה 12 טונות של אשראי פחמני",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.0
+      }
     }
-  },
+  ],
 
-  "EnergyBonusData": {
-    "RangeData": {
-      "NotificationRange": 7500.0,
-      "CollectionRange": 3500.0,
-      "Score": 5
-    },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "נקודת בונוס קרובה",
-      "Description": "אנרגיה- אספו את הבונוס לניקוד נוסף",
-      "Duration": 5.0,
-      "Delay": 0.5
-    },
-    "CollectionPopup": {
-      "Type": 0,
-      "Title": "כל הכבוד!",
-      "Description": "אספתם בהצלחה 50 קילו-וואט של אנרגיה ירוקה",
-      "Duration": 5.0,
-      "Delay": 0.0
-    }
-  },
-
-  "WaterBonusData": {
-    "RangeData": {
-      "NotificationRange": 7500.0,
-      "CollectionRange": 3500.0,
-      "Score": 11
-    },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "נקודת בונוס קרובה",
-      "Description": "מים מושבים- - אספו את הבונוס לניקוד נוסף",
-      "Duration": 5.0,
-      "Delay": 0.5
-    },
-    "CollectionPopup": {
-      "Type": 0,
-      "Title": "כל הכבוד!",
-      "Description": "אספתם בהצלחה 110 מ'ק מים מושבים",
-      "Duration": 5.0,
-      "Delay": 0.0
-    }
-  },
-
-  "SoilBonusData": {
-    "RangeData": {
-      "NotificationRange": 7200.0,
-      "CollectionRange": 3200.0,
-      "Score": 8
-    },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "נקודת בונוס קרובה",
-      "Description": "קרקע משוקמת- - אספו את הבונוס לניקוד נוסף",
-      "Duration": 5.0,
-      "Delay": 0.5
-    },
-    "CollectionPopup": {
-      "Type": 0,
-      "Title": "כל הכבוד!",
-      "Description": "אספתם בהצלחה 48 מטרים מרובעים של קרקע משוקמת",
-      "Duration": 5.0,
-      "Delay": 0.0
-    }
-  },
-
-  "FrontWindChallengeData": {
-    "RangeData": {
-      "NotificationRange": 0.0,
-      "CollectionRange": 0.0,
-      "Score": 0
-    },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    },
-    "CompletedPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    }
-  },
-
-  "SideWindChallengeData": {
-    "RangeData": {
-      "NotificationRange": 0.0,
-      "CollectionRange": 0.0,
-      "Score": 0
-    },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    },
-    "CompletedPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    }
-  },
-
-  "BirdChallengeData": {
-    "RangeData": {
-      "NotificationRange": 0.0,
-      "CollectionRange": 0.0,
-      "Score": 0
-    },
-    "NotificationPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    },
-    "CompletedPopup": {
-      "Type": 0,
-      "Title": "",
-      "Description": "",
-      "Duration": 0.0,
-      "Delay": 0.0
-    }
-  }
+  "ChallengeDataList": []
 
 }

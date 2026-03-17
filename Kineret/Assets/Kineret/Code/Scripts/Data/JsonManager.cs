@@ -7,7 +7,6 @@ public class JsonManager
 {
     private GameData Data;
 
-    [ContextMenu("Load From JSON")]
     public bool LoadFromJson(Action<GameData> onFinished)
     {
         string debugState = $"Loading JSON... Path: {Application.streamingAssetsPath}";
