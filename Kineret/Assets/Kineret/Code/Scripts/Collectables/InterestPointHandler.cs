@@ -10,9 +10,9 @@ public class InterestPointHandler : CollectableHandler
     {
         infoPopupData.PopupTextData = collectableData.InfoPopup;
         Init(collectableData.RangeData, collectableData.CollectionPopup, collectableData.NotificationPopup);
-        infoPopupData.PopupTextData.Description = interestPoint.Data.InfoText;
+        infoPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.InfoText;
         infoPopupData.IconSprite = interestPoint.Icon;
-        _collectPopupData.PopupTextData.Description = interestPoint.Data.CollectText;
+        _collectPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.CollectText;
     }
 
     protected override void Collect()

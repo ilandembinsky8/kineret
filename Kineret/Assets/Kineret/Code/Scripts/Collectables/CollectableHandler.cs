@@ -108,7 +108,7 @@ public class CollectableHandler : MonoBehaviour
     {
         if (_wasCollected) return;
 
-        gotScore_EC.RaiseEvent(_collectableData.Score);
+        gotScore_EC.RaiseEvent(_collectableData.MaxScore);
         visuals.SetActive(false);
         LoadPopup_EC.RaiseEvent(_collectPopupData);
         _wasCollected = true;

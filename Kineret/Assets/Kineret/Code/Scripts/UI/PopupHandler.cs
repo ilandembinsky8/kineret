@@ -13,13 +13,13 @@ public class PopupHandler : MonoBehaviour
     public void LoadData(PopupData data)
     {
        
-        if (data.PopupTextData.Title != null && titleText != null) 
+        if (data.PopupTextData.TextData.HebTitle != null && titleText != null) 
         {
-            titleText.text = data.PopupTextData.Title;
+            titleText.text = data.PopupTextData.TextData.HebTitle;
             titleText.fontStyle = FontStyles.Bold;
         } 
 
-        if (data.PopupTextData.Description != null && descriptionText != null) descriptionText.text = data.PopupTextData.Description;
+        if (data.PopupTextData.TextData.HebDescription != null && descriptionText != null) descriptionText.text = data.PopupTextData.TextData.HebDescription;
 
         if (data.IconSprite != null && iconImage != null)
         {
