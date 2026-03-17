@@ -26,7 +26,7 @@ public class ImageDataManager : MonoBehaviour
 
             yield return StartCoroutine(LoadSpriteData($"{destinationName}-background.png", sprite => { imageData.backgroundImage = sprite; }));
 
-            yield return StartCoroutine(LoadSpriteData($"{destinationName}-fluff.png", sprite => { imageData.FlufffImage = sprite; }));
+            yield return StartCoroutine(LoadSpriteData($"{destinationName}-icon.png", sprite => { imageData.IconImage = sprite; }));
 
             yield return StartCoroutine(LoadSpriteData($"{destinationName}-logo.png", sprite => { imageData.LogoImage = sprite; }));
 
@@ -66,6 +66,6 @@ public struct DestinationImageData
 {
     public string DestinationName;
     public Sprite backgroundImage;
-    public Sprite FlufffImage;
+    public Sprite IconImage;
     public Sprite LogoImage;
 }
