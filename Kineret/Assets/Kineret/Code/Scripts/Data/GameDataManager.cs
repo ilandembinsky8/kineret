@@ -58,16 +58,38 @@ public class GameDataManager : MonoBehaviour
 
     private void LoadDataIntoLocationManager()
     {
+        // destination data
         for (int i = 0; i < _currentGameData.DestinationDataList.Count; i++)
         {
             DestinationTextData destinationData = _currentGameData.DestinationDataList[i];
 
             GetDestinationImageData(destinationData.UIDestinationInfoText.EngTitle, out DestinationImageData destinationImageData);
-            DestinationData fullDestinationData = new DestinationData { Data = destinationData, Background = destinationImageData.backgroundImage, 
-                Icon = destinationImageData.IconImage, Logo = destinationImageData.LogoImage, LogoScaleModifier = 1 };
+            DestinationData fullDestinationData = new DestinationData
+            {
+                Data = destinationData,
+                Background = destinationImageData.backgroundImage,
+                Icon = destinationImageData.IconImage,
+                Logo = destinationImageData.LogoImage,
+                LogoScaleModifier = 1
+            };
 
             LocationsManager.AddDestination(i, fullDestinationData);
         }
+
+        // interest point data
+        for (int i = 0; i < _currentGameData.IntrestPointDataList.Count; i++)
+        {
+            InterestPointData interestPointData = new InterestPointData { Data = _currentGameData.IntrestPointDataList[i] };
+            // add icons later
+            LocationsManager.AddInterestPoint(i, interestPointData);
+        }
+
+        LocationsManager.InfoCollectable = _currentGameData.InfoCollectable;
+        LocationsManager.BonusCollectables = _currentGameData.BonusCollectables;
+        LocationsManager.InterestCollectable = _currentGameData.StaticInterestCollectable;
+        LocationsManager.DestinationCollectables = _currentGameData.DestinationCollectables;
+
+
     }
 
     /// <summary>

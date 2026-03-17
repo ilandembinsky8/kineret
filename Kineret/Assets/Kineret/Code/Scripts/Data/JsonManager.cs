@@ -45,10 +45,12 @@ public class JsonManager
 public struct GameData
 {
     public List<DestinationTextData> DestinationDataList;
+    public List<InterestPointTextData> IntrestPointDataList;
 
-    public List<InfoCollectableData> StaticIntrestPointsDataList;
-
-    public List<BonusCollectableData> BonusDataList;
+    public DestinationCollectableData[] DestinationCollectables;
+    public BonusCollectableData[] BonusCollectables;
+    public InfoCollectableData StaticInterestCollectable;
+    public InfoCollectableData InfoCollectable;
 
     public List<ChallengePointData> ChallengeDataList;
 }
@@ -76,7 +78,7 @@ public struct DestinationTextData
     /// <summary>
     /// Represents the UI Map destination name and description.
     /// </summary>
-    public InfoPointData UIDestinationInfoText;
+    public TextData UIDestinationInfoText;
 
     public Vector3 UiPosition;
     public Vector3 WorldPosition;
@@ -85,11 +87,11 @@ public struct DestinationTextData
     /// <summary>
     /// represents the info screen once destination was reached.
     /// </summary>
-    public InfoPointData DestinationInfoScreenText;
+    public TextData DestinationInfoScreenText;
 
-    public InfoPointData FirstInfoPoint;
-    public InfoPointData SecondInfoPoint;
-    public InfoPointData ThirdInfoPoint;
+    public TextData FirstInfoPoint;
+    public TextData SecondInfoPoint;
+    public TextData ThirdInfoPoint;
 }
 
 #endregion
@@ -108,7 +110,7 @@ public struct DestinationCollectableData
 #region Collectable Data
 
 /// <summary>
-/// Represents the data of Points of intereset and actual Hayadata (DestinationCollectableData)
+/// Represents the data of static Points of intereset and actual Hayadata (DestinationCollectableData)
 /// </summary>
 [Serializable]
 public struct InfoCollectableData
@@ -120,10 +122,14 @@ public struct InfoCollectableData
     public PopupTextData InfoPopup;
 }
 
+/// <summary>
+/// Text data and position of a static interest point 
+/// </summary>
 [Serializable]
 public struct InterestPointTextData
 {
     public string Name;
+    public string IconImageName;
     public Vector3 WorldPosition;
     public string InfoText;
     public string CollectText;
@@ -168,7 +174,7 @@ public struct CollectableData
 public struct PopupTextData
 {
     public int Type;
-    public InfoPointData TextData;
+    public TextData TextData;
     public float Duration;
     public float Delay;
 }
@@ -177,7 +183,7 @@ public struct PopupTextData
 /// This data holds 2 sets of title and description. one for Hebrew and one English.
 /// </summary>
 [Serializable]
-public struct InfoPointData
+public struct TextData
 {
     public string HebTitle;
     public string HebDescription;

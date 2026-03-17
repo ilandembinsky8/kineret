@@ -1,17 +1,15 @@
 
 using System.Collections.Generic;
+using UnityEngine;
 
 
 public static class LocationsManager
 {
     public const int SELECTABLE_DESTINATIONS_COUNT = 3;
 
-    public static int DestinationsCount = 11;
-    public static int InterestPointsCount = 4;
-    public static int BonusesCount = 4;
-
-    private static readonly Dictionary<int, DestinationData> Destinations = new(DestinationsCount);
-    private static readonly Dictionary<int, InterestPointData> InteresPoints = new(InterestPointsCount);
+    public static Dictionary<string, Sprite> IconsMap = new(6);
+    private static readonly Dictionary<int, DestinationData> Destinations = new(16);
+    private static readonly Dictionary<int, InterestPointData> InteresPoints = new(8);
 
     public static int[] SelectedDestinations = new int[SELECTABLE_DESTINATIONS_COUNT];
 

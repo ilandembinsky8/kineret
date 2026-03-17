@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InfoPointHandler : InterestPointHandler
 {
-    public void Init(InfoPointData infoData, InfoCollectableData collectableData)
+    public void Init(TextData infoData, InfoCollectableData collectableData)
     {
         infoPopupData.PopupTextData = collectableData.InfoPopup;
         Init(collectableData.RangeData, collectableData.CollectionPopup, collectableData.NotificationPopup);
