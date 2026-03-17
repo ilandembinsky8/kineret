@@ -3,67 +3,20 @@ using UnityEngine;
 using System.IO;
 using System;
 
-using UnityEngine.SceneManagement;
-
-public class JsonManager : MonoBehaviour
+public class JsonManager
 {
-    public GameData Data;
-
-    #region Serialized fields
-
-    #region Destinations
-    [Header("Destinations")]
-    [SerializeField] private DestinationSO Afimilk;
-    [SerializeField] private DestinationSO AgmonHula;
-    [SerializeField] private DestinationSO Agre;
-    [SerializeField] private DestinationSO BioCastle;
-    [SerializeField] private DestinationSO Eshkol;
-    [SerializeField] private DestinationSO Gilboa;
-    [SerializeField] private DestinationSO Ginosar;
-    [SerializeField] private DestinationSO Golan;
-    [SerializeField] private DestinationSO Salmon;
-    [SerializeField] private DestinationSO Shamir;
-    [SerializeField] private DestinationSO Tzemah;
-    #endregion
-
-    [Header("Interest Points")]
-    [SerializeField] private InterestPointSO Biriya;
-    [SerializeField] private InterestPointSO Keshet;
-    [SerializeField] private InterestPointSO SwitzForest;
-    [SerializeField] private InterestPointSO Tzipori;
-    #endregion
-
-    private bool _dataIsLoaded;
-
-    private void Awake() { _dataIsLoaded = LoadFromJson(); }
-    private void Start()
-    {
-        if (_dataIsLoaded)
-        {
-            //Afimilk.DestinationData = Data.Afimilk;
-            //AgmonHula.DestinationData = Data.AgmonHula;
-            //Agre.DestinationData = Data.Agre;
-            //BioCastle.DestinationData = Data.BioCastle;
-            //Eshkol.DestinationData = Data.Eshkol;
-            //Gilboa.DestinationData = Data.Gilboa;
-            //Ginosar.DestinationData = Data.Ginosar;
-            //Golan.DestinationData = Data.Golan;
-            //Salmon.DestinationData = Data.Salmon;
-            Shamir.DestinationData = Data.Shamir;
-            Tzemah.DestinationData = Data.Tzemah;
-
-            SceneManager.LoadScene("Main Menu Scene");
-        }
-    }
+    private GameData Data;
 
     [ContextMenu("Load From JSON")]
-    public bool LoadFromJson()
+    public bool LoadFromJson(Action<GameData> onFinished)
     {
+        string debugState = $"Loading JSON... Path: {Application.streamingAssetsPath}";
         string path = Path.Combine(Application.streamingAssetsPath, "GameData.json");
 
         if (!File.Exists(path))
         {
-            Debug.LogWarning($"{nameof(JsonManager)}: File not found at path: {path}");
+            debugState = $"JsonManager: File not found at path: {path}";
+            Debug.LogError(debugState);
             return false;
         }
 
@@ -71,13 +24,15 @@ public class JsonManager : MonoBehaviour
 
         if (string.IsNullOrWhiteSpace(json))
         {
-            Debug.LogWarning($"{nameof(JsonManager)}: JSON is empty.");
+            debugState = $"JsonManager: JSON is empty.";
+            Debug.LogError(debugState);
             return false;
         }
 
         Data = JsonUtility.FromJson<GameData>(json);
 
-        Debug.Log($"{nameof(JsonManager)}: JSON loaded successfully.");
+        debugState = $"JsonManager: JSON loaded successfully.";
+        onFinished?.Invoke(Data);
         return true;
     }
 
@@ -90,64 +45,55 @@ public class JsonManager : MonoBehaviour
 [Serializable]
 public struct GameData
 {
-    public DestinationTextData Afimilk;
-    public DestinationTextData AgmonHula;
-    public DestinationTextData Agre;
-    public DestinationTextData BioCastle;
-    public DestinationTextData Eshkol;
-    public DestinationTextData Gilboa;
-    public DestinationTextData Ginosar;
-    public DestinationTextData Golan;
-    public DestinationTextData Salmon;
-    public DestinationTextData Shamir;
-    public DestinationTextData Tzemah;
+    public List<DestinationTextData> DestinationDataList;
 
-    public InfoCollectableData Biriya;
-    public InfoCollectableData Keshet;
-    public InfoCollectableData SwitzForest;
-    public InfoCollectableData Tzipori;
+    public List<InfoCollectableData> StaticCollectableDataList;
 
-    public InfoCollectableData HayadataCollecableData;
+    public List<BonusCollectableData> BonusDataList;
 
-    public BonusCollectableData CarbonBonusData;
-    public BonusCollectableData EnergyBonusData;
-    public BonusCollectableData WaterBonusData;
-    public BonusCollectableData SoilBonusData;
-
-    public ChallengePointData FrontWindChallengeData;
-    public ChallengePointData SideWindChallengeData;
-    public ChallengePointData BirdChallengeData;
+    public List<ChallengePointData> ChallengeDataList;
 }
 
 #region Destination Data
+
 /// <summary>
 /// Main data structure of a destination
+/// </summary>
+public struct DestinationData
+{
+    public DestinationTextData Data;
+    public Sprite Background;
+    public Sprite Logo;
+    public Sprite Icon;
+    public float LogoScaleModifier;
+}
+
+/// <summary>
+/// Text data and positions of a destination
 /// </summary>
 [Serializable]
 public struct DestinationTextData
 {
-    public string Name;
-    public string Description;
+    /// <summary>
+    /// Represents the UI Map destination name and description.
+    /// </summary>
+    public InfoPointData UIDestinationInfoText;
+
     public Vector3 UiPosition;
     public Vector3 WorldPosition;
+    public Vector3 WorldRotation;
 
-    public string InfoScreenSubtitle;
-    public string InfoScreenText;
+    /// <summary>
+    /// represents the info screen once destination was reached.
+    /// </summary>
+    public InfoPointData DestinationInfoScreenText;
 
-    public DestinationInfoPointData FirstInfoPoint;
-    public DestinationInfoPointData SecondInfoPoint;
-    public DestinationInfoPointData ThirdInfoPoint;
+    public InfoPointData FirstInfoPoint;
+    public InfoPointData SecondInfoPoint;
+    public InfoPointData ThirdInfoPoint;
 }
 
-/// <summary>
-/// This data represents the text of one of the 3 info points in each destination.
-/// </summary>
-[Serializable]
-public struct DestinationInfoPointData
-{
-    public string Title;
-    public string Description;
-}
+#endregion
 
 /// <summary>
 /// This data represents the range/score and collection popup texts of a destination, once reached.
@@ -159,9 +105,9 @@ public struct DestinationCollectableData
 
     public PopupTextData CollectionPopup;
 }
-#endregion
 
 #region Collectable Data
+
 /// <summary>
 /// Represents the data of Points of intereset and actual Hayadata (DestinationCollectableData)
 /// </summary>
@@ -212,7 +158,8 @@ public struct CollectableData
 {
     public float NotificationRange;
     public float CollectionRange;
-    public int Score;
+    public float TimeForMaxScore;
+    public int MaxScore;
 }
 
 /// <summary>
@@ -222,8 +169,19 @@ public struct CollectableData
 public struct PopupTextData
 {
     public int Type;
-    public string Title;
-    public string Description;
+    public InfoPointData TextData;
     public float Duration;
     public float Delay;
+}
+
+/// <summary>
+/// This data holds 2 sets of title and description. one for Hebrew and one English.
+/// </summary>
+[Serializable]
+public struct InfoPointData
+{
+    public string HebTitle;
+    public string HebDescription;
+    public string EngTitle;
+    public string EngDescription;
 }
