@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public static class IniManager
+public static class GameSettingsManager
 {
     private static Dictionary<string, Dictionary<string, string>> iniData;
 
-    static IniManager()
+    static GameSettingsManager()
     {
         string path = Path.Combine(Application.streamingAssetsPath, "config.ini");
         iniData = ParseIni(path);

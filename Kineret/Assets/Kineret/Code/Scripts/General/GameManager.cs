@@ -1,9 +1,13 @@
 using TMPro;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool IsGamePaused = false;
+    public static Transform CurrentDestination;
+
     [SerializeField] private Transform player;
     [Header("Event Channels")]
     [SerializeField] private FloatEventChannel moveSpeedChange_EC;
@@ -23,7 +27,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         summmaryCanvas.gameObject.SetActive(false);
-        _legDuration = IniManager.GetFloat("Flight Settings", "SecondsForLeg",15);
+        _legDuration = GameSettingsManager.GetFloat("Game Settings", "LegDuration", 15);
     }
 
     private void OnEnable()
@@ -31,6 +35,7 @@ public class GameManager : MonoBehaviour
         gotScore_EC.OnEventRaised += HandleGotScore;
         EventsRelay.OnDestinationReached += HandleDestinationReached;
         EventsRelay.OnGameOver += HandleGameOver;
+        EventsRelay.OnGamePause += HandleGamePaused;
     }
 
     private void OnDisable()
@@ -38,12 +43,14 @@ public class GameManager : MonoBehaviour
         gotScore_EC.OnEventRaised -= HandleGotScore;
         EventsRelay.OnDestinationReached -= HandleDestinationReached;
         EventsRelay.OnGameOver -= HandleGameOver;
+        EventsRelay.OnGamePause -= HandleGamePaused;
     }
 
     private void Start()
     {
         HandleGotScore(0);
         ChangeMoveSpeedByLeg(player.position, Destinations[0].transform.position);
+        CurrentDestination = Destinations[0].transform;
         EventsRelay.OnGamePause.Invoke(true);
     }
 
@@ -65,7 +72,7 @@ public class GameManager : MonoBehaviour
         InfoScreenData data = LocationsManager.GetInfoScreenData(destination, isFinal);
         ChangeMoveSpeedByLeg(Destinations[_destinationsReachedCount].transform.position, Destinations[_destinationsReachedCount+1].transform.position);
         _destinationsReachedCount++;
-        
+        CurrentDestination = Destinations[_destinationsReachedCount].transform;
         EventsRelay.OnLoadInfoScreen(data);       
     }
     private void ChangeMoveSpeedByLeg(Vector3 positionA, Vector3 positionB)
@@ -82,6 +89,11 @@ public class GameManager : MonoBehaviour
             moveSpeedChange_EC.RaiseEvent(newMoveSpeed);
             Debug.Log("distance from current to next destination: " + distance);
         }
+    }
+
+    private void HandleGamePaused(bool isPaused)
+    {
+        IsGamePaused = isPaused;
     }
 
     private void HandleGameOver()

@@ -1,7 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerMovementHandler : MonoBehaviour
 {
@@ -24,20 +23,28 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private float _accelerationDirection;
     private float _accelerationPercentage = 0.05f;
-    private float _maxMoveSpeedPercentage = 0.2f; //Move to INI
+    private float _maxMoveSpeedPercentage = 0.2f;
     [SerializeField] private float _moveSpeed;
     private float _yawDirection;
     private float _pitchDirection;
 
     private InputActions _actions;
-    private bool _isPaused;
-    private float _currentRoll;
     private float _priorYawDirection;
+
+    private float _windForcePercentage = 0.1f;
+    private Vector3 _windDirection;
+    private bool _isWindEnabled;
 
     private void Awake()
     {
         _actions = new InputActions();
-        Roll();
+        maxRoll = GameSettingsManager.GetFloat("Player Settings", "MaxRoll  ", maxRoll);
+        rollDuration = GameSettingsManager.GetFloat("Player Settings", "RollDuration   ", rollDuration);
+        yawSpeed = GameSettingsManager.GetFloat("Player Settings", "YawSpeed   ", yawSpeed);
+        pitchSpeed = GameSettingsManager.GetFloat("Player Settings", "PitchSpeed   ", pitchSpeed);
+        _accelerationPercentage = GameSettingsManager.GetFloat("Player Settings", "AccelerationPercentage", _accelerationPercentage);
+        _maxMoveSpeedPercentage = GameSettingsManager.GetFloat("Player Settings", "MaxMoveSpeedPercentage", _maxMoveSpeedPercentage);
+        _windForcePercentage = GameSettingsManager.GetFloat("Player Settings", "WindForcePercentage", _windForcePercentage);
     }
 
     private void OnEnable()
@@ -50,8 +57,9 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Accelerate.performed += HandleSpeedInput;
         _actions.Player.Accelerate.canceled += HandleSpeedInput;
 
-        EventsRelay.OnGamePause += HandleGamePause;
         moveSpeedChange_EC.OnEventRaised += ChangeMoveSpeedByLeg;
+
+        EventsRelay.OnWindEvent += EnableWind;
     }
 
     private void OnDisable()
@@ -64,13 +72,14 @@ public class PlayerMovementHandler : MonoBehaviour
         _actions.Player.Accelerate.performed -= HandleSpeedInput;
         _actions.Player.Accelerate.canceled -= HandleSpeedInput;
 
-        EventsRelay.OnGamePause -= HandleGamePause;
         moveSpeedChange_EC.OnEventRaised -= ChangeMoveSpeedByLeg;
+
+        EventsRelay.OnWindEvent -= EnableWind;
     }
 
     void Update()
     {
-        if (_isPaused) return; 
+        if (GameManager.IsGamePaused) return; 
         Yaw();
         Pitch();
         Roll();
@@ -111,7 +120,14 @@ public class PlayerMovementHandler : MonoBehaviour
         Debug.Log(_accelerationDirection);
         _moveSpeed += legMoveSpeed * _accelerationPercentage * _accelerationDirection * Time.deltaTime;
         _moveSpeed = Mathf.Clamp(_moveSpeed, legMoveSpeed * (1 - _maxMoveSpeedPercentage), legMoveSpeed * (1 + _maxMoveSpeedPercentage));
-        transform.Translate(_moveSpeed * Time.deltaTime * (transform.InverseTransformDirection(pitchBody.forward)));
+
+        transform.Translate(_moveSpeed * Time.deltaTime * transform.InverseTransformDirection(pitchBody.forward));
+
+        if (_isWindEnabled)
+        {
+            transform.Translate(legMoveSpeed * (1 + _windForcePercentage) * Time.deltaTime * _windDirection);
+        }
+     
         playerMoved_EC.RaiseEvent(transform);
     }
 
@@ -130,14 +146,32 @@ public class PlayerMovementHandler : MonoBehaviour
         _accelerationDirection = context.ReadValue<float>();
     }
 
-    private void HandleGamePause(bool isPaused)
-    {
-        _isPaused = isPaused;
-    }
     private void ChangeMoveSpeedByLeg(float newMoveSpeed)
     {
         legMoveSpeed = newMoveSpeed;
         _moveSpeed = legMoveSpeed;
         Debug.Log("changed speed to moveSpeed");
+    }
+
+    private void EnableWind(ChallengeType type,bool isEnabled)
+    {
+        _isWindEnabled = isEnabled;
+
+        if (!_isWindEnabled)
+        {
+            _windDirection = Vector3.zero;
+        }
+        else
+        {
+            switch (type)
+            {
+                case ChallengeType.FrontWind:
+                    _windDirection = -yawBody.transform.forward;
+                    break;
+                case ChallengeType.SideWind:
+                    _windDirection = yawBody.transform.right;
+                    break;
+            }
+        }      
     }
 }

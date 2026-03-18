@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHUDHandler : MonoBehaviour
@@ -19,7 +17,6 @@ public class PlayerHUDHandler : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
 
     private int _time;
-    private bool _isPaused;
 
     private void Start()
     {
@@ -30,7 +27,6 @@ public class PlayerHUDHandler : MonoBehaviour
     {
         playerMoved_EC.OnEventRaised += HandlePlayerMoved;
         cameraPitched_EC.OnEventRaised += HandleCameraPitched;
-        EventsRelay.OnGamePause += HandleGamePause;
         scoreChanged_EC.OnEventRaised += HandleScoreChanged;
     }
 
@@ -38,7 +34,6 @@ public class PlayerHUDHandler : MonoBehaviour
     {
         playerMoved_EC.OnEventRaised -= HandlePlayerMoved;
         cameraPitched_EC.OnEventRaised -= HandleCameraPitched;
-        EventsRelay.OnGamePause -= HandleGamePause;
         scoreChanged_EC.OnEventRaised -= HandleScoreChanged;
     }
 
@@ -73,14 +68,9 @@ public class PlayerHUDHandler : MonoBehaviour
         altitudeText.text = altitude.ToString();
     }
 
-    private void HandleGamePause(bool isPaused)
-    {
-        _isPaused = isPaused;
-    }
-
     private void UpdateTimerUI()
     {
-        if (_isPaused) return;
+        if (GameManager.IsGamePaused) return;
 
         _time++;
         int seconds = _time % 60;

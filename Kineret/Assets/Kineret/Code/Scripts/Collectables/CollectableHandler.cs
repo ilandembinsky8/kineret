@@ -6,18 +6,18 @@ using UnityEngine.InputSystem;
 public class CollectableHandler : MonoBehaviour
 {
     [SerializeField] protected PopupDataEventChannel LoadPopup_EC;
-    [SerializeField] private TransformEventChannel playerMoved_EC;
-    [SerializeField] private IntEventChannel gotScore_EC;
+    [SerializeField] protected TransformEventChannel playerMoved_EC;
+    [SerializeField] protected IntEventChannel gotScore_EC;
 
     [SerializeField] protected CollectableData _collectableData;
-    [SerializeField] private PopupData _notificationPopupData;
+    [SerializeField] protected PopupData _notificationPopupData;
     [SerializeField] protected PopupData _collectPopupData;
 
-    [SerializeField] private GameObject visuals;
+    [SerializeField] protected GameObject visuals;
 
-    private bool _hasNotified;
-    private bool _wasCollected;
-    private bool _isCollectable;
+    protected bool _hasNotified;
+    protected bool _wasCollected;
+    protected bool _isCollectable;
 
     private InputActions _actions;
 
@@ -37,7 +37,7 @@ public class CollectableHandler : MonoBehaviour
         playerMoved_EC.OnEventRaised += HandlePlayerMoved;
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         _actions.Player.Disable();
         _actions.Player.Collect.performed -= HandleCollectInput;
@@ -65,7 +65,7 @@ public class CollectableHandler : MonoBehaviour
         _collectPopupData.PopupTextData = collectPopupData;
     }
 
-    private void HandlePlayerMoved(Transform playerTransform)
+    protected virtual void HandlePlayerMoved(Transform playerTransform)
     {
         Vector3 playerPositionXZ = new Vector3(playerTransform.position.x, 0f, playerTransform.position.z);
         Vector3 collectablePositionXZ = new Vector3(transform.position.x, 0f, transform.position.z);
@@ -96,7 +96,7 @@ public class CollectableHandler : MonoBehaviour
         if(_isCollectable) Collect();
     }
 
-    private void Notify()
+    protected virtual void Notify()
     {
         if (_hasNotified) return;
         visuals.SetActive(true);
