@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4642300130430279945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7496325448959510307}
+  - component: {fileID: 1580731197291447572}
+  m_Layer: 0
+  m_Name: Challenge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7496325448959510307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4642300130430279945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 62795, y: 1500, z: 34453}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4726061344592308755}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580731197291447572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4642300130430279945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3163d1145d17b6c498808282dd257278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadPopup_EC: {fileID: 11400000, guid: 434ae0b1dce8a5d4c8f23f04d7878aa3, type: 2}
+  playerMoved_EC: {fileID: 11400000, guid: 6c3815ed880b1b34db7f693e4a38d9a4, type: 2}
+  gotScore_EC: {fileID: 11400000, guid: d9b5e4ff6b8db82459a3f609c91c8417, type: 2}
+  _collectableData:
+    NotificationRange: 6000
+    CollectionRange: 0
+    TimeForMaxScore: 0
+    MaxScore: 10
+  _notificationPopupData:
+    PopupTextData:
+      Type: 2
+      TextData:
+        HebTitle: "\u05DE\u05E9\u05D9\u05DE\u05D4"
+        HebDescription: "\u05DE\u05E9\u05D9\u05DE\u05D4!"
+        EngTitle: 
+        EngDescription: 
+      Duration: 3
+      Delay: 0
+    IconSprite: {fileID: 21300000, guid: b013c64dc8442e04da44dcf8446e3658, type: 3}
+  _collectPopupData:
+    PopupTextData:
+      Type: 2
+      TextData:
+        HebTitle: "\u05E0\u05D9\u05D9\u05E1"
+        HebDescription: "\u05E0\u05D9\u05D9\u05E1"
+        EngTitle: 
+        EngDescription: 
+      Duration: 3
+      Delay: 0
+    IconSprite: {fileID: 21300000, guid: bca8fdee097343e46abe4504e07c7620, type: 3}
+  visuals: {fileID: 7302643889492277946}
+  _failPopupData:
+    PopupTextData:
+      Type: 2
+      TextData:
+        HebTitle: "\u05DC\u05D5\u05D6\u05E8"
+        HebDescription: "\u05DC\u05D5\u05D6\u05E8"
+        EngTitle: 
+        EngDescription: 
+      Duration: 3
+      Delay: 0
+    IconSprite: {fileID: 21300000, guid: 3ef30e54003457d42b158a2bfdad7ee7, type: 3}
+--- !u!1 &7302643889492277946
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4726061344592308755}
+  m_Layer: 0
+  m_Name: Visuals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4726061344592308755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7302643889492277946}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 500, y: 500, z: 500}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 7496325448959510307}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

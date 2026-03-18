@@ -50,15 +50,16 @@ MonoBehaviour:
   playerMoved_EC: {fileID: 11400000, guid: 6c3815ed880b1b34db7f693e4a38d9a4, type: 2}
   cameraPitched_EC: {fileID: 11400000, guid: 2d2d3b2639d7a1249ab339606fecc6de, type: 2}
   moveSpeedChange_EC: {fileID: 11400000, guid: da0d379c7ed43e242934360b576dbe9d, type: 2}
-  moveSpeed: 680
+  legMoveSpeed: 0
   maxRoll: 30
   rollDuration: 2
   yawSpeed: 25
   pitchSpeed: 5
   rb: {fileID: 4698384812150683912}
   pitchBody: {fileID: 7121911830289363695}
-  yawBody: {fileID: 36086826308234579}
+  YawBody: {fileID: 36086826308234579}
   rollBody: {fileID: 5289629511374651915}
+  _moveSpeed: 0
 --- !u!54 &4698384812150683912
 Rigidbody:
   m_ObjectHideFlags: 0

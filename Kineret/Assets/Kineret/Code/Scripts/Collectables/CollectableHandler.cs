@@ -19,6 +19,8 @@ public class CollectableHandler : MonoBehaviour
     protected bool _wasCollected;
     protected bool _isCollectable;
 
+    protected Color _notifyColor = Color.red;
+
     private InputActions _actions;
 
     private void Awake()
@@ -48,7 +50,7 @@ public class CollectableHandler : MonoBehaviour
     {
         if(_collectableData.NotificationRange > 0)
         {
-            Handles.color = Color.red;
+            Handles.color = _notifyColor;
             Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), _collectableData.NotificationRange);
         }
         if (_collectableData.CollectionRange > 0)
@@ -77,6 +79,7 @@ public class CollectableHandler : MonoBehaviour
     }
     protected virtual void CheckNotifyRange(Vector3 delta)
     {
+        if (_hasNotified) return;
         if (delta.sqrMagnitude <= _collectableData.NotificationRange * _collectableData.NotificationRange)
         {
             Notify();
@@ -84,6 +87,7 @@ public class CollectableHandler : MonoBehaviour
     }
     protected virtual void CheckCollectRange(Vector3 delta)
     {
+        if (_wasCollected) return;
         _isCollectable = false;
         if (delta.sqrMagnitude <= _collectableData.CollectionRange * _collectableData.CollectionRange)
         {

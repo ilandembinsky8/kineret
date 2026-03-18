@@ -26,7 +26,7 @@ public struct ChallengeCollectableData
 }
 
 
-public class ChallengeCollectable : CollectableHandler
+public class ChallengeHandler : CollectableHandler
 {
     [SerializeField] protected PopupData _failPopupData;
     private Transform _playerTransform;
@@ -39,6 +39,11 @@ public class ChallengeCollectable : CollectableHandler
         _collectableData = collectableData;
         _notificationPopupData.PopupTextData = notificationPopupData;
         _collectPopupData.PopupTextData = collectPopupData;
+        _notifyColor = Color.blue;
+    }
+    protected override void CheckCollectRange(Vector3 delta)
+    {
+        //Overrides to not run base.CheckCollectRange
     }
 
     protected override void HandlePlayerMoved(Transform playerTransform)

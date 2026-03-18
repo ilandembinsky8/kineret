@@ -4,14 +4,14 @@ using UnityEngine;
 public class GameDestinationLoader : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private Transform player;
+    [SerializeField] private PlayerMovementHandler player;
     [SerializeField] private WaypointPathController path;
     [Header("Prefabs")]
     [SerializeField] private DestinationHandler destinationPrefab;
     [SerializeField] private InterestPointHandler interestPointPrefab;
     [SerializeField] private CollectableHandler bonusPrefab;
     [SerializeField] private InfoPointHandler infoPointPrefab;
-    // Add the mission handler prefab
+    [SerializeField] private ChallengeHandler challengePrefab;
 
     //Temp
     [Header("Collectiable")]
@@ -19,6 +19,7 @@ public class GameDestinationLoader : MonoBehaviour
     [SerializeField] private InfoCollectableData infoCollectable;
     [SerializeField] private InfoCollectableData interestCollectable;
     [SerializeField] private BonusCollectableData[] bonusCollectables;
+    [SerializeField] private ChallengeCollectableData[] challenges;
 
     public bool IsTesting;
 
@@ -32,6 +33,7 @@ public class GameDestinationLoader : MonoBehaviour
             LocationsManager.InfoCollectable = infoCollectable;
             LocationsManager.InterestCollectable = interestCollectable;
             LocationsManager.BonusCollectables = bonusCollectables;
+            LocationsManager.Challenges = challenges;
         }
         
 
@@ -78,8 +80,8 @@ public class GameDestinationLoader : MonoBehaviour
         Vector3 firstDestinationPosition = _destinations[0].transform.position;
         Vector3 direction = (firstDestinationPosition - _destinations[1].transform.position).normalized;
         startPosition = firstDestinationPosition + (direction * 20000);//TODO: Change to be the value from the ini
-        player.position = startPosition + (Vector3.up * 2000);
-        player.LookAt(new Vector3(firstDestinationPosition.x, player.position.y, firstDestinationPosition.z));
+        player.transform.position = startPosition + (Vector3.up * 2000);
+        player.YawBody.LookAt(new Vector3(firstDestinationPosition.x, player.transform.position.y, firstDestinationPosition.z));
 
         List<Vector3> waypoints = new(4)
         {
@@ -98,31 +100,56 @@ public class GameDestinationLoader : MonoBehaviour
             bonusIndices.Add(i);
         }
 
+        List<int> challengeIndices = new List<int>();
+        for (int i = 0; i < LocationsManager.Challenges.Length; i++)
+        {
+            challengeIndices.Add(i);
+        }
+
+        int bonusIndex, challengeIndex;
+        Vector3 start, end;
         for (int i = 0; i < _destinations.Length; i++)
         {
-            Vector3 start = waypoints[i];
-            Vector3 end = waypoints[i + 1];
-            int bonusIndex = bonusIndices[Random.Range(0, bonusIndices.Count)];
-            bonusIndices.Remove(bonusIndex);
-            GenerateLegCollectables(start, end, bonusIndex, _destinations[i].Destination);
+            start = waypoints[i];
+            end = waypoints[i + 1];
+            bonusIndex = bonusIndices[Random.Range(0, bonusIndices.Count)];
+            challengeIndex = challengeIndices[Random.Range(0, challengeIndices.Count)];
+            bonusIndices.Remove(bonusIndex); 
+            challengeIndices.Remove(challengeIndex);
+            GenerateLegCollectables(start, end, bonusIndex, challengeIndex, _destinations[i].Destination);
         }
     }
 
-    private void GenerateLegCollectables(Vector3 start, Vector3 end, int bonus, int destinationID)
+    private void GenerateLegCollectables(Vector3 start, Vector3 end, int bonus,int challenge, int destinationID)
     {
-        //TODO: Add missions later
-        CollectableHandler[] collectables = new CollectableHandler[4];
+        //Indices set up
+        CollectableHandler[] collectables = new CollectableHandler[5];
         List<int> collectablesIndices = new List<int>();
         for (int i = 0; i < collectables.Length; i++)
         {
             collectablesIndices.Add(i);
         }
+
+        //Bonus creation
         int bonusIndex = collectablesIndices[Random.Range(0, collectablesIndices.Count)];
         collectablesIndices.Remove(bonusIndex);
         CollectableHandler bonusPoint = Instantiate(bonusPrefab);
-        bonusPoint.Init(LocationsManager.BonusCollectables[bonus].CollectableData, LocationsManager.BonusCollectables[bonus].CollectionPopup, LocationsManager.BonusCollectables[bonus].NotificationPopup);
+        BonusCollectableData bonusCollectableData = LocationsManager.BonusCollectables[bonus];
+        bonusPoint.Init(bonusCollectableData.CollectableData, bonusCollectableData.CollectionPopup, bonusCollectableData.NotificationPopup);
         collectables[bonusIndex] = bonusPoint;
 
+        //Challenge creation
+        int challengeIndex = collectablesIndices[Random.Range(0, collectablesIndices.Count)];
+        collectablesIndices.Remove(challengeIndex);
+        ChallengeHandler challengePoint = Instantiate(challengePrefab);
+        ChallengeCollectableData challengeCollectableData = LocationsManager.Challenges[challenge];
+        ChallengeData challengeData = new ChallengeData() { Challenge = (ChallengeType)challenge , Duration = challengeCollectableData.Duration };
+        Debug.Log(((ChallengeType)challenge).ToString());
+        Debug.Log(challengeCollectableData.NotificationPopup.TextData.HebTitle);
+        challengePoint.Init(challengeData, challengeCollectableData.FailPopupData, challengeCollectableData.CollectableData, challengeCollectableData.CollectionPopup, challengeCollectableData.NotificationPopup);
+        collectables[challengeIndex] = challengePoint;
+
+        //Info points creation
         for (int i = 0; i < 3; i++)
         {
             InfoPointHandler infoPoint = Instantiate(infoPointPrefab);
@@ -142,6 +169,7 @@ public class GameDestinationLoader : MonoBehaviour
             }
         }
 
+        //Positioning of the points
         Vector3 diff = (end - start);
         float gap = diff.magnitude / (collectables.Length+1);
         Vector3 direction = diff.normalized;
@@ -149,5 +177,8 @@ public class GameDestinationLoader : MonoBehaviour
         {
             collectables[i].transform.position = start + (direction * (gap * (i + 1)));
         }
+
+        //Randomizing variance from straight route
+        float maxVarianceDistance = GameSettingsManager.GetFloat("Game Settings", "Game MaxVariancePointDistance", 500);
     }
 }

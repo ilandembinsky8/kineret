@@ -1438,6 +1438,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3559719673135684603}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3559719673135684605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6531841691559727959, guid: 623352c4b56560f45b34499336a531ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 3559719673135684603}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a4c59f068e06740b4515d919e940cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4151346961542213265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1719,7 +1731,249 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 3559719673135684604}
+      objectReference: {fileID: 3559719673135684605}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challengePrefab
+      value: 
+      objectReference: {fileID: 1580731197291447572, guid: 87831dc9485a292429ca746ee0e7299b,
+        type: 3}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challengePointPrefab
+      value: 
+      objectReference: {fileID: 1580731197291447572, guid: 87831dc9485a292429ca746ee0e7299b,
+        type: 3}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].Duration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].Duration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].Duration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].FailPopupData.Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].FailPopupData.Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].FailPopupData.Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].CollectionPopup.Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].CollectionPopup.Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].CollectionPopup.Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].FailPopupData.Duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].NotificationPopup.Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].FailPopupData.Duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].NotificationPopup.Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].FailPopupData.Duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].NotificationPopup.Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].CollectableData.MaxScore
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].CollectionPopup.Duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].CollectableData.MaxScore
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].CollectionPopup.Duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].CollectableData.MaxScore
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].CollectionPopup.Duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].NotificationPopup.Duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].NotificationPopup.Duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].NotificationPopup.Duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].FailPopupData.TextData.HebTitle
+      value: "\u05DC\u05D5\u05D6\u05E8"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].FailPopupData.TextData.HebTitle
+      value: "\u05DC\u05D5\u05D6\u05E8"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].FailPopupData.TextData.HebTitle
+      value: "\u05DC\u05D5\u05D6\u05E8"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].CollectableData.NotificationRange
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].CollectionPopup.TextData.HebTitle
+      value: "\u05E0\u05D9\u05D9\u05E1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].CollectableData.NotificationRange
+      value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].CollectionPopup.TextData.HebTitle
+      value: "\u05E0\u05D9\u05D9\u05E1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].CollectableData.NotificationRange
+      value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].CollectionPopup.TextData.HebTitle
+      value: "\u05E0\u05D9\u05D9\u05E1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].NotificationPopup.TextData.HebTitle
+      value: "\u05E7\u05D3\u05DE\u05D9\u05EA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].NotificationPopup.TextData.HebTitle
+      value: "\u05E6\u05D3\u05D3\u05D9\u05EA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].NotificationPopup.TextData.HebTitle
+      value: "\u05E6\u05D9\u05E4\u05D5\u05E8\u05D9\u05DD"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].FailPopupData.TextData.HebDescription
+      value: "\u05DC\u05D5\u05D6\u05E8"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].FailPopupData.TextData.HebDescription
+      value: "\u05DC\u05D5\u05D6\u05E8"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].FailPopupData.TextData.HebDescription
+      value: "\u05DC\u05D5\u05D6\u05E8"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].CollectionPopup.TextData.HebDescription
+      value: "\u05E0\u05D9\u05D9\u05E1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].CollectionPopup.TextData.HebDescription
+      value: "\u05E0\u05D9\u05D9\u05E1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].CollectionPopup.TextData.HebDescription
+      value: "\u05E0\u05D9\u05D9\u05E1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[0].NotificationPopup.TextData.HebDescription
+      value: "\u05E7\u05D3\u05DE\u05D9\u05EA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[1].NotificationPopup.TextData.HebDescription
+      value: "\u05E6\u05D3\u05D3\u05D9\u05EA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: challenges.Array.data[2].NotificationPopup.TextData.HebDescription
+      value: "\u05E6\u05D9\u05E4\u05D5\u05E8\u05D9\u05DD"
+      objectReference: {fileID: 0}
     - target: {fileID: 7738317420825844683, guid: 57e8b52a259075840bbdcfbf7e0f409f,
         type: 3}
       propertyPath: m_Name

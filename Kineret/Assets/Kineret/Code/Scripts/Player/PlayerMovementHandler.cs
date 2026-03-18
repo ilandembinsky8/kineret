@@ -16,7 +16,7 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     [SerializeField] private Transform pitchBody;
-    [SerializeField] private Transform yawBody;
+    [SerializeField] public Transform YawBody;
     [SerializeField] private Transform rollBody;
 
 
@@ -107,7 +107,7 @@ public class PlayerMovementHandler : MonoBehaviour
     }
     private void Yaw()
     {
-        yawBody.Rotate(transform.up, Time.deltaTime * yawSpeed * _yawDirection, Space.World);
+        YawBody.Rotate(transform.up, Time.deltaTime * yawSpeed * _yawDirection, Space.World);
     }
     private void Pitch()
     {
@@ -117,7 +117,6 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void Move()
     {
-        Debug.Log(_accelerationDirection);
         _moveSpeed += legMoveSpeed * _accelerationPercentage * _accelerationDirection * Time.deltaTime;
         _moveSpeed = Mathf.Clamp(_moveSpeed, legMoveSpeed * (1 - _maxMoveSpeedPercentage), legMoveSpeed * (1 + _maxMoveSpeedPercentage));
 
@@ -125,6 +124,9 @@ public class PlayerMovementHandler : MonoBehaviour
 
         if (_isWindEnabled)
         {
+            Debug.Log(transform.InverseTransformDirection(pitchBody.forward));
+            Debug.Log(YawBody.forward);
+            Debug.Log(_windDirection);
             transform.Translate(legMoveSpeed * (1 + _windForcePercentage) * Time.deltaTime * _windDirection);
         }
      
@@ -166,10 +168,11 @@ public class PlayerMovementHandler : MonoBehaviour
             switch (type)
             {
                 case ChallengeType.FrontWind:
-                    _windDirection = -yawBody.transform.forward;
+                    Debug.Log("Forward");
+                    _windDirection = -YawBody.forward;
                     break;
                 case ChallengeType.SideWind:
-                    _windDirection = yawBody.transform.right;
+                    _windDirection = YawBody.right;
                     break;
             }
         }      

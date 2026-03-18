@@ -17,6 +17,7 @@ public static class LocationsManager
     public static InfoCollectableData InfoCollectable;
     public static InfoCollectableData InterestCollectable;
     public static BonusCollectableData[] BonusCollectables;
+    public static ChallengeCollectableData[] Challenges;
 
     public static void AddDestination(int destination, DestinationData destinationData)
     {

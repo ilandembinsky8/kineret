@@ -17,6 +17,7 @@ public class DestinationHandler : CollectableHandler
 
     protected override void CheckCollectRange(Vector3 delta)
     {
+        if(_wasCollected) return;
         if (delta.sqrMagnitude <= _collectableData.CollectionRange * _collectableData.CollectionRange)
         {
             Collect();
