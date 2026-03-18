@@ -29,21 +29,21 @@ public class MainMenuDestinationLoader : MonoBehaviour
 
         if (IsTesting)
         {
-            LocationsManager.AddDestination(9, AgmonHula);
+            //LocationsManager.AddDestination(9, AgmonHula);
             //LocationsManager.AddDestination(1, Shamir);
-            LocationsManager.AddDestination(2, Gilboa);
-            LocationsManager.AddDestination(3, Agre);
-            LocationsManager.AddDestination(4, Golan);
-            LocationsManager.AddDestination(5, BioCastle);
-            LocationsManager.AddDestination(6, Salmon);
-            LocationsManager.AddDestination(7, Eshkol);
-            LocationsManager.AddDestination(8, Ginosar);
+            //LocationsManager.AddDestination(2, Gilboa);
+            //LocationsManager.AddDestination(3, Agre);
+            //LocationsManager.AddDestination(4, Golan);
+            //LocationsManager.AddDestination(5, BioCastle);
+            //LocationsManager.AddDestination(6, Salmon);
+            //LocationsManager.AddDestination(7, Eshkol);
+            //LocationsManager.AddDestination(8, Ginosar);
             //LocationsManager.AddDestination(9, Tzemah);
-            LocationsManager.AddDestination(10, Afimilk);
-            LocationsManager.AddInterestPoint(0, Firewave);
-            LocationsManager.AddInterestPoint(1, Seymour);
-            LocationsManager.AddInterestPoint(2, Shvitz);
-            LocationsManager.AddInterestPoint(3, Tzipori);
+            //LocationsManager.AddDestination(10, Afimilk);
+            //LocationsManager.AddInterestPoint(0, Firewave);
+            //LocationsManager.AddInterestPoint(1, Seymour);
+            //LocationsManager.AddInterestPoint(2, Shvitz);
+            //LocationsManager.AddInterestPoint(3, Tzipori);
         }
 
         for (int i = 0; i < LocationsManager.Destinations.Count; i++)

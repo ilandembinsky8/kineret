@@ -5,12 +5,10 @@ using System;
 
 public class JsonManager
 {
-    private GameData Data;
-
-    public bool LoadFromJson(Action<GameData> onFinished)
+    public bool TryReadFromJson(Action<string> onFinished, string fileName)
     {
         string debugState = $"Loading JSON... Path: {Application.streamingAssetsPath}";
-        string path = Path.Combine(Application.streamingAssetsPath, "GameData.json");
+        string path = Path.Combine(Application.streamingAssetsPath, fileName);
 
         if (!File.Exists(path))
         {
@@ -28,10 +26,8 @@ public class JsonManager
             return false;
         }
 
-        Data = JsonUtility.FromJson<GameData>(json);
-
         debugState = $"JsonManager: JSON loaded successfully.";
-        onFinished?.Invoke(Data);
+        onFinished?.Invoke(json);
         return true;
     }
 
@@ -82,7 +78,6 @@ public struct DestinationTextData
 
     public Vector3 UiPosition;
     public Vector3 WorldPosition;
-    public Vector3 WorldRotation;
 
     /// <summary>
     /// represents the info screen once destination was reached.
