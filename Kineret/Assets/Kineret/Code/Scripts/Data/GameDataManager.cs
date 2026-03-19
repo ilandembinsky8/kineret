@@ -126,7 +126,7 @@ public class GameDataManager : MonoBehaviour
 
         LocationsManager.DestinationsCount = GameSettingsManager.GetInt("Game Settings", "DestinationGameCount  ", 3);
         LocationsManager.DestinationsSelectCount = GameSettingsManager.GetInt("Game Settings", "DestinationsSelectCount ", 3);
-
+        LocationsManager.SelectedDestinations = new int[LocationsManager.DestinationsSelectCount];
     }
 
     /// <summary>
