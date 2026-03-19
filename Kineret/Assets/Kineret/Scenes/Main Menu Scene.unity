@@ -684,6 +684,42 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1167579631646187820}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1167579631646187822 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7011276724100751404, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+    type: 3}
+  m_PrefabInstance: {fileID: 1167579631646187820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1167579631646187823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5821992494706637603, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+    type: 3}
+  m_PrefabInstance: {fileID: 1167579631646187820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1167579631646187824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8927249883198285310, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+    type: 3}
+  m_PrefabInstance: {fileID: 1167579631646187820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1689010977836586101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -851,6 +887,21 @@ PrefabInstance:
       propertyPath: controlButtonsCanvas
       value: 
       objectReference: {fileID: 1953403861}
+    - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: firstDestinationText
+      value: 
+      objectReference: {fileID: 1167579631646187824}
+    - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: thirdDestinationText
+      value: 
+      objectReference: {fileID: 1167579631646187822}
+    - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: secondDestinationText
+      value: 
+      objectReference: {fileID: 1167579631646187823}
     - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
       propertyPath: destinationSelectCanvas
