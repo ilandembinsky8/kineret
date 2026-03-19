@@ -1704,6 +1704,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bba65444aafd48f4ebffaf7abcdebeff, type: 3}
+--- !u!4 &6107091892802111074 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2368986555292830674, guid: bba65444aafd48f4ebffaf7abcdebeff,
+    type: 3}
+  m_PrefabInstance: {fileID: 6107091892802111073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6930798376657365262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1732,6 +1738,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 3559719673135684605}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: terrain
+      value: 
+      objectReference: {fileID: 6107091892802111074}
     - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
         type: 3}
       propertyPath: IsTesting

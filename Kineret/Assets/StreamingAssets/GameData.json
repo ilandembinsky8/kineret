@@ -534,8 +534,8 @@
   "DestinationCollectables": [
     {
       "RangeData": {
-        "NotificationRange": 8000.0,
-        "CollectionRange": 4000.0,
+        "NotificationRange": 0,
+        "CollectionRange": 3000.0,
         "TimeForMaxScore": 0.0,
         "MaxScore": 25
       },
@@ -553,8 +553,8 @@
     },
     {
       "RangeData": {
-        "NotificationRange": 8000.0,
-        "CollectionRange": 4000.0,
+        "NotificationRange": 0,
+        "CollectionRange": 3000.0,
         "TimeForMaxScore": 0.0,
         "MaxScore": 25
       },
@@ -572,8 +572,8 @@
     },
     {
       "RangeData": {
-        "NotificationRange": 8000.0,
-        "CollectionRange": 4000.0,
+        "NotificationRange": 0,
+        "CollectionRange": 3000.0,
         "TimeForMaxScore": 0.0,
         "MaxScore": 25
       },
@@ -593,8 +593,8 @@
   "BonusCollectables": [
     {
       "CollectableData": {
-        "NotificationRange": 7500.0,
-        "CollectionRange": 3500.0,
+        "NotificationRange": 4000,
+        "CollectionRange": 3000,
         "TimeForMaxScore": 0.0,
         "MaxScore": 5
       },
@@ -624,8 +624,8 @@
     },
     {
       "CollectableData": {
-        "NotificationRange": 7500.0,
-        "CollectionRange": 3500.0,
+        "NotificationRange": 4000,
+        "CollectionRange": 3000,
         "TimeForMaxScore": 0.0,
         "MaxScore": 5
       },
@@ -655,8 +655,8 @@
     },
     {
       "CollectableData": {
-        "NotificationRange": 7500.0,
-        "CollectionRange": 3500.0,
+        "NotificationRange": 4000,
+        "CollectionRange": 3000,
         "TimeForMaxScore": 0.0,
         "MaxScore": 5
       },
@@ -686,8 +686,8 @@
     },
     {
       "CollectableData": {
-        "NotificationRange": 7500.0,
-        "CollectionRange": 3500.0,
+        "NotificationRange": 4000,
+        "CollectionRange": 3000,
         "TimeForMaxScore": 0.0,
         "MaxScore": 5
       },
@@ -718,8 +718,8 @@
   ],
   "StaticInterestCollectable": {
     "RangeData": {
-      "NotificationRange": 7500.0,
-      "CollectionRange": 3500.0,
+      "NotificationRange": 4000,
+      "CollectionRange": 3000,
       "TimeForMaxScore": 0.0,
       "MaxScore": 10
     },
@@ -760,8 +760,8 @@
   },
   "InfoCollectable": {
     "RangeData": {
-      "NotificationRange": 7500.0,
-      "CollectionRange": 3500.0,
+      "NotificationRange": 4000,
+      "CollectionRange": 3000,
       "TimeForMaxScore": 0.0,
       "MaxScore": 10
     },
@@ -803,8 +803,8 @@
   "ChallengeDataList": [
     {
       "CollectableData": {
-        "NotificationRange": 8000.0,
-        "CollectionRange": 4000.0,
+        "NotificationRange": 4000,
+        "CollectionRange": 0,
         "TimeForMaxScore": 5.0,
         "MaxScore": 25
       },
@@ -846,12 +846,12 @@
         "Delay": 0.0
       },
 
-      "Duration": 20.0
+      "Duration": 10.0
     },
     {
       "CollectableData": {
-        "NotificationRange": 8000.0,
-        "CollectionRange": 4000.0,
+        "NotificationRange": 4000,
+        "CollectionRange": 0,
         "TimeForMaxScore": 10.0,
         "MaxScore": 25
       },
@@ -893,12 +893,12 @@
         "Delay": 0.0
       },
 
-      "Duration": 20.0
+      "Duration": 10.0
     },
     {
       "CollectableData": {
-        "NotificationRange": 8000.0,
-        "CollectionRange": 4000.0,
+        "NotificationRange": 4000,
+        "CollectionRange": 0,
         "TimeForMaxScore": 15.0,
         "MaxScore": 25
       },
@@ -936,11 +936,11 @@
           "EngTitle": "",
           "EngDescription": ""
         },
-        "Duration": 5.0,
+        "Duration": 3.0,
         "Delay": 0.0
       },
 
-      "Duration": 20.0
+      "Duration": 8.0
     }
   ]
 }

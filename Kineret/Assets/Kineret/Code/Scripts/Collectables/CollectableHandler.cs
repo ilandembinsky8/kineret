@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,10 +20,13 @@ public class CollectableHandler : MonoBehaviour
     protected bool _hasNotified;
     protected bool _wasCollected;
     protected bool _isCollectable;
+    protected bool _isActive;
 
     protected Color _notifyColor = Color.red;
 
     private InputActions _actions;
+
+    public int Leg { get; set; }
 
     private void Awake()
     {
@@ -38,6 +42,7 @@ public class CollectableHandler : MonoBehaviour
         _actions.Player.Enable();
         _actions.Player.Collect.performed += HandleCollectInput;
         playerMoved_EC.OnEventRaised += HandlePlayerMoved;
+        EventsRelay.OnLegStart += HandleLegStart;
     }
 
     protected void OnDisable()
@@ -45,11 +50,14 @@ public class CollectableHandler : MonoBehaviour
         _actions.Player.Disable();
         _actions.Player.Collect.performed -= HandleCollectInput;
         playerMoved_EC.OnEventRaised -= HandlePlayerMoved;
+        EventsRelay.OnLegStart -= HandleLegStart;
     }
 
     private void OnDrawGizmos()
     {
-        if(_collectableData.NotificationRange > 0)
+        
+
+        if (_collectableData.NotificationRange > 0)
         {
             Handles.color = _notifyColor;
             Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), _collectableData.NotificationRange);
@@ -88,6 +96,12 @@ public class CollectableHandler : MonoBehaviour
 
 
     }
+
+    private void HandleLegStart(int leg)
+    {
+        _isActive = leg == Leg;
+        if(_isActive) Debug.Log("Active");
+    }
     protected void InitPopup(ref PopupData popupData, PopupTextData popupTextData)
     {
         popupData.PopupTextData = popupTextData;
@@ -97,12 +111,14 @@ public class CollectableHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log("Null icon name in a popup text data (only error if its not a destination collectable handler)");
+            Debug.Log($"Null icon name in a popup text data. Class:{GetType().Name},Title:{popupTextData.TextData.HebTitle}");
         }
     }
 
     protected virtual void HandlePlayerMoved(Transform playerTransform)
     {
+        if (!_isActive) return;
+
         Vector3 playerPositionXZ = new Vector3(playerTransform.position.x, 0f, playerTransform.position.z);
         Vector3 collectablePositionXZ = new Vector3(transform.position.x, 0f, transform.position.z);
 

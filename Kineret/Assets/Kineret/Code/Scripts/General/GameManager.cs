@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         ChangeMoveSpeedByLeg(player.position, Destinations[0].transform.position);
         CurrentDestination = Destinations[0].transform;
         EventsRelay.OnGamePause.Invoke(true);
+        EventsRelay.OnLegStart.Invoke(_destinationsReachedCount);
     }
 
     public void GoToMainMenu(bool _isLoadingDestinationSelection)
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
         {
             ChangeMoveSpeedByLeg(Destinations[_destinationsReachedCount - 1].transform.position, Destinations[_destinationsReachedCount].transform.position);
             CurrentDestination = Destinations[_destinationsReachedCount].transform;
+            EventsRelay.OnLegStart.Invoke(_destinationsReachedCount);
         }
 
         EventsRelay.OnLoadInfoScreen(data);

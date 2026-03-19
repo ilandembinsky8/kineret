@@ -16,6 +16,7 @@ public static class EventsRelay
     public static UnityAction<int> OnDestinationReached { get; set; }
     public static UnityAction<InfoScreenData> OnLoadInfoScreen { get; set; }
 
+    public static UnityAction<int> OnLegStart { get; set; }
     //Player Events  
     public static UnityAction<ChallengeType,bool> OnWindEvent { get; set; }
 }
