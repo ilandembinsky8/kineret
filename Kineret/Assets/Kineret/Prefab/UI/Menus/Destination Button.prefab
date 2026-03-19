@@ -368,7 +368,7 @@ MonoBehaviour:
     \u05D5\u05E8\u05D1 \u05DE\u05E2\u05E8\u05DB\u05EA\u05D9\u05D9\u05DD \u05D1\u05D0\u05DE\u05E6\u05E2\u05D5\u05EA
     \u05DB\u05DC\u05D9\u05DD \u05D8\u05DB\u05E0\u05D5\u05DC\u05D5\u05D2\u05D9\u05D9\u05DD
     \u05DE\u05EA\u05E7\u05D3\u05DE\u05D9\u05D9\u05DD."
-  m_isRightToLeft: 0
+  m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
@@ -774,10 +774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f84dcce6bf7024981538af97fd0363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationSelected_EC: {fileID: 11400000, guid: 254ac4a87038dd94d835bd2961f8951b,
-    type: 2}
-  destinationDeselected_EC: {fileID: 11400000, guid: 89fff0f767b1b13409f726f62cb23e0f,
-    type: 2}
   enableDestinationSelection_EC: {fileID: 11400000, guid: 30db6846684d5714db321701866561b6,
     type: 2}
   availableIcon: {fileID: 3170942694695240938}
@@ -1007,7 +1003,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: " Seymour AG | \u05EA\u05E9\u05E7 \u05E8\u05E2\u05D9"
-  m_isRightToLeft: 0
+  m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
