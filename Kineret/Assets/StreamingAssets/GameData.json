@@ -600,9 +600,10 @@
       },
       "NotificationPopup": {
         "Type": 0,
+        "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
-          "HebTitle": "נקודת בונוס לפניכם",
-          "HebDescription": "אספו אנרגיה כחולה",
+          "HebTitle": "שימו לב! נקודת בונוס לפניכם",
+          "HebDescription": "איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -630,9 +631,10 @@
       },
       "NotificationPopup": {
         "Type": 0,
+        "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
-          "HebTitle": "נקודת בונוס לפניכם",
-          "HebDescription": "אספו אנרגיה אדומה",
+          "HebTitle": "שימו לב! נקודת בונוס לפניכם",
+          "HebDescription": "איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -660,9 +662,10 @@
       },
       "NotificationPopup": {
         "Type": 0,
+        "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
-          "HebTitle": "נקודת בונוס לפניכם",
-          "HebDescription": "אספו אנרגיה צהובה",
+          "HebTitle": "שימו לב! נקודת בונוס לפניכם",
+          "HebDescription": "איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -690,9 +693,10 @@
       },
       "NotificationPopup": {
         "Type": 0,
+        "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
-          "HebTitle": "נקודת בונוס לפניכם",
-          "HebDescription": "אספו אנרגיה ירוקה",
+          "HebTitle": "שימו לב! נקודת בונוס לפניכם",
+          "HebDescription": "איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -721,9 +725,10 @@
     },
     "NotificationPopup": {
       "Type": 0,
+      "PopupIconName": "Icon-Route-InterestPoint",
       "TextData": {
         "HebTitle": "שימו לב! נקודת עניין לפניכם",
-        "HebDescription": "נווטו את הדאון ואספו את הנקודה",
+        "HebDescription": "איסוף מהיר ומדויק יזכה אתכם בניקוד נוסף נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
         "EngTitle": "",
         "EngDescription": ""
       },
@@ -762,6 +767,7 @@
     },
     "NotificationPopup": {
       "Type": 0,
+      "PopupIconName": "Icon-General-Success",
       "TextData": {
         "HebTitle": "מידע",
         "HebDescription": "",
@@ -805,6 +811,7 @@
 
       "NotificationPopup": {
         "Type": 2,
+        "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "רוח קדמית",
           "HebDescription": "זוהתה רוח קדמית חזקה לפניכם, האיצו קדימה!",
@@ -851,6 +858,7 @@
 
       "NotificationPopup": {
         "Type": 2,
+        "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "רוח צדדית",
           "HebDescription": "זוהתה רוח צדדית חזקה לפניכם, האיצו קדימה!",
@@ -897,6 +905,7 @@
 
       "NotificationPopup": {
         "Type": 2,
+        "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "ציפורים!!!",
           "HebDescription": "תעלו גבוה יותר כדי להתחמק מהציפורים",

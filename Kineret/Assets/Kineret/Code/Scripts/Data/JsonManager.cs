@@ -172,7 +172,7 @@ public struct CollectableData
 public struct PopupTextData
 {
     public int Type;
-    public string popupIconName;
+    public string PopupIconName;
     public TextData TextData;
     public float Duration;
     public float Delay;
