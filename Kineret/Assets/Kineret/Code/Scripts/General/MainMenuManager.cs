@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -76,7 +75,7 @@ public class MainMenuManager : MonoBehaviour
     {  
         LocationsManager.SelectedDestinations[_selectedDestinationsCount] = destination;
         _selectedDestinationsCount++;
-        if (_selectedDestinationsCount == LocationsManager.DestinationsCount)
+        if (_selectedDestinationsCount == LocationsManager.DestinationsSelectCount)
         {
             EndDestinationSelection();
         }
