@@ -11,7 +11,7 @@ public static class LocationsManager
     public static Dictionary<int, DestinationData> Destinations { get; set; } = new(16);
     public static Dictionary<int, InterestPointData> InterestPoints { get; set; } = new(8);
 
-    public static int[] SelectedDestinations = new int[DestinationsCount];
+    public static int[] SelectedDestinations;
 
     public static DestinationCollectableData[] DestinationCollectables { get; set; }
     public static InfoCollectableData InfoCollectable { get; set; }
