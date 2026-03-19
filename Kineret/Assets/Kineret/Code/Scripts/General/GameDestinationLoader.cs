@@ -9,7 +9,7 @@ public class GameDestinationLoader : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private PlayerMovementHandler player;
     [SerializeField] private WaypointPathController path;
-    [SerializeField] private Transform terrain;
+    [SerializeField] private Terrain terrain;
 
     [Header("Prefabs")]
     [SerializeField] private DestinationHandler destinationPrefab;
@@ -85,7 +85,15 @@ public class GameDestinationLoader : MonoBehaviour
         }
 
         int minIndex = Array.IndexOf(segemnts, segemnts.Min());
-        int middleDestinationIndex = (minIndex - 1) % _destinations.Length;
+        int middleDestinationIndex;
+        if (minIndex - 1 < 0)
+        {
+            middleDestinationIndex = _destinations.Length - 1;
+        }
+        else
+        {
+            middleDestinationIndex = minIndex - 1;
+        }
 
         DestinationHandler temp = _destinations[1];
         _destinations[1] = _destinations[middleDestinationIndex];
@@ -113,7 +121,8 @@ public class GameDestinationLoader : MonoBehaviour
         else
         {
             //Start in center direction
-            direction = (terrain.position - firstDestinationPosition).normalized;
+            Vector3 terrainCenter = new Vector3(terrain.transform.position.x + (terrain.terrainData.size.x / 2f), firstDestinationPosition.y, terrain.transform.position.z + (terrain.terrainData.size.z / 2f));
+            direction = (terrainCenter - firstDestinationPosition).normalized;
             startPosition = firstDestinationPosition + (direction * GameSettingsManager.GetFloat("Route Settings", "FirstLegDistance", 20000));
         }
 

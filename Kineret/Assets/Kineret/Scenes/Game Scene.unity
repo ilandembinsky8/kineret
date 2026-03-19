@@ -1704,9 +1704,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bba65444aafd48f4ebffaf7abcdebeff, type: 3}
---- !u!4 &6107091892802111074 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2368986555292830674, guid: bba65444aafd48f4ebffaf7abcdebeff,
+--- !u!218 &6107091892802111074 stripped
+Terrain:
+  m_CorrespondingSourceObject: {fileID: 7663476667850876026, guid: bba65444aafd48f4ebffaf7abcdebeff,
     type: 3}
   m_PrefabInstance: {fileID: 6107091892802111073}
   m_PrefabAsset: {fileID: 0}

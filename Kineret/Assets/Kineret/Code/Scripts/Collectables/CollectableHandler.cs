@@ -100,7 +100,6 @@ public class CollectableHandler : MonoBehaviour
     private void HandleLegStart(int leg)
     {
         _isActive = leg == Leg;
-        if(_isActive) Debug.Log("Active");
     }
     protected void InitPopup(ref PopupData popupData, PopupTextData popupTextData)
     {
