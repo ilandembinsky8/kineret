@@ -14,7 +14,7 @@
       },
       "WorldPosition": {
         "x": 72600.0,
-        "y": 0.0,
+        "y": 1000.0,
         "z": 27400.0
       },
       "DestinationInfoScreenText": {
@@ -58,7 +58,7 @@
       },
       "WorldPosition": {
         "x": 82450.0,
-        "y": 500.0,
+        "y": 1000.0,
         "z": 59000.0
       },
       "DestinationInfoScreenText": {
@@ -102,7 +102,7 @@
       },
       "WorldPosition": {
         "x": 74300.0,
-        "y": 500.0,
+        "y": 1000.0,
         "z": 71400.0
       },
       "DestinationInfoScreenText": {
@@ -146,7 +146,7 @@
       },
       "WorldPosition": {
         "x": 56540.0,
-        "y": 500.0,
+        "y": 1000.0,
         "z": 1980.0
       },
       "DestinationInfoScreenText": {
@@ -190,7 +190,7 @@
       },
       "WorldPosition": {
         "x": 72300.0,
-        "y": 250.0,
+        "y": 1000.0,
         "z": 27000.0
       },
       "DestinationInfoScreenText": {
@@ -278,7 +278,7 @@
       },
       "WorldPosition": {
         "x": 70800.0,
-        "y": 500.0,
+        "y": 1000.0,
         "z": 22850.0
       },
       "DestinationInfoScreenText": {
@@ -322,7 +322,7 @@
       },
       "WorldPosition": {
         "x": 63700.0,
-        "y": 500.0,
+        "y": 1000.0,
         "z": 46800.0
       },
       "DestinationInfoScreenText": {
@@ -366,7 +366,7 @@
       },
       "WorldPosition": {
         "x": 40700.0,
-        "y": 250.0,
+        "y": 1000.0,
         "z": 35000.0
       },
       "DestinationInfoScreenText": {
@@ -410,7 +410,7 @@
       },
       "WorldPosition": {
         "x": 66270.0,
-        "y": 200.0,
+        "y": 1000.0,
         "z": 43350.0
       },
       "DestinationInfoScreenText": {
@@ -454,7 +454,7 @@
       },
       "WorldPosition": {
         "x": 71200.0,
-        "y": 500.0,
+        "y": 1000.0,
         "z": 24400.0
       },
       "DestinationInfoScreenText": {
