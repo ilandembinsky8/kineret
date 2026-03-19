@@ -488,7 +488,7 @@
   "IntrestPointDataList": [
     {
       "Name": "FIREWAVE",
-      "IconImageName": "Icon-Route-InterestPoint",
+      "IconImageName": "Icon-Route-Forest",
       "WorldPosition": {
         "x": 64000.0,
         "y": 1500.0,
@@ -499,7 +499,7 @@
     },
     {
       "Name": "קשת",
-      "IconImageName": "Icon-Destination-Info",
+      "IconImageName": "Icon-Destination-InterestPoint",
       "WorldPosition": {
         "x": 93000.0,
         "y": 1250.0,
@@ -540,7 +540,7 @@
         "MaxScore": 25
       },
       "CollectionPopup": {
-        "Type": 0,
+        "Type": 1,
         "TextData": {
           "HebTitle": "הגעתם ליעד הראשון",
           "HebDescription": "",
@@ -559,7 +559,7 @@
         "MaxScore": 25
       },
       "CollectionPopup": {
-        "Type": 0,
+        "Type": 1,
         "TextData": {
           "HebTitle": "הגעתם ליעד השני",
           "HebDescription": "",
@@ -578,7 +578,7 @@
         "MaxScore": 25
       },
       "CollectionPopup": {
-        "Type": 0,
+        "Type": 1,
         "TextData": {
           "HebTitle": "הגעתם ליעד השלישי",
           "HebDescription": "",
@@ -769,8 +769,8 @@
       "Type": 0,
       "PopupIconName": "Icon-General-Success",
       "TextData": {
-        "HebTitle": "מידע",
-        "HebDescription": "",
+        "HebTitle": "הידעת",
+        "HebDescription": "איסוף מהיר ומדויק יזכה אתכם בניקוד נוסף נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
         "EngTitle": "",
         "EngDescription": ""
       },
@@ -805,7 +805,7 @@
       "CollectableData": {
         "NotificationRange": 8000.0,
         "CollectionRange": 4000.0,
-        "TimeForMaxScore": 20.0,
+        "TimeForMaxScore": 5.0,
         "MaxScore": 25
       },
 
@@ -852,7 +852,7 @@
       "CollectableData": {
         "NotificationRange": 8000.0,
         "CollectionRange": 4000.0,
-        "TimeForMaxScore": 20.0,
+        "TimeForMaxScore": 10.0,
         "MaxScore": 25
       },
 
@@ -899,7 +899,7 @@
       "CollectableData": {
         "NotificationRange": 8000.0,
         "CollectionRange": 4000.0,
-        "TimeForMaxScore": 20.0,
+        "TimeForMaxScore": 15.0,
         "MaxScore": 25
       },
 
