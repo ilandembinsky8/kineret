@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
@@ -63,10 +64,41 @@ public class CollectableHandler : MonoBehaviour
     public void Init(CollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
     {
         _collectableData = collectableData;
-        _notificationPopupData.PopupTextData = notificationPopupData;
-        LocationsManager.TryGetIconImageData(notificationPopupData.PopupIconName, out _notificationPopupData.IconSprite);
+        InitPopup(ref _notificationPopupData, notificationPopupData);
+        InitPopup(ref _collectPopupData, collectPopupData);
+        /*_notificationPopupData.PopupTextData = notificationPopupData;
+        if (!String.IsNullOrEmpty(notificationPopupData.PopupIconName))
+        {
+            LocationsManager.TryGetIconImageData(notificationPopupData.PopupIconName, out _notificationPopupData.IconSprite);
+        }
+        else
+        {
+            Debug.LogError("Null icon name in a notify popup data");
+        }
+
         _collectPopupData.PopupTextData = collectPopupData;
-        LocationsManager.TryGetIconImageData(collectPopupData.PopupIconName, out _collectPopupData.IconSprite);
+        if (!String.IsNullOrEmpty(collectPopupData.PopupIconName))
+        {
+            LocationsManager.TryGetIconImageData(collectPopupData.PopupIconName, out _collectPopupData.IconSprite);
+        }
+        else
+        {
+            Debug.LogError("Null icon name in a collect popup data");
+        }*/
+
+
+    }
+    protected void InitPopup(ref PopupData popupData, PopupTextData popupTextData)
+    {
+        popupData.PopupTextData = popupTextData;
+        if (!String.IsNullOrEmpty(popupTextData.PopupIconName))
+        {
+            LocationsManager.TryGetIconImageData(popupTextData.PopupIconName, out popupData.IconSprite);
+        }
+        else
+        {
+            Debug.Log("Null icon name in a popup text data (only error if its not a destination collectable handler)");
+        }
     }
 
     protected virtual void HandlePlayerMoved(Transform playerTransform)

@@ -7,9 +7,9 @@ public static class LocationsManager
 {
     public const int SELECTABLE_DESTINATIONS_COUNT = 3;
 
-    public static Dictionary<string, Sprite> IconsMap = new(6);
-    public static readonly Dictionary<int, DestinationData> Destinations = new(16);
-    public static readonly Dictionary<int, InterestPointData> InterestPoints = new(8);
+    public static Dictionary<string, Sprite> IconsMap { get; set; } = new(6);
+    public static Dictionary<int, DestinationData> Destinations { get; set; } = new(16);
+    public static Dictionary<int, InterestPointData> InterestPoints { get; set; } = new(8);
 
     public static int[] SelectedDestinations = new int[SELECTABLE_DESTINATIONS_COUNT];
 

@@ -8,7 +8,7 @@ public class InterestPointHandler : CollectableHandler
     public void Init(InterestPointData interestPoint, InfoCollectableData collectableData)
     {
         infoPopupData.PopupTextData = collectableData.InfoPopup;
-        LocationsManager.TryGetIconImageData(collectableData.InfoPopup.PopupIconName, out infoPopupData.IconSprite);
+        InitPopup(ref infoPopupData, collectableData.InfoPopup);
         Init(collectableData.RangeData, collectableData.CollectionPopup, collectableData.NotificationPopup);
         infoPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.InfoText;
         infoPopupData.IconSprite = interestPoint.Icon;

@@ -101,6 +101,12 @@ public class GameDataManager : MonoBehaviour
         // interest point data
         for (int i = 0; i < _currentGameData.IntrestPointDataList.Count; i++)
         {
+            if(string.IsNullOrEmpty(_currentGameData.IntrestPointDataList[i].IconImageName))
+            {
+                Debug.LogError("Empty or null string when initializing a POI in GameDataManager");
+                continue;
+            }   
+            
             TryGetIconImageData(_currentGameData.IntrestPointDataList[i].IconImageName, out Sprite iconImage);
             InterestPointData interestPointData = new InterestPointData { Data = _currentGameData.IntrestPointDataList[i], Icon = iconImage };
             LocationsManager.AddInterestPoint(i, interestPointData);
@@ -112,6 +118,12 @@ public class GameDataManager : MonoBehaviour
         LocationsManager.DestinationCollectables = _currentGameData.DestinationCollectables;
         LocationsManager.Challenges = _currentGameData.ChallengeDataList;
         LocationsManager.IconsMap = _iconImageDataMap;
+
+        foreach (var item in LocationsManager.IconsMap)
+        {
+            Debug.Log($"String: {item.Key}, Value:{item.Value != null}");
+        }
+        
     }
 
     /// <summary>

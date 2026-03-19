@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections;
 using UnityEngine;
@@ -26,12 +24,22 @@ public class ChallengeHandler : CollectableHandler
     
     public void Init(ChallengeData challengeData, PopupTextData failPopupData, CollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
     {
+        Init(collectableData, collectPopupData, notificationPopupData);
+
         _challengeData = challengeData;
+        
         _failPopupData.PopupTextData = failPopupData;
-        LocationsManager.TryGetIconImageData(failPopupData.PopupIconName, out _failPopupData.IconSprite);
-        _collectableData = collectableData;
-        _notificationPopupData.PopupTextData = notificationPopupData;
-        _collectPopupData.PopupTextData = collectPopupData;
+        InitPopup(ref _failPopupData, failPopupData);
+
+        /*if (!String.IsNullOrEmpty(failPopupData.PopupIconName))
+        {
+            LocationsManager.TryGetIconImageData(failPopupData.PopupIconName, out _failPopupData.IconSprite);
+        }
+        else
+        {
+            Debug.LogError("Null icon name in a fail popup data");
+        }*/   
+
         _notifyColor = Color.blue;
     }
     protected override void CheckCollectRange(Vector3 delta)
