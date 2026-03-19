@@ -50,7 +50,7 @@ public class GameDestinationLoader : MonoBehaviour
 
     private void GenerateDestinations()
     {
-        _destinations = new DestinationHandler[LocationsManager.SELECTABLE_DESTINATIONS_COUNT];
+        _destinations = new DestinationHandler[LocationsManager.DestinationsCount];
         for (int i = 0; i < _destinations.Length; i++)
         {
             int destination = LocationsManager.SelectedDestinations[i];          

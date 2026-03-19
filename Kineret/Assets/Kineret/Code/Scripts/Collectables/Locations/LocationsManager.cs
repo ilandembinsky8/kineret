@@ -5,13 +5,13 @@ using UnityEngine;
 
 public static class LocationsManager
 {
-    public const int SELECTABLE_DESTINATIONS_COUNT = 3;
+    public static int DestinationsCount;
 
     public static Dictionary<string, Sprite> IconsMap { get; set; } = new(6);
     public static Dictionary<int, DestinationData> Destinations { get; set; } = new(16);
     public static Dictionary<int, InterestPointData> InterestPoints { get; set; } = new(8);
 
-    public static int[] SelectedDestinations = new int[SELECTABLE_DESTINATIONS_COUNT];
+    public static int[] SelectedDestinations = new int[DestinationsCount];
 
     public static DestinationCollectableData[] DestinationCollectables { get; set; }
     public static InfoCollectableData InfoCollectable { get; set; }

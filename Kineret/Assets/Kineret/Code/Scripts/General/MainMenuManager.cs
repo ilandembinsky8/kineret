@@ -76,7 +76,7 @@ public class MainMenuManager : MonoBehaviour
     {  
         LocationsManager.SelectedDestinations[_selectedDestinationsCount] = destination;
         _selectedDestinationsCount++;
-        if (_selectedDestinationsCount == LocationsManager.SELECTABLE_DESTINATIONS_COUNT)
+        if (_selectedDestinationsCount == LocationsManager.DestinationsCount)
         {
             EndDestinationSelection();
         }

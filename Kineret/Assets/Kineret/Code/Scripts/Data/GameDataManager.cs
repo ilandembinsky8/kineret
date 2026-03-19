@@ -123,7 +123,10 @@ public class GameDataManager : MonoBehaviour
         {
             Debug.Log($"String: {item.Key}, Value:{item.Value != null}");
         }
-        
+
+        LocationsManager.DestinationsCount = GameSettingsManager.GetInt("Game Settings", "DestinationCount ", 3);
+
+
     }
 
     /// <summary>
