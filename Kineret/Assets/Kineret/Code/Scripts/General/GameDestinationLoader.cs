@@ -35,7 +35,12 @@ public class GameDestinationLoader : MonoBehaviour
             LocationsManager.BonusCollectables = bonusCollectables;
             LocationsManager.Challenges = challenges;
         }
-        
+        Debug.Log("Destinations:" + LocationsManager.Destinations.Count); 
+        Debug.Log("POI:" + LocationsManager.InterestPoints.Count);
+        Debug.Log("DestinationCollectables:" + LocationsManager.DestinationCollectables.Length);
+        Debug.Log("BonusCollectables:" + LocationsManager.BonusCollectables.Length);
+        Debug.Log("Challenges:" + LocationsManager.Challenges.Length);
+
 
         GenerateDestinations();
         GenerateInterestPoints();

@@ -911,6 +911,11 @@ PrefabInstance:
       propertyPath: parent
       value: 
       objectReference: {fileID: 1167579631646187821}
+    - target: {fileID: 3696091380746382211, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: IsTesting
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5160449359014002492, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
       propertyPath: m_Name

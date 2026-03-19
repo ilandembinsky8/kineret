@@ -178,6 +178,7 @@ public class GameDataManager : MonoBehaviour
         LocationsManager.BonusCollectables = _currentGameData.BonusCollectables;
         LocationsManager.InterestCollectable = _currentGameData.StaticInterestCollectable;
         LocationsManager.DestinationCollectables = _currentGameData.DestinationCollectables;
+        LocationsManager.Challenges = _currentGameData.ChallengeDataList;
 
     }
 

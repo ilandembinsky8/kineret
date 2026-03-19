@@ -508,12 +508,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5696783104908380280}
   - {fileID: 5696523211269675366}
   - {fileID: 4049377741894099845}
   - {fileID: 8461525944167161739}
   - {fileID: 1628819590277137041}
   - {fileID: 5588281341441353971}
-  - {fileID: 5696783104908380280}
   - {fileID: 739965723858346391}
   - {fileID: 8905464478924030651}
   m_Father: {fileID: 0}
@@ -551,7 +551,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 419391e03e2e7224d90e60d0081e6e5c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8030a7786c4dc1946b735317fff142dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -573,9 +573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b13c4d8c8c751245a5bca1022b9728d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePause_EC: {fileID: 11400000, guid: c647ad7c5a5c73f48ac7fa533fad8a6c, type: 2}
-  gameOver_EC: {fileID: 11400000, guid: d2263ad3087e9824ab7c49713ec4c77c, type: 2}
-  data: {fileID: 0}
   titleText: {fileID: 6031767316281596551}
   subtitleText: {fileID: 7204820290178915218}
   descriptionText: {fileID: 5900584321978757919}
@@ -650,7 +647,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 242}
-  m_SizeDelta: {x: 956, y: 614}
+  m_SizeDelta: {x: 371, y: 346}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7367073725083705352
 CanvasRenderer:
@@ -680,9 +677,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e9e156ba878440f4f9fa32e1b9581d93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27d582356ad15114db62c12ac6654aa3, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

@@ -48,7 +48,7 @@ public struct GameData
     public InfoCollectableData StaticInterestCollectable;
     public InfoCollectableData InfoCollectable;
 
-    public List<ChallengePointData> ChallengeDataList;
+    public ChallengeCollectableData[] ChallengeDataList;
 }
 
 #region Destination Data
@@ -139,14 +139,15 @@ public struct BonusCollectableData
     public PopupTextData CollectionPopup;
 }
 
-[Serializable]
-public struct ChallengePointData
-{
-    //public float timeLimit; //gonna sit in .ini
-    public CollectableData CollectableData;
 
+[Serializable]
+public struct ChallengeCollectableData
+{
+    public CollectableData CollectableData;
     public PopupTextData NotificationPopup;
-    public PopupTextData CompletedPopup;
+    public PopupTextData CollectionPopup;
+    public PopupTextData FailPopupData;
+    public float Duration;
 }
 #endregion
 

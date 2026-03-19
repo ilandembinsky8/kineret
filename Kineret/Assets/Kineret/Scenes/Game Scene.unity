@@ -1734,6 +1734,11 @@ PrefabInstance:
       objectReference: {fileID: 3559719673135684605}
     - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
         type: 3}
+      propertyPath: IsTesting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
       propertyPath: challengePrefab
       value: 
       objectReference: {fileID: 1580731197291447572, guid: 87831dc9485a292429ca746ee0e7299b,

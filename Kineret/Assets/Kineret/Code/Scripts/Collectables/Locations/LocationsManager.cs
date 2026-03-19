@@ -13,11 +13,11 @@ public static class LocationsManager
 
     public static int[] SelectedDestinations = new int[SELECTABLE_DESTINATIONS_COUNT];
 
-    public static DestinationCollectableData[] DestinationCollectables;
-    public static InfoCollectableData InfoCollectable;
-    public static InfoCollectableData InterestCollectable;
-    public static BonusCollectableData[] BonusCollectables;
-    public static ChallengeCollectableData[] Challenges;
+    public static DestinationCollectableData[] DestinationCollectables { get; set; }
+    public static InfoCollectableData InfoCollectable { get; set; }
+    public static InfoCollectableData InterestCollectable { get; set; }
+    public static BonusCollectableData[] BonusCollectables { get; set; }
+    public static ChallengeCollectableData[] Challenges{ get; set; }
 
     public static void AddDestination(int destination, DestinationData destinationData)
     {

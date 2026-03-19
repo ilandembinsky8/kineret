@@ -15,15 +15,7 @@ public struct ChallengeData
     public ChallengeType Challenge;
     public float Duration;
 }
-[Serializable]
-public struct ChallengeCollectableData
-{
-    public CollectableData CollectableData;  
-    public PopupTextData NotificationPopup;
-    public PopupTextData CollectionPopup;
-    public PopupTextData FailPopupData;
-    public float Duration;
-}
+
 
 
 public class ChallengeHandler : CollectableHandler
