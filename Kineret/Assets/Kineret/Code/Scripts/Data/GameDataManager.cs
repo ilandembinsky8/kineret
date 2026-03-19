@@ -3,18 +3,6 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-public enum IconType
-{
-    DestinationReached,
-    InterestPoint,
-    Challenge,
-    Success,
-    Forest,
-    Bonus,
-    Time,
-    Info
-}
-
 [RequireComponent(typeof(ImageDataManager))]
 public class GameDataManager : MonoBehaviour
 {
@@ -22,8 +10,7 @@ public class GameDataManager : MonoBehaviour
 
     #region variables
     private Dictionary<string, DestinationImageData> _destinationImageDataDiction;
-    private static Dictionary<IconType, Sprite> _iconImageTypeDataDiction;
-    private Dictionary<string, Sprite> _iconImageDataDiction;
+    private Dictionary<string, Sprite> _iconImageDataMap;
     private ImageDataManager _imageDataManager;
     private WaitForSeconds _loadingWait;
     private GameData _currentGameData;
@@ -42,13 +29,13 @@ public class GameDataManager : MonoBehaviour
     private void Start() { _jsonManager.TryReadFromJson(OnIconDataLoaded, "IconGameData.json"); }
 
     #region Callbacks for data loading
-    void OnIconDataLoaded(string data)
+    private void OnIconDataLoaded(string data)
     {
         IconData iconData = JsonUtility.FromJson<IconData>(data);
 
         _imageDataManager.LoadIcons(iconData, OnIconsFinLoading);
     }
-    void OnJsonDataLoaded(string data)
+    private void OnJsonDataLoaded(string data)
     {
         _currentGameData = JsonUtility.FromJson<GameData>(data);
         _imageDataManager.LoadImages(_currentGameData.DestinationDataList, OnImagesFinLoading);
@@ -59,60 +46,13 @@ public class GameDataManager : MonoBehaviour
     /// <summary>
     /// On data recieved from JSON containing names and sprites, sorts into comfortable Enum base
     /// </summary>
-    /// <param name="iconImageDataDictionaty"></param>
-    void OnIconsFinLoading(Dictionary<string, Sprite> iconImageDataDictionaty)
+    private void OnIconsFinLoading(Dictionary<string, Sprite> iconImageDataMap)
     {
-        _iconImageDataDiction = iconImageDataDictionaty;
-
-        #region filling a usable Dictionary using IconType Enum
-        _iconImageTypeDataDiction = new Dictionary<IconType, Sprite>(_iconImageDataDiction.Count);
-        Dictionary<IconType, Sprite> iconEnumDictionary = new Dictionary<IconType, Sprite>();
-
-        foreach (var item in iconImageDataDictionaty)
-        {
-            string iconName = item.Key;
-            string[] iconNameFormatted = iconName.Split('-');// Expected format: "Icon-Category-Type"
-            IconType iconType = default;
-
-            switch (iconNameFormatted[2])//we are interested in the Type part
-            {
-                case "DestinationReached":
-                    iconType = IconType.DestinationReached;
-                    break;
-                case "InterestPoint":
-                    iconType = IconType.InterestPoint;
-                    break;
-                case "Challenge":
-                    iconType = IconType.Challenge;
-                    break;
-                case "Success":
-                    iconType = IconType.Success;
-                    break;
-                case "Forest":
-                    iconType = IconType.Forest;
-                    break;
-                case "Bonus":
-                    iconType = IconType.Bonus;
-                    break;
-                case "Time":
-                    iconType = IconType.Time;
-                    break;
-                case "Info":
-                    iconType = IconType.Info;
-                    break;
-                default:
-                    Debug.LogError($"Icon name {iconName} does not match any known type, please varify Json name");
-                    break;
-            }
-
-            _iconImageTypeDataDiction[iconType] = item.Value;
-        }
-        #endregion
-
+        _iconImageDataMap = iconImageDataMap;
         _iconsLoaded = true;
         _jsonManager.TryReadFromJson(OnJsonDataLoaded, "GameData.json");
     }
-    void OnImagesFinLoading(Dictionary<string, DestinationImageData> imageDataDictionaty)
+    private void OnImagesFinLoading(Dictionary<string, DestinationImageData> imageDataDictionaty)
     {
         _destinationImageDataDiction = imageDataDictionaty;
         _imagesLoaded = true;
@@ -120,18 +60,10 @@ public class GameDataManager : MonoBehaviour
     }
     #endregion
 
-    public static bool TryGetIconImageData(IconType iconType, out Sprite icon)
-    {
-        if (_iconImageTypeDataDiction != null &&
-            _iconImageTypeDataDiction.TryGetValue(iconType, out icon)) { return true; }// Found image data for icon
-        icon = default;
-        return false; // No image found for icon
-    }
-
     private bool TryGetIconImageData(string iconName, out Sprite icon)
     {
-        if (_iconImageDataDiction != null &&
-            _iconImageDataDiction.TryGetValue(iconName, out icon)) { return true; }// Found image data for icon
+        if (_iconImageDataMap != null &&
+            _iconImageDataMap.TryGetValue(iconName, out icon)) { return true; }// Found image data for icon
         icon = default;
         return false; // No image found for icon
     }
@@ -179,7 +111,7 @@ public class GameDataManager : MonoBehaviour
         LocationsManager.InterestCollectable = _currentGameData.StaticInterestCollectable;
         LocationsManager.DestinationCollectables = _currentGameData.DestinationCollectables;
         LocationsManager.Challenges = _currentGameData.ChallengeDataList;
-
+        LocationsManager.IconsMap = _iconImageDataMap;
     }
 
     /// <summary>

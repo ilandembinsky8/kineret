@@ -28,6 +28,7 @@ public class ChallengeHandler : CollectableHandler
     {
         _challengeData = challengeData;
         _failPopupData.PopupTextData = failPopupData;
+        LocationsManager.TryGetIconImageData(failPopupData.PopupIconName, out _failPopupData.IconSprite);
         _collectableData = collectableData;
         _notificationPopupData.PopupTextData = notificationPopupData;
         _collectPopupData.PopupTextData = collectPopupData;

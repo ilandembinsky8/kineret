@@ -64,7 +64,9 @@ public class CollectableHandler : MonoBehaviour
     {
         _collectableData = collectableData;
         _notificationPopupData.PopupTextData = notificationPopupData;
+        LocationsManager.TryGetIconImageData(notificationPopupData.PopupIconName, out _notificationPopupData.IconSprite);
         _collectPopupData.PopupTextData = collectPopupData;
+        LocationsManager.TryGetIconImageData(collectPopupData.PopupIconName, out _collectPopupData.IconSprite);
     }
 
     protected virtual void HandlePlayerMoved(Transform playerTransform)
