@@ -563,6 +563,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 705313424}
+    - target: {fileID: 3004619377583056187, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6753103378394003606, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
         type: 3}
       propertyPath: m_Name
@@ -938,6 +943,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Menu Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129997479019126715, guid: ec3f50ad446e3c649aee59d712ffb426,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
         type: 3}

@@ -1,4 +1,6 @@
 using System.Collections;
+using TMPro;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +22,9 @@ public class MainMenuManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject explanationPopup;
     [SerializeField] private PopupTweenHandler destinationsSummaryPopup;
+    [SerializeField] private TMP_Text firstDestinationText;
+    [SerializeField] private TMP_Text secondDestinationText;
+    [SerializeField] private TMP_Text thirdDestinationText;
     [SerializeField] private PopupTweenHandler toturialPopup;
    
     [SerializeField] private GameObject showToturialButton;
@@ -87,6 +92,11 @@ public class MainMenuManager : MonoBehaviour
         enableDestinationSelection_EC.RaiseEvent(false);
         StartCoroutine(LoadToturial());
         destinationsSummaryPopup.gameObject.SetActive(true);
+
+        firstDestinationText.text = LocationsManager.GetDestination(LocationsManager.SelectedDestinations[0]).Data.UIDestinationInfoText.HebTitle;
+        secondDestinationText.text = LocationsManager.GetDestination(LocationsManager.SelectedDestinations[1]).Data.UIDestinationInfoText.HebTitle;
+        thirdDestinationText.text = LocationsManager.GetDestination(LocationsManager.SelectedDestinations[2]).Data.UIDestinationInfoText.HebTitle;
+
         destinationsSummaryPopup.Play((int)PlayMode.Default);
         //destinationsSummaryPopup.StartCoroutine(destinationsSummaryPopup.PlayIconYoyo(showTutorialDelay));
         explanationPopup.SetActive(false);
