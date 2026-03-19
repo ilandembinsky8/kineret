@@ -83,6 +83,8 @@ public struct DestinationTextData
     /// represents the info screen once destination was reached.
     /// </summary>
     public TextData DestinationInfoScreenText;
+    public string HebSubTitleInfoText;
+    public string EngSubTitleInfoText;
 
     public TextData FirstInfoPoint;
     public TextData SecondInfoPoint;
@@ -170,6 +172,7 @@ public struct CollectableData
 public struct PopupTextData
 {
     public int Type;
+    public string popupIconName;
     public TextData TextData;
     public float Duration;
     public float Delay;

@@ -64,9 +64,9 @@ public static class LocationsManager
         DestinationData destination = LocationsManager.GetDestination(destinationID);
         InfoScreenData data = new()
         {
-            Title = destination.Data.UIDestinationInfoText.HebTitle,//still the name
-            Subtitle = destination.Data.DestinationInfoScreenText.HebDescription,
-            Text = destination.Data.DestinationInfoScreenText.HebTitle,
+            Title = destination.Data.UIDestinationInfoText.HebTitle,
+            Subtitle = destination.Data.HebSubTitleInfoText,
+            Text = destination.Data.DestinationInfoScreenText.HebDescription,
             Background = destination.Background,
             Logo = destination.Logo,
             Icon = destination.Icon,
