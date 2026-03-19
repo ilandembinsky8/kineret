@@ -69,12 +69,15 @@ public class GameManager : MonoBehaviour
     private void HandleDestinationReached(int destination)
     {
         _destinationsReachedCount++;
-        ChangeMoveSpeedByLeg(Destinations[_destinationsReachedCount - 1].transform.position, Destinations[_destinationsReachedCount].transform.position);        
         bool isFinal = _destinationsReachedCount == LocationsManager.DestinationsCount;
         InfoScreenData data = LocationsManager.GetInfoScreenData(destination, isFinal);
-        if(!isFinal) CurrentDestination = Destinations[_destinationsReachedCount].transform;
+        if (!isFinal)
+        {
+            ChangeMoveSpeedByLeg(Destinations[_destinationsReachedCount - 1].transform.position, Destinations[_destinationsReachedCount].transform.position);
+            CurrentDestination = Destinations[_destinationsReachedCount].transform;
+        }
 
-        EventsRelay.OnLoadInfoScreen(data);       
+        EventsRelay.OnLoadInfoScreen(data);
     }
     private void ChangeMoveSpeedByLeg(Vector3 positionA, Vector3 positionB)
     {
