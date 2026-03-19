@@ -7,11 +7,11 @@ public class InterestPointHandler : CollectableHandler
 
     public void Init(InterestPointData interestPoint, InfoCollectableData collectableData)
     {
-        infoPopupData.PopupTextData = collectableData.InfoPopup;
-        InitPopup(ref infoPopupData, collectableData.InfoPopup);
         Init(collectableData.RangeData, collectableData.CollectionPopup, collectableData.NotificationPopup);
-        infoPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.InfoText;
+        infoPopupData.PopupTextData = collectableData.InfoPopup;
         infoPopupData.IconSprite = interestPoint.Icon;
+
+        infoPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.InfoText;   
         _collectPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.CollectText;
     }
 

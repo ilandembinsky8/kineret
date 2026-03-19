@@ -732,7 +732,7 @@
         "EngTitle": "",
         "EngDescription": ""
       },
-      "Duration": 5.0,
+      "Duration": 3.0,
       "Delay": 0.5
     },
     "CollectionPopup": {
@@ -743,7 +743,7 @@
         "EngTitle": "",
         "EngDescription": ""
       },
-      "Duration": 5.0,
+      "Duration": 3.0,
       "Delay": 0.0
     },
     "InfoPopup": {
@@ -754,7 +754,7 @@
         "EngTitle": "",
         "EngDescription": ""
       },
-      "Duration": 0.0,
+      "Duration": 5.0,
       "Delay": 0.0
     }
   },
@@ -763,7 +763,7 @@
       "NotificationRange": 7500.0,
       "CollectionRange": 3500.0,
       "TimeForMaxScore": 0.0,
-      "MaxScore": 8
+      "MaxScore": 10
     },
     "NotificationPopup": {
       "Type": 2,
@@ -774,18 +774,18 @@
         "EngTitle": "",
         "EngDescription": ""
       },
-      "Duration": 5.0,
+      "Duration": 3.0,
       "Delay": 0.5
     },
     "CollectionPopup": {
       "Type": 2,
-      "TextData": {
-        "HebTitle": "",
-        "HebDescription": "",
-        "EngTitle": "",
-        "EngDescription": ""
-      },
-      "Duration": 5.0,
+        "TextData": {
+            "HebTitle": "כל הכבוד!",
+            "HebDescription": "אספתם את הנקודה זכיתם בנקודות",
+            "EngTitle": "",
+            "EngDescription": ""
+        },
+      "Duration": 3.0,
       "Delay": 0.0
     },
     "InfoPopup": {
@@ -796,7 +796,7 @@
         "EngTitle": "",
         "EngDescription": ""
       },
-      "Duration": 0.0,
+      "Duration": 5.0,
       "Delay": 0.0
     }
   },
