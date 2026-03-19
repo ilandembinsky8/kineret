@@ -599,7 +599,7 @@
         "MaxScore": 5
       },
       "NotificationPopup": {
-        "Type": 0,
+        "Type": 2,
         "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
           "HebTitle": "שימו לב! נקודת בונוס לפניכם",
@@ -611,7 +611,7 @@
         "Delay": 0.5
       },
       "CollectionPopup": {
-        "Type": 0,
+        "Type": 2,
         "TextData": {
           "HebTitle": "!כל הכבוד",
           "HebDescription": "אספתם 50 קילו-וואט אנרגיה כחולה",
@@ -630,7 +630,7 @@
         "MaxScore": 5
       },
       "NotificationPopup": {
-        "Type": 0,
+        "Type": 2,
         "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
           "HebTitle": "שימו לב! נקודת בונוס לפניכם",
@@ -642,7 +642,7 @@
         "Delay": 0.5
       },
       "CollectionPopup": {
-        "Type": 0,
+        "Type": 2,
         "TextData": {
           "HebTitle": "!כל הכבוד",
           "HebDescription": "אספתם 50 קילו-וואט אנרגיה אדומה",
@@ -661,7 +661,7 @@
         "MaxScore": 5
       },
       "NotificationPopup": {
-        "Type": 0,
+        "Type": 2,
         "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
           "HebTitle": "שימו לב! נקודת בונוס לפניכם",
@@ -673,7 +673,7 @@
         "Delay": 0.5
       },
       "CollectionPopup": {
-        "Type": 0,
+        "Type": 2,
         "TextData": {
           "HebTitle": "!כל הכבוד",
           "HebDescription": "אספתם 50 קילו-וואט אנרגיה צהובה",
@@ -692,7 +692,7 @@
         "MaxScore": 5
       },
       "NotificationPopup": {
-        "Type": 0,
+        "Type": 2,
         "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
           "HebTitle": "שימו לב! נקודת בונוס לפניכם",
@@ -704,7 +704,7 @@
         "Delay": 0.5
       },
       "CollectionPopup": {
-        "Type": 0,
+        "Type": 2,
         "TextData": {
           "HebTitle": "!כל הכבוד",
           "HebDescription": "אספתם 50 קילו-וואט אנרגיה ירוקה",
@@ -724,7 +724,7 @@
       "MaxScore": 10
     },
     "NotificationPopup": {
-      "Type": 0,
+      "Type": 2,
       "PopupIconName": "Icon-Route-InterestPoint",
       "TextData": {
         "HebTitle": "שימו לב! נקודת עניין לפניכם",
@@ -736,7 +736,7 @@
       "Delay": 0.5
     },
     "CollectionPopup": {
-      "Type": 0,
+      "Type": 2,
       "TextData": {
         "HebTitle": "!כל הכבוד",
         "HebDescription": "!זכיתם בנקודות",
@@ -766,7 +766,7 @@
       "MaxScore": 8
     },
     "NotificationPopup": {
-      "Type": 0,
+      "Type": 2,
       "PopupIconName": "Icon-General-Success",
       "TextData": {
         "HebTitle": "הידעת",
@@ -778,7 +778,7 @@
       "Delay": 0.5
     },
     "CollectionPopup": {
-      "Type": 0,
+      "Type": 2,
       "TextData": {
         "HebTitle": "",
         "HebDescription": "",

@@ -59,8 +59,10 @@ MonoBehaviour:
   routePopupData:
     PopupTextData:
       Type: 1
+      PopupIconName: 
       TextData:
-        HebTitle: 
+        HebTitle: "\u05D4\u05D9\u05E9\u05D0\u05E8\u05D5 \u05D1\u05E0\u05EA\u05D9\u05D1
+          \u05D4\u05DE\u05E1\u05D5\u05DE\u05DF"
         HebDescription: 
         EngTitle: 
         EngDescription: 
@@ -351,6 +353,7 @@ MonoBehaviour:
     type: 3}
   infoPointPrefab: {fileID: 4480077423330200430, guid: ad5f4f35bfd47c24e9d52e307ba5169c,
     type: 3}
+  challengePrefab: {fileID: 0}
   destinationCollectables:
   - RangeData:
       NotificationRange: 0
@@ -359,6 +362,7 @@ MonoBehaviour:
       MaxScore: 0
     CollectionPopup:
       Type: 1
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -373,6 +377,7 @@ MonoBehaviour:
       MaxScore: 0
     CollectionPopup:
       Type: 1
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -387,6 +392,7 @@ MonoBehaviour:
       MaxScore: 0
     CollectionPopup:
       Type: 1
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -402,6 +408,7 @@ MonoBehaviour:
       MaxScore: 0
     NotificationPopup:
       Type: 3
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -411,6 +418,7 @@ MonoBehaviour:
       Delay: 0
     CollectionPopup:
       Type: 2
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -420,6 +428,7 @@ MonoBehaviour:
       Delay: 0
     InfoPopup:
       Type: 0
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -435,6 +444,7 @@ MonoBehaviour:
       MaxScore: 0
     NotificationPopup:
       Type: 3
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -444,6 +454,7 @@ MonoBehaviour:
       Delay: 0
     CollectionPopup:
       Type: 2
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -453,6 +464,7 @@ MonoBehaviour:
       Delay: 0
     InfoPopup:
       Type: 0
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -468,6 +480,7 @@ MonoBehaviour:
       MaxScore: 0
     NotificationPopup:
       Type: 3
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -477,6 +490,7 @@ MonoBehaviour:
       Delay: 0
     CollectionPopup:
       Type: 2
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -491,6 +505,7 @@ MonoBehaviour:
       MaxScore: 0
     NotificationPopup:
       Type: 3
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -500,6 +515,7 @@ MonoBehaviour:
       Delay: 0
     CollectionPopup:
       Type: 2
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -514,6 +530,7 @@ MonoBehaviour:
       MaxScore: 0
     NotificationPopup:
       Type: 3
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -523,6 +540,7 @@ MonoBehaviour:
       Delay: 0
     CollectionPopup:
       Type: 2
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -537,6 +555,7 @@ MonoBehaviour:
       MaxScore: 0
     NotificationPopup:
       Type: 3
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -546,6 +565,7 @@ MonoBehaviour:
       Delay: 0
     CollectionPopup:
       Type: 2
+      PopupIconName: 
       TextData:
         HebTitle: 
         HebDescription: 
@@ -553,4 +573,5 @@ MonoBehaviour:
         EngDescription: 
       Duration: 0
       Delay: 0
+  challenges: []
   IsTesting: 1
