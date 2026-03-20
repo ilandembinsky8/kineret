@@ -56,6 +56,7 @@ public struct GameData
 /// <summary>
 /// Main data structure of a destination
 /// </summary>
+[Serializable]
 public struct DestinationData
 {
     public DestinationTextData Data;
@@ -125,11 +126,11 @@ public struct InfoCollectableData
 [Serializable]
 public struct InterestPointTextData
 {
-    public string Name;
+    public SingleTextData Name;
     public string IconImageName;
     public Vector3 WorldPosition;
-    public string InfoText;
-    public string CollectText;
+    public SingleTextData InfoText;
+    public SingleTextData CollectText;
 }
 
 [Serializable]
@@ -188,4 +189,11 @@ public struct TextData
     public string HebDescription;
     public string EngTitle;
     public string EngDescription;
+}
+
+[Serializable]
+public struct SingleTextData
+{
+    public string HebText;
+    public string EngText;
 }

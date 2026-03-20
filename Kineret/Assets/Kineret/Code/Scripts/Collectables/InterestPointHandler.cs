@@ -11,8 +11,8 @@ public class InterestPointHandler : CollectableHandler
         infoPopupData.PopupTextData = collectableData.InfoPopup;
         infoPopupData.IconSprite = interestPoint.Icon;
 
-        infoPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.InfoText;   
-        _collectPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.CollectText;
+        infoPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.InfoText.HebText;   
+        _collectPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.CollectText.HebText;
     }
 
     protected override void Collect()
