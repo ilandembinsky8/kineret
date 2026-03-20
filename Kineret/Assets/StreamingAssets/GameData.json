@@ -535,7 +535,7 @@
     {
       "RangeData": {
         "NotificationRange": 0,
-        "CollectionRange": 3000.0,
+        "CollectionRange": 1500.0,
         "TimeForMaxScore": 0.0,
         "MaxScore": 25
       },
@@ -554,7 +554,7 @@
     {
       "RangeData": {
         "NotificationRange": 0,
-        "CollectionRange": 3000.0,
+        "CollectionRange": 1500.0,
         "TimeForMaxScore": 0.0,
         "MaxScore": 25
       },
@@ -573,7 +573,7 @@
     {
       "RangeData": {
         "NotificationRange": 0,
-        "CollectionRange": 3000.0,
+        "CollectionRange": 1500.0,
         "TimeForMaxScore": 0.0,
         "MaxScore": 25
       },
@@ -737,6 +737,7 @@
     },
     "CollectionPopup": {
       "Type": 2,
+      "PopupIconName": "Icon-General-Success",
       "TextData": {
         "HebTitle": "!כל הכבוד",
         "HebDescription": "!זכיתם בנקודות",
@@ -748,9 +749,10 @@
     },
     "InfoPopup": {
       "Type": 0,
+      "PopupIconName": "Icon-Route-Forest",
       "TextData": {
-        "HebTitle": "",
-        "HebDescription": "",
+        "HebTitle": "שם נקודה",
+        "HebDescription": "תיאור ושם יוגדרו בהמשך",
         "EngTitle": "",
         "EngDescription": ""
       },
@@ -767,7 +769,7 @@
     },
     "NotificationPopup": {
       "Type": 2,
-      "PopupIconName": "Icon-General-Success",
+      "PopupIconName": "Icon-Route-Forest",
       "TextData": {
         "HebTitle": "הידעת",
         "HebDescription": "איסוף מהיר ומדויק יזכה אתכם בניקוד נוסף נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
@@ -779,20 +781,22 @@
     },
     "CollectionPopup": {
       "Type": 2,
-        "TextData": {
-            "HebTitle": "כל הכבוד!",
-            "HebDescription": "אספתם את הנקודה זכיתם בנקודות",
-            "EngTitle": "",
-            "EngDescription": ""
-        },
+      "PopupIconName": "Icon-General-Success",
+      "TextData": {
+        "HebTitle": "כל הכבוד!",
+        "HebDescription": "אספתם את הנקודה זכיתם בנקודות",
+        "EngTitle": "",
+        "EngDescription": ""
+      },
       "Duration": 3.0,
       "Delay": 0.0
     },
     "InfoPopup": {
       "Type": 0,
+      "PopupIconName": "Icon-Route-Forest",
       "TextData": {
-        "HebTitle": "",
-        "HebDescription": "",
+        "HebTitle": "עובדת הידעת",
+        "HebDescription": "תיאור ושם יוגדרו בהמשך",
         "EngTitle": "",
         "EngDescription": ""
       },
@@ -811,7 +815,7 @@
 
       "NotificationPopup": {
         "Type": 2,
-        "PopupIconName": "Icon-Route-Challenge",
+        "PopupIconName": "Icon-General-Time",
         "TextData": {
           "HebTitle": "רוח קדמית",
           "HebDescription": "זוהתה רוח קדמית חזקה לפניכם, האיצו קדימה!",
@@ -824,6 +828,7 @@
 
       "CollectionPopup": {
         "Type": 3,
+        "PopupIconName": "Icon-Route-Success",
         "TextData": {
           "HebTitle": "!הצלחתם",
           "HebDescription": "עברתם את האתגר וקיבלתם ניקוד מלא",
@@ -836,6 +841,7 @@
 
       "FailPopupData": {
         "Type": 3,
+        "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "האתגר נכשל",
           "HebDescription": "לא הספקתם לעבור בזמן",
@@ -858,7 +864,7 @@
 
       "NotificationPopup": {
         "Type": 2,
-        "PopupIconName": "Icon-Route-Challenge",
+        "PopupIconName": "Icon-General-Time",
         "TextData": {
           "HebTitle": "רוח צדדית",
           "HebDescription": "זוהתה רוח צדדית חזקה לפניכם, האיצו קדימה!",
@@ -871,6 +877,7 @@
 
       "CollectionPopup": {
         "Type": 3,
+        "PopupIconName": "Icon-Route-Success",
         "TextData": {
           "HebTitle": "!הצלחתם",
           "HebDescription": "עברתם את האתגר וקיבלתם ניקוד מלא",
@@ -883,6 +890,7 @@
 
       "FailPopupData": {
         "Type": 3,
+        "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "האתגר נכשל",
           "HebDescription": "לא הספקתם לעבור בזמן",
@@ -905,7 +913,7 @@
 
       "NotificationPopup": {
         "Type": 2,
-        "PopupIconName": "Icon-Route-Challenge",
+        "PopupIconName": "Icon-General-Time",
         "TextData": {
           "HebTitle": "ציפורים!!!",
           "HebDescription": "תעלו גבוה יותר כדי להתחמק מהציפורים",
@@ -918,6 +926,7 @@
 
       "CollectionPopup": {
         "Type": 3,
+        "PopupIconName": "Icon-Route-Success",
         "TextData": {
           "HebTitle": "!הצלחתם",
           "HebDescription": "עברתם את האתגר וקיבלתם ניקוד מלא",
@@ -930,6 +939,7 @@
 
       "FailPopupData": {
         "Type": 3,
+        "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "האתגר נכשל",
           "HebDescription": "לא הספקתם לעבור בזמן",
