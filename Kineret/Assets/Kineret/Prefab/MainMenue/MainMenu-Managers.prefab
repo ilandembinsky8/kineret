@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSettings: {fileID: 11400000, guid: b7bdae77a44f5974aadfd382aa79b1f3, type: 2}
-  showTutorialDelay: 15
+  showTutorialDelay: 2
   showGameButtonDelay: 5
   enableDestinationSelection_EC: {fileID: 11400000, guid: 30db6846684d5714db321701866561b6,
     type: 2}
@@ -54,6 +54,9 @@ MonoBehaviour:
   controlButtonsCanvas: {fileID: 0}
   explanationPopup: {fileID: 0}
   destinationsSummaryPopup: {fileID: 0}
+  firstDestinationText: {fileID: 0}
+  secondDestinationText: {fileID: 0}
+  thirdDestinationText: {fileID: 0}
   toturialPopup: {fileID: 0}
   showToturialButton: {fileID: 0}
   startGameButton: {fileID: 0}
