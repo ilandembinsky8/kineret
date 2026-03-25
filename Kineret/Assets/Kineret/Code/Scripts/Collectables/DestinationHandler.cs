@@ -5,11 +5,6 @@ public class DestinationHandler : InfoPointHandler
 {
     public int Destination { get; set; }
 
-    protected override void CheckNotifyRange(Vector3 delta)
-    {
-        //Overrides to not run base.CheckNotifyRange
-    }
-
     protected override void HandleLegStart(int leg)
     {
         _isActive = leg == Leg;

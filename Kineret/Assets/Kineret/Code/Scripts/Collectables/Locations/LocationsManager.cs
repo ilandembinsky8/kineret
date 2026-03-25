@@ -79,9 +79,18 @@ public static class LocationsManager
 
     public static bool TryGetIconImageData(string iconName, out Sprite icon)
     {
-        if (IconsMap != null &&
-            IconsMap.TryGetValue(iconName, out icon)) { return true; }// Found image data for icon
         icon = default;
-        return false; // No image found for icon
+
+        if (IconsMap == null)
+        {
+            Debug.LogError("Icons map is null in LocationManager!");
+            return false;
+        }
+
+        if (IconsMap.TryGetValue(iconName, out icon)) { return true; }// Found image data for icon
+
+        Debug.LogWarning($"Couldn't find Icon image data from following string: {iconName}");
+        return false;
+        // No image found for icon
     }
 }
