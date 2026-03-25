@@ -30,16 +30,6 @@ public class ChallengeHandler : CollectableHandler
         
         _failPopupData.PopupTextData = failPopupData;
         InitPopup(ref _failPopupData, failPopupData);
-
-        /*if (!String.IsNullOrEmpty(failPopupData.PopupIconName))
-        {
-            LocationsManager.TryGetIconImageData(failPopupData.PopupIconName, out _failPopupData.IconSprite);
-        }
-        else
-        {
-            Debug.LogError("Null icon name in a fail popup data");
-        }*/   
-
         _notifyColor = Color.blue;
     }
     protected override void CheckCollectRange(Vector3 delta)

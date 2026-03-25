@@ -51,20 +51,29 @@ MonoBehaviour:
   _collectableData:
     NotificationRange: 0
     CollectionRange: 0
-    Score: 0
+    TimeForMaxScore: 0
+    MaxScore: 0
   _notificationPopupData:
     PopupTextData:
       Type: 0
-      Title: 
-      Description: 
+      PopupIconName: 
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
     IconSprite: {fileID: 21300000, guid: 3ef30e54003457d42b158a2bfdad7ee7, type: 3}
   _collectPopupData:
     PopupTextData:
       Type: 0
-      Title: 
-      Description: 
+      PopupIconName: 
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
     IconSprite: {fileID: 21300000, guid: 3ef30e54003457d42b158a2bfdad7ee7, type: 3}
@@ -72,8 +81,12 @@ MonoBehaviour:
   infoPopupData:
     PopupTextData:
       Type: 0
-      Title: 
-      Description: 
+      PopupIconName: 
+      TextData:
+        HebTitle: 
+        HebDescription: 
+        EngTitle: 
+        EngDescription: 
       Duration: 0
       Delay: 0
     IconSprite: {fileID: 0}
@@ -151,7 +164,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ba9cb928cc94634886f1c3a11ae80ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ef30e54003457d42b158a2bfdad7ee7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

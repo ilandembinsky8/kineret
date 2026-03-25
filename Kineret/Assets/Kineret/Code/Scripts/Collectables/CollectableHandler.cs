@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,10 +30,6 @@ public class CollectableHandler : MonoBehaviour
     private void Awake()
     {
         _actions = new InputActions();
-    }
-    protected virtual void Start()
-    {
-        visuals.SetActive(false);
     }
 
     private void OnEnable()
@@ -74,32 +69,12 @@ public class CollectableHandler : MonoBehaviour
         _collectableData = collectableData;
         InitPopup(ref _notificationPopupData, notificationPopupData);
         InitPopup(ref _collectPopupData, collectPopupData);
-        /*_notificationPopupData.PopupTextData = notificationPopupData;
-        if (!String.IsNullOrEmpty(notificationPopupData.PopupIconName))
-        {
-            LocationsManager.TryGetIconImageData(notificationPopupData.PopupIconName, out _notificationPopupData.IconSprite);
-        }
-        else
-        {
-            Debug.LogError("Null icon name in a notify popup data");
-        }
-
-        _collectPopupData.PopupTextData = collectPopupData;
-        if (!String.IsNullOrEmpty(collectPopupData.PopupIconName))
-        {
-            LocationsManager.TryGetIconImageData(collectPopupData.PopupIconName, out _collectPopupData.IconSprite);
-        }
-        else
-        {
-            Debug.LogError("Null icon name in a collect popup data");
-        }*/
-
-
     }
 
-    private void HandleLegStart(int leg)
+    protected virtual void HandleLegStart(int leg)
     {
         _isActive = leg == Leg;
+        visuals.SetActive(leg == Leg);
     }
     protected void InitPopup(ref PopupData popupData, PopupTextData popupTextData)
     {

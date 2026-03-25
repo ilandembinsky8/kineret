@@ -13,6 +13,8 @@ public class InterestPointHandler : CollectableHandler
 
         infoPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.InfoText.HebText;   
         _collectPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.CollectText.HebText;
+        infoPopupData.PopupTextData.TextData.EngDescription = interestPoint.Data.InfoText.EngText;
+        _collectPopupData.PopupTextData.TextData.EngDescription = interestPoint.Data.CollectText.EngText;
     }
 
     protected override void Collect()
