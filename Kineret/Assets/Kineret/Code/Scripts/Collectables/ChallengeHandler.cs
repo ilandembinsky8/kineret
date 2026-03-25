@@ -95,6 +95,7 @@ public class ChallengeHandler : CollectableHandler
             LoadPopup_EC.RaiseEvent(_failPopupData);
         }
 
+        visuals.SetActive(false);
         OnDisable();
     }
 }
