@@ -47,7 +47,6 @@ public class CollectableHandler : MonoBehaviour
         playerMoved_EC.OnEventRaised -= HandlePlayerMoved;
         EventsRelay.OnLegStart -= HandleLegStart;
     }
-
     private void OnDrawGizmos()
     {
         
@@ -69,6 +68,13 @@ public class CollectableHandler : MonoBehaviour
         _collectableData = collectableData;
         InitPopup(ref _notificationPopupData, notificationPopupData);
         InitPopup(ref _collectPopupData, collectPopupData);
+        UpdateVisual(_notificationPopupData.IconSprite);
+    }
+
+    protected virtual void UpdateVisual(Sprite sprite)
+    {
+        SpriteRenderer renderer = visuals.GetComponent<SpriteRenderer>();
+        renderer.sprite = sprite;
     }
 
     protected virtual void HandleLegStart(int leg)

@@ -19,6 +19,11 @@ public class DestinationHandler : InfoPointHandler
         }
     }
 
+    //Override for it to do nothing
+    protected override void UpdateVisual(Sprite sprite)
+    {
+    }
+
     protected override void Collect()
     {
         base.Collect(); 

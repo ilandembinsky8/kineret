@@ -809,7 +809,7 @@
     },
     "NotificationPopup": {
       "Type": 2,
-      "PopupIconName": "Icon-Route-Forest",
+      "PopupIconName": "Icon-Route-InterestPoint",
       "TextData": {
         "HebTitle": "הידעת",
         "HebDescription": "איסוף מהיר ומדויק יזכה אתכם בניקוד נוסף נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
