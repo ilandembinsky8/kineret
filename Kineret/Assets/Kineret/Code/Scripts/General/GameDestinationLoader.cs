@@ -108,9 +108,9 @@ public class GameDestinationLoader : MonoBehaviour
         }
 
         //Place Player
-        Vector3 startPosition = Vector3.zero;
+        Vector3 startPosition,direction;
         Vector3 firstDestinationPosition = _destinations[0].transform.position;
-        Vector3 direction; 
+
 
         if (GameSettingsManager.GetInt("Route Settings", "IsCenterStart", 0) == 0)
         {
@@ -131,7 +131,7 @@ public class GameDestinationLoader : MonoBehaviour
         player.YawBody.LookAt(new Vector3(firstDestinationPosition.x, player.transform.position.y, firstDestinationPosition.z));
 
         //Initialize the path
-        List<Vector3> waypoints = new(4)
+        List<Vector3> waypoints = new(_destinations.Length + 1)
         {
             startPosition
         };
@@ -158,9 +158,9 @@ public class GameDestinationLoader : MonoBehaviour
         int bonusIndex, challengeIndex;
         Vector3 start, end;
         for (int i = 0; i < _destinations.Length; i++)
-        {
-            start = waypoints[i];
+        {          
             end = waypoints[i + 1];
+            start = waypoints[i] + (end - waypoints[i]) * GameSettingsManager.GetFloat("Route Settings", "ClearStartPercentage", 0.3f);
             bonusIndex = bonusIndices[UnityEngine.Random.Range(0, bonusIndices.Count)];
             challengeIndex = challengeIndices[UnityEngine.Random.Range(0, challengeIndices.Count)];
             bonusIndices.Remove(bonusIndex); 
