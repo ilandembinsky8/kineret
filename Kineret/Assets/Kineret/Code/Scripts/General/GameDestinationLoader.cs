@@ -157,10 +157,18 @@ public class GameDestinationLoader : MonoBehaviour
 
         int bonusIndex, challengeIndex;
         Vector3 start, end;
+
+        float[] clearLegPercentagers = new float[_destinations.Length];
+        for (int i = 0; i < clearLegPercentagers.Length; i++)
+        {
+            clearLegPercentagers[i] = GameSettingsManager.GetFloat("Route Settings", $"Leg{i + 1}ClearPercentage", 0.3f);
+        }
+
+
         for (int i = 0; i < _destinations.Length; i++)
         {          
             end = waypoints[i + 1];
-            start = waypoints[i] + (end - waypoints[i]) * GameSettingsManager.GetFloat("Route Settings", "ClearStartPercentage", 0.3f);
+            start = waypoints[i] + (end - waypoints[i]) * clearLegPercentagers[i];
             bonusIndex = bonusIndices[UnityEngine.Random.Range(0, bonusIndices.Count)];
             challengeIndex = challengeIndices[UnityEngine.Random.Range(0, challengeIndices.Count)];
             bonusIndices.Remove(bonusIndex); 
