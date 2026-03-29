@@ -122,6 +122,18 @@ public class GameDataManager : MonoBehaviour
         LocationsManager.DestinationsCount = GameSettingsManager.GetInt("Game Settings", "DestinationGameCount", 3);
         LocationsManager.DestinationsSelectCount = GameSettingsManager.GetInt("Game Settings", "DestinationsSelectCount", 3);
         LocationsManager.SelectedDestinations = new int[LocationsManager.DestinationsSelectCount];
+
+        JoystickControls joystickControls = new()
+        {
+           HorizontalAxis = GameSettingsManager.Get("Controls", "JoystickHorizontalAxis", "JoystickHorizontal"),
+           VerticalAxis = GameSettingsManager.Get("Controls", "JoystickVerticalAxis", "JoystickVertical"),
+           MiniHorizontalAxis = GameSettingsManager.Get("Controls", "MiniHorizontalAxis", "HatX"),
+           MiniVerticalAxis = GameSettingsManager.Get("Controls", "MiniVerticalAxis", "HatY"),
+           Trigger = GameSettingsManager.Get("Controls", "JoystickTrigger", "Trigger"),
+           RedButton = GameSettingsManager.Get("Controls", "JoystickRedButton", "RedButton")
+        };
+
+        JoystickManager.JoystickControls = joystickControls;
     }
 
     /// <summary>
