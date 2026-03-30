@@ -19,9 +19,13 @@ public class DestinationHandler : InfoPointHandler
         }
     }
 
-    //Override for it to do nothing
+    //Overrides for them to do nothing
     protected override void UpdateVisual(Sprite sprite)
     {
+    }
+    protected override void GainScore()
+    {
+        
     }
 
     protected override void Collect()

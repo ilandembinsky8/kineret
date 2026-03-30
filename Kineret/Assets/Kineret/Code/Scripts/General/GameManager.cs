@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -12,17 +13,17 @@ public class GameManager : MonoBehaviour
     [Header("Event Channels")]
     [SerializeField] private FloatEventChannel moveSpeedChange_EC;
 
-    [SerializeField] private IntEventChannel scoreChanged_EC;
-    [SerializeField] private IntEventChannel gotScore_EC;
-
     [Header("UI Elements")]
     [SerializeField] private TMP_Text finalScoreText;
     [SerializeField] private SummaryPanelHandler summmaryCanvas;
 
     public DestinationHandler[] Destinations { get; set; }
     private int _destinationsReachedCount;
-    private int _score;
+    private int _currentDestinationScore;
+    private int _totalScore;
     private float _legDuration;
+
+    private Coroutine _scoreCoroutine;
 
     private void Awake()
     {
@@ -32,18 +33,20 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        gotScore_EC.OnEventRaised += HandleGotScore;
+        EventsRelay.OnScoreGain += HandleGotScore;
         EventsRelay.OnDestinationReached += HandleDestinationReached;
         EventsRelay.OnGameOver += HandleGameOver;
         EventsRelay.OnGamePause += HandleGamePaused;
+        EventsRelay.OnStartScoreCountdown += HandleStartScoreCountdown;
     }
 
     private void OnDisable()
     {
-        gotScore_EC.OnEventRaised -= HandleGotScore;
+        EventsRelay.OnScoreGain -= HandleGotScore;
         EventsRelay.OnDestinationReached -= HandleDestinationReached;
         EventsRelay.OnGameOver -= HandleGameOver;
         EventsRelay.OnGamePause -= HandleGamePaused;
+        EventsRelay.OnStartScoreCountdown -= HandleStartScoreCountdown;
     }
 
     private void Start()
@@ -51,8 +54,9 @@ public class GameManager : MonoBehaviour
         HandleGotScore(0);
         ChangeMoveSpeedByLeg(player.position, Destinations[0].transform.position);
         CurrentDestination = Destinations[0].transform;
+        _currentDestinationScore = Destinations[0].MaxScore;
         EventsRelay.OnGamePause.Invoke(true);
-        EventsRelay.OnLegStart.Invoke(_destinationsReachedCount);
+        EventsRelay.OnLegStart.Invoke(_destinationsReachedCount);     
     }
 
     public void GoToMainMenu(bool _isLoadingDestinationSelection)
@@ -63,17 +67,23 @@ public class GameManager : MonoBehaviour
 
     private void HandleGotScore(int score)
     {
-        _score += score;
-        scoreChanged_EC.RaiseEvent(_score);
+        _totalScore += score;
+        EventsRelay.OnScoreChange.Invoke(_totalScore);
     }
 
     private void HandleDestinationReached(int destination)
     {
         _destinationsReachedCount++;
+
+        StopCoroutine(_scoreCoroutine);
+        _scoreCoroutine = null;
+        EventsRelay.OnScoreGain.Invoke(_currentDestinationScore);
+
         bool isFinal = _destinationsReachedCount == LocationsManager.DestinationsCount;
         InfoScreenData data = LocationsManager.GetInfoScreenData(destination, isFinal);
         if (!isFinal)
         {
+            _currentDestinationScore = Destinations[_destinationsReachedCount].MaxScore;
             ChangeMoveSpeedByLeg(Destinations[_destinationsReachedCount - 1].transform.position, Destinations[_destinationsReachedCount].transform.position);
             CurrentDestination = Destinations[_destinationsReachedCount].transform;
             EventsRelay.OnLegStart.Invoke(_destinationsReachedCount);
@@ -81,6 +91,7 @@ public class GameManager : MonoBehaviour
 
         EventsRelay.OnLoadInfoScreen(data);
     }
+
     private void ChangeMoveSpeedByLeg(Vector3 positionA, Vector3 positionB)
     {
         Vector3 currentPosition = positionA;
@@ -101,11 +112,43 @@ public class GameManager : MonoBehaviour
     {
         IsGamePaused = isPaused;
     }
-
+ 
     private void HandleGameOver()
     {
-        finalScoreText.text = string.Format("{0:0000}", _score);
+        finalScoreText.text = string.Format("{0:0000}", _totalScore);
         summmaryCanvas.gameObject.SetActive(true);
         summmaryCanvas.StartCoroutine(summmaryCanvas.EnterAnimation());
     }
+
+    private void HandleStartScoreCountdown()
+    {
+        _scoreCoroutine = StartCoroutine(ScoreCoroutine());
+    }
+
+    private IEnumerator ScoreCoroutine()
+    {
+        WaitForSeconds timer = new(GameSettingsManager.GetFloat("Score Settings", "TimeForScoreDeduction", 1f));
+        float safeTime = _legDuration * GameSettingsManager.GetFloat("Score Settings", "DestinationMaxScoreMultiplier", 1.1f);
+
+        //safe time to get max score
+        while (safeTime > 0)
+        {
+            if (IsGamePaused) { continue; }
+
+            safeTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        int scoreDeduction = GameSettingsManager.GetInt("Score Settings", "ScoreDeductionValue", 1);
+
+        //losing score each deduction period
+        while (_currentDestinationScore > 0)
+        {
+            if (IsGamePaused) { continue; }
+
+            _currentDestinationScore -= scoreDeduction;
+            yield return timer;
+        }
+    }
+
 }

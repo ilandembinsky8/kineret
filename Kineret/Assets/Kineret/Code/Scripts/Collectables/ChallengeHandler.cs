@@ -88,7 +88,7 @@ public class ChallengeHandler : CollectableHandler
         if (result)
         {
             LoadPopup_EC.RaiseEvent(_collectPopupData);
-            gotScore_EC.RaiseEvent(_collectableData.MaxScore);
+            EventsRelay.OnScoreGain.Invoke(_collectableData.MaxScore);
         }
         else
         {

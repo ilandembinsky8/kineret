@@ -48,6 +48,7 @@ public class UIManager : MonoBehaviour
         //blackPanel.GetCurrentAnimatorClipInfo(0)[0].clip.length
         yield return new WaitForSeconds(2.1f);
         EventsRelay.OnGamePause.Invoke(false);
+        EventsRelay.OnStartScoreCountdown.Invoke();
         StartCoroutine(LoadRoutePopup());
         blackPanel.gameObject.SetActive(false);
     }

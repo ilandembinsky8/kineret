@@ -8,6 +8,8 @@ public static class EventsRelay
     public static UnityAction<bool> OnGamePause { get; set; }
     public static UnityAction OnGameOver { get; set; }
 
+    public static UnityAction<int> OnScoreChange { get; set; }
+    public static UnityAction<int> OnScoreGain { get; set; }
     //Destinations Events
 
     public static UnityAction<int> OnDestinationSelected { get; set; }
@@ -15,6 +17,7 @@ public static class EventsRelay
 
     public static UnityAction<int> OnDestinationReached { get; set; }
     public static UnityAction<InfoScreenData> OnLoadInfoScreen { get; set; }
+    public static UnityAction OnStartScoreCountdown { get; set; }
 
     public static UnityAction<int> OnLegStart { get; set; }
     //Player Events  

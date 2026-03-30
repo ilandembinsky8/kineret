@@ -81,6 +81,7 @@ public class InfoScreenHandler : MonoBehaviour
     public void CloseScreen()
     {
         EventsRelay.OnGamePause.Invoke(false);
+        EventsRelay.OnStartScoreCountdown.Invoke();
         Destroy(gameObject);
     }
 

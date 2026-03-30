@@ -8,7 +8,6 @@ public class CollectableHandler : MonoBehaviour
 {
     [SerializeField] protected PopupDataEventChannel LoadPopup_EC;
     [SerializeField] protected TransformEventChannel playerMoved_EC;
-    [SerializeField] protected IntEventChannel gotScore_EC;
 
     [SerializeField] protected CollectableData _collectableData;
     [SerializeField] protected PopupData _notificationPopupData;
@@ -25,8 +24,13 @@ public class CollectableHandler : MonoBehaviour
     protected Color _notifyColor = Color.red;
 
     private InputActions _actions;
-
+    private Coroutine _scoreCoroutine;
     public int Leg { get; set; }
+
+    public int MaxScore 
+    {
+        get => _collectableData.MaxScore;
+    }
 
     private void Awake()
     {
@@ -152,18 +156,26 @@ public class CollectableHandler : MonoBehaviour
     {
         if (_wasCollected) return;
 
-        gotScore_EC.RaiseEvent(_score);
+        StopCoroutine(_scoreCoroutine);
+        _scoreCoroutine = null;
+
+        GainScore();
         visuals.SetActive(false);
         LoadPopup_EC.RaiseEvent(_collectPopupData);
-        _wasCollected = true;
+        _wasCollected = true;     
         OnDisable();
+    }
+
+    protected virtual void GainScore()
+    {
+        EventsRelay.OnScoreGain.Invoke(_score);
     }
 
     private IEnumerator DelayedNotification(float delay)
     {
         yield return new WaitForSeconds(delay);
         LoadPopup_EC.RaiseEvent(_notificationPopupData);
-        StartCoroutine(ScoreCoroutine());
+        _scoreCoroutine = StartCoroutine(ScoreCoroutine());
     }
 
     private IEnumerator ScoreCoroutine()
@@ -174,6 +186,8 @@ public class CollectableHandler : MonoBehaviour
         //safe time to get max score
         while (safeTime > 0)
         {
+            if (GameManager.IsGamePaused) { continue; }
+            
             safeTime -= Time.deltaTime;
             yield return null;
         }
@@ -183,6 +197,8 @@ public class CollectableHandler : MonoBehaviour
         //losing score each period
         while (_score > 0)
         {
+            if (GameManager.IsGamePaused) { continue; }
+
             _score -= scoreDeduction; 
             yield return timer;
         }
