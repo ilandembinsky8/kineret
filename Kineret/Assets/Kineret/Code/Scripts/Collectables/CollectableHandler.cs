@@ -20,6 +20,7 @@ public class CollectableHandler : MonoBehaviour
     protected bool _wasCollected;
     protected bool _isCollectable;
     protected bool _isActive;
+    protected int _score;
 
     protected Color _notifyColor = Color.red;
 
@@ -29,6 +30,7 @@ public class CollectableHandler : MonoBehaviour
 
     private void Awake()
     {
+        _score = _collectableData.MaxScore;
         _actions = new InputActions();
     }
 
@@ -150,7 +152,7 @@ public class CollectableHandler : MonoBehaviour
     {
         if (_wasCollected) return;
 
-        gotScore_EC.RaiseEvent(_collectableData.MaxScore);
+        gotScore_EC.RaiseEvent(_score);
         visuals.SetActive(false);
         LoadPopup_EC.RaiseEvent(_collectPopupData);
         _wasCollected = true;
@@ -161,5 +163,28 @@ public class CollectableHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         LoadPopup_EC.RaiseEvent(_notificationPopupData);
+        StartCoroutine(ScoreCoroutine());
+    }
+
+    private IEnumerator ScoreCoroutine()
+    {
+        WaitForSeconds timer = new (GameSettingsManager.GetFloat("Score Settings", "TimeForScoreDeduction", 1f));
+        float safeTime = GameSettingsManager.GetFloat("Score Settings", "TimeForMaxScore", 10f);
+
+        //safe time to get max score
+        while (safeTime > 0)
+        {
+            safeTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        int scoreDeduction = GameSettingsManager.GetInt("Score Settings", "ScoreDeductionValue", 1);
+
+        //losing score each period
+        while (_score > 0)
+        {
+            _score -= scoreDeduction; 
+            yield return timer;
+        }
     }
 }
