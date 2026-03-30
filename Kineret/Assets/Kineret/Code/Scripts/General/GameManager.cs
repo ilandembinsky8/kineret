@@ -75,8 +75,12 @@ public class GameManager : MonoBehaviour
     {
         _destinationsReachedCount++;
 
-        StopCoroutine(_scoreCoroutine);
-        _scoreCoroutine = null;
+        if (_scoreCoroutine != null)
+        {
+            StopCoroutine(_scoreCoroutine);
+            _scoreCoroutine = null;
+        }
+           
         EventsRelay.OnScoreGain.Invoke(_currentDestinationScore);
 
         bool isFinal = _destinationsReachedCount == LocationsManager.DestinationsCount;
@@ -133,7 +137,7 @@ public class GameManager : MonoBehaviour
         //safe time to get max score
         while (safeTime > 0)
         {
-            if (IsGamePaused) { continue; }
+            if (IsGamePaused) { yield return null; }
 
             safeTime -= Time.deltaTime;
             yield return null;
@@ -144,7 +148,7 @@ public class GameManager : MonoBehaviour
         //losing score each deduction period
         while (_currentDestinationScore > 0)
         {
-            if (IsGamePaused) { continue; }
+            if (IsGamePaused) { yield return null; }
 
             _currentDestinationScore -= scoreDeduction;
             yield return timer;

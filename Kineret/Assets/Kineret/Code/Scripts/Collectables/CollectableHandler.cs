@@ -34,7 +34,7 @@ public class CollectableHandler : MonoBehaviour
 
     private void Awake()
     {
-        _score = _collectableData.MaxScore;
+        Debug.Log("Max Score - " + _collectableData.MaxScore);   
         _actions = new InputActions();
     }
 
@@ -60,8 +60,6 @@ public class CollectableHandler : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        
-
         if (_collectableData.NotificationRange > 0)
         {
             Handles.color = _notifyColor;
@@ -77,6 +75,7 @@ public class CollectableHandler : MonoBehaviour
     public void Init(CollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
     {
         _collectableData = collectableData;
+        _score = _collectableData.MaxScore;
         InitPopup(ref _notificationPopupData, notificationPopupData);
         InitPopup(ref _collectPopupData, collectPopupData);
         UpdateVisual(_notificationPopupData.IconSprite);
@@ -156,9 +155,12 @@ public class CollectableHandler : MonoBehaviour
     {
         if (_wasCollected) return;
 
-        StopCoroutine(_scoreCoroutine);
-        _scoreCoroutine = null;
-
+        if(_scoreCoroutine != null)
+        {
+            StopCoroutine(_scoreCoroutine);
+            _scoreCoroutine = null;
+        }
+        
         GainScore();
         visuals.SetActive(false);
         LoadPopup_EC.RaiseEvent(_collectPopupData);
@@ -182,12 +184,12 @@ public class CollectableHandler : MonoBehaviour
     {
         WaitForSeconds timer = new (GameSettingsManager.GetFloat("Score Settings", "TimeForScoreDeduction", 1f));
         float safeTime = GameSettingsManager.GetFloat("Score Settings", "TimeForMaxScore", 10f);
-
+        Debug.Log("Starting Safe Time - " + safeTime);
         //safe time to get max score
         while (safeTime > 0)
         {
-            if (GameManager.IsGamePaused) { continue; }
-            
+            if (GameManager.IsGamePaused) { yield return null; }
+            Debug.Log("Safe Time - " + safeTime);
             safeTime -= Time.deltaTime;
             yield return null;
         }
@@ -197,9 +199,10 @@ public class CollectableHandler : MonoBehaviour
         //losing score each period
         while (_score > 0)
         {
-            if (GameManager.IsGamePaused) { continue; }
+            if (GameManager.IsGamePaused) { yield return null; }
 
-            _score -= scoreDeduction; 
+            _score -= scoreDeduction;
+            Debug.Log("Score To Gain - " + _score);
             yield return timer;
         }
     }
