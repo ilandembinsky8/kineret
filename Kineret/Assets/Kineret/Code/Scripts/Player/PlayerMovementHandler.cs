@@ -20,7 +20,7 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private Transform rollBody;
 
 
-
+    private float _keyBoardAccelerationDirection;
     private float _accelerationDirection;
     private float _accelerationPercentage = 0.05f;
     private float _maxMoveSpeedPercentage = 0.2f;
@@ -125,6 +125,8 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void Move()
     {
+        _accelerationDirection = Input.GetAxis(JoystickManager.JoystickControls.MiniVerticalAxis) + _keyBoardAccelerationDirection;
+
         _moveSpeed += legMoveSpeed * _accelerationPercentage * _accelerationDirection * Time.deltaTime;
         _moveSpeed = Mathf.Clamp(_moveSpeed, legMoveSpeed * (1 - _maxMoveSpeedPercentage), legMoveSpeed * (1 + _maxMoveSpeedPercentage));
 
@@ -153,7 +155,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void HandleSpeedInput(InputAction.CallbackContext context)
     {
-        _accelerationDirection = context.ReadValue<float>();
+        _keyBoardAccelerationDirection = context.ReadValue<float>();
     }
 
     private void ChangeMoveSpeedByLeg(float newMoveSpeed)

@@ -47,6 +47,11 @@ public class CollectableHandler : MonoBehaviour
         playerMoved_EC.OnEventRaised -= HandlePlayerMoved;
         EventsRelay.OnLegStart -= HandleLegStart;
     }
+    private void Update()
+    {
+        if(Input.GetButtonDown(JoystickManager.JoystickControls.Trigger)) { HandleCollectInput(); }
+    }
+
     private void OnDrawGizmos()
     {
         
@@ -124,10 +129,13 @@ public class CollectableHandler : MonoBehaviour
             _isCollectable = true;
         }
     }
-
+    private void HandleCollectInput()
+    {
+        if (_isCollectable) Collect();
+    }
     private void HandleCollectInput(InputAction.CallbackContext context)
     {
-        if(_isCollectable) Collect();
+        HandleCollectInput();
     }
 
     protected virtual void Notify()
