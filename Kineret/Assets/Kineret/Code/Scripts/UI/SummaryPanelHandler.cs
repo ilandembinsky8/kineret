@@ -1,9 +1,10 @@
 using DG.Tweening;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class SummaryPanelHandler : MonoBehaviour
 {
@@ -29,15 +30,15 @@ public class SummaryPanelHandler : MonoBehaviour
         mainMenuButton.interactable = false;
         destinationsButton.interactable = false;
 
-        titleText.color = titleText.color.WithAlpha(0f);
-        scoreTitleText.color = scoreText.color.WithAlpha(0f);
-        scoreText.color = scoreText.color.WithAlpha(0f);
-        endText.color = endText.color.WithAlpha(0f);
-        scoreImage.color = scoreImage.color.WithAlpha(0f);
-        mainMenuButton.image.color = mainMenuButton.image.color.WithAlpha(0f);
-        destinationsButton.image.color = destinationsButton.image.color.WithAlpha(0f);
-        mainMenuButtonText.color = mainMenuButtonText.color.WithAlpha(0f);
-        destinationsButtonText.color = destinationsButtonText.color.WithAlpha(0f);
+        titleText.color = new Color(titleText.color.r, titleText.color.g, titleText.color.b, 0);
+        scoreTitleText.color = new Color(scoreTitleText.color.r, scoreTitleText.color.g, scoreTitleText.color.b, 0);
+        scoreText.color = new Color(scoreText.color.r, scoreText.color.g, scoreText.color.b, 0);
+        endText.color = new Color(endText.color.r, endText.color.g, endText.color.b, 0);
+        scoreImage.color = new Color(scoreImage.color.r, scoreImage.color.g, scoreImage.color.b, 0);
+        mainMenuButton.image.color = new Color(mainMenuButton.image.color.r, mainMenuButton.image.color.g, mainMenuButton.image.color.b, 0);
+        destinationsButton.image.color =  new Color(destinationsButton.image.color.r, destinationsButton.image.color.g, destinationsButton.image.color.b, 0);
+        mainMenuButtonText.color = new Color(mainMenuButtonText.color.r, mainMenuButtonText.color.g, mainMenuButtonText.color.b, 0);
+        destinationsButtonText.color = new Color(destinationsButtonText.color.r, destinationsButtonText.color.g, destinationsButtonText.color.b, 0);
 
         Vector2 size = popupBackground.sizeDelta;
         popupBackground.sizeDelta = new Vector2(size.x, 0f);

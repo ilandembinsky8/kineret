@@ -56,7 +56,7 @@ public class CollectableHandler : MonoBehaviour
     {
         if(Input.GetButtonDown(JoystickManager.JoystickControls.Trigger)) { HandleCollectInput(); }
     }
-
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (_collectableData.NotificationRange > 0)
@@ -70,7 +70,7 @@ public class CollectableHandler : MonoBehaviour
             Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), _collectableData.CollectionRange);
         }           
     }
-
+#endif
     public void Init(CollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
     {
         _collectableData = collectableData;

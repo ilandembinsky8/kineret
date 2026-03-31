@@ -75,10 +75,10 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
 
     private void SetUp()
     {
-        upperText.color = upperText.color.WithAlpha(0);
-        lowerText.color = lowerText.color.WithAlpha(0);
-        selectedIcon.color = selectedIcon.color.WithAlpha(0);
-        availableIcon.color = selectedIcon.color.WithAlpha(1f);
+        upperText.color = new Color(upperText.color.r, upperText.color.g, upperText.color.b, 0f);
+        lowerText.color = new Color(lowerText.color.r, lowerText.color.g, lowerText.color.b, 0f);
+        selectedIcon.color = new Color(selectedIcon.color.r, selectedIcon.color.g, selectedIcon.color.b, 0f);
+        availableIcon.color = new Color(availableIcon.color.r, availableIcon.color.g, availableIcon.color.b, 1f);
         upperPanel.sizeDelta = new Vector2(upperPanel.sizeDelta.x, 0);
         lowerPanel.sizeDelta = new Vector2(lowerPanel.sizeDelta.x, 0);
         descriptionPanelMask.padding = Vector4.zero;

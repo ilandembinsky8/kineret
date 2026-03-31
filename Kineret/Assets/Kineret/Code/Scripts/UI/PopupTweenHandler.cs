@@ -177,7 +177,7 @@ public class PopupTweenHandler : MonoBehaviour
         foreach (var text in TMPtexts)
         {
             text.gameObject.SetActive(true);
-            text.color = text.color.WithAlpha(0f);
+            text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
             text.DOFade(1f, TEXT_FADE);
             yield return new WaitForSeconds(TEXT_DELAY);
         }
