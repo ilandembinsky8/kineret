@@ -1,8 +1,7 @@
 
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
+
 
 public class MouseManager : MonoBehaviour
 {
@@ -41,7 +40,11 @@ public class MouseManager : MonoBehaviour
     }
     private void Update()
     {
-        if(_mouseDirection != Vector2.zero) { MoveMouse(); }
+        Vector2 joystickDirection = new Vector2(Input.GetAxis("HatX"), Input.GetAxis("HatY"));
+        if(_mouseDirection != Vector2.zero) { MoveMouse(_mouseDirection); }
+        if (joystickDirection != Vector2.zero) { MoveMouse(joystickDirection); }
+
+        if (Input.GetButtonDown("RedButton")) { SimulateMouseClick(); }
     }
 
     private void HandleMoveMouseInput(InputAction.CallbackContext context)
@@ -50,13 +53,18 @@ public class MouseManager : MonoBehaviour
     }
     private void HandlMouseClickInput(InputAction.CallbackContext context)
     {
+        SimulateMouseClick();
+    }
+
+    private void SimulateMouseClick()
+    {
         _mouse.press.QueueValueChange<float>(1f);
         _mouse.press.QueueValueChange<float>(0f);
     }
 
-    private void MoveMouse()
+    private void MoveMouse(Vector2 direction)
     {
-        _mousePosition += Time.deltaTime * _mouseSpeed * _mouseDirection;
+        _mousePosition += Time.deltaTime * _mouseSpeed * direction;
 
         _mousePosition.x = Mathf.Clamp(_mousePosition.x, 0, _maxX);
         _mousePosition.y = Mathf.Clamp(_mousePosition.y, 0, _maxY);
