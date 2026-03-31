@@ -612,6 +612,8 @@ MonoBehaviour:
   iconMaxPulse: 0
   playOnStart: 0
   textMode: 0
+  startPlayMode: 0
+  playSFX: 1
 --- !u!1 &4726153659393783452
 GameObject:
   m_ObjectHideFlags: 0

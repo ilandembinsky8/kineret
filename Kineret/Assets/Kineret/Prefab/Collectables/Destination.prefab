@@ -152,7 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadPopup_EC: {fileID: 11400000, guid: 434ae0b1dce8a5d4c8f23f04d7878aa3, type: 2}
   playerMoved_EC: {fileID: 11400000, guid: 6c3815ed880b1b34db7f693e4a38d9a4, type: 2}
-  gotScore_EC: {fileID: 11400000, guid: d9b5e4ff6b8db82459a3f609c91c8417, type: 2}
   _collectableData:
     NotificationRange: 0
     CollectionRange: 0
@@ -299,7 +298,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1005212360657064241}
-  - component: {fileID: 204199623067790667}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -325,18 +323,6 @@ Transform:
   - {fileID: 4617536421671256672}
   m_Father: {fileID: 2471919273698547775}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &204199623067790667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4198783435181284254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd4a4c8fbf49184e8bc8fbc1d322806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7950072700847690756
 GameObject:
   m_ObjectHideFlags: 0

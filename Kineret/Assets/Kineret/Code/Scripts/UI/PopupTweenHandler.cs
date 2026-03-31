@@ -17,7 +17,6 @@ public enum TextMode
 }
 public class PopupTweenHandler : MonoBehaviour
 {
-
     private const float LETTER_DELAY = 0.01f;
     private const float TEXT_DELAY = 0.2f;
     private const float TEXT_FADE = 0.3f;
@@ -38,6 +37,9 @@ public class PopupTweenHandler : MonoBehaviour
 
     [SerializeField] private bool playOnStart;
     [SerializeField] private TextMode textMode;
+    [SerializeField] private PlayMode startPlayMode;
+
+    [SerializeField] private bool playSFX;
 
     private Vector2 _originalBGSizeDelta;
     private float _originalIconLocalPositionY;
@@ -67,10 +69,14 @@ public class PopupTweenHandler : MonoBehaviour
         foreach (var text in TMPtexts)
         {
             text.gameObject.SetActive(false);
-        }
-
-        if (playOnStart) StartCoroutine(PlayAnimation());
+        }      
     }
+
+    private void Start()
+    {
+        if (playOnStart) Play((int)startPlayMode);
+    }
+
     private void OnDestroy()
     {
         if(background != null) background.DOKill();
@@ -81,10 +87,12 @@ public class PopupTweenHandler : MonoBehaviour
             if (text != null) text.DOKill();
         }
 
-        if (_iconTween != null) _iconTween.Kill();
+        _iconTween?.Kill();
     }
     public void Play(int mode)
     {
+        if (playSFX) { AudioManager.Instance.PlayOpenUI(); }
+
         if(mode == (int)PlayMode.WidthOpenFirst)
         {
             StartCoroutine(PlayWidthFirstAnimation());
@@ -94,7 +102,7 @@ public class PopupTweenHandler : MonoBehaviour
         StartCoroutine(PlayAnimation());
     }
 
-    public IEnumerator PlayAnimation()
+    private IEnumerator PlayAnimation()
     {
         if (background != null)
         {
@@ -120,7 +128,7 @@ public class PopupTweenHandler : MonoBehaviour
         PlayText();
     }
 
-    public IEnumerator PlayWidthFirstAnimation()
+    private IEnumerator PlayWidthFirstAnimation()
     {
         if (background == null) yield break;
 

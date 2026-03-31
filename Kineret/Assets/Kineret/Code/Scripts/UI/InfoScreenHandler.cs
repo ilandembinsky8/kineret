@@ -100,7 +100,7 @@ public class InfoScreenHandler : MonoBehaviour
         yield return tween.WaitForCompletion();
         FlagHandler.EndFlagAnimation.Invoke();
        
-        tweenHandler.StartCoroutine(tweenHandler.PlayAnimation());
+        tweenHandler.Play((int)PlayMode.Default);
     }
 
     private void HandleTextFinishedLoading()

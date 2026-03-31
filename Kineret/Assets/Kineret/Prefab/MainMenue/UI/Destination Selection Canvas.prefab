@@ -914,6 +914,8 @@ MonoBehaviour:
   iconMaxPulse: 0
   playOnStart: 0
   textMode: 0
+  startPlayMode: 0
+  playSFX: 1
 --- !u!1 &2597868483430835270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,6 +1261,8 @@ MonoBehaviour:
   iconMaxPulse: 1.1
   playOnStart: 0
   textMode: 0
+  startPlayMode: 0
+  playSFX: 1
 --- !u!1 &3243610689177391437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,6 +1369,8 @@ MonoBehaviour:
   iconMaxPulse: 0
   playOnStart: 0
   textMode: 0
+  startPlayMode: 0
+  playSFX: 0
 --- !u!1 &4372115454750483973
 GameObject:
   m_ObjectHideFlags: 0
