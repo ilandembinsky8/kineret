@@ -1,9 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class InfoScreenHandler : MonoBehaviour
