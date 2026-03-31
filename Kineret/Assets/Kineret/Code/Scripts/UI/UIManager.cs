@@ -49,6 +49,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(2.1f);
         EventsRelay.OnGamePause.Invoke(false);
         EventsRelay.OnStartScoreCountdown.Invoke();
+        AudioManager.Instance.PlayFlightMusic();
         StartCoroutine(LoadRoutePopup());
         blackPanel.gameObject.SetActive(false);
     }

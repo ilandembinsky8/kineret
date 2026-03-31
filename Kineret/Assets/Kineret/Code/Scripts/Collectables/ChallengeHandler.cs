@@ -89,6 +89,7 @@ public class ChallengeHandler : CollectableHandler
         {
             LoadPopup_EC.RaiseEvent(_collectPopupData);
             EventsRelay.OnScoreGain.Invoke(_collectableData.MaxScore);
+            AudioManager.Instance.PlayPointCollected();
         }
         else
         {

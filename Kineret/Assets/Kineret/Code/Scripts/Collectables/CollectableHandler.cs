@@ -171,6 +171,7 @@ public class CollectableHandler : MonoBehaviour
     protected virtual void GainScore()
     {
         EventsRelay.OnScoreGain.Invoke(_score);
+        AudioManager.Instance.PlayPointCollected();
     }
 
     private IEnumerator DelayedNotification(float delay)

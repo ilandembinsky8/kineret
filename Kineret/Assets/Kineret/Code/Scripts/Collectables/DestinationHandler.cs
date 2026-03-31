@@ -33,7 +33,8 @@ public class DestinationHandler : InfoPointHandler
         base.Collect(); 
         FlagHandler.PlayFlagAnimation.Invoke();
         EventsRelay.OnGamePause.Invoke(true);
-        StartCoroutine(DestinationReachedCoroutine(_collectPopupData.PopupTextData.Duration));   
+        StartCoroutine(DestinationReachedCoroutine(_collectPopupData.PopupTextData.Duration));
+        AudioManager.Instance.PlayArrivedDestination();
     }
 
     private IEnumerator DestinationReachedCoroutine(float delay)

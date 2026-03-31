@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using System;
 
-public class SoundManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    public static SoundManager Instance { get; private set; }
+    public static AudioManager Instance { get; private set; }
 
     [SerializeField] private AudioSource _MusicSource;
     [SerializeField] private AudioClip[] _FlightMusic;
@@ -48,9 +48,9 @@ public class SoundManager : MonoBehaviour
 
     public void SetIncreasedMusicVolume() { _MusicSource.volume = 0.25f; }
     public void SetLowerMusicVolume() { _MusicSource.volume = 0.1f; }
-    public void PlayOpenUI() { PlayNotificationSource(_OpenUI); }
-    public void PlayPointCollected() { PlayOnCompletionSource(_PointCollected); }
-    public void PlayArrivedDestination() { PlayOnCompletionSource(_ArrivedDestination); }
+    public void PlayOpenUI() { PlayClipInSource(_OpenUI, _NotificationSource); }
+    public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource); }
+    public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource); }
 
     /// <summary>
     /// Activates at the end, turns off looping and plays the out music clip after the current one is done.
@@ -85,7 +85,7 @@ public class SoundManager : MonoBehaviour
         SetIncreasedMusicVolume();
         _MusicSource.Play();
     }
-    private void PlayNotificationSource(AudioClip audioClip)
+    private void PlayNotificationSource(AudioClip audioClip , AudioSource source)
     {
         if (_NotificationSource == null) { Debug.LogError("Notification Audio source is null!"); return; }
         _NotificationSource.clip = audioClip;
@@ -98,6 +98,15 @@ public class SoundManager : MonoBehaviour
         _OnCollectedSource.clip = audioClip;
         _OnCollectedSource.volume = 0.25f;
         _OnCollectedSource.Play();
+    }
+
+    //Tomer: Sorry I saw the duplication and couldn't stop myself
+    private void PlayClipInSource(AudioClip audioClip, AudioSource source)
+    {
+        if (source == null) { Debug.LogError("Source is null!"); return; }
+        source.clip = audioClip;
+        source.volume = 0.25f;
+        source.Play();
     }
 
     private IEnumerator WaitForTimeEnd(float waitLength, Action OnAudioFinished)
