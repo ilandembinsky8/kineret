@@ -30,6 +30,11 @@ public class PopupHandler : MonoBehaviour
         StartCoroutine(Duration(data.PopupTextData.Duration));
     }
 
+    public void ScaleIconeSize(float multiplier)
+    {
+        ((RectTransform)iconImage.transform).sizeDelta = new Vector2(iconImage.sprite.texture.width * multiplier, iconImage.sprite.texture.height * multiplier);
+    }
+
     private IEnumerator Duration(float duration)
     {
         yield return new WaitForSeconds(duration);

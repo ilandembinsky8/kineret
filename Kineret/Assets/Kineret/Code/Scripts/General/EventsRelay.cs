@@ -22,4 +22,7 @@ public static class EventsRelay
     public static UnityAction<int> OnLegStart { get; set; }
     //Player Events  
     public static UnityAction<ChallengeType,bool> OnWindEvent { get; set; }
+
+    public static UnityAction OnShowDirection { get; set; }
+    public static UnityAction<string> OnLoadDirectionPopup { get; set; }
 }

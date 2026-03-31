@@ -134,9 +134,6 @@ public class PlayerMovementHandler : MonoBehaviour
 
         if (_isWindEnabled)
         {
-            Debug.Log(transform.InverseTransformDirection(pitchBody.forward));
-            Debug.Log(YawBody.forward);
-            Debug.Log(_windDirection);
             transform.Translate(legMoveSpeed * (1 + _windForcePercentage) * Time.deltaTime * _windDirection);
         }
      
@@ -162,7 +159,6 @@ public class PlayerMovementHandler : MonoBehaviour
     {
         legMoveSpeed = newMoveSpeed;
         _moveSpeed = legMoveSpeed;
-        Debug.Log("changed speed to moveSpeed");
     }
 
     private void EnableWind(ChallengeType type,bool isEnabled)

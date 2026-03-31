@@ -22,11 +22,13 @@ public class GameManager : MonoBehaviour
     private int _currentDestinationScore;
     private int _totalScore;
     private float _legDuration;
+    private Camera _camera;
 
     private Coroutine _scoreCoroutine;
 
     private void Awake()
     {
+        _camera = Camera.main;
         summmaryCanvas.gameObject.SetActive(false);
         _legDuration = GameSettingsManager.GetFloat("Game Settings", "LegDuration", 15);
     }
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
         EventsRelay.OnGameOver += HandleGameOver;
         EventsRelay.OnGamePause += HandleGamePaused;
         EventsRelay.OnStartScoreCountdown += HandleStartScoreCountdown;
+        EventsRelay.OnShowDirection += HandleShowDirection;
     }
 
     private void OnDisable()
@@ -47,6 +50,7 @@ public class GameManager : MonoBehaviour
         EventsRelay.OnGameOver -= HandleGameOver;
         EventsRelay.OnGamePause -= HandleGamePaused;
         EventsRelay.OnStartScoreCountdown -= HandleStartScoreCountdown;
+        EventsRelay.OnShowDirection -= HandleShowDirection;
     }
 
     private void Start()
@@ -70,7 +74,7 @@ public class GameManager : MonoBehaviour
         _totalScore += score;
         EventsRelay.OnScoreChange.Invoke(_totalScore);
     }
-
+   
     private void HandleDestinationReached(int destination)
     {
         _destinationsReachedCount++;
@@ -95,6 +99,36 @@ public class GameManager : MonoBehaviour
 
         EventsRelay.OnLoadInfoScreen(data);
     }
+    private void HandleShowDirection()
+    {
+        Vector2 flatPlayerForward = new Vector2(_camera.transform.forward.x, _camera.transform.forward.z);
+        float peripheralAngle = GameSettingsManager.GetFloat("Player Settings", "PeripheralAngle", 45f);
+        
+        Vector3 nextDestinationDirection = (Destinations[_destinationsReachedCount].transform.position - _camera.transform.position).normalized;
+        Vector2 flatNextDestinationDirection = new Vector2(nextDestinationDirection.x, nextDestinationDirection.z);
+
+      /*  Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(flatPlayerForward.x, 0f, flatPlayerForward.y), Color.blue, 500000f);
+        Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(flatNextDestinationDirection.x, 0f, flatNextDestinationDirection.y), Color.yellow, 500000f);*/
+
+        float destinationAngle = Vector2.Angle(flatPlayerForward, flatNextDestinationDirection);
+
+        if(destinationAngle < peripheralAngle)
+        {
+            return;
+        }
+
+        Vector2 leftPeripheral = RotateVector(flatPlayerForward, peripheralAngle);
+        Vector2 rightPeripheral = RotateVector(flatPlayerForward, -peripheralAngle);
+
+       /* Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(leftPeripheral.x, 0f, leftPeripheral.y), Color.red, 500000f);
+        Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(rightPeripheral.x, 0f, rightPeripheral.y), Color.green, 500000f); */
+
+        float leftAngle = Vector2.Angle(leftPeripheral, flatNextDestinationDirection);
+        float rightAngle = Vector2.Angle(rightPeripheral, flatNextDestinationDirection);
+
+        string direction = leftAngle < rightAngle ? "Left" : "Right";
+        EventsRelay.OnLoadDirectionPopup.Invoke(direction);
+    }
 
     private void ChangeMoveSpeedByLeg(Vector3 positionA, Vector3 positionB)
     {
@@ -108,7 +142,6 @@ public class GameManager : MonoBehaviour
             float distance = Vector3.Distance(currentPosition, nextPosition);
             float newMoveSpeed = distance / _legDuration;
             moveSpeedChange_EC.RaiseEvent(newMoveSpeed);
-            Debug.Log("distance from current to next destination: " + distance);
         }
     }
 
@@ -153,6 +186,15 @@ public class GameManager : MonoBehaviour
             _currentDestinationScore -= scoreDeduction;
             yield return timer;
         }
+    }
+    private Vector2 RotateVector(Vector2 vector, float angle)
+    {
+        Vector2 normalVector = vector.normalized;
+        float vectorAngle = Vector2.SignedAngle(Vector2.right, normalVector) + angle;
+
+        float x = Mathf.Cos(Mathf.Deg2Rad * vectorAngle);
+        float y = Mathf.Sin(Mathf.Deg2Rad * vectorAngle);
+        return new Vector2(x, y);
     }
 
 }

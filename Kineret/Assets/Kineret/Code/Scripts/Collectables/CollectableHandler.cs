@@ -34,7 +34,6 @@ public class CollectableHandler : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Max Score - " + _collectableData.MaxScore);   
         _actions = new InputActions();
     }
 
@@ -185,12 +184,10 @@ public class CollectableHandler : MonoBehaviour
     {
         WaitForSeconds timer = new (GameSettingsManager.GetFloat("Score Settings", "TimeForScoreDeduction", 1f));
         float safeTime = GameSettingsManager.GetFloat("Score Settings", "TimeForMaxScore", 10f);
-        Debug.Log("Starting Safe Time - " + safeTime);
         //safe time to get max score
         while (safeTime > 0)
         {
             if (GameManager.IsGamePaused) { yield return null; }
-            Debug.Log("Safe Time - " + safeTime);
             safeTime -= Time.deltaTime;
             yield return null;
         }
@@ -203,7 +200,6 @@ public class CollectableHandler : MonoBehaviour
             if (GameManager.IsGamePaused) { yield return null; }
 
             _score -= scoreDeduction;
-            Debug.Log("Score To Gain - " + _score);
             yield return timer;
         }
     }

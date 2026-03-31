@@ -1,7 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System.Runtime.CompilerServices;
-using UnityEditor.MPE;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -19,6 +17,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PopupData routePopupData;
     [SerializeField] private float routePopupDelay;
 
+    [SerializeField] private PopupData leftArrowPopupData;
+    [SerializeField] private PopupData rightArrowPopupData;
+
     [SerializeField] private Animator blackPanel;
     [SerializeField] private float blackFadeDuration;
 
@@ -26,14 +27,16 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        loadPopup_EC.OnEventRaised += LoadPopup;
+        loadPopup_EC.OnEventRaised += HandleLoadPopup;
         EventsRelay.OnLoadInfoScreen += LoadInfoScreen;
+        EventsRelay.OnLoadDirectionPopup += HandleDirectionPopup;
     }
 
     private void OnDisable()
     {
-        loadPopup_EC.OnEventRaised -= LoadPopup;
+        loadPopup_EC.OnEventRaised -= HandleLoadPopup;
         EventsRelay.OnLoadInfoScreen -= LoadInfoScreen;
+        EventsRelay.OnLoadDirectionPopup -= HandleDirectionPopup;
     }
 
 
@@ -53,14 +56,29 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LoadRoutePopup());
         blackPanel.gameObject.SetActive(false);
     }
+    private void HandleDirectionPopup(string direction)
+    {
+       if(direction == "Left")
+       {
+            LoadPopup(leftArrowPopupData, 0.6f);
+            return;
+       }
+
+        LoadPopup(rightArrowPopupData,0.6f);
+    }
+
+    private void HandleLoadPopup(PopupData data)
+    {
+        LoadPopup(data, 0);
+    }
 
     private IEnumerator LoadRoutePopup()
     {
         yield return new WaitForSeconds(routePopupDelay);
-        LoadPopup(routePopupData);
+        LoadPopup(routePopupData,0);
     }
 
-    private void LoadPopup(PopupData data)
+    private void LoadPopup(PopupData data,float scaleMultiplier)
     {
         if(_currentPopup != null) Destroy(_currentPopup.gameObject);
 
@@ -81,6 +99,11 @@ public class UIManager : MonoBehaviour
         }
 
         _currentPopup.LoadData(data);
+
+        if(scaleMultiplier != 0)
+        {
+            _currentPopup.ScaleIconeSize(scaleMultiplier);
+        }
     }
 
     private void LoadInfoScreen(InfoScreenData data)
