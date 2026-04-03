@@ -48,9 +48,9 @@ public class AudioManager : MonoBehaviour
 
     public void SetIncreasedMusicVolume() { _MusicSource.volume = 0.25f; }
     public void SetLowerMusicVolume() { _MusicSource.volume = 0.1f; }
-    public void PlayOpenUI() { PlayClipInSource(_OpenUI, _NotificationSource); }
-    public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource); }
-    public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource); }
+    public void PlayOpenUI() { PlayClipInSource(_OpenUI, _NotificationSource, 0.15f); }
+    public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource, 0.35f); }
+    public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource, 0.2f); }
 
     /// <summary>
     /// Activates at the end, turns off looping and plays the out music clip after the current one is done.
@@ -85,27 +85,12 @@ public class AudioManager : MonoBehaviour
         SetIncreasedMusicVolume();
         _MusicSource.Play();
     }
-    private void PlayNotificationSource(AudioClip audioClip , AudioSource source)
-    {
-        if (_NotificationSource == null) { Debug.LogError("Notification Audio source is null!"); return; }
-        _NotificationSource.clip = audioClip;
-        _NotificationSource.volume = 0.25f;
-        _NotificationSource.Play();
-    }
-    private void PlayOnCompletionSource(AudioClip audioClip)
-    {
-        if (_OnCollectedSource == null) { Debug.LogError("Completion Audio source is null!"); return; }
-        _OnCollectedSource.clip = audioClip;
-        _OnCollectedSource.volume = 0.25f;
-        _OnCollectedSource.Play();
-    }
 
-    //Tomer: Sorry I saw the duplication and couldn't stop myself
-    private void PlayClipInSource(AudioClip audioClip, AudioSource source)
+    private void PlayClipInSource(AudioClip audioClip, AudioSource source, float volume)
     {
         if (source == null) { Debug.LogError("Source is null!"); return; }
         source.clip = audioClip;
-        source.volume = 0.25f;
+        source.volume = volume;
         source.Play();
     }
 
