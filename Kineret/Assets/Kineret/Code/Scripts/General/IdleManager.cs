@@ -21,6 +21,16 @@ public class IdleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetAxis(JoystickManager.JoystickControls.HorizontalAxis) != 0 ||
+            Input.GetAxis(JoystickManager.JoystickControls.VerticalAxis) != 0 ||
+            Input.GetAxis(JoystickManager.JoystickControls.MiniHorizontalAxis) != 0 ||
+            Input.GetAxis(JoystickManager.JoystickControls.MiniVerticalAxis) != 0 ||
+            Input.GetButtonDown(JoystickManager.JoystickControls.Trigger) ||
+            Input.GetButtonDown(JoystickManager.JoystickControls.RedButton))
+        {
+            _timer = 0;
+        }
+
         if (IsTicking)
         {
             _timer += Time.deltaTime;
