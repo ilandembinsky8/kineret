@@ -77,12 +77,18 @@ public class CollectableHandler : MonoBehaviour
         _score = _collectableData.MaxScore;
         InitPopup(ref _notificationPopupData, notificationPopupData);
         InitPopup(ref _collectPopupData, collectPopupData);
-        UpdateVisual(_notificationPopupData.IconSprite);
+        UpdateVisual(collectableData.MapIconName);
     }
 
-    protected virtual void UpdateVisual(Sprite sprite)
+    protected virtual void UpdateVisual(string spriteStreamingName)
     {
         SpriteRenderer renderer = visuals.GetComponent<SpriteRenderer>();
+        Sprite sprite;
+        if (!LocationsManager.TryGetIconImageData(spriteStreamingName, out sprite))
+        {
+            Debug.LogError("Failed to pull image data from LocationsManager");
+        }
+
         renderer.sprite = sprite;
     }
 
@@ -96,7 +102,10 @@ public class CollectableHandler : MonoBehaviour
         popupData.PopupTextData = popupTextData;
         if (!String.IsNullOrEmpty(popupTextData.PopupIconName))
         {
-            LocationsManager.TryGetIconImageData(popupTextData.PopupIconName, out popupData.IconSprite);
+            if(!LocationsManager.TryGetIconImageData(popupTextData.PopupIconName, out popupData.IconSprite))
+            {
+                Debug.LogError("Failed to pull image data from LocationsManager");
+            }
         }
         else
         {

@@ -570,6 +570,7 @@
   "DestinationCollectables": [
     {
       "RangeData": {
+        "MapIconName": "",
         "NotificationRange": 0,
         "CollectionRange": 1500.0,
         "TimeForMaxScore": 0.0,
@@ -589,6 +590,7 @@
     },
     {
       "RangeData": {
+        "MapIconName": "",
         "NotificationRange": 0,
         "CollectionRange": 1500.0,
         "TimeForMaxScore": 0.0,
@@ -608,6 +610,7 @@
     },
     {
       "RangeData": {
+        "MapIconName": "",
         "NotificationRange": 0,
         "CollectionRange": 1500.0,
         "TimeForMaxScore": 0.0,
@@ -629,6 +632,7 @@
   "BonusCollectables": [
     {
       "CollectableData": {
+        "MapIconName": "Icon-Route-MapBonus",
         "NotificationRange": 4000,
         "CollectionRange": 3000,
         "TimeForMaxScore": 0.0,
@@ -661,6 +665,7 @@
     },
     {
       "CollectableData": {
+        "MapIconName": "Icon-Route-MapBonus",
         "NotificationRange": 4000,
         "CollectionRange": 3000,
         "TimeForMaxScore": 0.0,
@@ -693,6 +698,7 @@
     },
     {
       "CollectableData": {
+        "MapIconName": "Icon-Route-MapBonus",
         "NotificationRange": 4000,
         "CollectionRange": 3000,
         "TimeForMaxScore": 0.0,
@@ -725,6 +731,7 @@
     },
     {
       "CollectableData": {
+        "MapIconName": "Icon-Route-MapBonus",
         "NotificationRange": 4000,
         "CollectionRange": 3000,
         "TimeForMaxScore": 0.0,
@@ -758,6 +765,7 @@
   ],
   "StaticInterestCollectable": {
     "RangeData": {
+      "MapIconName": "Icon-Route-InterestPoint",
       "NotificationRange": 4000,
       "CollectionRange": 3000,
       "TimeForMaxScore": 0.0,
@@ -802,6 +810,7 @@
   },
   "InfoCollectable": {
     "RangeData": {
+      "MapIconName": "Icon-Route-InterestPoint",
       "NotificationRange": 4000,
       "CollectionRange": 3000,
       "TimeForMaxScore": 0.0,
@@ -847,6 +856,7 @@
   "ChallengeDataList": [
     {
       "CollectableData": {
+        "MapIconName": "Icon-Route-Challenge",
         "NotificationRange": 4000,
         "CollectionRange": 0,
         "TimeForMaxScore": 5.0,
@@ -855,7 +865,7 @@
 
       "NotificationPopup": {
         "Type": 2,
-        "PopupIconName": "Icon-General-Time",
+        "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "רוח קדמית",
           "HebDescription": "זוהתה רוח קדמית חזקה לפניכם, האיצו קדימה!",
@@ -896,6 +906,7 @@
     },
     {
       "CollectableData": {
+        "MapIconName": "Icon-Route-Challenge",
         "NotificationRange": 4000,
         "CollectionRange": 0,
         "TimeForMaxScore": 10.0,
@@ -904,7 +915,7 @@
 
       "NotificationPopup": {
         "Type": 2,
-        "PopupIconName": "Icon-General-Time",
+        "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "רוח צדדית",
           "HebDescription": "זוהתה רוח צדדית חזקה לפניכם, האיצו קדימה!",
@@ -945,6 +956,7 @@
     },
     {
       "CollectableData": {
+        "MapIconName": "Icon-Route-Challenge",
         "NotificationRange": 4000,
         "CollectionRange": 0,
         "TimeForMaxScore": 15.0,
@@ -953,7 +965,7 @@
 
       "NotificationPopup": {
         "Type": 2,
-        "PopupIconName": "Icon-General-Time",
+        "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "ציפורים!!!",
           "HebDescription": "תעלו אלף רגל גבוה לפחות כדי להתחמק מהציפורים",

@@ -160,6 +160,7 @@ public struct ChallengeCollectableData
 [Serializable]
 public struct CollectableData
 {
+    public string MapIconName;
     public float NotificationRange;
     public float CollectionRange;
     public float TimeForMaxScore;

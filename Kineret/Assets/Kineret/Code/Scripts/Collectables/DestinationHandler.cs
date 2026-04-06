@@ -20,7 +20,7 @@ public class DestinationHandler : InfoPointHandler
     }
 
     //Overrides for them to do nothing
-    protected override void UpdateVisual(Sprite sprite)
+    protected override void UpdateVisual(string spriteStreamingName)
     {
     }
     protected override void GainScore()

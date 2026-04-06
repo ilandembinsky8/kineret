@@ -65,6 +65,12 @@ public class MainMenuManager : MonoBehaviour
         if (IsLoadingDestinationSelection) StartDestinationSelection();
     }
 
+    public void OnStartGameButton()
+    {
+        IdleManager.IsTicking = true;
+        StartDestinationSelection();
+    }
+
     public void StartDestinationSelection()
     {
         _selectedDestinationsCount = 0;

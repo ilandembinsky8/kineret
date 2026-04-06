@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool IsGamePaused = false;
+    public static bool IsGamePaused { get; set; }
     public static Transform CurrentDestination;
 
     [SerializeField] private Transform player;

@@ -41,7 +41,10 @@ public class MouseManager : MonoBehaviour
     private void Update()
     {
         Vector2 joystickDirection = new Vector2(Input.GetAxis("HatX"), Input.GetAxis("HatY"));
-        if(_mouseDirection != Vector2.zero) { MoveMouse(_mouseDirection); }
+
+        Debug.Log("Mouse:" + _mouseDirection);
+        Debug.Log("Joystick:" + joystickDirection);
+        if (_mouseDirection != Vector2.zero) { MoveMouse(_mouseDirection); }
         if (joystickDirection != Vector2.zero) { MoveMouse(joystickDirection); }
 
         if (Input.GetButtonDown("RedButton")) { SimulateMouseClick(); }
