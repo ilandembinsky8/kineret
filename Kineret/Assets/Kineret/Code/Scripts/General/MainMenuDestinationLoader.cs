@@ -78,7 +78,7 @@ public class MainMenuDestinationLoader : MonoBehaviour
         if (Mathf.Abs(input3) > 0.25) { TryChangeDestination((int)Mathf.Sign(input3)); }
         if (Mathf.Abs(input4) > 0.25) { TryChangeDestination((int)Mathf.Sign(input4)); }
 
-        if (Input.GetButtonDown(JoystickManager.JoystickControls.RedButton))
+        if (Input.GetButtonUp(JoystickManager.JoystickControls.Trigger))
         {
             activeDestinationButtonList[indicator].OnClick();
         }
