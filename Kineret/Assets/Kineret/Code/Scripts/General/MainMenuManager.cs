@@ -1,6 +1,6 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
@@ -8,6 +8,7 @@ public class MainMenuManager : MonoBehaviour
     public static bool IsLoadingDestinationSelection = false;
 
     [SerializeField] private GameSettings gameSettings;
+    [SerializeField] private MainMenuDestinationLoader menuDestinationLoader;
     [SerializeField] private float showTutorialDelay;
     [SerializeField] private float showGameButtonDelay;
     [Header("Event Channels")]
@@ -25,7 +26,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text secondDestinationText;
     [SerializeField] private TMP_Text thirdDestinationText;
     [SerializeField] private PopupTweenHandler toturialPopup;
-   
+
     [SerializeField] private GameObject showToturialButton;
     [SerializeField] private GameObject startGameButton;
     [SerializeField] private Animator blackPanel;
@@ -75,10 +76,11 @@ public class MainMenuManager : MonoBehaviour
     {
         _selectedDestinationsCount = 0;
         enableDestinationSelection_EC.RaiseEvent(true);
+        menuDestinationLoader.NextDestination(0);
     }
 
     private void HandleDestinationSelection(int destination)
-    {  
+    {
         LocationsManager.SelectedDestinations[_selectedDestinationsCount] = destination;
         _selectedDestinationsCount++;
         if (_selectedDestinationsCount == LocationsManager.DestinationsSelectCount)
@@ -125,7 +127,7 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         SceneManager.LoadScene("Game Scene");
     }
-    
+
 
 
 }

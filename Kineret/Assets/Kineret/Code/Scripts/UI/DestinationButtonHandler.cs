@@ -1,10 +1,9 @@
-using DG.Tweening;
-using System.Collections;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections;
 using UnityEngine.UI;
+using DG.Tweening;
+using UnityEngine;
+using TMPro;
 
 public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -42,22 +41,11 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         upperPanelOriginalSize = upperPanel.sizeDelta;
         lowerPanelOriginalSize = lowerPanel.sizeDelta;
     }
+    private void OnEnable() { enableDestinationSelection_EC.OnEventRaised += HandleEnableDestinationSelection; }
+    private void OnDisable() { enableDestinationSelection_EC.OnEventRaised -= HandleEnableDestinationSelection; }
+    private void OnDestroy() { selectedIcon.DOKill(); }
 
-    private void OnEnable()
-    {
-        enableDestinationSelection_EC.OnEventRaised += HandleEnableDestinationSelection;
-    }
-
-    private void OnDisable()
-    {
-        enableDestinationSelection_EC.OnEventRaised -= HandleEnableDestinationSelection;
-    }
-
-    private void OnDestroy()
-    {
-        selectedIcon.DOKill();
-    }
-
+    public bool GetIsSelected() { return _isSelected; }
     public void LoadDestination(int destination)
     {
         _destination = destination;
@@ -108,7 +96,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         if (!_isSelectable) return;
         _isSelected = true;
 
-        PlaySelectStatusAnimation(true,0.5f);
+        PlaySelectStatusAnimation(true, 0.5f);
         EventsRelay.OnDestinationSelected.Invoke(_destination);
     }
     private void Deselect()
@@ -133,7 +121,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         PlayHoverAnimation(false, false);
     }
 
-    private void PlayHoverAnimation(bool isEnter, bool isSelected)
+    public void PlayHoverAnimation(bool isEnter, bool isSelected)
     {
         StopAllCoroutines();
         selectedIcon.DOKill();
@@ -144,11 +132,11 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         lowerText.DOKill();
 
         //Move to values
-        StartCoroutine(StatusIconFade(isSelected, 0.5f,1f, 0.5f));
+        StartCoroutine(StatusIconFade(isSelected, 0.5f, 1f, 0.5f));
         StartCoroutine(PanelsAnimation(isEnter, 0.5f, 0.3f));
     }
 
-    private IEnumerator StatusIconFade(bool isEnter,float fadeDuration,float pulseDuration,float minPulse)
+    private IEnumerator StatusIconFade(bool isEnter, float fadeDuration, float pulseDuration, float minPulse)
     {
         if (isEnter)
         {
@@ -157,7 +145,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
 
             yield return tween.WaitForCompletion();
 
-            selectedIcon.DOFade(minPulse, pulseDuration).SetLoops(-1,LoopType.Yoyo);
+            selectedIcon.DOFade(minPulse, pulseDuration).SetLoops(-1, LoopType.Yoyo);
         }
         else
         {
@@ -183,7 +171,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
             lowerText.DOFade(0, textDuration);
 
             yield return new WaitForSeconds(textDuration);
-            upperPanel.DOSizeDelta(new Vector2(upperPanelOriginalSize.x,0), panelDuration);
+            upperPanel.DOSizeDelta(new Vector2(upperPanelOriginalSize.x, 0), panelDuration);
             lowerPanel.DOSizeDelta(new Vector2(lowerPanelOriginalSize.x, 0), panelDuration);
         }
     }

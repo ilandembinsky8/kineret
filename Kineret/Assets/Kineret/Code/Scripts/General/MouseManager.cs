@@ -1,7 +1,5 @@
-
-using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine;
 
 public class MouseManager : MonoBehaviour
 {
@@ -30,6 +28,7 @@ public class MouseManager : MonoBehaviour
         _actions.Player.MoveMouse.performed += HandleMoveMouseInput;
         _actions.Player.MoveMouse.canceled += HandleMoveMouseInput;
         _actions.Player.MouseClick.performed += HandlMouseClickInput;
+        _mousePosition = new Vector2(1900, 170);
     }
     private void OnDisable()
     {

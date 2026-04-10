@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSettings: {fileID: 11400000, guid: b7bdae77a44f5974aadfd382aa79b1f3, type: 2}
+  menuDestinationLoader: {fileID: 3696091380746382211}
   showTutorialDelay: 2
   showGameButtonDelay: 5
   enableDestinationSelection_EC: {fileID: 11400000, guid: 30db6846684d5714db321701866561b6,
