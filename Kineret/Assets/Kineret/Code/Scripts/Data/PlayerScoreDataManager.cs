@@ -4,11 +4,24 @@ using System;
 
 public class PlayerScoreDataManager : MonoBehaviour
 {
+    public static PlayerScoreDataManager Instance { get; private set; }
+
     private PlayersScoreData _localPlayerScoreData;
     private JsonManager _jsonManager;
     private bool _isLoaded;
 
-    private void Awake() { _jsonManager = new JsonManager(); }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        _jsonManager = new JsonManager();
+    }
     private void Start() { _jsonManager.TryReadFromJson(OnPlayerScoreDataLoaded, "PlayersScoreData.json"); }
 
     public void SavePlayersScoreData() { _jsonManager.TryWriteToJson(_localPlayerScoreData, "PlayersScoreData.json"); }

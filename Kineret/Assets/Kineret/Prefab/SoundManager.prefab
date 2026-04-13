@@ -394,7 +394,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2832992057310866082}
   - component: {fileID: 1196309983368208600}
-  - component: {fileID: 5975537770549626182}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -442,15 +441,3 @@ MonoBehaviour:
   _OpenUI: {fileID: 8300000, guid: 2b77e2301ed6f294aa417b25b9439090, type: 3}
   _PointCollected: {fileID: 8300000, guid: f7fa995a23586814aa885fa360922140, type: 3}
   _ArrivedDestination: {fileID: 8300000, guid: 280d76bd25d791747bf773e025a21e86, type: 3}
---- !u!114 &5975537770549626182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7628552594373369976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6973a8265f2d7a244aa2bae4c67ea637, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -6,6 +6,7 @@ using System;
 
 public class IdleManager : MonoBehaviour
 {
+    public static IdleManager Instance { get; private set; }
     public static Action<int> OnAnyJoystickInput { get; set; }
     public static Action OnAnyJoystickClick { get; set; }
 
@@ -17,6 +18,13 @@ public class IdleManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         DontDestroyOnLoad(gameObject);
         _allowedIdleTime = GameSettingsManager.GetInt("Game Settings", "MaxIdleDurationInSeconds", 600);
         InputSystem.onAnyButtonPress.Call(ctrl => _timer = 0);
