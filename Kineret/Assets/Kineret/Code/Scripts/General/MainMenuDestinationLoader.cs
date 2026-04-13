@@ -79,12 +79,13 @@ public class MainMenuDestinationLoader : MonoBehaviour
 
     public void TryHandleJoytickInput(int inputChangeValue)
     {
-        if (GameManager.CurrentDestination == null /*&& all destinations are't selected*/)//needs to handle input only when destination selection is available
+        if (parent.gameObject.activeInHierarchy)
             ChangeDestination(inputChangeValue);
     }
     public void TryHandleJoystickClick()
     {
-        activeDestinationButtonList[indicator].OnClick();
+        if (UserInterfaceNavigator.GetActiveButton() == null)//needs something to prevent double clicking at the start
+            activeDestinationButtonList[indicator].OnClick();
     }
 
     private void ChangeDestination(int inputChangeValue)
