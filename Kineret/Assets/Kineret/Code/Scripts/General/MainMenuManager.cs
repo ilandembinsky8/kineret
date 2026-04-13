@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     public static bool IsLoadingDestinationSelection = false;
+    public static bool IsDestinationSelectionActive { get; private set; } = false;
 
     [SerializeField] private GameSettings gameSettings;
     [SerializeField] private MainMenuDestinationLoader menuDestinationLoader;
@@ -74,6 +75,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartDestinationSelection()
     {
+        IsDestinationSelectionActive = true;
         _selectedDestinationsCount = 0;
         enableDestinationSelection_EC.RaiseEvent(true);
         menuDestinationLoader.NextDestination(0);
@@ -96,6 +98,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void EndDestinationSelection()
     {
+        IsDestinationSelectionActive = false;
         enableDestinationSelection_EC.RaiseEvent(false);
         StartCoroutine(LoadToturial());
         destinationsSummaryPopup.gameObject.SetActive(true);

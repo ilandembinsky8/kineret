@@ -32,6 +32,7 @@ public class MainMenuDestinationLoader : MonoBehaviour
     private Coroutine onDestinationChanged;
     private WaitForSeconds waitForSeconds;
     private bool canChangeDestination;
+    private bool _firstInputBlock;
     private int indicator = 0;
 
     void Awake()
@@ -79,13 +80,16 @@ public class MainMenuDestinationLoader : MonoBehaviour
 
     public void TryHandleJoytickInput(int inputChangeValue)
     {
-        if (parent.gameObject.activeInHierarchy)
+        if (MainMenuManager.IsDestinationSelectionActive)
             ChangeDestination(inputChangeValue);
     }
     public void TryHandleJoystickClick()
     {
-        if (UserInterfaceNavigator.GetActiveButton() == null)//needs something to prevent double clicking at the start
+        if (MainMenuManager.IsDestinationSelectionActive && _firstInputBlock)
             activeDestinationButtonList[indicator].OnClick();
+
+        if (!_firstInputBlock)
+            _firstInputBlock = true;
     }
 
     private void ChangeDestination(int inputChangeValue)
