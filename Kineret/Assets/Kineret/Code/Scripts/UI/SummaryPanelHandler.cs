@@ -43,8 +43,10 @@ public class SummaryPanelHandler : MonoBehaviour
         Vector2 size = popupBackground.sizeDelta;
         popupBackground.sizeDelta = new Vector2(size.x, 0f);
 
-        parent.anchoredPosition = new Vector2(parent.anchoredPosition.x, parent.sizeDelta.y);
-        Tween tween = parent.DOMoveY(parent.sizeDelta.y / 2f, enterDuration);
+        float height = GameSettingsManager.GetFloat("Game Settings", "ResolutionHeight", 2160f);
+
+        parent.anchoredPosition = new Vector2(parent.anchoredPosition.x, height);
+        Tween tween = parent.DOMoveY(height / 2f, enterDuration);
         yield return tween.WaitForCompletion();   
         tween = popupBackground.DOSizeDelta(size, popupDuration).SetEase(Ease.OutBack);
         yield return tween.WaitForCompletion();
