@@ -31,6 +31,25 @@ public class JsonManager
         return true;
     }
 
+    public bool TryWriteToJson<T>(T data, string fileName)
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, fileName);
+
+        try
+        {
+            string json = JsonUtility.ToJson(data, true);
+            File.WriteAllText(path, json);
+
+            Debug.Log($"JsonManager: JSON written successfully to {path}");
+            return true;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"JsonManager: Failed to write JSON. {e.Message}");
+            return false;
+        }
+    }
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
