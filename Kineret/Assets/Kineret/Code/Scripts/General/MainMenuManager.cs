@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
@@ -26,6 +26,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text firstDestinationText;
     [SerializeField] private TMP_Text secondDestinationText;
     [SerializeField] private TMP_Text thirdDestinationText;
+    [SerializeField] private TMP_Text highscoreText;
+    [SerializeField] private TMP_Text usernameText;
     [SerializeField] private PopupTweenHandler toturialPopup;
 
     [SerializeField] private GameObject showToturialButton;
@@ -70,6 +72,8 @@ public class MainMenuManager : MonoBehaviour
     public void OnStartGameButton()
     {
         IdleManager.IsTicking = true;
+        HighscoresManager.Instance.AddUser();
+
         StartDestinationSelection();
     }
 
@@ -106,6 +110,10 @@ public class MainMenuManager : MonoBehaviour
         firstDestinationText.text = LocationsManager.GetDestination(LocationsManager.SelectedDestinations[0]).Data.UIDestinationInfoText.HebTitle;
         secondDestinationText.text = LocationsManager.GetDestination(LocationsManager.SelectedDestinations[1]).Data.UIDestinationInfoText.HebTitle;
         thirdDestinationText.text = LocationsManager.GetDestination(LocationsManager.SelectedDestinations[2]).Data.UIDestinationInfoText.HebTitle;
+
+        //Need to find better solution for english hebrew for this
+        usernameText.text = $"{HighscoresManager.Instance.GetUsername(HighscoresManager.Instance.CurrentUserID)} :'סמ ןקחש";
+        highscoreText.text = $"{HighscoresManager.Instance.GetHighscore(HighscoresManager.Instance.CurrentUserID):0000} :דוקינ";
 
         destinationsSummaryPopup.Play((int)PlayMode.Default);
         //destinationsSummaryPopup.StartCoroutine(destinationsSummaryPopup.PlayIconYoyo(showTutorialDelay));

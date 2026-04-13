@@ -612,6 +612,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3167140225687079980, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+        type: 3}
+      propertyPath: m_text
+      value: "KIC3456 :'\u05E1\u05DE \u05DF\u05E7\u05D7\u05E9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3167140225687079980, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3167140225687079980, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+        type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241918783994008486, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+        type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6753103378394003606, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
         type: 3}
       propertyPath: m_Name
@@ -620,7 +640,7 @@ PrefabInstance:
     - target: {fileID: 6753103378394003606, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8085478680033157870, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
         type: 3}
@@ -769,6 +789,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1167579631646187825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3167140225687079980, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+    type: 3}
+  m_PrefabInstance: {fileID: 1167579631646187820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1167579631646187826 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6241918783994008486, guid: c1e8cd8ed660d9240b3fa50c9d88b084,
+    type: 3}
+  m_PrefabInstance: {fileID: 1167579631646187820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1689010977836586101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -906,6 +950,16 @@ PrefabInstance:
       propertyPath: blackPanel
       value: 
       objectReference: {fileID: 1689010977836586102}
+    - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: usernameText
+      value: 
+      objectReference: {fileID: 1167579631646187825}
+    - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
+      propertyPath: highscoreText
+      value: 
+      objectReference: {fileID: 1167579631646187826}
     - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
       propertyPath: toturialPopup

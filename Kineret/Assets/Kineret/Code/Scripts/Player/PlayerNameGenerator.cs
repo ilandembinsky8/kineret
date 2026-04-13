@@ -6,7 +6,8 @@ public static class PlayerNameGenerator
 {
     public static string GetName()
     {
-        int index = PlayerScoreDataManager.Instance.GetLocalPlayerScoreData().GamesPlayedIndex;
-        return $"KIC{index:D4}";
+        return "";
+       /* int index = PlayerScoreDataManager.Instance.GetLocalPlayerScoreData().GamesPlayedIndex;
+        return $"KIC{index:D4}";*/
     }
 }

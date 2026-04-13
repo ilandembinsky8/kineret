@@ -1,10 +1,40 @@
 {
-  "GamesPlayedIndex": 1,
-  "PlayerData": [
-    {
-      "PlayerName": "KIC0000",
-      "PlayerScore": 100,
-      "PlayerIndex": 1
-    }
-  ]
+    "Users": [
+        {
+            "ID": 4316,
+            "Highscore": 1000
+        },
+        {
+            "ID": 5646,
+            "Highscore": 564
+        },
+        {
+            "ID": 8162,
+            "Highscore": 237
+        },
+        {
+            "ID": 3544,
+            "Highscore": 220
+        },
+        {
+            "ID": 6910,
+            "Highscore": 174
+        },
+        {
+            "ID": 5333,
+            "Highscore": 100
+        },
+        {
+            "ID": 7361,
+            "Highscore": 95
+        },
+        {
+            "ID": 8818,
+            "Highscore": 85
+        },
+        {
+            "ID": 37,
+            "Highscore": 75
+        }
+    ]
 }

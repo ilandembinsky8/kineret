@@ -4,25 +4,23 @@ using TMPro;
 
 public class SummaryScoreTab : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI indexPositionText;
+    [SerializeField] private TextMeshProUGUI positionText;
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI usernameText;
+    [SerializeField] private Image selectedImage;
 
-    private Image _myImage;
+    private void OnDisable() { selectedImage.enabled = false; }
 
-    private void Awake() { _myImage = GetComponent<Image>(); }
-    private void OnDisable() { _myImage.enabled = false; }
-
-    public int GetIndexPosition() { return int.Parse(indexPositionText.text); }
+    public int GetIndexPosition() { return int.Parse(positionText.text); }
     public void ShowTabSelected()
     {
-        _myImage.enabled = true;
+        selectedImage.enabled = true;
     }
-    public void SetTabData(int index, string name, int score)
+    public void SetTabData(int position, string username, int score)
     {
-        indexPositionText.text = index.ToString();
+        positionText.text = position.ToString();
         scoreText.text = score.ToString();
-        nameText.text = name;
+        usernameText.text = username;
     }
 
 }

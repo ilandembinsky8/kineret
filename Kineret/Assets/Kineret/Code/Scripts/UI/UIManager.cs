@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PopupHandler highFullPopupPrefab;
 
     [SerializeField] private PopupDataEventChannel loadPopup_EC;
+
+    [SerializeField] private TMP_Text usernameText;
 
     [SerializeField] private PopupData routePopupData;
     [SerializeField] private float routePopupDelay;
@@ -42,6 +45,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        usernameText.text = $"| {HighscoresManager.Instance.GetUsername(HighscoresManager.Instance.CurrentUserID)}";
         blackPanel.gameObject.SetActive(true);
         StartCoroutine(BlackFade());
     }

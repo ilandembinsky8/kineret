@@ -174,7 +174,6 @@ public class PlayerMovementHandler : MonoBehaviour
             switch (type)
             {
                 case ChallengeType.FrontWind:
-                    Debug.Log("Forward");
                     _windDirection = -YawBody.forward;
                     break;
                 case ChallengeType.SideWind:

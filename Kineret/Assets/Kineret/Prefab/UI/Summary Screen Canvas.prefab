@@ -1102,7 +1102,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   summaryScoreTabPrefab: {fileID: 3255404192926828635}
   playerScoreContainer: {fileID: 8118736952720513732}
-  maxScoreTabs: 4
 --- !u!1 &5240495220481467060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2113,6 +2112,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SummaryScoreHeader
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090122284909441917, guid: a26f2260ff2501b4981e46e2bd3041a1,
+        type: 3}
+      propertyPath: m_text
+      value: "\u05D3\u05D5\u05E7\u05D9\u05E0"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412333971535993602, guid: a26f2260ff2501b4981e46e2bd3041a1,
+        type: 3}
+      propertyPath: m_text
+      value: "\u05DD\u05D5\u05E7\u05DE"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763827933832350731, guid: a26f2260ff2501b4981e46e2bd3041a1,
+        type: 3}
+      propertyPath: m_text
+      value: "\u05DD\u05E9"
       objectReference: {fileID: 0}
     - target: {fileID: 6413437225917601385, guid: a26f2260ff2501b4981e46e2bd3041a1,
         type: 3}

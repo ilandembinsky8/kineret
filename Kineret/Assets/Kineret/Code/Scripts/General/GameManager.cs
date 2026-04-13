@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private TMP_Text finalScoreText;
     [SerializeField] private SummaryPanelHandler summmaryCanvas;
-
+    [SerializeField] private SummaryScoreHandler summaryScoreHandler;
     public DestinationHandler[] Destinations { get; set; }
     private int _destinationsReachedCount;
     private int _currentDestinationScore;
@@ -151,6 +151,17 @@ public class GameManager : MonoBehaviour
  
     private void HandleGameOver()
     {
+        HighscoresManager.Instance.UpdateUserHighscore(HighscoresManager.Instance.CurrentUserID, _totalScore);
+
+        UserData firstPlace = HighscoresManager.Instance.Highscores.Users[0];
+        UserData secondPlace = HighscoresManager.Instance.Highscores.Users[1];
+        UserData thirdPlace = HighscoresManager.Instance.Highscores.Users[2];
+        UserData currentUser = HighscoresManager.Instance.GetUserData(HighscoresManager.Instance.CurrentUserID);
+        summaryScoreHandler.CreateNewScoreTab(1, HighscoresManager.Instance.GetUsername(firstPlace.ID), firstPlace.Highscore);
+        summaryScoreHandler.CreateNewScoreTab(2, HighscoresManager.Instance.GetUsername(secondPlace.ID), secondPlace.Highscore);
+        summaryScoreHandler.CreateNewScoreTab(3, HighscoresManager.Instance.GetUsername(thirdPlace.ID), thirdPlace.Highscore);
+        summaryScoreHandler.CreateNewScoreTab(HighscoresManager.Instance.GetPosition(currentUser.ID), HighscoresManager.Instance.GetUsername(currentUser.ID), currentUser.Highscore,true);
+
         finalScoreText.text = string.Format("{0:0000}", _totalScore);
         summmaryCanvas.gameObject.SetActive(true);
         summmaryCanvas.StartCoroutine(summmaryCanvas.EnterAnimation());
