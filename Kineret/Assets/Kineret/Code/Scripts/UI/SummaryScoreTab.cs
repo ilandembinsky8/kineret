@@ -13,6 +13,7 @@ public class SummaryScoreTab : MonoBehaviour
     private void Awake() { _myImage = GetComponent<Image>(); }
     private void OnDisable() { _myImage.enabled = false; }
 
+    public int GetIndexPosition() { return int.Parse(indexPositionText.text); }
     public void ShowTabSelected()
     {
         _myImage.enabled = true;
