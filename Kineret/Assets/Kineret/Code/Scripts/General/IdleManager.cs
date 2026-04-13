@@ -1,10 +1,14 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine;
+using System;
 
 public class IdleManager : MonoBehaviour
 {
+    public static Action<int> OnAnyJoystickInput { get; set; }
+    public static Action OnAnyJoystickClick { get; set; }
+
     public static bool IsTicking = false;
 
     private float _timer;
@@ -21,14 +25,28 @@ public class IdleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis(JoystickManager.JoystickControls.HorizontalAxis) != 0 ||
-            Input.GetAxis(JoystickManager.JoystickControls.VerticalAxis) != 0 ||
-            Input.GetAxis(JoystickManager.JoystickControls.MiniHorizontalAxis) != 0 ||
-            Input.GetAxis(JoystickManager.JoystickControls.MiniVerticalAxis) != 0 ||
-            Input.GetButtonDown(JoystickManager.JoystickControls.Trigger) ||
+        float horizontalAxis = Input.GetAxis(JoystickManager.JoystickControls.HorizontalAxis);
+        float verticalAxis = Input.GetAxis(JoystickManager.JoystickControls.VerticalAxis);
+        float miniHorizontalAxis = Input.GetAxis(JoystickManager.JoystickControls.MiniHorizontalAxis);
+        float miniVerticalAxis = Input.GetAxis(JoystickManager.JoystickControls.MiniVerticalAxis);
+
+        //If Joystick Moved
+        if (horizontalAxis != 0 || verticalAxis != 0 ||
+            miniHorizontalAxis != 0 || miniVerticalAxis != 0)
+        {
+            _timer = 0;
+
+            if (Mathf.Abs(horizontalAxis) > 0.35) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(horizontalAxis)); }
+            if (Mathf.Abs(verticalAxis) > 0.35) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(verticalAxis)); }
+            if (Mathf.Abs(miniHorizontalAxis) > 0.25) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(miniHorizontalAxis)); }
+            if (Mathf.Abs(miniVerticalAxis) > 0.25) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(miniVerticalAxis)); }
+        }
+        //If Button Pressed
+        if (Input.GetButtonDown(JoystickManager.JoystickControls.Trigger) ||
             Input.GetButtonDown(JoystickManager.JoystickControls.RedButton))
         {
             _timer = 0;
+            OnAnyJoystickClick?.Invoke();
         }
 
         if (IsTicking)
@@ -38,7 +56,7 @@ public class IdleManager : MonoBehaviour
             {
                 ResetGame();
             }
-        }       
+        }
     }
 
     private void ResetGame()

@@ -66,25 +66,28 @@ public class MainMenuDestinationLoader : MonoBehaviour
         indicator = (activeDestinationButtonList.Count - 1) / 2;
         waitForSeconds = new WaitForSeconds(onDestinationChangedTransitionTime);
     }
-    private void Update()
+    private void OnEnable()
     {
-        float input1 = Input.GetAxis(JoystickManager.JoystickControls.HorizontalAxis);
-        float input2 = Input.GetAxis(JoystickManager.JoystickControls.VerticalAxis);
-        float input3 = Input.GetAxis(JoystickManager.JoystickControls.MiniHorizontalAxis);
-        float input4 = Input.GetAxis(JoystickManager.JoystickControls.MiniVerticalAxis);
-
-        if (Mathf.Abs(input1) > 0.35) { TryChangeDestination((int)Mathf.Sign(input1)); }
-        if (Mathf.Abs(input2) > 0.35) { TryChangeDestination((int)Mathf.Sign(input2)); }
-        if (Mathf.Abs(input3) > 0.25) { TryChangeDestination((int)Mathf.Sign(input3)); }
-        if (Mathf.Abs(input4) > 0.25) { TryChangeDestination((int)Mathf.Sign(input4)); }
-
-        if (Input.GetButtonUp(JoystickManager.JoystickControls.Trigger))
-        {
-            activeDestinationButtonList[indicator].OnClick();
-        }
+        IdleManager.OnAnyJoystickInput += TryHandleJoytickInput;
+        IdleManager.OnAnyJoystickClick += TryHandleJoystickClick;
+    }
+    private void OnDisable()
+    {
+        IdleManager.OnAnyJoystickInput -= TryHandleJoytickInput;
+        IdleManager.OnAnyJoystickClick -= TryHandleJoystickClick;
     }
 
-    public void TryChangeDestination(int inputChangeValue)
+    public void TryHandleJoytickInput(int inputChangeValue)
+    {
+        if (GameManager.CurrentDestination == null /*&& all destinations are't selected*/)//needs to handle input only when destination selection is available
+            ChangeDestination(inputChangeValue);
+    }
+    public void TryHandleJoystickClick()
+    {
+        activeDestinationButtonList[indicator].OnClick();
+    }
+
+    private void ChangeDestination(int inputChangeValue)
     {
         if (canChangeDestination)
         {
@@ -108,13 +111,9 @@ public class MainMenuDestinationLoader : MonoBehaviour
         indicator += value;
 
         if (indicator > activeDestinationButtonList.Count - 1)
-        {
             indicator = 0;
-        }
         else if (indicator < 0)
-        {
             indicator = activeDestinationButtonList.Count - 1;
-        }
     }
     private void DeselectHoveredDestination()
     {
