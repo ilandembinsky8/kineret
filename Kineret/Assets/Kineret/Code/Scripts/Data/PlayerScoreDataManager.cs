@@ -34,6 +34,7 @@ public class PlayerScoreDataManager : MonoBehaviour
 [Serializable]
 public struct PlayersScoreData
 {
+    public int GamesPlayedIndex;
     public List<PlayerData> PlayerData;
 }
 
