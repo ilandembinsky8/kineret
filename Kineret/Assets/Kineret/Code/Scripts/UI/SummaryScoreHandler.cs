@@ -8,7 +8,9 @@ public class SummaryScoreHandler : MonoBehaviour
     [SerializeField] private GameObject playerScoreContainer;
     [SerializeField] private int maxScoreTabs = 4; //we can do 5 but XD seems to have 4
 
-    private List<SummaryScoreTab> _summaryScoreTabs = new List<SummaryScoreTab>();
+    private List<SummaryScoreTab> _summaryScoreTabs;
+
+    private void Awake() { _summaryScoreTabs = new List<SummaryScoreTab>(maxScoreTabs); }
 
     public void ReorderScoreByIndex()
     {
