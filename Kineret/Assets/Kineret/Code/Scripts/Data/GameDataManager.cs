@@ -134,7 +134,8 @@ public class GameDataManager : MonoBehaviour
         };
 
         JoystickManager.Init(  
-            GameSettingsManager.GetFloat("Controls", "Sensitivity", 0.5f),
+            GameSettingsManager.GetFloat("Controls", "SensitivityX", 0.5f),
+            GameSettingsManager.GetFloat("Controls", "SensitivityY", 0.5f),
             GameSettingsManager.GetFloat("Controls", "ManuStickDeadzone", 0.35f),
             GameSettingsManager.GetFloat("Controls", "ManuHatDeadzone", 0.25f), 
             joystickControls);

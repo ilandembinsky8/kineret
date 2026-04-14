@@ -91,12 +91,12 @@ public class PlayerMovementHandler : MonoBehaviour
     }
     private void Yaw()
     {
-        _yawDirection = JoystickManager.GetSensitiveAxis(JoystickManager.JoystickControls.HorizontalAxis) + _keyBoardYawDirection;
+        _yawDirection = JoystickManager.GetHorizontalAxis() + _keyBoardYawDirection;
         YawBody.Rotate(transform.up, Time.deltaTime * yawSpeed * _yawDirection, Space.World);
     }
     private void Pitch()
     {
-        _pitchDirection = JoystickManager.GetSensitiveAxis(JoystickManager.JoystickControls.VerticalAxis) + _keyBoardPitchDirection;
+        _pitchDirection = JoystickManager.GetVerticalAxis() + _keyBoardPitchDirection;
         pitchBody.Rotate(pitchBody.right, Time.deltaTime * pitchSpeed * _pitchDirection, Space.World);
         cameraPitched_EC.RaiseEvent(pitchBody);
     }

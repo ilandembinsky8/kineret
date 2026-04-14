@@ -18,19 +18,24 @@ public static class JoystickManager
 
     public static float StickDeadzone;
     public static float HatDeadzone;
-    private static float _sensitivity;
+    private static float _sensitivityX;
+    private static float _sensitivityY;
 
-    public static void Init(float sensitivity,float stickDeadzone,float hatDeadzone, JoystickControls joystickControls)
+    public static void Init(float sensitivityX, float sensitivityY, float stickDeadzone,float hatDeadzone, JoystickControls joystickControls)
     {
-        _sensitivity = sensitivity;
+        _sensitivityX = sensitivityX;
+        _sensitivityY = sensitivityY;
         StickDeadzone = stickDeadzone;
         HatDeadzone = hatDeadzone;
         JoystickControls = joystickControls;      
     }
 
-    public static float GetSensitiveAxis(string axisName)
+    public static float GetHorizontalAxis()
     {
-        return Input.GetAxis(JoystickManager.JoystickControls.HorizontalAxis) * _sensitivity;
+        return Input.GetAxis(JoystickControls.HorizontalAxis) * _sensitivityX;
     }
-
+    public static float GetVerticalAxis()
+    {
+        return Input.GetAxis(JoystickControls.VerticalAxis) * _sensitivityY;
+    }
 }
