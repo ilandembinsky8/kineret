@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+//Summary Screen
 public class ComponentNavigator : MonoBehaviour
 {
     [SerializeField] private NavigatorCompononent[] NavigatorContainer;

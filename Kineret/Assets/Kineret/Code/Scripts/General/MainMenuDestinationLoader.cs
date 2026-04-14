@@ -85,7 +85,7 @@ public class MainMenuDestinationLoader : MonoBehaviour
     }
     public void TryHandleJoystickClick()
     {
-        if (MainMenuManager.IsDestinationSelectionActive && _firstInputBlock)
+        if (UserInterfaceNavigator.GetActiveButton() == null && _firstInputBlock)
             activeDestinationButtonList[indicator].OnClick();
 
         if (!_firstInputBlock)

@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 
+//Handles the destination buttons
 public class UserInterfaceNavigator : MonoBehaviour
 {
     private static Button currentlyActiveButton;

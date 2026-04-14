@@ -2,10 +2,12 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 
+
+//Single Buttons
 [RequireComponent(typeof(Button))]
 public class NavigatorCompononent : MonoBehaviour
 {
-    public static Action<Button> OnButtonActivated;
+    public static Action<Button> OnButtonActivated { get; set; }
 
     [Tooltip("True for single button menus.")]
     [SerializeField] private bool _isSendingActivationSignal = true;
@@ -17,6 +19,7 @@ public class NavigatorCompononent : MonoBehaviour
 
     public void EnableMyButton()
     {
+        Debug.Log($"Enabling my self: {gameObject.name}");
         _myButton.interactable = true;
         UserInterfaceNavigator.SetActiveButton(_myButton);
     }
