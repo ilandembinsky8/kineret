@@ -25,7 +25,7 @@ public class ImageDataManager : MonoBehaviour
 
         foreach (DestinationTextData destination in destinationDataList)
         {
-            string destinationName = destination.UIDestinationInfoText.EngTitle;
+            string destinationName = destination.CodeName;
 
             DestinationImageData imageData = new DestinationImageData { DestinationName = destinationName };
 

@@ -61,9 +61,10 @@ public static class LocationsManager
 
     public static InfoScreenData GetInfoScreenData(int destinationID, bool isFinal)
     {
-        DestinationData destination = LocationsManager.GetDestination(destinationID);
+        DestinationData destination = GetDestination(destinationID);
         InfoScreenData data = new()
         {
+            CodeName = destination.Data.CodeName,
             Title = destination.Data.UIDestinationInfoText.HebTitle,
             Subtitle = destination.Data.HebSubTitleInfoText,
             Text = destination.Data.DestinationInfoScreenText.HebDescription,

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class SummaryPanelHandler : MonoBehaviour
 {
-
     [SerializeField] private RectTransform parent;
     [SerializeField] private RectTransform popupBackground;
     [SerializeField] private TMP_Text titleText;
@@ -67,6 +66,7 @@ public class SummaryPanelHandler : MonoBehaviour
         yield return tween.WaitForCompletion();
         mainMenuButton.interactable = true;
         destinationsButton.interactable = true;
+
         EventsRelay.OnSummaryScreenReady?.Invoke();
     }
 }

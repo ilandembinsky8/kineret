@@ -21,6 +21,9 @@ public class InfoScreenHandler : MonoBehaviour
     [SerializeField] private PopupTweenHandler tweenHandler;
     [SerializeField] private float enterDuration;
 
+    private string _destinationName;
+    private bool _isWaitingForTextStart;
+
     private void Awake()
     {
         continueGameButton.gameObject.SetActive(false);
@@ -32,16 +35,20 @@ public class InfoScreenHandler : MonoBehaviour
     }
     private void OnEnable()
     {
+        EventsRelay.OnTextStarted += HandleTextStarted;
         tweenHandler.OnTextFinishedLoading += HandleTextFinishedLoading;
     }
     private void OnDisable()
     {
+        EventsRelay.OnTextStarted -= HandleTextStarted;
         tweenHandler.OnTextFinishedLoading -= HandleTextFinishedLoading;
     }
     public void LoadData(InfoScreenData data)
     {
         continueGameButton.gameObject.SetActive(!data.isFinal);
         endGameButton.gameObject.SetActive(data.isFinal);
+
+        _destinationName = data.CodeName;
 
         if (data.Title != null && titleText != null)
         {
@@ -75,7 +82,6 @@ public class InfoScreenHandler : MonoBehaviour
         }
     }
 
-   
     public void CloseScreen()
     {
         EventsRelay.OnGamePause.Invoke(false);
@@ -100,8 +106,18 @@ public class InfoScreenHandler : MonoBehaviour
         Tween tween = parent.DOMoveY(height / 2f, enterDuration);
         yield return tween.WaitForCompletion();
         FlagHandler.EndFlagAnimation.Invoke();
-       
+
+        _isWaitingForTextStart = true;
         tweenHandler.Play((int)PlayMode.Default);
+    }
+
+    private void HandleTextStarted()
+    {
+        if (_isWaitingForTextStart)
+        {
+            _isWaitingForTextStart = false;
+            AudioManager.Instance.PlayNarration(_destinationName);
+        }
     }
 
     private void HandleTextFinishedLoading()

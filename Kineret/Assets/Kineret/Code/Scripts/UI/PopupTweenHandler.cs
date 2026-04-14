@@ -161,6 +161,7 @@ public class PopupTweenHandler : MonoBehaviour
 
     private void PlayText()
     {
+        EventsRelay.OnTextStarted?.Invoke();
         switch (textMode)
         {
             case TextMode.Fade:

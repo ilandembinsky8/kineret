@@ -4,6 +4,7 @@ using UnityEngine;
 [Serializable]
 public struct InfoScreenData
 {
+    public string CodeName;
     public string Title;
     public string Subtitle;
     public string Text;

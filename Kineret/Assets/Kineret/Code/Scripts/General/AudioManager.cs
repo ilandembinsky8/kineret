@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource _MusicSource;
     [SerializeField] private AudioClip[] _FlightMusic;
+    [SerializeField] private AudioSource _NarrationSource;
     [SerializeField] private AudioSource _NotificationSource;
     [SerializeField] private AudioSource _OnCollectedSource;
     [SerializeField] private AudioClip _OpenUI;
@@ -30,6 +31,8 @@ public class AudioManager : MonoBehaviour
         _NotificationSource.playOnAwake = false;
         _OnCollectedSource.loop = false;
         _OnCollectedSource.playOnAwake = false;
+        _NarrationSource.loop = false;
+        _NarrationSource.playOnAwake = false;
     }
 
     #region for testing - can be removed after connecting to actual game
@@ -51,7 +54,11 @@ public class AudioManager : MonoBehaviour
     public void PlayOpenUI() { PlayClipInSource(_OpenUI, _NotificationSource, 0.15f); }
     public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource, 0.35f); }
     public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource, 0.2f); }
-
+    public void PlayNarration(string destinationName) 
+    { 
+        AudioClip narration = NarrationManager.Instance.GetNarration(destinationName);
+        PlayClipInSource(narration, _NarrationSource, 0.8f); 
+    }
     /// <summary>
     /// Activates at the end, turns off looping and plays the out music clip after the current one is done.
     /// </summary>

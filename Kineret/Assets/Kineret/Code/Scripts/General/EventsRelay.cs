@@ -12,6 +12,8 @@ public static class EventsRelay
 
     public static UnityAction<int> OnScoreChange { get; set; }
     public static UnityAction<int> OnScoreGain { get; set; }
+
+    public static UnityAction OnTextStarted { get; set; }
     //Destinations Events
 
     public static UnityAction<int> OnDestinationSelected { get; set; }

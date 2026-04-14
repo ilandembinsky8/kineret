@@ -18,6 +18,7 @@ public class GameDataManager : MonoBehaviour
     private bool _jsonLoaded = false;
     private bool _iconsLoaded = false;
     private bool _imagesLoaded = false;
+    private bool _audioLoaded = false;
     #endregion
 
     private void Awake()
@@ -31,16 +32,17 @@ public class GameDataManager : MonoBehaviour
     #region Callbacks for data loading
     private void OnIconDataLoaded(string data)
     {
+        Debug.Log("Finished Loading Icons data from json");
         IconData iconData = JsonUtility.FromJson<IconData>(data);
 
         _imageDataManager.LoadIcons(iconData, OnIconsFinLoading);
     }
     private void OnJsonDataLoaded(string data)
     {
+        Debug.Log("Finished Loading game data");
         _currentGameData = JsonUtility.FromJson<GameData>(data);
-        _imageDataManager.LoadImages(_currentGameData.DestinationDataList, OnImagesFinLoading);
-
         _jsonLoaded = true;
+        _imageDataManager.LoadImages(_currentGameData.DestinationDataList, OnImagesFinLoading);      
     }
 
     /// <summary>
@@ -48,14 +50,23 @@ public class GameDataManager : MonoBehaviour
     /// </summary>
     private void OnIconsFinLoading(Dictionary<string, Sprite> iconImageDataMap)
     {
+        Debug.Log("Finished Loading Icons");
         _iconImageDataMap = iconImageDataMap;
         _iconsLoaded = true;
         _jsonManager.TryReadFromJson(OnJsonDataLoaded, "GameData.json");
     }
     private void OnImagesFinLoading(Dictionary<string, DestinationImageData> imageDataDictionaty)
     {
+        Debug.Log("Finished Loading images");
         _destinationImageDataDiction = imageDataDictionaty;
         _imagesLoaded = true;
+        NarrationManager.Instance.StartCoroutine(NarrationManager.Instance.LoadNarration(_currentGameData.DestinationDataList, OnAudioFinLoading));
+    }
+
+    private void OnAudioFinLoading()
+    {
+        Debug.Log("Finished Loading audio");
+        _audioLoaded = true;
         StartCoroutine(OnDataReadyToChangeScene());
     }
     #endregion
@@ -146,7 +157,11 @@ public class GameDataManager : MonoBehaviour
     /// </summary>
     void ChangeSceneOnDataLoaded()
     {
-        if (!_jsonLoaded || !_imagesLoaded || !_iconsLoaded) { Debug.LogError("Data wasn't loaded properly"); return; }
+        if (!_jsonLoaded || !_imagesLoaded || !_iconsLoaded || !_audioLoaded) 
+        {
+            Debug.LogError("Data wasn't loaded properly"); 
+            return; 
+        }
 
         LoadDataIntoLocationManager();
         SceneManager.LoadScene("Main Menu Scene");

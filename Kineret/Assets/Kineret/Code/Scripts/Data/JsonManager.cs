@@ -78,6 +78,7 @@ public struct GameData
 [Serializable]
 public struct DestinationData
 {
+
     public DestinationTextData Data;
     public Sprite Background;
     public Sprite Logo;
@@ -90,7 +91,10 @@ public struct DestinationData
 /// </summary>
 [Serializable]
 public struct DestinationTextData
-{
+{   /// <summary>
+    /// Represents a code name of the destination for inner use
+    /// </summary>
+    public string CodeName;
     /// <summary>
     /// Represents the UI Map destination name and description.
     /// </summary>
