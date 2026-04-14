@@ -15,7 +15,14 @@ public class NavigatorCompononent : MonoBehaviour
     private Button _myButton;
 
     private void Awake() { _myButton = GetComponent<Button>(); }
-    private void OnEnable() { if (_isSendingActivationSignal) OnButtonActivated?.Invoke(_myButton); }
+    private void OnEnable()
+    {    
+        if (_isSendingActivationSignal)
+        {
+            Debug.Log($"Enabling my self: {gameObject.name}");
+            OnButtonActivated?.Invoke(_myButton);
+        }
+    }
 
     public void EnableMyButton()
     {

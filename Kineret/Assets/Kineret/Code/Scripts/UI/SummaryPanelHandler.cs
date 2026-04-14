@@ -67,5 +67,6 @@ public class SummaryPanelHandler : MonoBehaviour
         yield return tween.WaitForCompletion();
         mainMenuButton.interactable = true;
         destinationsButton.interactable = true;
+        EventsRelay.OnSummaryScreenReady?.Invoke();
     }
 }

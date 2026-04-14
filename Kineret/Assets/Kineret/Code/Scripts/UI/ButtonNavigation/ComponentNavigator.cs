@@ -14,17 +14,22 @@ public class ComponentNavigator : MonoBehaviour
 
     private void Awake()
     {
-        canChangeButton = true;
         waitForSeconds = new WaitForSeconds(onButtonChangedTransitionTime);
     }
     private void OnEnable()
     {
-        IdleManager.OnAnyJoystickInput += TryChangeButton;
-        if (NavigatorContainer[0].isActiveAndEnabled) { NavigatorContainer[0].EnableMyButton(); }
+        EventsRelay.OnSummaryScreenReady += EnableButtonChanging;
+        IdleManager.OnAnyJoystickInput += TryChangeButton;     
     }
     private void OnDisable()
     {
+        EventsRelay.OnSummaryScreenReady -= EnableButtonChanging;
         IdleManager.OnAnyJoystickInput -= TryChangeButton;
+    }
+    private void EnableButtonChanging()
+    {
+        canChangeButton = true;
+        if (NavigatorContainer[0].isActiveAndEnabled) { NavigatorContainer[0].EnableMyButton(); }
     }
 
     private void TryChangeButton(int inputChangeValue)
