@@ -133,7 +133,11 @@ public class GameDataManager : MonoBehaviour
            RedButton = GameSettingsManager.Get("Controls", "JoystickRedButton", "RedButton")
         };
 
-        JoystickManager.JoystickControls = joystickControls;
+        JoystickManager.Init(  
+            GameSettingsManager.GetFloat("Controls", "Sensitivity", 0.5f),
+            GameSettingsManager.GetFloat("Controls", "ManuStickDeadzone", 0.35f),
+            GameSettingsManager.GetFloat("Controls", "ManuHatDeadzone", 0.25f), 
+            joystickControls);
     }
 
     /// <summary>

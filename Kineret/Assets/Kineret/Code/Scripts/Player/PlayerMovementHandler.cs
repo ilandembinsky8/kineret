@@ -19,7 +19,6 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] public Transform YawBody;
     [SerializeField] private Transform rollBody;
 
-
     private float _keyBoardAccelerationDirection;
     private float _accelerationDirection;
     private float _accelerationPercentage = 0.05f;
@@ -48,7 +47,7 @@ public class PlayerMovementHandler : MonoBehaviour
         pitchSpeed = GameSettingsManager.GetFloat("Player Settings", "PitchSpeed   ", pitchSpeed);
         _accelerationPercentage = GameSettingsManager.GetFloat("Player Settings", "AccelerationPercentage", _accelerationPercentage);
         _maxMoveSpeedPercentage = GameSettingsManager.GetFloat("Player Settings", "MaxMoveSpeedPercentage", _maxMoveSpeedPercentage);
-        _windForcePercentage = GameSettingsManager.GetFloat("Player Settings", "WindForcePercentage", _windForcePercentage);
+        _windForcePercentage = GameSettingsManager.GetFloat("Player Settings", "WindForcePercentage", _windForcePercentage);    
     }
 
     private void OnEnable()
@@ -92,12 +91,12 @@ public class PlayerMovementHandler : MonoBehaviour
     }
     private void Yaw()
     {
-        _yawDirection = Input.GetAxis(JoystickManager.JoystickControls.HorizontalAxis) + _keyBoardYawDirection;
+        _yawDirection = JoystickManager.GetSensitiveAxis(JoystickManager.JoystickControls.HorizontalAxis) + _keyBoardYawDirection;
         YawBody.Rotate(transform.up, Time.deltaTime * yawSpeed * _yawDirection, Space.World);
     }
     private void Pitch()
     {
-        _pitchDirection = Input.GetAxis(JoystickManager.JoystickControls.VerticalAxis) + _keyBoardPitchDirection;
+        _pitchDirection = JoystickManager.GetSensitiveAxis(JoystickManager.JoystickControls.VerticalAxis) + _keyBoardPitchDirection;
         pitchBody.Rotate(pitchBody.right, Time.deltaTime * pitchSpeed * _pitchDirection, Space.World);
         cameraPitched_EC.RaiseEvent(pitchBody);
     }

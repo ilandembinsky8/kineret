@@ -44,10 +44,10 @@ public class IdleManager : MonoBehaviour
         {
             _timer = 0;
 
-            if (Mathf.Abs(horizontalAxis) > 0.35) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(horizontalAxis)); }
-            if (Mathf.Abs(verticalAxis) > 0.35) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(verticalAxis)); }
-            if (Mathf.Abs(miniHorizontalAxis) > 0.25) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(miniHorizontalAxis)); }
-            if (Mathf.Abs(miniVerticalAxis) > 0.25) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(miniVerticalAxis)); }
+            if (Mathf.Abs(horizontalAxis) > JoystickManager.StickDeadzone) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(horizontalAxis)); }
+            if (Mathf.Abs(verticalAxis) > JoystickManager.StickDeadzone) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(verticalAxis)); }
+            if (Mathf.Abs(miniHorizontalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(miniHorizontalAxis)); }
+            if (Mathf.Abs(miniVerticalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(miniVerticalAxis)); }
         }
         //If Button Pressed
         if (Input.GetButtonDown(JoystickManager.JoystickControls.Trigger) ||
