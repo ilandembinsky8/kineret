@@ -226,11 +226,11 @@
         }
     },
     {
-        "CodeName": "Haspin",
+        "CodeName": "Golan",
         "UIDestinationInfoText": {
             "HebTitle": "מי גולן",
             "HebDescription": "מערכות סולאריות צפות על מאגרי מים ברמת הגולן",
-            "EngTitle": "Haspin",
+            "EngTitle": "Mey Golan",
             "EngDescription": ""
         },
         "UiPosition": {

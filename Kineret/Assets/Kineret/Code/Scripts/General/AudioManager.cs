@@ -54,11 +54,19 @@ public class AudioManager : MonoBehaviour
     public void PlayOpenUI() { PlayClipInSource(_OpenUI, _NotificationSource, 0.15f); }
     public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource, 0.35f); }
     public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource, 0.2f); }
+   
     public void PlayNarration(string destinationName) 
-    { 
+    {
+        SetLowerMusicVolume();
         AudioClip narration = NarrationManager.Instance.GetNarration(destinationName);
         PlayClipInSource(narration, _NarrationSource, 0.8f); 
     }
+
+    public void StopNarration()
+    {
+        _NarrationSource.Stop();
+    }
+
     /// <summary>
     /// Activates at the end, turns off looping and plays the out music clip after the current one is done.
     /// </summary>

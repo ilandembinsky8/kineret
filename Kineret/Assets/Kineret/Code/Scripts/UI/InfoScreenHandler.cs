@@ -84,6 +84,8 @@ public class InfoScreenHandler : MonoBehaviour
 
     public void CloseScreen()
     {
+        AudioManager.Instance.StopNarration();
+        AudioManager.Instance.SetIncreasedMusicVolume();
         EventsRelay.OnGamePause.Invoke(false);
         EventsRelay.OnStartScoreCountdown.Invoke();
         EventsRelay.OnShowDirection.Invoke();
@@ -92,6 +94,8 @@ public class InfoScreenHandler : MonoBehaviour
 
     public void GameOver()
     {
+        AudioManager.Instance.StopNarration();
+        AudioManager.Instance.SetIncreasedMusicVolume();
         EventsRelay.OnGameOver.Invoke();
         Destroy(gameObject,3f);
     }
