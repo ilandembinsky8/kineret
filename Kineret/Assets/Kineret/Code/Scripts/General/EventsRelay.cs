@@ -1,9 +1,11 @@
 
-using UnityEngine;
 using UnityEngine.Events;
 
 public static class EventsRelay
 {
+    //Menus Events
+    public static UnityAction<bool> OnEnableDestinationSelection { get; set; }
+
     //Game Events
     public static UnityAction<bool> OnGamePause { get; set; }
     public static UnityAction OnGameOver { get; set; }
@@ -15,7 +17,6 @@ public static class EventsRelay
 
     public static UnityAction OnTextStarted { get; set; }
     //Destinations Events
-
     public static UnityAction<int> OnDestinationSelected { get; set; }
     public static UnityAction OnDestinationDeselected { get; set; }
 

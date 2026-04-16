@@ -3,18 +3,16 @@ using UnityEngine;
 
 public class MenuCloudHandler : MonoBehaviour
 {
-    [SerializeField] private BoolEventChannel enableDestinationSelection_EC;
     [SerializeField] private float lapDuration;
     [SerializeField] private float lapDistance;
     private void OnEnable()
     {
-        enableDestinationSelection_EC.OnEventRaised += HandleEnable;
-
+        EventsRelay.OnEnableDestinationSelection += HandleEnable;
 
     }
     private void OnDisable()
     {
-        enableDestinationSelection_EC.OnEventRaised -= HandleEnable;
+        EventsRelay.OnEnableDestinationSelection -= HandleEnable;
     }
 
     private void OnDestroy()

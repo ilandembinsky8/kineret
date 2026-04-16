@@ -7,9 +7,6 @@ using TMPro;
 
 public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [Header("Event Channels")]
-    [SerializeField] private BoolEventChannel enableDestinationSelection_EC;
-
     [Header("UI Elements")]
 
     [SerializeField] private Image availableIcon;
@@ -41,8 +38,14 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         upperPanelOriginalSize = upperPanel.sizeDelta;
         lowerPanelOriginalSize = lowerPanel.sizeDelta;
     }
-    private void OnEnable() { enableDestinationSelection_EC.OnEventRaised += HandleEnableDestinationSelection; }
-    private void OnDisable() { enableDestinationSelection_EC.OnEventRaised -= HandleEnableDestinationSelection; }
+    private void OnEnable() 
+    { 
+        EventsRelay.OnEnableDestinationSelection += HandleEnableDestinationSelection;
+    }
+    private void OnDisable() 
+    {
+        EventsRelay.OnEnableDestinationSelection -= HandleEnableDestinationSelection;
+    }
     private void OnDestroy() { selectedIcon.DOKill(); }
 
     public bool GetIsSelected() { return _isSelected; }

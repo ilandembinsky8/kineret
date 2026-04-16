@@ -5,10 +5,17 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
+//On Demand DDOL Signleton - DO NOT ADD TO A SCENE
 public class NarrationManager : MonoBehaviour
 {
     private const string NARRATION_FOLDER = "Narration";
+    private const string FILE_CLOSER = "_Narration.wav";
+    private const string INSTRUCTION_FILE_NAME = "Instruction";
+
     private static NarrationManager _Instance;
+
+    private string _currentDestinationName;
+
     public static NarrationManager Instance
     {
         get
@@ -24,6 +31,8 @@ public class NarrationManager : MonoBehaviour
     }
 
     private Dictionary<string, AudioClip> _narrations;
+    public AudioClip InstrcutionNarration;
+
 
     private void Awake()
     {
@@ -37,29 +46,44 @@ public class NarrationManager : MonoBehaviour
 
     public IEnumerator LoadNarration(List<DestinationTextData> destinationDataList,Action onFinished)
     {
+        string fileName;
         foreach (var destination in destinationDataList)
-        {    
-            yield return StartCoroutine(LoadDestinationNarration(destination.CodeName));      
+        {
+            _currentDestinationName = destination.CodeName;
+            fileName = $"{_currentDestinationName}{FILE_CLOSER}";
+            yield return StartCoroutine(LoadNarration(fileName, AddDestinationNarration));      
         }
+
+        fileName = $"{INSTRUCTION_FILE_NAME}{FILE_CLOSER}";
+        yield return StartCoroutine(LoadNarration(fileName, AddInstrcutionNarration));
 
         onFinished?.Invoke();
     }
 
-    private IEnumerator LoadDestinationNarration(string destinationName)
+    private void AddDestinationNarration(AudioClip clip)
     {
-        string fileName = $"{destinationName}_Narration.wav";
+        _narrations.Add(_currentDestinationName, clip);
+    }
+    private void AddInstrcutionNarration(AudioClip clip)
+    {
+        InstrcutionNarration = clip;
+    }
+
+    private IEnumerator LoadNarration(string fileName,Action<AudioClip> OnFinishedLoad)
+    {
+       
         string fullPath = Path.Combine(Application.streamingAssetsPath, NARRATION_FOLDER, fileName);
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(fullPath, AudioType.WAV))
         {
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.ConnectionError)
-            {             
+            {
                 Debug.Log(www.error);
             }
             else
             {
-                _narrations.Add(destinationName, DownloadHandlerAudioClip.GetContent(www));
+                OnFinishedLoad.Invoke(DownloadHandlerAudioClip.GetContent(www));
             }
         }
     }

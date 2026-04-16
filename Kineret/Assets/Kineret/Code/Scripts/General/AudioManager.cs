@@ -55,13 +55,17 @@ public class AudioManager : MonoBehaviour
     public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource, 0.35f); }
     public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource, 0.2f); }
    
-    public void PlayNarration(string destinationName) 
+    public void PlayDestinationNarration(string destinationName) 
     {
         SetLowerMusicVolume();
         AudioClip narration = NarrationManager.Instance.GetNarration(destinationName);
         PlayClipInSource(narration, _NarrationSource, 0.8f); 
     }
-
+    public void PlayInstructionNarration()
+    {
+        AudioClip narration = NarrationManager.Instance.InstrcutionNarration;
+        PlayClipInSource(narration, _NarrationSource, 0.8f);
+    }
     public void StopNarration()
     {
         _NarrationSource.Stop();

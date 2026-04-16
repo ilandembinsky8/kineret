@@ -120,7 +120,7 @@ public class InfoScreenHandler : MonoBehaviour
         if (_isWaitingForTextStart)
         {
             _isWaitingForTextStart = false;
-            AudioManager.Instance.PlayNarration(_destinationName);
+            AudioManager.Instance.PlayDestinationNarration(_destinationName);
         }
     }
 

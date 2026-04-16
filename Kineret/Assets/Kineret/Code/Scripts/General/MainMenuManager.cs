@@ -12,8 +12,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private MainMenuDestinationLoader menuDestinationLoader;
     [SerializeField] private float showTutorialDelay;
     [SerializeField] private float showGameButtonDelay;
-    [Header("Event Channels")]
-    [SerializeField] private BoolEventChannel enableDestinationSelection_EC;
 
     [Header("Canvases")]
     [SerializeField] private GameObject mainMenuCanvas;
@@ -38,6 +36,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private float blackFadeDuration;
 
     private int _selectedDestinationsCount;
+    private bool _isWaitingForInstructionText;
 
     private void Awake()
     {
@@ -56,12 +55,14 @@ public class MainMenuManager : MonoBehaviour
     {
         EventsRelay.OnDestinationSelected += HandleDestinationSelection;
         EventsRelay.OnDestinationDeselected += HandleDestinationDeselection;
+        EventsRelay.OnTextStarted += PlayInstructionNarration;
     }
 
     private void OnDisable()
     {
         EventsRelay.OnDestinationSelected -= HandleDestinationSelection;
         EventsRelay.OnDestinationDeselected -= HandleDestinationDeselection;
+        EventsRelay.OnTextStarted -= PlayInstructionNarration;
     }
 
     private void Start()
@@ -80,8 +81,9 @@ public class MainMenuManager : MonoBehaviour
     public void StartDestinationSelection()
     {
         IsDestinationSelectionActive = true;
+        _isWaitingForInstructionText = true;
         _selectedDestinationsCount = 0;
-        enableDestinationSelection_EC.RaiseEvent(true);
+        EventsRelay.OnEnableDestinationSelection.Invoke(true);
         menuDestinationLoader.NextDestination(0);
     }
 
@@ -102,8 +104,9 @@ public class MainMenuManager : MonoBehaviour
 
     private void EndDestinationSelection()
     {
+        AudioManager.Instance.StopNarration();
         IsDestinationSelectionActive = false;
-        enableDestinationSelection_EC.RaiseEvent(false);
+        EventsRelay.OnEnableDestinationSelection.Invoke(false);
         StartCoroutine(LoadToturial());
         destinationsSummaryPopup.gameObject.SetActive(true);
 
@@ -139,6 +142,13 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene("Game Scene");
     }
 
-
+    private void PlayInstructionNarration()
+    {
+        if (_isWaitingForInstructionText)
+        {
+            _isWaitingForInstructionText = false;
+            AudioManager.Instance.PlayInstructionNarration();
+        }
+    }
 
 }
