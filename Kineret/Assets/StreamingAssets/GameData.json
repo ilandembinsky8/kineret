@@ -891,7 +891,7 @@
         "Type": 3,
         "PopupIconName": "Icon-General-Success",
         "TextData": {
-          "HebTitle": "!הצלחתם",
+          "HebTitle": "הצלחתם!",
           "HebDescription": "עברתם את האתגר וקיבלתם ניקוד מלא",
           "EngTitle": "",
           "EngDescription": ""

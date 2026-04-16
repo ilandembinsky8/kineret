@@ -31,6 +31,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2285045318143995855, guid: 81bdbee9f8058074f847f9f56386e664,
         type: 3}
+      propertyPath: m_characterSpacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285045318143995855, guid: 81bdbee9f8058074f847f9f56386e664,
+        type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
@@ -152,7 +157,7 @@ PrefabInstance:
     - target: {fileID: 4819347895034124011, guid: 81bdbee9f8058074f847f9f56386e664,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -403
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 4968300146103459503, guid: 81bdbee9f8058074f847f9f56386e664,
         type: 3}
@@ -187,6 +192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8327045581114205445, guid: 81bdbee9f8058074f847f9f56386e664,
         type: 3}
+      propertyPath: m_lineSpacing
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327045581114205445, guid: 81bdbee9f8058074f847f9f56386e664,
+        type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
@@ -203,7 +213,7 @@ PrefabInstance:
     - target: {fileID: 8724049663967910880, guid: 81bdbee9f8058074f847f9f56386e664,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -230
+      value: -178.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
