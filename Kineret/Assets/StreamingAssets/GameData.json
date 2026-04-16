@@ -513,7 +513,7 @@
         "EngText": ""
       },
       "CollectText": {
-        "HebText": "!כל הכבוד",
+        "HebText": "כל הכבוד!",
         "EngText": "Well done!"
       }
     },
@@ -522,7 +522,7 @@
         "HebText": "קשת",
         "EngText": "Keshet"
       },
-      "IconImageName": "Icon-Destination-InterestPoint",
+      "IconImageName": "Icon-Route-InterestPoint",
       "WorldPosition": {
         "x": 93000.0,
         "y": 1250.0,
@@ -533,7 +533,7 @@
         "EngText": ""
       },
       "CollectText": {
-        "HebText": "!כל הכבוד",
+        "HebText": "כל הכבוד!",
         "EngText": "Well done!"
       }
     },
@@ -553,7 +553,7 @@
         "EngText": ""
       },
       "CollectText": {
-        "HebText": "!כל הכבוד",
+        "HebText": "כל הכבוד!",
         "EngText": "Well done!"
       }
     },
@@ -573,7 +573,7 @@
         "EngText": ""
       },
       "CollectText": {
-        "HebText": "!כל הכבוד",
+        "HebText": "כל הכבוד!",
         "EngText": "Well done!"
       }
     }
@@ -653,8 +653,8 @@
         "Type": 2,
         "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
-          "HebTitle": "שימו לב! נקודת בונוס לפניכם",
-          "HebDescription": "איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
+          "HebTitle": "שימו לב!",
+          "HebDescription": "נקודת בונוס לפניכם. איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -665,8 +665,8 @@
         "Type": 2,
         "PopupIconName": "Icon-General-Success",
         "TextData": {
-          "HebTitle": "!כל הכבוד",
-          "HebDescription": "אספתם בהצלחה 50 קילו-וואט של אנרגיה ירוקה",
+          "HebTitle": "כל הכבוד!",
+          "HebDescription": "אספתם בהצלחה 05 קילו-וואט של אנרגיה ירוקה",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -686,8 +686,8 @@
         "Type": 2,
         "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
-          "HebTitle": "שימו לב! נקודת בונוס לפניכם",
-          "HebDescription": "איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
+          "HebTitle": "שימו לב!",
+          "HebDescription": "נקודת בונוס לפניכם. איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -698,8 +698,8 @@
         "Type": 2,
         "PopupIconName": "Icon-General-Success",
         "TextData": {
-          "HebTitle": "!כל הכבוד",
-          "HebDescription": "אספתם בהצלחה 110 מ\"ק מים מושבים",
+          "HebTitle": "כל הכבוד!",
+          "HebDescription": "אספתם בהצלחה 011 מ\"ק מים מושבים",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -719,8 +719,8 @@
         "Type": 2,
         "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
-          "HebTitle": "שימו לב! נקודת בונוס לפניכם",
-          "HebDescription": "איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
+          "HebTitle": "שימו לב!",
+          "HebDescription": "נקודת בונוס לפניכם. איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -731,8 +731,8 @@
         "Type": 2,
         "PopupIconName": "Icon-General-Success",
         "TextData": {
-          "HebTitle": "!כל הכבוד",
-          "HebDescription": "אספתם בהצלחה 48 מטרים מרובעים של קרקע משוקמת",
+          "HebTitle": "כל הכבוד!",
+          "HebDescription": "אספתם בהצלחה 84 מטרים מרובעים של קרקע משוקמת",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -752,8 +752,8 @@
         "Type": 2,
         "PopupIconName": "Icon-Route-Bonus",
         "TextData": {
-          "HebTitle": "שימו לב! נקודת בונוס לפניכם",
-          "HebDescription": "איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
+          "HebTitle": "שימו לב!",
+          "HebDescription": "נקודת בונוס לפניכם. איסוף מהיר ומדויק של משאב יקר ערך יזכה אתכם בנקודות בונוס נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -764,8 +764,8 @@
         "Type": 2,
         "PopupIconName": "Icon-General-Success",
         "TextData": {
-          "HebTitle": "!כל הכבוד",
-          "HebDescription": "אספתם בהצלחה 12 טונות של אשראי פחמני",
+          "HebTitle": "כל הכבוד!",
+          "HebDescription": "אספתם בהצלחה 21 טונות של אשראי פחמני",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -786,8 +786,8 @@
       "Type": 2,
       "PopupIconName": "Icon-Route-InterestPoint",
       "TextData": {
-        "HebTitle": "שימו לב! נקודת עניין לפניכם",
-        "HebDescription": "איסוף מהיר ומדויק יזכה אתכם בניקוד נוסף נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
+        "HebTitle": "שימו לב!",
+        "HebDescription": "נקודת עניין לפניכם. איסוף מהיר ומדויק יזכה אתכם בניקוד נוסף נווטו את הדאון באמצעות הג'ויסטיק, אספו את הנקודה בעזרת ההדק",
         "EngTitle": "",
         "EngDescription": ""
       },
@@ -798,8 +798,8 @@
       "Type": 2,
       "PopupIconName": "Icon-General-Success",
       "TextData": {
-        "HebTitle": "!כל הכבוד",
-        "HebDescription": "!זכיתם בנקודות",
+        "HebTitle": "כל הכבוד!",
+        "HebDescription": "זכיתם בנקודות!",
         "EngTitle": "",
         "EngDescription": ""
       },
@@ -888,7 +888,7 @@
       },
 
       "CollectionPopup": {
-        "Type": 3,
+        "Type": 2,
         "PopupIconName": "Icon-General-Success",
         "TextData": {
           "HebTitle": "הצלחתם!",
@@ -901,7 +901,7 @@
       },
 
       "FailPopupData": {
-        "Type": 3,
+        "Type": 2,
         "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "האתגר נכשל",
@@ -938,10 +938,10 @@
       },
 
       "CollectionPopup": {
-        "Type": 3,
+        "Type": 2,
         "PopupIconName": "Icon-General-Success",
         "TextData": {
-          "HebTitle": "!הצלחתם",
+          "HebTitle": "הצלחתם!",
           "HebDescription": "עברתם את האתגר וקיבלתם ניקוד מלא",
           "EngTitle": "",
           "EngDescription": ""
@@ -951,7 +951,7 @@
       },
 
       "FailPopupData": {
-        "Type": 3,
+        "Type": 2,
         "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "האתגר נכשל",
@@ -988,10 +988,10 @@
       },
 
       "CollectionPopup": {
-        "Type": 3,
+        "Type": 2,
         "PopupIconName": "Icon-General-Success",
         "TextData": {
-          "HebTitle": "!הצלחתם",
+          "HebTitle": "הצלחתם!",
           "HebDescription": "עברתם את האתגר וקיבלתם ניקוד מלא",
           "EngTitle": "",
           "EngDescription": ""
@@ -1001,7 +1001,7 @@
       },
 
       "FailPopupData": {
-        "Type": 3,
+        "Type": 2,
         "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "האתגר נכשל",
