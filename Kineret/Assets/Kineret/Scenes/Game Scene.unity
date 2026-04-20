@@ -487,8 +487,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4905632680251032902, guid: 4363e03e12a444d4f89e14e98e2b3122,
         type: 3}
+      propertyPath: fuelTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905632680251032902, guid: 4363e03e12a444d4f89e14e98e2b3122,
+        type: 3}
+      propertyPath: maxfuelFlow
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905632680251032902, guid: 4363e03e12a444d4f89e14e98e2b3122,
+        type: 3}
+      propertyPath: vvAmplitude
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905632680251032902, guid: 4363e03e12a444d4f89e14e98e2b3122,
+        type: 3}
+      propertyPath: idlefuelFlow
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905632680251032902, guid: 4363e03e12a444d4f89e14e98e2b3122,
+        type: 3}
+      propertyPath: fuelAmplitude
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905632680251032902, guid: 4363e03e12a444d4f89e14e98e2b3122,
+        type: 3}
       propertyPath: altitudePointer
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905632680251032902, guid: 4363e03e12a444d4f89e14e98e2b3122,
+        type: 3}
+      propertyPath: fuelFilterFactor
+      value: 0.0125
       objectReference: {fileID: 0}
     - target: {fileID: 4905632680251032902, guid: 4363e03e12a444d4f89e14e98e2b3122,
         type: 3}
