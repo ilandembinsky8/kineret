@@ -15,12 +15,20 @@ public class InterestPointHandler : CollectableHandler
         _collectPopupData.PopupTextData.TextData.HebDescription = interestPoint.Data.CollectText.HebText;
         infoPopupData.PopupTextData.TextData.EngDescription = interestPoint.Data.InfoText.EngText;
         _collectPopupData.PopupTextData.TextData.EngDescription = interestPoint.Data.CollectText.EngText;
+
+        _isActive = true;
     }
 
     protected override void Collect()
     {
         base.Collect();
         StartCoroutine(LoadInfoPopup(_collectPopupData.PopupTextData.Duration));
+    }
+
+    //Overrides for them to do nothing
+    protected override void HandleLegStart(int leg)
+    {
+
     }
 
     private IEnumerator LoadInfoPopup(float delay)
