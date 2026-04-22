@@ -3,11 +3,26 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine;
 using System;
+public enum JoystickInputType
+{
+    Main, Mini
+}
+public enum Axis
+{
+    Horizontal, Vertical
+}
+
+public struct JoystickInput
+{
+    public JoystickInputType InputType;
+    public Axis Axis;
+    public int Sign;
+}
 
 public class IdleManager : MonoBehaviour
 {
     public static IdleManager Instance { get; private set; }
-    public static Action<int> OnAnyJoystickInput { get; set; }
+    public static Action<JoystickInput> OnAnyJoystickInput { get; set; }
     public static Action OnAnyJoystickClick { get; set; }
 
     public static bool IsTicking = false;
@@ -44,11 +59,12 @@ public class IdleManager : MonoBehaviour
         {
             _timer = 0;
 
-            if (Mathf.Abs(horizontalAxis) > JoystickManager.StickDeadzone) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(horizontalAxis)); }
-            if (Mathf.Abs(verticalAxis) > JoystickManager.StickDeadzone) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(verticalAxis)); }
-            if (Mathf.Abs(miniHorizontalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(miniHorizontalAxis)); }
-            if (Mathf.Abs(miniVerticalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke((int)Mathf.Sign(miniVerticalAxis)); }
+            if (Mathf.Abs(horizontalAxis) > JoystickManager.StickDeadzone) { OnAnyJoystickInput?.Invoke( new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Horizontal, Sign = (int)Mathf.Sign(horizontalAxis) } ); }
+            if (Mathf.Abs(verticalAxis) > JoystickManager.StickDeadzone) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Vertical, Sign = (int)Mathf.Sign(verticalAxis) }); }
+            if (Mathf.Abs(miniHorizontalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Mini, Axis = Axis.Horizontal, Sign = (int)Mathf.Sign(miniHorizontalAxis) }); }
+            if (Mathf.Abs(miniVerticalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Mini, Axis = Axis.Vertical, Sign = (int)Mathf.Sign(miniVerticalAxis) }); }
         }
+
         //If Button Pressed
         if (Input.GetButtonDown(JoystickManager.JoystickControls.Trigger) ||
             Input.GetButtonDown(JoystickManager.JoystickControls.RedButton))

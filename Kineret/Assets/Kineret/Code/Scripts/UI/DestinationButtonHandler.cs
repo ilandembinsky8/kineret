@@ -49,6 +49,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     private void OnDestroy() { selectedIcon.DOKill(); }
 
     public bool GetIsSelected() { return _isSelected; }
+
     public void LoadDestination(int destination)
     {
         _destination = destination;

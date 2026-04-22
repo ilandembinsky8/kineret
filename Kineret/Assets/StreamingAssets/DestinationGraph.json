@@ -1,0 +1,83 @@
+{
+    "DestinationNodesData": [
+        {
+            "DestinationCodeName": "Tzemah",
+            "UpDestinationCodeName": "Ginosar",
+            "DownDestinationCodeName": "agREtech",
+            "LeftDestinationCodeName": "Eshkol",
+            "RightDestinationCodeName": "Golan"
+        },
+        {
+            "DestinationCodeName": "Shamir",
+            "UpDestinationCodeName": "InnoValley",
+            "DownDestinationCodeName": "Ginosar",
+            "LeftDestinationCodeName": "AgamonHula",
+            "RightDestinationCodeName": "Golan"
+        },
+        {
+            "DestinationCodeName": "AgamonHula",
+            "UpDestinationCodeName": "InnoValley",
+            "DownDestinationCodeName": "Ginosar",
+            "LeftDestinationCodeName": "Eshkol",
+            "RightDestinationCodeName": "Shamir"
+        },
+        {
+            "DestinationCodeName": "Gilboa",
+            "UpDestinationCodeName": "BioCastle",
+            "DownDestinationCodeName": "InnoValley",
+            "LeftDestinationCodeName": "Eshkol",
+            "RightDestinationCodeName": "BioCastle"
+        },
+        {
+            "DestinationCodeName": "agREtech",
+            "UpDestinationCodeName": "Tzemah",
+            "DownDestinationCodeName": "Afimilk",
+            "LeftDestinationCodeName": "Eshkol",
+            "RightDestinationCodeName": "Golan"
+        },
+        {
+            "DestinationCodeName": "Golan",
+            "UpDestinationCodeName": "Shamir",
+            "DownDestinationCodeName": "Tzemah",
+            "LeftDestinationCodeName": "Ginosar",
+            "RightDestinationCodeName": "Eshkol"
+        },
+        {
+            "DestinationCodeName": "BioCastle",
+            "UpDestinationCodeName": "Afimilk",
+            "DownDestinationCodeName": "Gilboa",
+            "LeftDestinationCodeName": "Eshkol",
+            "RightDestinationCodeName": "Golan"
+        },
+        {
+            "DestinationCodeName": "InnoValley",
+            "UpDestinationCodeName": "BioCastle",
+            "DownDestinationCodeName": "AgamonHula",
+            "LeftDestinationCodeName": "Gilboa",
+            "RightDestinationCodeName": "Shamir"
+        },
+        {
+            "DestinationCodeName": "Eshkol",
+            "UpDestinationCodeName": "AgamonHula",
+            "DownDestinationCodeName": "Gilboa",
+            "LeftDestinationCodeName": "Golan",
+            "RightDestinationCodeName": "Ginosar"
+        },
+        {
+            "DestinationCodeName": "Afimilk",
+            "UpDestinationCodeName": "agREtech",
+            "DownDestinationCodeName": "BioCastle",
+            "LeftDestinationCodeName": "Eshkol",
+            "RightDestinationCodeName": "Golan"
+        },
+        {
+            "DestinationCodeName": "Ginosar",
+            "UpDestinationCodeName": "AgamonHula",
+            "DownDestinationCodeName": "Tzemah",
+            "LeftDestinationCodeName": "Eshkol",
+            "RightDestinationCodeName": "Golan"
+        }
+    ]
+}
+
+

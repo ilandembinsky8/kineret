@@ -19,6 +19,7 @@ public class GameDataManager : MonoBehaviour
     private bool _iconsLoaded = false;
     private bool _imagesLoaded = false;
     private bool _audioLoaded = false;
+    private bool _graphLoaded = false;
     #endregion
 
     private void Awake()
@@ -36,6 +37,15 @@ public class GameDataManager : MonoBehaviour
         IconData iconData = JsonUtility.FromJson<IconData>(data);
 
         _imageDataManager.LoadIcons(iconData, OnIconsFinLoading);
+    }/// <summary>
+     /// On data recieved from JSON containing names and sprites, sorts into comfortable Enum base
+     /// </summary>
+    private void OnIconsFinLoading(Dictionary<string, Sprite> iconImageDataMap)
+    {
+        Debug.Log("Finished Loading Icons");
+        _iconImageDataMap = iconImageDataMap;
+        _iconsLoaded = true;
+        _jsonManager.TryReadFromJson(OnJsonDataLoaded, "GameData.json");
     }
     private void OnJsonDataLoaded(string data)
     {
@@ -45,16 +55,7 @@ public class GameDataManager : MonoBehaviour
         _imageDataManager.LoadImages(_currentGameData.DestinationDataList, OnImagesFinLoading);      
     }
 
-    /// <summary>
-    /// On data recieved from JSON containing names and sprites, sorts into comfortable Enum base
-    /// </summary>
-    private void OnIconsFinLoading(Dictionary<string, Sprite> iconImageDataMap)
-    {
-        Debug.Log("Finished Loading Icons");
-        _iconImageDataMap = iconImageDataMap;
-        _iconsLoaded = true;
-        _jsonManager.TryReadFromJson(OnJsonDataLoaded, "GameData.json");
-    }
+    
     private void OnImagesFinLoading(Dictionary<string, DestinationImageData> imageDataDictionaty)
     {
         Debug.Log("Finished Loading images");
@@ -67,8 +68,19 @@ public class GameDataManager : MonoBehaviour
     {
         Debug.Log("Finished Loading audio");
         _audioLoaded = true;
+        _jsonManager.TryReadFromJson(OnDestinationGraphFinLoading,"DestinationGraph.json");
+    }
+
+    private void OnDestinationGraphFinLoading(string data)
+    {
+        Debug.Log(data);
+        LocationsManager.GameDestinationNodesData = JsonUtility.FromJson<GameDestinationNodeData>(data);
+        Debug.Log(LocationsManager.GameDestinationNodesData.DestinationNodesData == null);
+        Debug.Log("Finished Loading Destination Graph");
+        _graphLoaded = true;
         StartCoroutine(OnDataReadyToChangeScene());
     }
+
     #endregion
 
     private bool TryGetIconImageData(string iconName, out Sprite icon)
@@ -157,7 +169,7 @@ public class GameDataManager : MonoBehaviour
     /// </summary>
     void ChangeSceneOnDataLoaded()
     {
-        if (!_jsonLoaded || !_imagesLoaded || !_iconsLoaded || !_audioLoaded) 
+        if (!_jsonLoaded || !_imagesLoaded || !_iconsLoaded || !_audioLoaded || !_graphLoaded) 
         {
             Debug.LogError("Data wasn't loaded properly"); 
             return; 

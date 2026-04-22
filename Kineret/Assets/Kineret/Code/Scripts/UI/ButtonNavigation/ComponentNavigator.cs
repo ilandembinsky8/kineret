@@ -32,12 +32,12 @@ public class ComponentNavigator : MonoBehaviour
         if (NavigatorContainer[0].isActiveAndEnabled) { NavigatorContainer[0].EnableMyButton(); }
     }
 
-    private void TryChangeButton(int inputChangeValue)
+    private void TryChangeButton(JoystickInput joystickInput)
     {
         if (canChangeButton)
         {
             canChangeButton = false;
-            onButtonChanged = StartCoroutine(OnButtonChanged(inputChangeValue));
+            onButtonChanged = StartCoroutine(OnButtonChanged(joystickInput.Sign));
         }
     }
     private void NextIndicator(int value)

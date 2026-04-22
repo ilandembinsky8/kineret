@@ -27,14 +27,21 @@ public class MainMenuDestinationLoader : MonoBehaviour
     [SerializeField] private InterestPointSO Tzipori;
     #endregion
 
-    private List<DestinationButtonHandler> activeDestinationButtonList = new List<DestinationButtonHandler>();
+    //private List<DestinationButtonHandler> activeDestinationButtonList = new List<DestinationButtonHandler>();
+
+    private DestinationsGraph _destinationsGraph;
+
     private float onDestinationChangedTransitionTime = 0.8f;
     private Coroutine onDestinationChanged;
     private WaitForSeconds waitForSeconds;
     private bool canChangeDestination;
     private bool _firstInputBlock;
-    private int indicator = 0;
+    //private int indicator = 0;
 
+    private DestinationButtonHandler CurrentDestinationButtonHandler
+    {
+        get { return _destinationsGraph.CurrentDestinationNode.DestinationButtonHandler; }
+    }
     void Awake()
     {
         if (IsTesting)
@@ -56,15 +63,21 @@ public class MainMenuDestinationLoader : MonoBehaviour
             //LocationsManager.AddInterestPoint(3, Tzipori);
         }
 
+        Dictionary<string, DestinationButtonHandler> destinationButtonHandlers = new(LocationsManager.Destinations.Count);
+
         for (int i = 0; i < LocationsManager.Destinations.Count; i++)
         {
             DestinationButtonHandler handler = Instantiate(destinationButtonPrefab, parent);
-            activeDestinationButtonList.Add(handler);
             handler.LoadDestination(i);
+
+            destinationButtonHandlers.Add(LocationsManager.GetDestination(i).Data.CodeName, handler);
+            //activeDestinationButtonList.Add(handler); 
         }
 
+        _destinationsGraph = new DestinationsGraph(LocationsManager.GameDestinationNodesData.DestinationNodesData, destinationButtonHandlers);
+        //indicator = (activeDestinationButtonList.Count - 1) / 2;
+
         canChangeDestination = true;
-        indicator = (activeDestinationButtonList.Count - 1) / 2;
         waitForSeconds = new WaitForSeconds(onDestinationChangedTransitionTime);
     }
     private void OnEnable()
@@ -78,40 +91,55 @@ public class MainMenuDestinationLoader : MonoBehaviour
         IdleManager.OnAnyJoystickClick -= TryHandleJoystickClick;
     }
 
-    public void TryHandleJoytickInput(int inputChangeValue)
+    public void TryHandleJoytickInput(JoystickInput joystickInput)
     {
         if (MainMenuManager.IsDestinationSelectionActive)
-            ChangeDestination(inputChangeValue);
+        {
+            Direction joystickDirection = Direction.Right;
+            if (joystickInput.Axis == Axis.Horizontal)
+            {
+                joystickDirection = joystickInput.Sign < 0 ? Direction.Left : Direction.Right;
+            }
+            else
+            {
+                joystickDirection = joystickInput.Sign < 0 ? Direction.Down : Direction.Up;
+            }
+            ChangeDestination(joystickDirection);
+        }
+            
     }
     public void TryHandleJoystickClick()
     {
         if (UserInterfaceNavigator.GetActiveButton() == null && _firstInputBlock)
-            activeDestinationButtonList[indicator].OnClick();
+        {
+            CurrentDestinationButtonHandler.OnClick();
+           //activeDestinationButtonList[indicator].OnClick();
+        }           
 
         if (!_firstInputBlock)
+        {
             _firstInputBlock = true;
+        }         
     }
 
-    private void ChangeDestination(int inputChangeValue)
+    private void ChangeDestination(Direction joystickDirection)
     {
         if (canChangeDestination)
         {
             canChangeDestination = false;
-            onDestinationChanged = StartCoroutine(OnDestinationChanged(inputChangeValue));
+            onDestinationChanged = StartCoroutine(OnDestinationChanged(joystickDirection));
         }
     }
 
-    /// <summary>
-    /// Value is additivly changing the current destination index.
-    /// </summary>
-    /// <param name="value"></param>
-    public void NextDestination(int value)
+    public void NextDestination(Direction joystickDirection)
     {
-        NextIndicator(value);
-        activeDestinationButtonList[indicator].PlayHoverAnimation(true, activeDestinationButtonList[indicator].GetIsSelected());
+        //NextIndicator(value);
+        _destinationsGraph.NextNode(joystickDirection);
+        CurrentDestinationButtonHandler.PlayHoverAnimation(true, CurrentDestinationButtonHandler.GetIsSelected());
+        //activeDestinationButtonList[indicator].PlayHoverAnimation(true, activeDestinationButtonList[indicator].GetIsSelected());
     }
 
-    private void NextIndicator(int value)
+    /*private void NextIndicator(Direction joystickDirection)
     {
         indicator += value;
 
@@ -119,17 +147,18 @@ public class MainMenuDestinationLoader : MonoBehaviour
             indicator = 0;
         else if (indicator < 0)
             indicator = activeDestinationButtonList.Count - 1;
-    }
+    }*/
     private void DeselectHoveredDestination()
     {
-        activeDestinationButtonList[indicator].PlayHoverAnimation(false, activeDestinationButtonList[indicator].GetIsSelected());
+        CurrentDestinationButtonHandler.PlayHoverAnimation(false, CurrentDestinationButtonHandler.GetIsSelected());
+        //activeDestinationButtonList[indicator].PlayHoverAnimation(false, activeDestinationButtonList[indicator].GetIsSelected());
     }
 
-    private IEnumerator OnDestinationChanged(int inputChangeValue)
+    private IEnumerator OnDestinationChanged(Direction joystickDirection)
     {
         DeselectHoveredDestination();
         yield return waitForSeconds;
-        NextDestination(inputChangeValue);
+        NextDestination(joystickDirection);
         yield return waitForSeconds;
         canChangeDestination = true;
     }

@@ -19,6 +19,8 @@ public static class LocationsManager
     public static BonusCollectableData[] BonusCollectables { get; set; }
     public static ChallengeCollectableData[] Challenges{ get; set; }
 
+    public static GameDestinationNodeData GameDestinationNodesData { get; set; }
+
     public static void AddDestination(int destination, DestinationData destinationData)
     {
         Destinations.Add(destination, destinationData);
