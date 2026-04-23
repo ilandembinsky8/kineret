@@ -73,9 +73,7 @@ public class GameDataManager : MonoBehaviour
 
     private void OnDestinationGraphFinLoading(string data)
     {
-        Debug.Log(data);
         LocationsManager.GameDestinationNodesData = JsonUtility.FromJson<GameDestinationNodeData>(data);
-        Debug.Log(LocationsManager.GameDestinationNodesData.DestinationNodesData == null);
         Debug.Log("Finished Loading Destination Graph");
         _graphLoaded = true;
         StartCoroutine(OnDataReadyToChangeScene());

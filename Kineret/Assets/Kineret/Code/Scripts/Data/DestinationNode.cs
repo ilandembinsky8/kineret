@@ -15,8 +15,6 @@ public class DestinationsGraph
     {
         Dictionary<string, DestinationNode> nodes = new();
         string destiantionCodeName;
-
-        Debug.Log(destinationNodesData == null);
         foreach (var destinationNodeData in destinationNodesData)
         {
             destiantionCodeName = destinationNodeData.DestinationCodeName;

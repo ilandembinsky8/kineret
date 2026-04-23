@@ -53,6 +53,12 @@ public class IdleManager : MonoBehaviour
         float miniHorizontalAxis = Input.GetAxis(JoystickManager.JoystickControls.MiniHorizontalAxis);
         float miniVerticalAxis = Input.GetAxis(JoystickManager.JoystickControls.MiniVerticalAxis);
 
+        
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Horizontal, Sign = -1 });}
+        if (Input.GetKeyDown(KeyCode.RightArrow)) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Horizontal, Sign = 1 }); }
+        if (Input.GetKeyDown(KeyCode.DownArrow)) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Vertical, Sign = -1 }); }
+        if (Input.GetKeyDown(KeyCode.UpArrow)) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Vertical, Sign = 1 }); }
         //If Joystick Moved
         if (horizontalAxis != 0 || verticalAxis != 0 ||
             miniHorizontalAxis != 0 || miniVerticalAxis != 0)
@@ -63,6 +69,8 @@ public class IdleManager : MonoBehaviour
             if (Mathf.Abs(verticalAxis) > JoystickManager.StickDeadzone) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Vertical, Sign = (int)Mathf.Sign(verticalAxis) }); }
             if (Mathf.Abs(miniHorizontalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Mini, Axis = Axis.Horizontal, Sign = (int)Mathf.Sign(miniHorizontalAxis) }); }
             if (Mathf.Abs(miniVerticalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Mini, Axis = Axis.Vertical, Sign = (int)Mathf.Sign(miniVerticalAxis) }); }
+
+           
         }
 
         //If Button Pressed
