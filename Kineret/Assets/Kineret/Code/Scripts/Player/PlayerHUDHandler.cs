@@ -70,11 +70,11 @@ public class PlayerHUDHandler : MonoBehaviour
     private void UpdateTimerUI()
     {
         if (GameManager.IsGamePaused) return;
-
-        _time++;
+    
         int seconds = _time % 60;
         int minutes = _time / 60;
         timerText.text = string.Format("{0:00}", minutes) + ":" +  string.Format("{0:00}", seconds);
+        _time++;
     }
     private IEnumerator StartTimer()
     {

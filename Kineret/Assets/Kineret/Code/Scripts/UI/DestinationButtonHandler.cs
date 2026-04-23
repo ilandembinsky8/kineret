@@ -136,7 +136,10 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         lowerText.DOKill();
 
         //Move to values
+
+        if(!gameObject.activeSelf) { return; }
         StartCoroutine(StatusIconFade(isSelected, 0.5f, 1f, 0.5f));
+        if (!gameObject.activeSelf) { return; }
         StartCoroutine(PanelsAnimation(isEnter, 0.5f, 0.3f));
     }
 

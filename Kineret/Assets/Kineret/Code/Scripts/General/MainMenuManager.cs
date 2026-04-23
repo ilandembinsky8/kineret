@@ -133,6 +133,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void StartGame()
     {
+        AudioManager.Instance.StopNarration();
         blackPanel.gameObject.SetActive(true);
         StartCoroutine(BlackFade());
     }
