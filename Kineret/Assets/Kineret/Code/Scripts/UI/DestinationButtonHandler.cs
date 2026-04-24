@@ -19,11 +19,13 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text lowerText;
 
+    [SerializeField] private RectTransform descriptionPanelTransform;
     [SerializeField] private RectMask2D descriptionPanelMask;
 
     [Header("Values")]
     [SerializeField] private float topMaskPaddingTarget;
     [SerializeField] private float botMaskPaddingTarget;
+    [SerializeField] private Vector2 panelOffset;
 
     private int _destination;
     private bool _isSelectable;
@@ -57,6 +59,9 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         transform.localPosition = destinationData.Data.UiPosition;
         titleText.text = destinationData.Data.UIDestinationInfoText.HebTitle;
         lowerText.text = destinationData.Data.UIDestinationInfoText.HebDescription;
+
+        panelOffset = destinationData.Data.PanelOffset;
+        descriptionPanelTransform.anchoredPosition += panelOffset;
     }
 
     public void OnClick()

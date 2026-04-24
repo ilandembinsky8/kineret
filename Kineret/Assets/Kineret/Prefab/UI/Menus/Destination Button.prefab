@@ -774,8 +774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f84dcce6bf7024981538af97fd0363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableDestinationSelection_EC: {fileID: 11400000, guid: 30db6846684d5714db321701866561b6,
-    type: 2}
   availableIcon: {fileID: 3170942694695240938}
   selectedIcon: {fileID: 5758058409938325417}
   upperPanel: {fileID: 8018547570614190397}
@@ -784,9 +782,11 @@ MonoBehaviour:
   upperText: {fileID: 1079329475400306120}
   titleText: {fileID: 8183982521311881243}
   lowerText: {fileID: 6954110473022723420}
+  descriptionPanelTransform: {fileID: 4086934468112748009}
   descriptionPanelMask: {fileID: 2086108435860849871}
   topMaskPaddingTarget: 0
   botMaskPaddingTarget: 0
+  panelOffset: {x: 0, y: 0}
 --- !u!1 &6871800662720936055
 GameObject:
   m_ObjectHideFlags: 0

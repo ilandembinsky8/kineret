@@ -101,6 +101,7 @@ public struct DestinationTextData
     public TextData UIDestinationInfoText;
 
     public Vector3 UiPosition;
+    public Vector2 PanelOffset;
     public Vector3 WorldPosition;
 
     /// <summary>
