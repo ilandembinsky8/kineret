@@ -26,7 +26,9 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     [SerializeField] private float topMaskPaddingTarget;
     [SerializeField] private float botMaskPaddingTarget;
     [SerializeField] private Vector2 panelOffset;
-
+    [SerializeField] private RectTransform panelLeftPointTransform;
+    [SerializeField] private RectTransform panelRightPointTransform;
+    [SerializeField] private RectTransform lineTransform;
     private int _destination;
     private bool _isSelectable;
     private bool _isSelected;
@@ -59,9 +61,27 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         transform.localPosition = destinationData.Data.UiPosition;
         titleText.text = destinationData.Data.UIDestinationInfoText.HebTitle;
         lowerText.text = destinationData.Data.UIDestinationInfoText.HebDescription;
+        lineTransform.gameObject.SetActive(false);
+        if (destinationData.Data.PanelOffsetValues.z != 0)
+        {
+            //Panel offset is required
+            lineTransform.gameObject.SetActive(true);         
+            float panelSide = Mathf.Sign(destinationData.Data.PanelOffsetValues.z);//Positive = Right, Negative = Left
+            panelOffset = new Vector2(destinationData.Data.PanelOffsetValues.x, destinationData.Data.PanelOffsetValues.y);
+            descriptionPanelTransform.anchoredPosition += panelOffset;
 
-        panelOffset = destinationData.Data.PanelOffset;
-        descriptionPanelTransform.anchoredPosition += panelOffset;
+            RectTransform targetRectTransform = panelSide > 0 ?
+                panelRightPointTransform :
+                panelLeftPointTransform;
+
+            //Width calc
+            float lineWidth = Vector2.Distance(lineTransform.position, targetRectTransform.position);
+            lineTransform.sizeDelta = new Vector2 (lineWidth, lineTransform.sizeDelta.y);
+
+            //Rotation calc
+            lineTransform.localRotation = Quaternion.FromToRotation(Vector3.left, targetRectTransform.position - lineTransform.position);
+        }
+
     }
 
     public void OnClick()
