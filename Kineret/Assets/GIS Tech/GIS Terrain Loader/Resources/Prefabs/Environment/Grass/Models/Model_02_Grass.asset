@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995aff2e9ee24f64cae55e62cd95b9e8, type: 3}
+  m_Name: Model_02_Grass
+  m_EditorClassIdentifier: 
+  grassType: 1
+  GrassModel: {fileID: 0}
+  Model_AligneToTheGround: 0
+  Model_MinWidth: 1
+  Model_MaxWidth: 2
+  Model_MinHeight: 1
+  Model_MaxHeight: 2
+  Model_NoiseSeed: 341500000
+  Model_NoiseSpread: 0.1
+  Model_EffectedByDensityScale: 1
+  DetailTexture: {fileID: 2800000, guid: cf3069941001b5c46b1f13d4551d0fd9, type: 3}
+  Texture_AligneToTheGround: 0
+  Texture_MinWidth: 0.2
+  Texture_MaxWidth: 1
+  Texture_MinHeight: 0.2
+  Texture_MaxHeight: 1
+  Texture_NoiseSeed: 532521046
+  Texture_NoiseSpread: 0.1
+  Texture_DetailDensity: 1
+  Texture_HealthyColor:
+    serializedVersion: 2
+    rgba: 4278255360
+  Texture_DryColor:
+    serializedVersion: 2
+    rgba: 4286611584
+  Texture_BillBoard: 1
+  Texture_EffectedByDensityScale: 1

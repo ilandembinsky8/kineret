@@ -79,7 +79,7 @@ PlayerSettings:
   androidAutoRotationBehavior: 1
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
-  runInBackground: 0
+  runInBackground: 1
   captureSingleScreen: 0
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
@@ -807,23 +807,23 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: DOTWEEN
-    EmbeddedLinux: DOTWEEN
+    Android: DOTWEEN;DotSpatial
+    EmbeddedLinux: DOTWEEN;DotSpatial
     GameCoreScarlett: DOTWEEN
-    GameCoreXboxOne: DOTWEEN
+    GameCoreXboxOne: DOTWEEN;DotSpatial
     LinuxHeadlessSimulation: DOTWEEN
-    Nintendo Switch: DOTWEEN
-    PS4: DOTWEEN
-    PS5: DOTWEEN
-    QNX: DOTWEEN
-    Stadia: DOTWEEN
-    Standalone: DOTWEEN
-    VisionOS: DOTWEEN
-    WebGL: DOTWEEN
-    Windows Store Apps: DOTWEEN
-    XboxOne: DOTWEEN
-    iPhone: DOTWEEN
-    tvOS: DOTWEEN
+    Nintendo Switch: DOTWEEN;DotSpatial
+    PS4: DOTWEEN;DotSpatial
+    PS5: DOTWEEN;DotSpatial
+    QNX: DOTWEEN;DotSpatial
+    Stadia: DOTWEEN;DotSpatial
+    Standalone: DOTWEEN;DotSpatial
+    VisionOS: DOTWEEN;DotSpatial
+    WebGL: DOTWEEN;DotSpatial
+    Windows Store Apps: DOTWEEN;DotSpatial
+    XboxOne: DOTWEEN;DotSpatial
+    iPhone: DOTWEEN;DotSpatial
+    tvOS: DOTWEEN;DotSpatial
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

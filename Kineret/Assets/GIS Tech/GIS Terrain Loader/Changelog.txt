@@ -1,0 +1,116 @@
+1.9.1
+Fixed: issue with ENC57 Add-on after installing the package.
+
+1.9
+Added : Ability to normalize terrain height data when loading DEM files (with min-max values)
+Added : New Runtime Demo Scene : to Export terrain to GeoTiff file at runtime
+Added : The package now fully supports Unity 6 (2024.2) with the new input system and the new UI system (UI Toolkit)
+Added : a new Package to upgrade materials to URP for Unity 6
+Added : New Add-On : 'NLCD Raster Driven Terrain Splatmaps' to generate terrain splatmaps driven by NLCD raster data (Land Cover Data)
+
+Fixed : Issue while Exporting DEM to GeoTiff
+
+Changed : GIS Data Examples included in the package (StreamingAssets Folder) are now stored in a separate package to reduce the main package size and to be able to update them more frequently with new data.
+
+Link in Readme.txt. 
+Attention! the data is important for testing playing demo scenes and learning how to use the asset, so make sure to download it..
+
+
+1.8
+Fixed : Null GeoTiff Tag
+Fixed : Errors with EasyRoads3D 
+Updated: Vector LineRendererGenerator updated with smooth lines
+Added : Support for Geotiff RASTER GrayScale 8bit integer MultiSample
+Added : Ability to export terrain with all its dependencies to Unitypakcage
+Updated :'GIS Files exporter' Online Documentation Updated
+Added : Ability to read ENC57 (Electronic Navigational Charts) Using ENC57 Reader Lib.
+Added : Ability to Generate Fences and Walls through Fence Generator ADD-ON.
+Modified : Pdal and GeoJson menu set to Tools/GIS Tech/GIS Terrain Loader/Install Libs/Readers/
+
+VERSION 1.7
+Released Date : 30/04/2025
+01 : Added material field to water prefab 
+02 : Added water generator to Runtime generator
+03 : GeoPoint Prefab supports Multi-Prefab + Random Rotation,Position and Scale
+04 : GIS Terrain Loader Pro is now able to generate terrain after beign downloaded via GIS Data Downloader pro (Editor/Runtime), Integration Improved 
+database of each building in UI 
+05 : Grass Generator Supports Details Grass (3D Model) and Texture Grass
+06 : Added randome rotation to tree prefabs
+07 : Added  Rip and Gardel roof for buildings
+08 : 'GenerateDefaultBuilding' option added to GISTerrainLoaderVectorParameters
+09 : 'Add_Attribute_Value_To_GEOJSON' option added to GISTerrainLoaderVectorParameters to enable/disable adding default Geojson attribute-Value 
+10 : New demo scene added to explain how GDD and GTL can work togather in play mode
+11 : New demo scene added to explain how to show GPS Location Using Android Device  
+12 : New demo scene added : Buildings generated from Geojson file + ability to display
+13 : General Improvements + Bug Fix
+
+VERSION 1.6
+Released Date :
+
+01 : Added : Ability to load terrain with mipmap texture 
+01 : Updated:  Elevation(Min-Max) Detection for Tiff files to avoid wrong or empty values
+02 : Updated:  New function added to GISTerrainLoaderEPSG.cs to modify some unknown EPSG Codes 
+03 : Fixed:    Error while generating Grass 
+04 : Fixed:    IncludePoint function in GISTerrainTile.cs
+05 : Fixed:    Fixed loading vector issue when a part of a poly is out of terrain container
+ 
+VERSION 1.5 
+Released Date :
+
+01 : Added :   Ability to Load OSM Data even though the Terrain EPSG is not equals to WGS84 EPSG= 4326  
+02 : Added :   Ability to Generate terrain Background  for more realistic Horizon view
+03 : Added :   Ability to display and Set Terrain Layer name instead of Layer number 
+04 : Added :   Ability to Adapte 2D Complexed Polygons (LandParcel) to the terrain elevation.
+05 : Added :   Ability to Configure the complexity level + Y offset of Polygons (LandParcel).
+06 : Added :   New Demo scene 'SetTerrainPosition', Shows how to snap a small terrain position to the main terrain.
+07 : Added :   New Demo scene 'Airplane With Terrain Background' Shows how to add terrain background to the terrai generated in Play/edit mode.
+08 : Added :   New Demo scene 'Export To VectorData' Shows how to export Unity Gameobjects to VectorData (ShapeFile).
+09 : Fixed :   Editor Generator Errors when cancel generation
+10 : Fixed :   Rotated Textures (Raster Data) at runtime with extension of 'Tif'.
+11 : Fixed :   Enable Vector Generator for water Landscape in play mode.
+12 : Updated:  Main Demo Scene
+
+VERSION 1.4 
+Released Date :
+
+01 : Updated : ShapeFileLoader now Supports PolyZ and Poly2D in the same file 
+02 : Updated : Runtime Terrain Generator 
+03 : Updated : Ability to load Projected DEMs for Android platform.
+04 : Added :   Ability to generate 2D Complexed Polygons as LandParcel.
+05 : Fixed :   Producing terrains more than (9x9)
+06 : Fixed :   'GISTerrainLoaderTextureGenerator' does not contain a definition for 'GetFullTextureFolders' on Build mode
+07 : Fixed :   Issue with null tile count
+08 : Fixed :   Loading DEM DotSpatial for android platform (Online Doc Updated)
+
+
+VERSION 1.3 
+Released Date : 05/05/2024
+
+01 : GeoJson Loader Improved
+02 : Fixed producing terrains more than count more than (9x9)
+03 : Fixed 'GISTerrainLoaderTextureGenerator' does not contain a definition for 'GetFullTextureFolders' on Build mode
+
+
+VERSION 1.2  
+Released Date : 28/01/2024
+
+01 : Fix Terrain Deformation Option is improved.
+02 : Fixed a some errors for runtime generator 
+03 : Fixed a small offset for Grass Generator
+04 : Fixed issue with PointZ elevation for ShapeFile
+05 : Added ability to Select/Update terrain texture layer 
+06 : Added ability to Blend Terrain Layers
+07 : Added New Demo Scene '16_SelectTextureLayer' + '17_BlendMultiTextures'  + '18_RuntimeProjectionSystem'
+08 : Online Documentaion updated 
+09 : Added Link to 'Road Creator Pro' package in Readme.txt
+
+VERSION 1.1  
+Released Date : 10/01/2024
+
+01 : Fixed Error While Loading GTL Editor Prefs
+02 : Fixed Tiff Set to manual Dimension 
+03 : Fixed Error for Tiff with undefined projection EPSG = 32767
+04 : For Demo Purpose  : Added a new button in the 'Main Demo Scene' to add scenes into 'Scenes in Build' list 
+05 : For Demo Purpose  : Added Link to StreamingAssets Folder data + Runtime File Browser into Readme.txt file
+
+

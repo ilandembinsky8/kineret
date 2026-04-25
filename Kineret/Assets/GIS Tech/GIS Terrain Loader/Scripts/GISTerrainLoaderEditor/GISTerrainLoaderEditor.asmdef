@@ -1,0 +1,20 @@
+{
+    "name": "GISTerrainLoaderEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f4cd5362f8088674eb7e5d119c2d4c16",
+        "GUID:8d8ff1ab5fcfd164c9b6e8b073fa44d8",
+        "GUID:ed7c58842ad2c3542b3b7be4bb076ccd"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
