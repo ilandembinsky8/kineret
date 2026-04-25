@@ -1,0 +1,184 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2102036820854767791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6443422515250929654}
+  - component: {fileID: 5573899849227291421}
+  m_Layer: 0
+  m_Name: Terrains
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6443422515250929654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102036820854767791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5492372670828816638}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5573899849227291421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102036820854767791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d51ac78ff4d37468130f731195f0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastTab: 3
+  m_ContainerProjection: 0
+  data:
+    AlreadyLoaded: 0
+    mapSize_row_y: 535
+    mapSize_col_x: 637
+    Tiles: {x: 0, y: 0}
+    DLPoint_LatLon:
+      x: 34.632152777332806
+      y: 32.21340277766635
+    TRPoint_LatLon:
+      x: 35.95923611133281
+      y: 33.32798611066635
+    TLPoint_LatLon:
+      x: 34.632152777332806
+      y: 33.32798611066635
+    DRPoint_LatLon:
+      x: 35.95923611133281
+      y: 32.21340277766635
+    TLOriginal_Coor:
+      x: 34.632152777332806
+      y: 33.32798611066635
+    DROriginal_Coor:
+      x: 35.95923611133281
+      y: 32.21340277766635
+    TLPoint_Mercator:
+      x: 0.59620042438148
+      y: 0.4017113324070488
+    DRPoint_Mercator:
+      x: 0.59620042438148
+      y: 0.4053935323102972
+    dim:
+      x: 0
+      y: 0
+    cellsize: 0
+    Dimensions:
+      x: 124.84324134779854
+      y: 123.93004928292508
+    MinMaxElevation: {x: -339, y: 2212}
+    EPSG: 0
+    Unite: 0
+    SerializedFileName: 
+  Scale: {x: 1, y: 1, z: 1}
+  ContainerSize: {x: 124843, y: 2294.0647, z: 123930}
+  SubTerrainSize: {x: 124843, y: 2294.0647, z: 123930}
+  TerrainCount: {x: 1, y: 1}
+  GlobalTerrainBounds:
+    m_Center: {x: 62421.5, y: 0, z: 61965}
+    m_Extent: {x: 62421.5, y: 0, z: 61965}
+  DestinationTerrainPath: Assets/Generated GIS Terrains/2026-04-25 17-29-0
+  SourceDEMPath: D:\Ido\Work\Ilan\Kineret\dev\git\kineret\Kineret\Assets/Resources/GIS
+    Terrains/dem_new_area.tif
+  m_PixelErro: 0
+  m_BaseMapDistance: 1000
+  m_DetailDistance: 100
+  m_DetailDensity: 100
+  m_TreeDistance: 4000
+  m_BillBoardStartDistance: 500
+--- !u!1001 &2715382582998181313
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6443422515250929654}
+    m_Modifications:
+    - target: {fileID: 2243907250755062355, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: container
+      value: 
+      objectReference: {fileID: 5573899849227291421}
+    - target: {fileID: 5556402418919074027, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_Name
+      value: Tile__0__0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0d58a4b43c847741ae0ffed1aa09fcd, type: 3}
+--- !u!4 &5492372670828816638 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7608314571038854463, guid: d0d58a4b43c847741ae0ffed1aa09fcd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2715382582998181313}
+  m_PrefabAsset: {fileID: 0}
