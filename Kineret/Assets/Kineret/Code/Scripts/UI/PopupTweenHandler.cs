@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -88,6 +87,13 @@ public class PopupTweenHandler : MonoBehaviour
         }
 
         _iconTween?.Kill();
+    }
+    public void ResetPopup()
+    {
+        foreach (TMP_Text text in TMPtexts)
+        {
+            //how to reset so toggle is a thing or avticate without playing animation.
+        }
     }
     public void Play(int mode)
     {

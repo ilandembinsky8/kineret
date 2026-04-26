@@ -48,8 +48,6 @@ MonoBehaviour:
   menuDestinationLoader: {fileID: 3696091380746382211}
   showTutorialDelay: 2
   showGameButtonDelay: 5
-  enableDestinationSelection_EC: {fileID: 11400000, guid: 30db6846684d5714db321701866561b6,
-    type: 2}
   mainMenuCanvas: {fileID: 0}
   destinationSelectCanvas: {fileID: 0}
   controlButtonsCanvas: {fileID: 0}
@@ -58,7 +56,11 @@ MonoBehaviour:
   firstDestinationText: {fileID: 0}
   secondDestinationText: {fileID: 0}
   thirdDestinationText: {fileID: 0}
+  highscoreText: {fileID: 0}
+  usernameText: {fileID: 0}
   toturialPopup: {fileID: 0}
+  changeLanguageButton: {fileID: 0}
+  toggleTutorialButton: {fileID: 0}
   showToturialButton: {fileID: 0}
   startGameButton: {fileID: 0}
   blackPanel: {fileID: 0}
@@ -143,7 +145,7 @@ MonoBehaviour:
   parent: {fileID: 0}
   destinationButtonPrefab: {fileID: 5862747467400081615, guid: 93cbcf2689b23ee4f8f27e16edcefd51,
     type: 3}
-  IsTesting: 1
+  IsTesting: 0
   AgmonHula: {fileID: 11400000, guid: 67068a189847f1946a75e07a175bc439, type: 2}
   Shamir: {fileID: 11400000, guid: 1442977a5b8d10643894c94688417cf0, type: 2}
   Gilboa: {fileID: 11400000, guid: de2ac3886a4b55f4593f68cde0dbb854, type: 2}

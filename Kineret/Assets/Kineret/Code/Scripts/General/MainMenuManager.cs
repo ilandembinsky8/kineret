@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +28,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text highscoreText;
     [SerializeField] private TMP_Text usernameText;
     [SerializeField] private PopupTweenHandler toturialPopup;
+    [SerializeField] private Button changeLanguageButton;
+    [SerializeField] private Button toggleTutorialButton;
 
     [SerializeField] private GameObject showToturialButton;
     [SerializeField] private GameObject startGameButton;
@@ -49,6 +52,11 @@ public class MainMenuManager : MonoBehaviour
 
         showToturialButton.SetActive(false);
         startGameButton.SetActive(false);
+
+        changeLanguageButton.onClick.AddListener(ToggleLanguageChange);
+        toggleTutorialButton.onClick.AddListener(ToggleTutorialPopup);
+        toggleTutorialButton.gameObject.SetActive(true);
+        changeLanguageButton.gameObject.SetActive(true);
     }
 
     private void OnEnable()
@@ -74,6 +82,10 @@ public class MainMenuManager : MonoBehaviour
     {
         IdleManager.IsTicking = true;
         HighscoresManager.Instance.AddUser();
+
+        changeLanguageButton.gameObject.SetActive(false);
+        toggleTutorialButton.gameObject.SetActive(false);
+        if (toturialPopup.gameObject.activeInHierarchy) { DeactivateTutorialPopup(); }
 
         StartDestinationSelection();
     }
@@ -126,10 +138,26 @@ public class MainMenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(showTutorialDelay);
         destinationsSummaryPopup.gameObject.SetActive(false);
-        toturialPopup.gameObject.SetActive(true);
-        toturialPopup.Play((int)PlayMode.Default);
+        ActivateTutorialPopup();
         yield return new WaitForSeconds(showGameButtonDelay);
         startGameButton.SetActive(true);
+    }
+    private void ActivateTutorialPopup()
+    {
+        toturialPopup.gameObject.SetActive(true);
+        toturialPopup.Play((int)PlayMode.Default);
+    }
+    private void DeactivateTutorialPopup()
+    {
+        toturialPopup.Play(0);
+        toturialPopup.gameObject.SetActive(false);
+    }
+    public void ToggleTutorialPopup()
+    {
+        if (toturialPopup.gameObject.activeInHierarchy)
+            DeactivateTutorialPopup();
+        else
+            ActivateTutorialPopup();
     }
     public void StartGame()
     {
@@ -150,6 +178,11 @@ public class MainMenuManager : MonoBehaviour
             _isWaitingForInstructionText = false;
             AudioManager.Instance.PlayInstructionNarration();
         }
+    }
+
+    private void ToggleLanguageChange()
+    {
+
     }
 
 }
