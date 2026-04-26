@@ -71,8 +71,8 @@ public class GameDestinationLoader : MonoBehaviour
         float minLat = GameSettingsManager.GetFloat("Texture", "min_lat");
         float maxLat = GameSettingsManager.GetFloat("Texture", "max_lat");
 
-        const float terrainWidth = 124911f;
-        const float terrainHeight = 123584f;
+        float terrainWidth = GameSettingsManager.GetFloat("MainTexture", "width");
+        float terrainHeight = GameSettingsManager.GetFloat("MainTexture", "height");
 
         float xNormalized = (float)((lon - minLon) / (maxLon - minLon));
         float zNormalized = (float)((lat - minLat) / (maxLat - minLat));
