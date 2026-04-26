@@ -7,7 +7,12 @@
             "HebDescription": "מרכז אזורי למחקר, הדרכה ושירותים לחקלאים",
             "EngTitle": "Tzemah",
             "EngDescription": ""
-        },
+        }
+        ,
+      "GeoPosition": {
+        "lat": 32.7054364,
+        "lon": 35.5907147
+      },
         "UiPosition": {
             "x": -360.0,
             "y": -295.0,
@@ -57,7 +62,12 @@
             "HebDescription": "מחקר יישומי רב-תחומי",
             "EngTitle": "Shamir",
             "EngDescription": ""
-        },
+        }
+        ,
+        "GeoPosition": {
+        "lat": 32.9894981,
+        "lon": 35.6959762
+      },
         "UiPosition": {
             "x": -117.0,
             "y": 480.0,
@@ -107,7 +117,11 @@
             "HebDescription": "שיקום טבע, תיירות אקולוגית וחיות בר",
             "EngTitle": "AgamonHula",
             "EngDescription": "Marshy lake with walks & bike rides on a loop trail & viewpoints for watching wildlife."
-        },
+        }
+        ,"GeoPosition": {
+        "lat": 33.1007782,
+        "lon": 35.6109145
+      },
         "UiPosition": {
             "x": -600.0,
             "y": 500.0,
@@ -158,6 +172,10 @@
             "EngTitle": "Gilboa",
             "EngDescription": ""
         },
+      "GeoPosition": {
+        "lat": 32.476065,
+        "lon": 35.420637
+      },
         "UiPosition": {
             "x": -790.0,
             "y": -915.0,
@@ -208,6 +226,10 @@
             "EngTitle": "agREtech",
             "EngDescription": ""
         },
+      "GeoPosition": {
+        "lat": 32.7030087,
+        "lon": 35.5875295
+      },
         "UiPosition": {
             "x": -400.0,
             "y": -300.0,
@@ -258,6 +280,10 @@
             "EngTitle": "Mey Golan",
             "EngDescription": ""
         },
+      "GeoPosition": {
+        "lat": 32.8491833,
+        "lon": 35.7922452
+      },
         "UiPosition": {
             "x": 120.0,
             "y": 100.0,
@@ -308,6 +334,10 @@
             "EngTitle": "BioCastle",
             "EngDescription": "Platform with Small Bioreactor for bio-treatment of contaminated water and served water"
         },
+      "GeoPosition": {
+        "lat": 32.6641171,
+        "lon": 35.572041
+      },
         "UiPosition": {
             "x": -420.0,
             "y": -405.0,
@@ -358,6 +388,10 @@
             "EngTitle": "InnoValley",
             "EngDescription": ""
         },
+      "GeoPosition": {
+        "lat": 32.4409059,
+        "lon": 35.5174478
+      },
         "UiPosition": {
             "x": -555.0,
             "y": -1010.0,
@@ -408,6 +442,10 @@
             "EngTitle": "Eshkol",
             "EngDescription": ""
         },
+      "GeoPosition": {
+        "lat": 32.7726133,
+        "lon": 35.2491845
+      },
         "UiPosition": {
             "x": -1210.0,
             "y": -110.0,
@@ -458,6 +496,10 @@
             "EngTitle": "Afimilk",
             "EngDescription": ""
         },
+      "GeoPosition": {
+        "lat": 32.6795048,
+        "lon": 35.5762622
+      },
         "UiPosition": {
             "x": -410.0,
             "y": -360.0,
@@ -508,6 +550,10 @@
             "EngTitle": "Ginosar",
             "EngDescription": ""
         },
+      "GeoPosition": {
+        "lat": 32.848666,
+        "lon": 35.523152
+      },
         "UiPosition": {
             "x": -540.0,
             "y": 100.0,

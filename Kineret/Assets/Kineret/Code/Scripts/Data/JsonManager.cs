@@ -100,6 +100,7 @@ public struct DestinationTextData
     /// </summary>
     public TextData UIDestinationInfoText;
 
+    public GeoPosition GeoPosition;
     public Vector3 UiPosition;
     public Vector3 PanelOffsetValues;
     public Vector3 WorldPosition;
@@ -115,7 +116,12 @@ public struct DestinationTextData
     public TextData SecondInfoPoint;
     public TextData ThirdInfoPoint;
 }
-
+[Serializable]
+public struct GeoPosition
+{
+    public float lat;
+    public float lon;
+}
 #endregion
 
 /// <summary>

@@ -58,7 +58,8 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     {
         _destination = destination;
         DestinationData destinationData = LocationsManager.GetDestination(destination);
-        transform.localPosition = destinationData.Data.UiPosition;
+        SetButtonPositionBySelectedIcon(destinationData);
+        //transform.localPosition = destinationData.Data.UiPosition;
         titleText.text = destinationData.Data.UIDestinationInfoText.HebTitle;
         lowerText.text = destinationData.Data.UIDestinationInfoText.HebDescription;
         lineTransform.gameObject.SetActive(false);
@@ -83,7 +84,41 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
         }
 
     }
+    private void SetButtonPositionBySelectedIcon(DestinationData destinationData)
+    {
+        double lat = destinationData.Data.GeoPosition.lat;
+        double lon = destinationData.Data.GeoPosition.lon;
+        //32.387653521,34.844415290
+        //33.181145943,36.415809648
+        const double MinLat = 32.387653521;
+        const double MinLon = 34.844415290;
+        const double MaxLat = 33.181145943;
+        const double MaxLon = 36.415809648;
 
+        const float mapWidth = 3840f;
+        const float mapHeight = 2160f;
+
+        float xNormalized = (float)((lon - MinLon) / (MaxLon - MinLon));
+        float yNormalized = (float)((lat - MinLat) / (MaxLat - MinLat));
+
+        Vector3 targetLocalInButtonsParent = new Vector3(
+            (xNormalized * mapWidth) - (mapWidth * 0.5f),
+            (yNormalized * mapHeight) - (mapHeight * 0.5f),
+            0f
+        );
+
+        RectTransform buttonRect = (RectTransform)transform;
+        RectTransform selectedIconRect = (RectTransform)this.selectedIcon.transform;
+
+        // Icon position relative to the button root, even if it is nested.
+        Vector3 selectedIconLocalToButton =
+            buttonRect.InverseTransformPoint(selectedIconRect.position);
+
+        Vector3 finalButtonPosition = targetLocalInButtonsParent - selectedIconLocalToButton;
+        finalButtonPosition.z = destinationData.Data.UiPosition.z;
+
+        buttonRect.localPosition = finalButtonPosition;
+    }
     public void OnClick()
     {
         if (_isSelected) Deselect();
