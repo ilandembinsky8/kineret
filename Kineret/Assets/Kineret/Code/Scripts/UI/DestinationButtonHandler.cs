@@ -88,22 +88,21 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     {
         double lat = destinationData.Data.GeoPosition.lat;
         double lon = destinationData.Data.GeoPosition.lon;
-        //32.387653521,34.844415290
-        //33.181145943,36.415809648
-        const double MinLat = 32.387653521;
-        const double MinLon = 34.844415290;
-        const double MaxLat = 33.181145943;
-        const double MaxLon = 36.415809648;
 
-        const float mapWidth = 3840f;
-        const float mapHeight = 2160f;
+        float MinLon = GameSettingsManager.GetFloat("MainTexture", "min_lon");
+        float MaxLon = GameSettingsManager.GetFloat("MainTexture", "max_lon");
+        float MinLat = GameSettingsManager.GetFloat("MainTexture", "min_lat");
+        float MaxLat = GameSettingsManager.GetFloat("MainTexture", "max_lat");
+        float width = GameSettingsManager.GetFloat("MainTexture", "width");
+        float height = GameSettingsManager.GetFloat("MainTexture", "height");
+
 
         float xNormalized = (float)((lon - MinLon) / (MaxLon - MinLon));
         float yNormalized = (float)((lat - MinLat) / (MaxLat - MinLat));
 
         Vector3 targetLocalInButtonsParent = new Vector3(
-            (xNormalized * mapWidth) - (mapWidth * 0.5f),
-            (yNormalized * mapHeight) - (mapHeight * 0.5f),
+            (xNormalized * width) - (width * 0.5f),
+            (yNormalized * height) - (height * 0.5f),
             0f
         );
 
