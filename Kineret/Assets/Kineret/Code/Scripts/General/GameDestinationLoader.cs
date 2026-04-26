@@ -52,12 +52,37 @@ public class GameDestinationLoader : MonoBehaviour
         _destinations = new DestinationHandler[LocationsManager.DestinationsCount];
         for (int i = 0; i < _destinations.Length; i++)
         {
-            int destination = LocationsManager.SelectedDestinations[i];          
-            Vector3 position = LocationsManager.GetDestination(destination).Data.WorldPosition;
+            int destination = LocationsManager.SelectedDestinations[i];
+            DestinationData destinationData = LocationsManager.GetDestination(destination);
+            Vector3 position = GetDestinationWorldPosition(destinationData);
             DestinationHandler destinationHandler = Instantiate(destinationPrefab,position,Quaternion.identity);
             destinationHandler.Destination = destination;
             _destinations[i] = destinationHandler;
         }
+    }
+
+    private Vector3 GetDestinationWorldPosition(DestinationData destinationData)
+    {
+        double lat = destinationData.Data.GeoPosition.lat;
+        double lon = destinationData.Data.GeoPosition.lon;
+
+        float minLon = GameSettingsManager.GetFloat("Texture", "min_lon");
+        float maxLon = GameSettingsManager.GetFloat("Texture", "max_lon");
+        float minLat = GameSettingsManager.GetFloat("Texture", "min_lat");
+        float maxLat = GameSettingsManager.GetFloat("Texture", "max_lat");
+
+        const float terrainWidth = 124911f;
+        const float terrainHeight = 123584f;
+
+        float xNormalized = (float)((lon - minLon) / (maxLon - minLon));
+        float zNormalized = (float)((lat - minLat) / (maxLat - minLat));
+
+        float x = xNormalized * terrainWidth;
+        float z = zNormalized * terrainHeight;
+
+        float y = destinationData.Data.WorldPosition.y;
+
+        return new Vector3(x, y, z);
     }
     private void GenerateInterestPoints()
     {
