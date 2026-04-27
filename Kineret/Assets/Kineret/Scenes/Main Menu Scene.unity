@@ -961,6 +961,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1689010977836586105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4711768844804223911, guid: 0d1a2fbf3c9a1804e94b0f7a392de2ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 1689010977836586101}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea7bbf48a09faf468cc201221296a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1689010977836586106 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5106596751166346639, guid: 0d1a2fbf3c9a1804e94b0f7a392de2ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 1689010977836586101}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea7bbf48a09faf468cc201221296a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7586178285026870686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1127,6 +1151,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Menu Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2154052300687183409, guid: ec3f50ad446e3c649aee59d712ffb426,
+        type: 3}
+      propertyPath: NavigatorContainer.Array.data[0]
+      value: 
+      objectReference: {fileID: 1689010977836586106}
+    - target: {fileID: 2154052300687183409, guid: ec3f50ad446e3c649aee59d712ffb426,
+        type: 3}
+      propertyPath: NavigatorContainer.Array.data[2]
+      value: 
+      objectReference: {fileID: 1689010977836586105}
     - target: {fileID: 3774239733623538854, guid: ec3f50ad446e3c649aee59d712ffb426,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
