@@ -1,8 +1,8 @@
-using DG.Tweening;
-using System.Collections;
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class InfoScreenHandler : MonoBehaviour
 {
@@ -23,6 +23,7 @@ public class InfoScreenHandler : MonoBehaviour
 
     private string _destinationName;
     private bool _isWaitingForTextStart;
+    private float _maxLogoWidth = 1500;
 
     private void Awake()
     {
@@ -73,7 +74,17 @@ public class InfoScreenHandler : MonoBehaviour
         if (data.Logo != null && logoImage != null)
         {
             logoImage.sprite = data.Logo;
-            ((RectTransform)logoImage.transform).sizeDelta = new Vector2(logoImage.sprite.texture.width * data.logoSizeMultiplier, logoImage.sprite.texture.height * data.logoSizeMultiplier);
+            float calculatedWidth = logoImage.sprite.texture.width * data.logoSizeMultiplier;
+            float calculatedHeight = logoImage.sprite.texture.height * data.logoSizeMultiplier;
+            
+            if (calculatedWidth > _maxLogoWidth)
+            {
+                float scale = _maxLogoWidth / calculatedWidth;
+                calculatedWidth = _maxLogoWidth;
+                calculatedHeight *= scale;
+            }
+            
+            ((RectTransform)logoImage.transform).sizeDelta = new Vector2(calculatedWidth, calculatedHeight);
         }
 
         if (data.Background != null && backgroundImage != null)
