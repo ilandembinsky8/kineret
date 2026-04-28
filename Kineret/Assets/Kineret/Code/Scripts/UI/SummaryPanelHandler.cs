@@ -17,8 +17,6 @@ public class SummaryPanelHandler : MonoBehaviour
     [SerializeField] private Image scoreImage;
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Button destinationsButton;
-    [SerializeField] private TMP_Text mainMenuButtonText;
-    [SerializeField] private TMP_Text destinationsButtonText;
 
     [SerializeField] private float enterDuration;
     [SerializeField] private float popupDuration;
@@ -36,8 +34,6 @@ public class SummaryPanelHandler : MonoBehaviour
         scoreImage.color = new Color(scoreImage.color.r, scoreImage.color.g, scoreImage.color.b, 0);
         mainMenuButton.image.color = new Color(mainMenuButton.image.color.r, mainMenuButton.image.color.g, mainMenuButton.image.color.b, 0);
         destinationsButton.image.color =  new Color(destinationsButton.image.color.r, destinationsButton.image.color.g, destinationsButton.image.color.b, 0);
-        mainMenuButtonText.color = new Color(mainMenuButtonText.color.r, mainMenuButtonText.color.g, mainMenuButtonText.color.b, 0);
-        destinationsButtonText.color = new Color(destinationsButtonText.color.r, destinationsButtonText.color.g, destinationsButtonText.color.b, 0);
 
         Vector2 size = popupBackground.sizeDelta;
         popupBackground.sizeDelta = new Vector2(size.x, 0f);
@@ -61,8 +57,6 @@ public class SummaryPanelHandler : MonoBehaviour
         yield return tween.WaitForCompletion();
         tween = mainMenuButton.image.DOFade(1f, contentFadeDuration);
         destinationsButton.image.DOFade(1f, contentFadeDuration);
-        mainMenuButtonText.DOFade(1f, contentFadeDuration);
-        destinationsButtonText.DOFade(1f, contentFadeDuration);
         yield return tween.WaitForCompletion();
         mainMenuButton.interactable = true;
         destinationsButton.interactable = true;
