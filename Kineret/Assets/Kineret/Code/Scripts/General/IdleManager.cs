@@ -53,8 +53,6 @@ public class IdleManager : MonoBehaviour
         float miniHorizontalAxis = Input.GetAxis(JoystickManager.JoystickControls.MiniHorizontalAxis);
         float miniVerticalAxis = Input.GetAxis(JoystickManager.JoystickControls.MiniVerticalAxis);
 
-        
-
         if (Input.GetKeyDown(KeyCode.LeftArrow)) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Horizontal, Sign = -1 });}
         if (Input.GetKeyDown(KeyCode.RightArrow)) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Horizontal, Sign = 1 }); }
         if (Input.GetKeyDown(KeyCode.DownArrow)) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Vertical, Sign = -1 }); }
@@ -68,14 +66,13 @@ public class IdleManager : MonoBehaviour
             if (Mathf.Abs(horizontalAxis) > JoystickManager.StickDeadzone) { OnAnyJoystickInput?.Invoke( new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Horizontal, Sign = (int)Mathf.Sign(horizontalAxis) } ); }
             if (Mathf.Abs(verticalAxis) > JoystickManager.StickDeadzone) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Vertical, Sign = (int)Mathf.Sign(verticalAxis) }); }
             if (Mathf.Abs(miniHorizontalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Mini, Axis = Axis.Horizontal, Sign = (int)Mathf.Sign(miniHorizontalAxis) }); }
-            if (Mathf.Abs(miniVerticalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Mini, Axis = Axis.Vertical, Sign = (int)Mathf.Sign(miniVerticalAxis) }); }
-
-           
+            if (Mathf.Abs(miniVerticalAxis) > JoystickManager.HatDeadzone) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Mini, Axis = Axis.Vertical, Sign = (int)Mathf.Sign(miniVerticalAxis) }); }          
         }
 
         //If Button Pressed
         if (Input.GetButtonDown(JoystickManager.JoystickControls.Trigger) ||
-            Input.GetButtonDown(JoystickManager.JoystickControls.RedButton))
+            Input.GetButtonDown(JoystickManager.JoystickControls.RedButton) || 
+            Input.GetKeyDown(KeyCode.Space))
         {
             _timer = 0;
             OnAnyJoystickClick?.Invoke();

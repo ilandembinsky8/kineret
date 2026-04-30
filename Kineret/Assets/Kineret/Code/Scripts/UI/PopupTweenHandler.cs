@@ -95,6 +95,7 @@ public class PopupTweenHandler : MonoBehaviour
             //how to reset so toggle is a thing or avticate without playing animation.
         }
     }
+
     public void Play(int mode)
     {
         if (playSFX) { AudioManager.Instance.PlayOpenUI(); }

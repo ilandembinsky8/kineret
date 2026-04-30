@@ -155,7 +155,7 @@ public class GameDestinationLoader : MonoBehaviour
         player.transform.position = startPosition + (Vector3.up * GameSettingsManager.GetFloat("Route Settings", "PlayerStartingYBonus", 2000));
         player.YawBody.LookAt(new Vector3(firstDestinationPosition.x, player.transform.position.y, firstDestinationPosition.z));
 
-        //Initialize the path
+        //Initialize the line path
         List<Vector3> waypoints = new(_destinations.Length + 1)
         {
             startPosition

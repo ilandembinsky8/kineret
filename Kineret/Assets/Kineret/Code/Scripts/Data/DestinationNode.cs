@@ -50,7 +50,6 @@ public class DestinationsGraph
                 CurrentDestinationNode = CurrentDestinationNode.RightNode;
                 break;
         }
-
     }
 }
 [Serializable]
