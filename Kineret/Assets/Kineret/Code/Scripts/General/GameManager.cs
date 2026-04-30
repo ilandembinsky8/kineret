@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             EventsRelay.OnLegStart.Invoke(_destinationsReachedCount);
         }
 
-        EventsRelay.OnLoadInfoScreen(data);
+        EventsRelay.OnLoadInfoScreen.Invoke(data);
     }
     private void HandleShowDirection()
     {

@@ -91,8 +91,12 @@ public class GameDataManager : MonoBehaviour
     private bool TryGetDestinationImageData(string destinationName, out DestinationImageData data)
     {
         if (_destinationImageDataDiction != null &&
-            _destinationImageDataDiction.TryGetValue(destinationName, out data)) { return true; }// Found image data for destination
-
+            _destinationImageDataDiction.TryGetValue(destinationName, out data)) 
+        {
+            Debug.Log($"Successful destintion image load for: {destinationName}");
+            return true; 
+        }// Found image data for destination
+        Debug.Log($"Failed destintion image load for: {destinationName}");
         data = default;
         return false; // No image found for destination
     }
@@ -104,7 +108,7 @@ public class GameDataManager : MonoBehaviour
         {
             DestinationTextData destinationTextData = _currentGameData.DestinationDataList[i];
 
-            TryGetDestinationImageData(destinationTextData.UIDestinationInfoText.EngTitle, out DestinationImageData destinationImageData);
+            TryGetDestinationImageData(destinationTextData.CodeName, out DestinationImageData destinationImageData);
             TryGetIconImageData("Icon-Destination-Info", out Sprite iconImage);
 
             DestinationData destinationData = new DestinationData
