@@ -1,19 +1,13 @@
-using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+using System.Collections;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using DG.Tweening;
+using UnityEngine;
+using TMPro;
 
-public enum PlayMode
-{
-    Default,WidthOpenFirst
-}
-public enum TextMode
-{
-    Run, Fade
-}
+public enum PlayMode { Default, WidthOpenFirst }
+public enum TextMode { Run, Fade }
 public class PopupTweenHandler : MonoBehaviour
 {
     private const float LETTER_DELAY = 0.01f;
@@ -39,9 +33,11 @@ public class PopupTweenHandler : MonoBehaviour
     [SerializeField] private PlayMode startPlayMode;
 
     [SerializeField] private bool playSFX;
+    [SerializeField] private bool _isSeperatePopup;
 
     private Vector2 _originalBGSizeDelta;
     private float _originalIconLocalPositionY;
+    private bool _allowPlayAfterInitialLoad = true;
     private Tween _iconTween;
 
     public event UnityAction OnTextFinishedLoading;
@@ -68,7 +64,7 @@ public class PopupTweenHandler : MonoBehaviour
         foreach (var text in TMPtexts)
         {
             text.gameObject.SetActive(false);
-        }      
+        }
     }
 
     private void Start()
@@ -78,8 +74,8 @@ public class PopupTweenHandler : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(background != null) background.DOKill();
-        if(infoScreenMask != null) infoScreenMask.DOKill();
+        if (background != null) background.DOKill();
+        if (infoScreenMask != null) infoScreenMask.DOKill();
 
         foreach (var text in TMPtexts)
         {
@@ -88,19 +84,14 @@ public class PopupTweenHandler : MonoBehaviour
 
         _iconTween?.Kill();
     }
-    public void ResetPopup()
-    {
-        foreach (TMP_Text text in TMPtexts)
-        {
-            //how to reset so toggle is a thing or avticate without playing animation.
-        }
-    }
 
     public void Play(int mode)
     {
+        if (!_allowPlayAfterInitialLoad) { return; }
+
         if (playSFX) { AudioManager.Instance.PlayOpenUI(); }
 
-        if(mode == (int)PlayMode.WidthOpenFirst)
+        if (mode == (int)PlayMode.WidthOpenFirst)
         {
             StartCoroutine(PlayWidthFirstAnimation());
             return;
@@ -115,10 +106,10 @@ public class PopupTweenHandler : MonoBehaviour
         {
             background.DOSizeDelta(_originalBGSizeDelta, backgroundTweenDuration).SetEase(Ease.OutBack);
         }
-       
+
         if (icon != null)
         {
-            _iconTween =  icon.DOLocalMoveY(_originalIconLocalPositionY, iconTweenDuration).SetEase(Ease.OutBack);
+            _iconTween = icon.DOLocalMoveY(_originalIconLocalPositionY, iconTweenDuration).SetEase(Ease.OutBack);
         }
 
         if (infoScreenMask != null)
@@ -140,12 +131,11 @@ public class PopupTweenHandler : MonoBehaviour
         if (background == null) yield break;
 
         background.sizeDelta = new Vector2(0, startingHeightForWidthFirst);
-        Tween tween = background.DOSizeDelta(new Vector2(_originalBGSizeDelta.x, startingHeightForWidthFirst), backgroundTweenDuration/2f).SetEase(Ease.OutBack);
+        Tween tween = background.DOSizeDelta(new Vector2(_originalBGSizeDelta.x, startingHeightForWidthFirst), backgroundTweenDuration / 2f).SetEase(Ease.OutBack);
 
         yield return tween.WaitForCompletion();
 
-        background.DOSizeDelta(_originalBGSizeDelta, backgroundTweenDuration/2f).SetEase(Ease.OutBack);
-
+        background.DOSizeDelta(_originalBGSizeDelta, backgroundTweenDuration / 2f).SetEase(Ease.OutBack);
 
         yield return new WaitForSeconds(contentDelay);
         PlayText();
@@ -153,13 +143,13 @@ public class PopupTweenHandler : MonoBehaviour
 
     public IEnumerator PlayIconYoyo(float duration)
     {
-        if(_iconTween != null && !_iconTween.IsComplete())
+        if (_iconTween != null && !_iconTween.IsComplete())
         {
             yield return _iconTween.WaitForCompletion();
         }
 
         Vector3 originalScale = icon.localScale;
-        _iconTween = icon.DOScale(iconMaxPulse, duration/8f).SetLoops(-1,LoopType.Yoyo);
+        _iconTween = icon.DOScale(iconMaxPulse, duration / 8f).SetLoops(-1, LoopType.Yoyo);
 
         yield return new WaitForSeconds(duration);
 
@@ -194,7 +184,7 @@ public class PopupTweenHandler : MonoBehaviour
 
     private IEnumerator PlayRunningText()
     {
-        Queue<char>[] texts =  new Queue<char>[TMPtexts.Length];
+        Queue<char>[] texts = new Queue<char>[TMPtexts.Length];
         string currentText;
         for (int i = 0; i < TMPtexts.Length; i++)
         {
@@ -214,11 +204,11 @@ public class PopupTweenHandler : MonoBehaviour
         string markdownEnd = string.Empty;
         for (int i = 0; i < TMPtexts.Length; i++)
         {
-            while(texts[i].Count > 0)
+            while (texts[i].Count > 0)
             {
                 char ch = texts[i].Dequeue();
 
-                if(ch == '<' && texts[i].Peek() != '/')
+                if (ch == '<' && texts[i].Peek() != '/')
                 {
                     string markdownStart = $"{ch}{texts[i].Dequeue()}{texts[i].Dequeue()}";
                     TMPtexts[i].text += markdownStart;
@@ -236,7 +226,7 @@ public class PopupTweenHandler : MonoBehaviour
                     texts[i].Dequeue();
                     texts[i].Dequeue();
                     texts[i].Dequeue();
-                    texts[i].Dequeue();       
+                    texts[i].Dequeue();
                     isMarkdownActive = false;
                     markdownEnd = string.Empty;
                     ch = texts[i].Dequeue();
@@ -251,11 +241,15 @@ public class PopupTweenHandler : MonoBehaviour
                 else
                 {
                     TMPtexts[i].text += ch;
-                }                
+                }
                 yield return new WaitForSeconds(LETTER_DELAY);
-            }      
+            }
+            yield return new WaitForSeconds(TEXT_DELAY);
         }
+        yield return null;
 
+        if (_isSeperatePopup) { _allowPlayAfterInitialLoad = false; }
         OnTextFinishedLoading?.Invoke();
     }
+
 }
