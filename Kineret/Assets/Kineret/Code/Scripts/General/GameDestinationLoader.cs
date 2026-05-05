@@ -84,12 +84,35 @@ public class GameDestinationLoader : MonoBehaviour
 
         return new Vector3(x, y, z);
     }
+    private Vector3 GetInterestPointWorldPosition(InterestPointData interestPointData)
+    {
+        double lat = interestPointData.Data.GeoPosition.lat;
+        double lon = interestPointData.Data.GeoPosition.lon;
+
+        float minLon = GameSettingsManager.GetFloat("Texture", "min_lon");
+        float maxLon = GameSettingsManager.GetFloat("Texture", "max_lon");
+        float minLat = GameSettingsManager.GetFloat("Texture", "min_lat");
+        float maxLat = GameSettingsManager.GetFloat("Texture", "max_lat");
+
+        float terrainWidth = GameSettingsManager.GetFloat("Texture", "width");
+        float terrainHeight = GameSettingsManager.GetFloat("Texture", "height");
+
+        float xNormalized = (float)((lon - minLon) / (maxLon - minLon));
+        float zNormalized = (float)((lat - minLat) / (maxLat - minLat));
+
+        float x = xNormalized * terrainWidth;
+        float z = zNormalized * terrainHeight;
+
+        float y = interestPointData.Data.WorldPosition.y;
+
+        return new Vector3(x, y, z);
+    }
     private void GenerateInterestPoints()
     {
         for (int i = 0; i < LocationsManager.InterestPoints.Count; i++)
         {
             InterestPointData interestPoint = LocationsManager.GetInterestPoint(i);
-            InterestPointHandler interestPointHandler = Instantiate(interestPointPrefab, interestPoint.Data.WorldPosition, Quaternion.identity);
+            InterestPointHandler interestPointHandler = Instantiate(interestPointPrefab, GetInterestPointWorldPosition(interestPoint), Quaternion.identity);
             interestPointHandler.Init(interestPoint, LocationsManager.InterestCollectable);
         }
     }
@@ -252,19 +275,29 @@ public class GameDestinationLoader : MonoBehaviour
             }
         }
 
-        //Positioning of the points
+        float maxVarianceDistance = GameSettingsManager.GetFloat("Route Settings", "MaxVariancePointDistance", 1000);
+        float minVarianceDistance = GameSettingsManager.GetFloat("Route Settings", "MinVariancePointDistance", 200);
         Vector3 diff = (end - start);
-        float gap = diff.magnitude / (collectables.Length+1);
+        float gap = diff.magnitude / (collectables.Length + 1);
         Vector3 direction = diff.normalized;
-        Vector3 orthogonalDirection = new Vector3(-direction.z, direction.y, direction.x);
-        Vector3 segmentPosition;
-        float maxVarianceDistance = GameSettingsManager.GetFloat("Route  Settings", "MaxVariancePointDistance", 1000);
-        float randomDirection;
+
+        // FIXED
+        Vector3 orthogonalDirection = Vector3.Cross(Vector3.up, direction).normalized;
+
         for (int i = 0; i < collectables.Length; i++)
         {
-            segmentPosition = start + (direction * (gap * (i + 1)));
-            randomDirection = UnityEngine.Random.Range(0, 2) == 0 ? 1 : -1;
-            collectables[i].transform.position = segmentPosition + (orthogonalDirection * randomDirection * UnityEngine.Random.Range(-maxVarianceDistance, maxVarianceDistance));
-        }        
+            Vector3 segmentPosition = start + direction * (gap * (i + 1));
+
+            float randomOffset = UnityEngine.Random.Range(minVarianceDistance, maxVarianceDistance);
+
+            if (UnityEngine.Random.value < 0.5f)
+                randomOffset *= -1f;
+
+            collectables[i].transform.position =
+                segmentPosition + orthogonalDirection * randomOffset;
+            Debug.Log("randomOffset: " + randomOffset);
+            Debug.Log("orthogonalDirection * randomOffset: " + orthogonalDirection * randomOffset);
+        }
+
     }
 }
