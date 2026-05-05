@@ -158,6 +158,7 @@ public struct InterestPointTextData
 {
     public SingleTextData Name;
     public string IconImageName;
+    public GeoPosition GeoPosition;
     public Vector3 WorldPosition;
     public SingleTextData InfoText;
     public SingleTextData CollectText;

@@ -604,6 +604,10 @@
         "EngText": ""
       },
       "IconImageName": "Icon-Route-Forest",
+      "GeoPosition": {
+       "lat": 32.9945484,
+       "lon": 35.5003673
+    },
       "WorldPosition": {
         "x": 64000.0,
         "y": 1500.0,
@@ -624,6 +628,10 @@
         "EngText": ""
       },
       "IconImageName": "Icon-Route-InterestPoint",
+      "GeoPosition": {
+      "lat": 32.980388,
+      "lon": 35.808484
+    },
       "WorldPosition": {
         "x": 93000.0,
         "y": 1250.0,
@@ -644,6 +652,10 @@
         "EngText": ""
       },
       "IconImageName": "Icon-Route-Forest",
+        "GeoPosition": {
+      "lat": 32.7733277,
+      "lon": 35.5299201
+    },
       "WorldPosition": {
         "x": 67000.0,
         "y": 650.0,
@@ -664,6 +676,10 @@
         "EngText": ""
       },
       "IconImageName": "Icon-Route-Forest",
+       "GeoPosition": {
+      "lat": 32.7493006,
+      "lon": 35.199766
+    },
       "WorldPosition": {
         "x": 36050.0,
         "y": 650.0,
