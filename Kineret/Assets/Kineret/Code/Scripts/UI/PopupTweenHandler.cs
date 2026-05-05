@@ -251,5 +251,21 @@ public class PopupTweenHandler : MonoBehaviour
         if (_isSeperatePopup) { _allowPlayAfterInitialLoad = false; }
         OnTextFinishedLoading?.Invoke();
     }
+    public void ReplayTextOnly()
+    {
+        StopAllCoroutines();
 
+        foreach (var text in TMPtexts)
+        {
+            if (text == null) continue;
+
+            text.DOKill();
+            text.gameObject.SetActive(false);
+
+            Color color = text.color;
+            text.color = new Color(color.r, color.g, color.b, 1f);
+        }
+
+        PlayText();
+    }
 }

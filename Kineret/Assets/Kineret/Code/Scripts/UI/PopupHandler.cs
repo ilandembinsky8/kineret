@@ -40,5 +40,15 @@ public class PopupHandler : MonoBehaviour
         yield return new WaitForSeconds(duration);
         Destroy(gameObject);
     }
+    public void ChangeDataAndReplayText(PopupData data)
+    {
+        LoadData(data);
+
+        PopupTweenHandler tweenHandler = GetComponent<PopupTweenHandler>();
+        if (tweenHandler != null)
+        {
+            tweenHandler.ReplayTextOnly();
+        }
+    }
 
 }

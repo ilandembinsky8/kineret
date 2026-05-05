@@ -82,21 +82,37 @@ public class UIManager : MonoBehaviour
         LoadPopup(routePopupData,0);
     }
 
-    private void LoadPopup(PopupData data,float scaleMultiplier)
+    private void LoadPopup(PopupData data, float scaleMultiplier)
     {
-        if(_currentPopup != null) Destroy(_currentPopup.gameObject);
+        PopUpType popupType = (PopUpType)data.PopupTextData.Type;
 
-        switch ((PopUpType)data.PopupTextData.Type)
+        if (_currentPopup != null)
+        {
+            bool sameFullPopup = popupType == PopUpType.Full;
+
+            if (sameFullPopup)
+            {
+                _currentPopup.ChangeDataAndReplayText(data);
+                return;
+            }
+
+            Destroy(_currentPopup.gameObject);
+        }
+
+        switch (popupType)
         {
             case PopUpType.Info:
                 _currentPopup = Instantiate(infoPopupPrefab, canvas.transform);
                 break;
+
             case PopUpType.TitleOnly:
                 _currentPopup = Instantiate(titleOnlyPopupPrefab, canvas.transform);
                 break;
+
             case PopUpType.Full:
                 _currentPopup = Instantiate(fullPopupPrefab, canvas.transform);
                 break;
+
             case PopUpType.HighFull:
                 _currentPopup = Instantiate(highFullPopupPrefab, canvas.transform);
                 break;
@@ -104,7 +120,7 @@ public class UIManager : MonoBehaviour
 
         _currentPopup.LoadData(data);
 
-        if(scaleMultiplier != 0)
+        if (scaleMultiplier != 0)
         {
             _currentPopup.ScaleIconeSize(scaleMultiplier);
         }
