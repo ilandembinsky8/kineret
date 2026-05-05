@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject controlButtonsCanvas;
 
     [Header("UI Elements")]
+    [SerializeField] private CanvasGroup parentCanvasGroup;
     [SerializeField] private GameObject explanationPopup;
     [SerializeField] private PopupTweenHandler destinationsSummaryPopup;
     [SerializeField] private TMP_Text firstDestinationText;
@@ -88,6 +90,7 @@ public class MainMenuManager : MonoBehaviour
         if (toturialPopup.gameObject.activeInHierarchy) { DeactivateTutorialPopup(); }
 
         StartDestinationSelection();
+        StartCoroutine(FadeInButtons());
     }
 
     public void StartDestinationSelection()
@@ -183,6 +186,11 @@ public class MainMenuManager : MonoBehaviour
     private void ToggleLanguageChange()
     {
 
+    }
+    private IEnumerator FadeInButtons()
+    {
+        yield return new WaitForSeconds(3.5f);
+        parentCanvasGroup.DOFade(1f, 1f);
     }
 
 }
