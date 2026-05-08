@@ -5,11 +5,6 @@ public class DestinationHandler : InfoPointHandler
 {
     public int Destination { get; set; }
 
-    protected override void HandleLegStart(int leg)
-    {
-        _isActive = leg == Leg;
-    }
-
     protected override void CheckCollectRange(Vector3 delta)
     {
         if(_wasCollected) return;
