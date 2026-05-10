@@ -75,6 +75,7 @@ public class IdleManager : MonoBehaviour
             Input.GetKeyDown(KeyCode.Space))
         {
             _timer = 0;
+            Debug.Log("pressed select destination");
             OnAnyJoystickClick?.Invoke();
         }
 

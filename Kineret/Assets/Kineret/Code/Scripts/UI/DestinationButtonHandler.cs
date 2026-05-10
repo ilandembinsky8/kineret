@@ -53,7 +53,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     private void OnDestroy() { selectedIcon.DOKill(); }
     private void Start()
     {
-        pointExit();
+        PlaySelectStatusAnimation(false, 0);
     }
     public bool GetIsSelected() { return _isSelected; }
 
@@ -161,7 +161,7 @@ public class DestinationButtonHandler : MonoBehaviour, IPointerEnterHandler, IPo
     {
         if (!_isSelectable) return;
         _isSelected = true;
-
+        Debug.Log("Selected destination: " + _destination);
         PlaySelectStatusAnimation(true, 0.5f);
         EventsRelay.OnDestinationSelected.Invoke(_destination);
     }

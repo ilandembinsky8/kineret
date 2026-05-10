@@ -9,12 +9,10 @@ public class UserInterfaceNavigator : MonoBehaviour
     private void OnEnable()
     {
         NavigatorCompononent.OnButtonActivated += SetActiveButton;
-        IdleManager.OnAnyJoystickClick += TryActivateButton;
     }
     private void OnDisable()
     {
         NavigatorCompononent.OnButtonActivated -= SetActiveButton;
-        IdleManager.OnAnyJoystickClick -= TryActivateButton;
     }
 
     public static void TryActivateButton()
