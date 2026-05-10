@@ -1011,6 +1011,11 @@ PrefabInstance:
       objectReference: {fileID: 1085952593}
     - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
         type: 3}
+      propertyPath: showTutorialDelay
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 468353314427627120, guid: d78810a7e2d2f5a419202a6ebb39895b,
+        type: 3}
       propertyPath: showToturialButton
       value: 
       objectReference: {fileID: 667851282}
