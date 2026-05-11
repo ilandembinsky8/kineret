@@ -32,14 +32,14 @@ public class GameDestinationLoader : MonoBehaviour
 
     private void Awake()
     {
-        if (IsTesting)
-        {
-            LocationsManager.DestinationCollectables = destinationCollectables;
-            LocationsManager.InfoCollectable = infoCollectable;
-            LocationsManager.InterestCollectable = interestCollectable;
-            LocationsManager.BonusCollectables = bonusCollectables;
-            LocationsManager.Challenges = challenges;
-        }
+        //if (IsTesting)
+        //{
+        //    LocationsManager.DestinationCollectables = destinationCollectables;
+        //    LocationsManager.InfoCollectable = infoCollectable;
+        //    LocationsManager.InterestCollectable = interestCollectable;
+        //    LocationsManager.BonusCollectables = bonusCollectables;
+        //    LocationsManager.Challenges = challenges;
+        //}
 
         GenerateDestinations();
         GenerateInterestPoints();
