@@ -28,7 +28,7 @@ public class InfoScreenHandler : MonoBehaviour
     private void Awake()
     {
         continueGameButton.gameObject.SetActive(false);
-        endGameButton.gameObject.SetActive(false);    
+        endGameButton.gameObject.SetActive(false);
     }
     private void Start()
     {
@@ -61,8 +61,11 @@ public class InfoScreenHandler : MonoBehaviour
         {
             subtitleText.text = data.Subtitle;
             subtitleText.fontStyle = FontStyles.Bold;
+            if (data.CodeName == "BioCastle")
+            { subtitleText.enableWordWrapping = false; }
+            else { subtitleText.enableWordWrapping = true; }
         }
-        
+
         if (data.Text != null && descriptionText != null) descriptionText.text = data.Text;
 
         if (data.Icon != null && iconImage != null)
@@ -76,14 +79,14 @@ public class InfoScreenHandler : MonoBehaviour
             logoImage.sprite = data.Logo;
             float calculatedWidth = logoImage.sprite.texture.width * data.logoSizeMultiplier;
             float calculatedHeight = logoImage.sprite.texture.height * data.logoSizeMultiplier;
-            
+
             if (calculatedWidth > _maxLogoWidth)
             {
                 float scale = _maxLogoWidth / calculatedWidth;
                 calculatedWidth = _maxLogoWidth;
                 calculatedHeight *= scale;
             }
-            
+
             ((RectTransform)logoImage.transform).sizeDelta = new Vector2(calculatedWidth, calculatedHeight);
         }
 
@@ -108,7 +111,7 @@ public class InfoScreenHandler : MonoBehaviour
         AudioManager.Instance.StopNarration();
         AudioManager.Instance.SetIncreasedMusicVolume();
         EventsRelay.OnGameOver.Invoke();
-        Destroy(gameObject,3f);
+        Destroy(gameObject, 3f);
     }
 
     private IEnumerator EnterAnimation()
