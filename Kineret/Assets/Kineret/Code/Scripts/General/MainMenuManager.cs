@@ -82,6 +82,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnStartGameButton()
     {
+        parentCanvasGroup.alpha = 0f;
         IdleManager.IsTicking = true;
         HighscoresManager.Instance.AddUser();
 
