@@ -9,10 +9,12 @@ public class UserInterfaceNavigator : MonoBehaviour
     private void OnEnable()
     {
         NavigatorCompononent.OnButtonActivated += SetActiveButton;
+        IdleManager.OnAnyJoystickClick += TryActivateButton;
     }
     private void OnDisable()
     {
         NavigatorCompononent.OnButtonActivated -= SetActiveButton;
+        IdleManager.OnAnyJoystickClick -= TryActivateButton;
     }
 
     public static void TryActivateButton()
@@ -24,6 +26,8 @@ public class UserInterfaceNavigator : MonoBehaviour
         currentlyActiveButton = null;
     }
     public static Button GetActiveButton() { return currentlyActiveButton; }
-    public static void SetActiveButton(Button button) { currentlyActiveButton = button; }
+    public static void SetActiveButton(Button button) {
+        currentlyActiveButton = button;
+    }
 
 }

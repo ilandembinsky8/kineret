@@ -110,7 +110,7 @@ public class MainMenuDestinationLoader : MonoBehaviour
     }
     public void TryHandleJoystickClick()
     {
-        if (_firstInputBlock)
+        if (UserInterfaceNavigator.GetActiveButton() == null && _firstInputBlock)
         {
             CurrentDestinationButtonHandler.OnClick();
             Debug.Log("Clicked: " + CurrentDestinationButtonHandler.name);
