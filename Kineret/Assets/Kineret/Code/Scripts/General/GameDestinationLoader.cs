@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using System;
 
 public class GameDestinationLoader : MonoBehaviour
 {
@@ -28,6 +27,7 @@ public class GameDestinationLoader : MonoBehaviour
 
     public bool IsTesting;
 
+    public DestinationHandler[] GetCurrentDestinations { get { return _destinations; } }
     private DestinationHandler[] _destinations;
 
     private void Awake()
@@ -55,7 +55,7 @@ public class GameDestinationLoader : MonoBehaviour
             int destination = LocationsManager.SelectedDestinations[i];
             DestinationData destinationData = LocationsManager.GetDestination(destination);
             Vector3 position = GetDestinationWorldPosition(destinationData);
-            DestinationHandler destinationHandler = Instantiate(destinationPrefab,position,Quaternion.identity);
+            DestinationHandler destinationHandler = Instantiate(destinationPrefab, position, Quaternion.identity);
             destinationHandler.Destination = destination;
             _destinations[i] = destinationHandler;
         }
@@ -123,13 +123,13 @@ public class GameDestinationLoader : MonoBehaviour
         float[] segemnts = new float[_destinations.Length];
         for (int i = 0; i < segemnts.Length; i++)
         {
-            if(i == segemnts.Length - 1)
+            if (i == segemnts.Length - 1)
             {
                 segemnts[i] = (_destinations[i].transform.position - _destinations[0].transform.position).sqrMagnitude;
                 continue;
             }
 
-            segemnts[i] = (_destinations[i].transform.position - _destinations[i+1].transform.position).sqrMagnitude;
+            segemnts[i] = (_destinations[i].transform.position - _destinations[i + 1].transform.position).sqrMagnitude;
         }
 
         int minIndex = Array.IndexOf(segemnts, segemnts.Min());
@@ -156,7 +156,7 @@ public class GameDestinationLoader : MonoBehaviour
         }
 
         //Place Player
-        Vector3 startPosition,direction;
+        Vector3 startPosition, direction;
         Vector3 firstDestinationPosition = _destinations[0].transform.position;
 
 
@@ -174,7 +174,7 @@ public class GameDestinationLoader : MonoBehaviour
             startPosition = firstDestinationPosition + (direction * GameSettingsManager.GetFloat("Route Settings", "FirstLegDistance", 20000));
         }
 
-        
+
         player.transform.position = startPosition + (Vector3.up * GameSettingsManager.GetFloat("Route Settings", "PlayerStartingYBonus", 2000));
         player.YawBody.LookAt(new Vector3(firstDestinationPosition.x, player.transform.position.y, firstDestinationPosition.z));
 
@@ -214,18 +214,18 @@ public class GameDestinationLoader : MonoBehaviour
 
 
         for (int i = 0; i < _destinations.Length; i++)
-        {          
+        {
             end = waypoints[i + 1];
             start = waypoints[i] + (end - waypoints[i]) * clearLegPercentagers[i];
             bonusIndex = bonusIndices[UnityEngine.Random.Range(0, bonusIndices.Count)];
             challengeIndex = challengeIndices[UnityEngine.Random.Range(0, challengeIndices.Count)];
-            bonusIndices.Remove(bonusIndex); 
+            bonusIndices.Remove(bonusIndex);
             challengeIndices.Remove(challengeIndex);
-            GenerateLegCollectables(start, end, bonusIndex, challengeIndex, _destinations[i].Destination,i);
+            GenerateLegCollectables(start, end, bonusIndex, challengeIndex, _destinations[i].Destination, i);
         }
     }
 
-    private void GenerateLegCollectables(Vector3 start, Vector3 end, int bonus,int challenge, int destinationID, int leg)
+    private void GenerateLegCollectables(Vector3 start, Vector3 end, int bonus, int challenge, int destinationID, int leg)
     {
         //Indices set up
         CollectableHandler[] collectables = new CollectableHandler[5];
@@ -250,7 +250,7 @@ public class GameDestinationLoader : MonoBehaviour
         ChallengeHandler challengePoint = Instantiate(challengePrefab);
         challengePoint.Leg = leg;
         ChallengeCollectableData challengeCollectableData = LocationsManager.Challenges[challenge];
-        ChallengeData challengeData = new ChallengeData() { Challenge = (ChallengeType)challenge , Duration = challengeCollectableData.Duration };
+        ChallengeData challengeData = new ChallengeData() { Challenge = (ChallengeType)challenge, Duration = challengeCollectableData.Duration };
         challengePoint.Init(challengeData, challengeCollectableData.FailPopupData, challengeCollectableData.CollectableData, challengeCollectableData.CollectionPopup, challengeCollectableData.NotificationPopup);
         collectables[challengeIndex] = challengePoint;
 
@@ -300,4 +300,5 @@ public class GameDestinationLoader : MonoBehaviour
         }
 
     }
+
 }

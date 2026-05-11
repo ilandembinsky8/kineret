@@ -48,6 +48,7 @@ public class UIManager : MonoBehaviour
         usernameText.text = $"| {HighscoresManager.Instance.GetUsername(HighscoresManager.Instance.CurrentUserID)}";
         blackPanel.gameObject.SetActive(true);
         StartCoroutine(BlackFade());
+        EventsRelay.OnGameStart?.Invoke();
     }
 
     private IEnumerator BlackFade()

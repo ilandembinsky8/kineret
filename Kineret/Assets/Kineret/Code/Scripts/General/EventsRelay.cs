@@ -7,6 +7,7 @@ public static class EventsRelay
     public static UnityAction<bool> OnEnableDestinationSelection { get; set; }
 
     //Game Events
+    public static UnityAction OnGameStart { get; set; }
     public static UnityAction<bool> OnGamePause { get; set; }
     public static UnityAction OnGameOver { get; set; }
 

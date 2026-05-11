@@ -1,11 +1,12 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class PlayerHUDHandler : MonoBehaviour
 {
     [SerializeField] private TransformEventChannel cameraPitched_EC;
     [SerializeField] private TransformEventChannel playerMoved_EC;
+    [SerializeField] private GameDestinationLoader destinationLoader;
 
     [SerializeField] private TMP_Text altitudeText;
     [SerializeField] private TMP_Text higherPitchText;
@@ -14,7 +15,10 @@ public class PlayerHUDHandler : MonoBehaviour
 
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text currentDestinationNameText;
 
+    private DestinationHandler[] _destinationOrder;
+    private int _currentDestinationIndex;
     private int _time;
 
     private void Start()
@@ -27,13 +31,48 @@ public class PlayerHUDHandler : MonoBehaviour
         playerMoved_EC.OnEventRaised += HandlePlayerMoved;
         cameraPitched_EC.OnEventRaised += HandleCameraPitched;
         EventsRelay.OnScoreChange += HandleScoreChanged;
+        EventsRelay.OnGameStart += InitDestinationName;
+        EventsRelay.OnShowDirection += HandleDestinationReached;
     }
-
     private void OnDisable()
     {
         playerMoved_EC.OnEventRaised -= HandlePlayerMoved;
         cameraPitched_EC.OnEventRaised -= HandleCameraPitched;
         EventsRelay.OnScoreChange -= HandleScoreChanged;
+        EventsRelay.OnGameStart -= InitDestinationName;
+        EventsRelay.OnShowDirection -= HandleDestinationReached;
+    }
+
+    private void InitDestinationName()
+    {
+        _destinationOrder = new DestinationHandler[destinationLoader.GetCurrentDestinations.Length];
+        _destinationOrder = destinationLoader.GetCurrentDestinations;
+        _currentDestinationIndex = 0;
+        HandleDestinationTextChange();
+    }
+    private void HandleDestinationReached()
+    {
+        _currentDestinationIndex++;
+        HandleDestinationTextChange();
+    }
+    private void HandleDestinationTextChange()
+    {
+        string destinationText = string.Empty;
+        DestinationTextData data = LocationsManager.GetDestination(_destinationOrder[_currentDestinationIndex].Destination).Data;
+
+        if (true)//TODO: differentiate by language
+        {
+            destinationText = $"יעד: {data.UIDestinationInfoText.HebTitle}";
+        }
+        else
+        {
+            destinationText = $"Destination: {data.UIDestinationInfoText.EngTitle}";
+        }
+
+        if (currentDestinationNameText != null)
+        {
+            currentDestinationNameText.text = destinationText;
+        }
     }
 
     private void HandleScoreChanged(int score)
@@ -47,8 +86,8 @@ public class PlayerHUDHandler : MonoBehaviour
 
         if (cameraTransform.up.y >= 0)
         {
-            if(pitch > 90) pitch = 360 - pitch;
-            else pitch *= -1; 
+            if (pitch > 90) pitch = 360 - pitch;
+            else pitch *= -1;
         }
         else
         {
@@ -70,10 +109,10 @@ public class PlayerHUDHandler : MonoBehaviour
     private void UpdateTimerUI()
     {
         if (GameManager.IsGamePaused) return;
-    
+
         int seconds = _time % 60;
         int minutes = _time / 60;
-        timerText.text = string.Format("{0:00}", minutes) + ":" +  string.Format("{0:00}", seconds);
+        timerText.text = string.Format("{0:00}", minutes) + ":" + string.Format("{0:00}", seconds);
         _time++;
     }
     private IEnumerator StartTimer()
@@ -81,7 +120,7 @@ public class PlayerHUDHandler : MonoBehaviour
         while (true)
         {
             UpdateTimerUI();
-            yield return new WaitForSeconds(1);         
-        }      
+            yield return new WaitForSeconds(1);
+        }
     }
 }
