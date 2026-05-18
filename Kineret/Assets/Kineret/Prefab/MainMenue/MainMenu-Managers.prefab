@@ -47,10 +47,11 @@ MonoBehaviour:
   gameSettings: {fileID: 11400000, guid: b7bdae77a44f5974aadfd382aa79b1f3, type: 2}
   menuDestinationLoader: {fileID: 3696091380746382211}
   showTutorialDelay: 2
-  showGameButtonDelay: 5
+  showGameButtonDelay: 2.25
   mainMenuCanvas: {fileID: 0}
   destinationSelectCanvas: {fileID: 0}
   controlButtonsCanvas: {fileID: 0}
+  parentCanvasGroup: {fileID: 0}
   explanationPopup: {fileID: 0}
   destinationsSummaryPopup: {fileID: 0}
   firstDestinationText: {fileID: 0}
