@@ -1,7 +1,6 @@
-using DG.Tweening;
 using System.Collections;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -34,15 +33,12 @@ public class UIManager : MonoBehaviour
         EventsRelay.OnLoadInfoScreen += LoadInfoScreen;
         EventsRelay.OnLoadDirectionPopup += HandleDirectionPopup;
     }
-
     private void OnDisable()
     {
         loadPopup_EC.OnEventRaised -= HandleLoadPopup;
         EventsRelay.OnLoadInfoScreen -= LoadInfoScreen;
         EventsRelay.OnLoadDirectionPopup -= HandleDirectionPopup;
     }
-
-
     private void Start()
     {
         usernameText.text = $"| {HighscoresManager.Instance.GetUsername(HighscoresManager.Instance.CurrentUserID)}";
@@ -63,13 +59,13 @@ public class UIManager : MonoBehaviour
     }
     private void HandleDirectionPopup(string direction)
     {
-       if(direction == "Left")
-       {
+        if (direction == "Left")
+        {
             LoadPopup(leftArrowPopupData, 0.6f);
             return;
-       }
+        }
 
-        LoadPopup(rightArrowPopupData,0.6f);
+        LoadPopup(rightArrowPopupData, 0.6f);
     }
 
     private void HandleLoadPopup(PopupData data)
@@ -80,7 +76,7 @@ public class UIManager : MonoBehaviour
     private IEnumerator LoadRoutePopup()
     {
         yield return new WaitForSeconds(routePopupDelay);
-        LoadPopup(routePopupData,0);
+        LoadPopup(routePopupData, 0);
     }
 
     private void LoadPopup(PopupData data, float scaleMultiplier)
@@ -129,7 +125,10 @@ public class UIManager : MonoBehaviour
 
     private void LoadInfoScreen(InfoScreenData data)
     {
+        bool isSubtitleEmpty = data.Subtitle == "";
+
         InfoScreenHandler handler = Instantiate(infoScreenPrefab, canvas.transform);
-        handler.LoadData(data);
+        handler.LoadData(data, isSubtitleEmpty);
     }
+
 }

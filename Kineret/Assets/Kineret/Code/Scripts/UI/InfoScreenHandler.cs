@@ -24,6 +24,7 @@ public class InfoScreenHandler : MonoBehaviour
     private string _destinationName;
     private bool _isWaitingForTextStart;
     private float _maxLogoWidth = 1500;
+    private bool _isSubtitleEmpty;
 
     private void Awake()
     {
@@ -44,12 +45,14 @@ public class InfoScreenHandler : MonoBehaviour
         EventsRelay.OnTextStarted -= HandleTextStarted;
         tweenHandler.OnTextFinishedLoading -= HandleTextFinishedLoading;
     }
-    public void LoadData(InfoScreenData data)
+    
+    public void LoadData(InfoScreenData data, bool isSubtitleEmpty)
     {
         continueGameButton.gameObject.SetActive(!data.isFinal);
         endGameButton.gameObject.SetActive(data.isFinal);
 
         _destinationName = data.CodeName;
+        _isSubtitleEmpty = isSubtitleEmpty;
 
         if (data.Title != null && titleText != null)
         {
@@ -125,6 +128,8 @@ public class InfoScreenHandler : MonoBehaviour
         yield return tween.WaitForCompletion();
         FlagHandler.EndFlagAnimation.Invoke();
 
+        if (_isSubtitleEmpty) { descriptionText.rectTransform.localPosition += new Vector3(0, 75, 0); }
+
         _isWaitingForTextStart = true;
         tweenHandler.Play((int)PlayMode.Default);
     }
@@ -143,4 +148,5 @@ public class InfoScreenHandler : MonoBehaviour
         continueGameButton.interactable = true;
         endGameButton.interactable = true;
     }
+
 }
