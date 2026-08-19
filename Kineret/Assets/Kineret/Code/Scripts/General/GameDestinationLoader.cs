@@ -8,7 +8,7 @@ public class GameDestinationLoader : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private PlayerMovementHandler player;
     [SerializeField] private WaypointPathController path;
-    [SerializeField] private Terrain terrain;
+    [SerializeField] private Vector2 terrainCenterXZ = new Vector2(50000f, 44707f);
 
     [Header("Prefabs")]
     [SerializeField] private DestinationHandler destinationPrefab;
@@ -169,7 +169,7 @@ public class GameDestinationLoader : MonoBehaviour
         else
         {
             //Start in center direction
-            Vector3 terrainCenter = new Vector3(terrain.transform.position.x + (terrain.terrainData.size.x / 2f), firstDestinationPosition.y, terrain.transform.position.z + (terrain.terrainData.size.z / 2f));
+            Vector3 terrainCenter = new Vector3(terrainCenterXZ.x, firstDestinationPosition.y, terrainCenterXZ.y);
             direction = (terrainCenter - firstDestinationPosition).normalized;
             startPosition = firstDestinationPosition + (direction * GameSettingsManager.GetFloat("Route Settings", "FirstLegDistance", 20000));
         }

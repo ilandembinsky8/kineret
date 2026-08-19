@@ -73,3 +73,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Terrain Data
+/[Aa]Assets/StreamingAssets/KineretTerrain/Assets/StreamingAssets/KineretTerrain/
+Assets/StreamingAssets/KineretTerrain.meta
+Assets/StreamingAssets/KineretTerrain.zip
+/Assets/StreamingAssets/KineretTerrain/**

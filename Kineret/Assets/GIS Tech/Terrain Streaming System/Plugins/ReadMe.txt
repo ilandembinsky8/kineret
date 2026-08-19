@@ -1,0 +1,1 @@
+If you are using Linux System remove "Ionic.Zip.dll" file and extract "DotNetZip"

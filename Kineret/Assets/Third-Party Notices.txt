@@ -1,0 +1,15 @@
+This asset is governed by the Asset Store EULA; 
+however, the following components are governed by the licenses indicated below: 
+ 
+A. Ionic.Zip (Used to Unzip Compressed Files)
+MIT LICENSE
+Copyright (c) 2008-2019, Microsoft Public License (Ms-PL)
+
+B. LibTiff.Net under License (MIT); (Used to Read Tiff Files)
+
+For Demo Scene purposes this asset use : 
+C-Runtime File Browser (This asset used only for demo scene)
+Asset Store Link : https://assetstore.unity.com/packages/tools/gui/runtime-file-browser-113006#description
+
+ 
+

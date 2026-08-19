@@ -1,0 +1,719 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>GIS Tech Map</title>
+
+    <link href="https://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=drawing,geometry,places"></script>
+    <script src="GISTechMap_Coords.jscript"></script>
+    <style>
+@charset "utf-8";
+
+#map-canvas {
+z-index: 0;
+ position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+#search-block {
+  position: absolute;
+  top: 2%;
+  left: 30%;
+  border: 5px solid;
+  width: 30%;
+  background-color: #FBD603;
+}
+#panel {
+  position: absolute;
+  top: 55px;
+  right: 2px;
+  border: 2px solid;
+  width: 20%;
+  height: 90%;
+  background-color: #ecf5d7;
+
+}
+.hidden {
+    display: none;
+}
+
+.wrong {
+    color: red;
+}
+
+.ildiv {
+    display:inline;
+}
+
+.poi > div {
+    display: inline-block;
+}
+
+.poiIndex {
+    text-align: center;
+}
+
+.poiDelete {
+	cursor: pointer;
+}
+
+#coordNode {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.field {
+    margin-top: 5px;
+}
+#m_zoom_Level {
+    height: 28px !important;
+    line-height: 28px;
+        label: "Post listing";
+} 
+</style>
+
+
+</head>
+<body onkeydown="OnKeyDown(event)" onkeyup="OnKeyUp(event)">
+    <div class="ui container">
+        <p>
+            <div id="map-canvas"></div>
+       
+        </p>
+    </div>
+
+        <div id="search-block">
+	            <div class="ui fluid icon input">
+			            	<input type="text" placeholder="Location name..." id="search-address" value=""/>
+			            	<i class="inverted circular search link icon" id="btnSearch"></i>
+			            </div>
+    </div>
+
+    <div id="panel">
+
+                <div class="ui segment">
+                    <center><h4 class="ui dividing header">Bottom-Right</h4></center>
+                <div class="ui attached label">Coordinates</div>
+                <center><h4 class="ui dividing header">Top-Left</h4></center>
+                <div id='topLatRow'>Latitude: <div id="TLLat" class="ildiv"></div></div>
+                <div>Longitude: <div id="TLLon" class="ildiv"></div></div>
+                
+                <center><h4 class="ui dividing header">Bottom-Right</h4></center>
+                <div id='bottomLatRow'>Latitude: <div id="BRLat" class="ildiv"></div></div>
+                <div>Longitude: <div id="BRLon" class="ildiv"></div></div>
+                 </div>
+
+                    <div class="ui segment">
+                	<div class="ui attached label">Copy to Clipboard</div>
+	                <div id="coordNode" onclick="CopyToClipboard()"></div>
+	                <button class="ui button icon fluid"onclick="CopyToClipboard()" id="copyBtn">Copy <i class="icon copy"></i></button>
+                    </div>
+
+                           <div class="ui segment">
+                	<div class="ui attached label">Area Dimension</div>
+	                 <center><h4 class="ui dividing header" id="AreaSize">Area</h4></center>
+                <div>Width: <div id="AreaWidth" class="ildiv">0</div> km</div>
+                <div>Height: <div id="AreaHeight" class="ildiv">0</div> km</div>
+				<div>Area: <div id="AreaArea" class="ildiv">0</div> km²</div>
+                           </div>
+
+                    <div class="ui segment">
+                	<div class="ui attached label">Tiles Calulation</div>
+	                <div id="coordNode" onclick="CopyToClipboard()"></div>
+              
+                             
+<div class="col-md-8">
+
+    <div class="ui sub header">Grid Zoom Level</div>
+         			<select name="m_zoomLevel" class="ui selection fluid dropdown" id="m_zoom_Level" style="height: 30px;">
+					<option value="1">1</option>
+					<option value="2">2</option>
+                    <option value="3">3</option>
+					<option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+
+				</select>
+        </div>
+                        	                <input name="showgrid" id="showgrid" type="checkbox"/>
+					 <label>Show grid</label>  
+                                      <div>Best Tiles Count: <div id="m_TilesCount" class="ildiv"></div></div>
+
+                         </div>
+
+                           <div id="m_zoom_level_text"></div>
+    </div>
+
+             
+      <script>
+          var autocomplete;
+          var geocoder;
+          var map;
+          var rectangle;
+          var m_rectangle;
+          var c_rectangle;
+          var tileSize = 256;
+          var tilelayer;
+          var coordinates;
+
+          var MinLatitude = -85.05112878;
+          var MaxLatitude = 85.05112878;
+          var MinLongitude = -180;
+          var MaxLongitude = 180;
+          var rectangleLat = [];
+          var rectangleLng = [];
+
+          function Initialize() {
+
+              var centerPoint = new google.maps.LatLng((Coords.UpperLeftCoordinate_y + Coords.BottomRightCoordiante_y) / 2, (Coords.UpperLeftCoordinate_x + Coords.BottomRightCoordiante_x) / 2);
+
+              var mapOptions =
+              {
+                  center: centerPoint,
+                  zoom: 12,
+                  zoomControl: true,
+                  zoomControlOptions: {
+                      style: google.maps.ZoomControlStyle.DEFAULT,
+                      position: google.maps.ControlPosition.LEFT_CENTER,
+                  },
+                  mapTypeControl: true,
+                  panControl: false,
+                  scaleControl: true,
+                  scrollwheel: true,
+                  streetViewControl: false,
+                  draggable: true,
+                  overviewMapControl: false,
+                  mapTypeId: google.maps.MapTypeId.HYBRID
+              };
+
+              map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+              var drawingManager = new google.maps.drawing.DrawingManager({
+                  drawingControl: true,
+                  drawingControlOptions: {
+                      drawingModes: [
+                      google.maps.drawing.OverlayType.RECTANGLE]
+                  },
+                  rectangleOptions: {
+                      editable: true
+                  }
+              });
+
+              google.maps.event.addListener(drawingManager, 'overlaycomplete', function (event) {
+                  bounds = new google.maps.LatLngBounds(
+                   new google.maps.LatLng(Coords.BottomRightCoordiante_y, Coords.UpperLeftCoordinate_x),
+                   new google.maps.LatLng(Coords.UpperLeftCoordinate_y, Coords.BottomRightCoordiante_x)
+
+               );
+
+                  if (rectangle) rectangle.setMap(null);
+
+                  rectangle = new google.maps.Rectangle({
+                      bounds: bounds,
+                      editable: true
+                  });
+
+                  rectangle.setMap(map);
+
+                  if (rectangle)
+                      rectangle.setMap(null);
+
+                  bounds = event.overlay.getBounds();
+
+                  if (event.overlay)
+                      event.overlay.setMap(null);
+
+                   m_rectangle = new google.maps.Rectangle({
+                      strokeColor: "#00FFFF",
+                      strokeOpacity: 0.8,
+                      strokeWeight: 2,
+                      fillColor: "#00FF00",
+                      fillOpacity: 0.2,
+                      bounds: bounds,
+                      editable: true
+                   });
+
+                  rectangle = m_rectangle;
+                  rectangle.setMap(null);
+                  rectangle.setMap(map);
+
+                  UpdateInfo();
+                  rectangle.addListener("bounds_changed", UpdateInfo);
+                  drawingManager.setDrawingMode(null);
+                  drawingManager.setOptions({
+                      drawingControl: true
+                  });
+                  google.maps.event.addListener(event.overlay, 'bounds_changed', function () {
+
+                  });
+              });
+
+              map.addListener('zoom_changed', function () {
+                  var currentZoom = map.getZoom();
+                  document.getElementById("m_zoom_level_text").innerHTML ="Current Zoom Level " + currentZoom;
+              });
+
+              drawingManager.setMap(map);
+
+              autocomplete = new google.maps.places.Autocomplete(
+                  (document.getElementById('search-address')),
+                  { types: ['geocode'] });
+
+              geocoder = new google.maps.Geocoder();
+
+              $("#search-address").keyup(function (event) {
+                  if (event.keyCode == 13) $("#btnSearch").click();
+              });
+
+              var clipboard = new Clipboard("#copyBtn");
+
+              $('#copyBtn').popup({
+                  on: "click",
+                  title: 'Copied',
+                  content: '"Copy coordinates to the clipboard".'
+              });
+
+              provider = $("#m_zoom_Level").find('option:selected').val();
+
+              $("#bestrectHint").popup();
+              $("#showgrid").change(OnToggleGrid);
+              $("#btnSearch").click(Search);
+              $("#m_zoom_Level").change(OnChangeProvider);
+
+
+              CreateRectangleFromGDD();
+
+
+          }
+          function CreateRectangleFromGDD() {
+
+              if (!rectangle) {
+
+                  if (!c_rectangle) {
+
+                      var c_bounds = new google.maps.LatLngBounds(
+                        new google.maps.LatLng(Coords.BottomRightCoordiante_y, Coords.UpperLeftCoordinate_x),
+                        new google.maps.LatLng(Coords.UpperLeftCoordinate_y, Coords.BottomRightCoordiante_x)
+                    );
+                      c_rectangle = new google.maps.Rectangle({
+                          strokeColor: "#FF0000",
+                          strokeOpacity: 0.8,
+                          strokeWeight: 2,
+                          fillColor: "#FF0000",
+                          fillOpacity: 0.1,
+                          map,
+                          bounds: c_bounds,
+                          editable: true
+                      });
+
+                      c_rectangle.setMap(map);
+
+                      // Add an event listener on the rectangle.
+                      c_rectangle.addListener("bounds_changed", Init_bounds_changed);
+
+                      var ne = c_bounds.getNorthEast();
+                      var sw = c_bounds.getSouthWest();
+
+                      $("#TLLat").text(ne.lat());
+                      $("#TLLon").text(sw.lng());
+                      $("#BRLat").text(sw.lat());
+                      $("#BRLon").text(ne.lng());
+
+                      var D2R = Math.PI / 180.0;
+                      var R = 6371;
+
+                      var scfY = Math.sin(ne.lat() * D2R);
+                      var sctY = Math.sin(sw.lat() * D2R);
+                      var ccfY = Math.cos(ne.lat() * D2R);
+                      var cctY = Math.cos(sw.lat() * D2R);
+
+                      var cX = Math.cos((sw.lng() - ne.lng()) * D2R);
+                      var sizeX1 = Math.abs(R * Math.acos(scfY * scfY + ccfY * ccfY * cX));
+                      var sizeX2 = Math.abs(R * Math.acos(sctY * sctY + cctY * cctY * cX));
+
+                      sizeX = ((sizeX1 + sizeX2) / 2.0);
+                      sizeY = (R * Math.acos(scfY * sctY + ccfY * cctY));
+
+                      $("#AreaWidth").text(sizeX.toFixed(2));
+                      $("#AreaHeight").text(sizeY.toFixed(2));
+                      $("#AreaArea").text((sizeX * sizeY).toFixed(2));
+
+                  }
+              }
+
+          }
+          function Init_bounds_changed() {
+
+              var bounds = c_rectangle.getBounds();
+              var ne = bounds.getNorthEast();
+              var sw = bounds.getSouthWest();
+
+              rectangle = new google.maps.Rectangle({
+                  strokeColor: "#00FFFF",
+                  strokeOpacity: 0.8,
+                  strokeWeight: 2,
+                  fillColor: "#00FF00",
+                  fillOpacity: 0.2,
+                  bounds: bounds,
+                  editable: true
+              });
+              rectangle.setMap(map);
+              UpdateInfo();
+              rectangle.addListener("bounds_changed", UpdateInfo);
+
+              c_rectangle.setMap(null);
+     
+          }
+          function UpdateInfo() {
+
+              if (rectangle) {
+
+                  if ((c_rectangle)) {
+                      c_rectangle.setMap(null);
+                  }
+
+                  var bounds = rectangle.getBounds();
+                  var ne = bounds.getNorthEast();
+                  var sw = bounds.getSouthWest();
+
+              $("#TLLat").text(ne.lat());
+              $("#TLLon").text(sw.lng());
+              $("#BRLat").text(sw.lat());
+              $("#BRLon").text(ne.lng());
+
+              var D2R = Math.PI / 180.0;
+              var R = 6371;
+
+              var scfY = Math.sin(ne.lat() * D2R);
+              var sctY = Math.sin(sw.lat() * D2R);
+              var ccfY = Math.cos(ne.lat() * D2R);
+              var cctY = Math.cos(sw.lat() * D2R);
+
+              var cX = Math.cos((sw.lng() - ne.lng()) * D2R);
+              var sizeX1 = Math.abs(R * Math.acos(scfY * scfY + ccfY * ccfY * cX));
+              var sizeX2 = Math.abs(R * Math.acos(sctY * sctY + cctY * cctY * cX));
+
+              sizeX = ((sizeX1 + sizeX2) / 2.0);
+              sizeY = (R * Math.acos(scfY * sctY + ccfY * cctY));
+
+              $("#AreaWidth").text(sizeX.toFixed(2));
+              $("#AreaHeight").text(sizeY.toFixed(2));
+              $("#AreaArea").text((sizeX * sizeY).toFixed(2));
+
+              $("div").removeClass("wrong");
+              var wrong = false;
+
+              if (!wrong) {
+                  coordinates = '' + sw.lng() + ',' + sw.lat() + ',' + ne.lng() + ',' + ne.lat() + '';
+              }
+              else {
+                  $("#coordNode").text("Wrong latitude");
+              }
+
+
+              if ($("#showgrid").prop("checked"))
+              {
+                  OnCalculateOptimizedInputers();
+
+                  makeGrid();
+
+              }
+
+            
+              }
+          }
+          function makeGrid() {
+
+              for (x in rectangleLng) {
+                  for (y in rectangleLng[x]) {
+                      if (rectangleLng[x][y]) {
+                          if (rectangleLng[x][y].setMap) {
+                              rectangleLng[x][y].setMap(null)
+                              rectangleLng[x][y] = null;
+                          }
+                      }
+                  }
+              }
+ 
+              var bounds = rectangle.getBounds();
+
+              var marker1 = bounds.getSouthWest();
+              var marker2 = bounds.getNorthEast();
+
+              var m1Lat = marker1.lat();
+              var m1Lng = marker1.lng();
+              var m2Lat = marker2.lat();
+              var m2Lng = marker2.lng();
+
+              var leftSideDist = m2Lng - m1Lng;
+              var belowSideDist = m2Lat - m1Lat;
+
+              var counts = OnCalculateOptimizedInputers();
+
+              var dividerLat = counts.x;
+              var dividerLng = counts.y;
+
+              var excLat = belowSideDist / dividerLat;
+              var excLng = leftSideDist / dividerLng;
+ 
+              for (var i = 0; i < dividerLat; i++) {
+                  if (!rectangleLng[i]) rectangleLng[i] = [];
+                  for (var j = 0; j < dividerLng; j++) {
+                      if (!rectangleLng[i][j]) rectangleLng[i][j] = {};
+
+                      rectangleLng[i][j] = new google.maps.Rectangle({
+                          strokeColor: '#FFFFFF',
+                          strokeOpacity: 0.8,
+                          strokeWeight: 2,
+                          fillColor: '#FF0000',
+                          fillOpacity: 0.1,
+                          map: map,
+                          bounds: new google.maps.LatLngBounds(
+                          new google.maps.LatLng(m1Lat + (excLat * i), m1Lng + (excLng * j)),
+                          new google.maps.LatLng(m1Lat + (excLat * (i + 1)), m1Lng + (excLng * (j + 1))))
+
+                      });
+                  }  
+              }  
+          }
+
+          function OnCalculateOptimizedInputers()
+          {
+              var bounds = rectangle.getBounds();
+              var ZoomLevel = $("#m_zoom_Level").find('option:selected').val();
+                  var marker1 = bounds.getSouthWest();
+                  var marker2 = bounds.getNorthEast();
+
+                  var m1Lat = marker1.lat();
+                  var m1Lng = marker1.lng();
+                  var m2Lat = marker2.lat();
+                  var m2Lng = marker2.lng();
+
+                  var leftSideDist = m2Lng - m1Lng;
+                  var belowSideDist = m2Lat - m1Lat;
+
+                  var DL = new google.maps.Point(m1Lng, m2Lat);
+                  var TR = new google.maps.Point(m2Lng, m1Lat);
+
+                  var minpixelX, minpixelY, maxpixelX, maxpixelY;
+
+                  var minXY = LatLongToPixelXY(m1Lat, m1Lng, ZoomLevel);
+                  var maxXY = LatLongToPixelXY(m2Lat, m2Lng, ZoomLevel);
+
+                  var Dimensions = OnCalSize();
+ 
+                  var Totalwidth = maxXY.x - minXY.x;
+                  var TotalHeight = minXY.y - maxXY.y;
+
+                  var CountX = Totalwidth / 700;
+                  var CountY = TotalHeight / 700;
+
+                  if (CountX == 1 && Totalwidth > 1500) CountX = 2;
+                  if (CountY == 1 && TotalHeight > 2500) CountY = 2;
+
+                  if (CountX < 1)
+                      CountX = 1;
+                  if (CountY < 1)
+                      CountY = 1;
+
+                  $("#m_TilesCount").text("Tile Count : " + Math.round(CountX) + " x " + Math.round(CountY));
+
+                  return new google.maps.Point(Math.round(CountX), Math.round(CountY));
+          }
+
+          function OnCalSize()
+          {
+              if (rectangle) {
+
+                  var bounds = rectangle.getBounds();
+                  var ne = bounds.getNorthEast();
+                  var sw = bounds.getSouthWest();
+              
+
+              $("#TLLat").text(ne.lat());
+              $("#TLLon").text(sw.lng());
+              $("#BRLat").text(sw.lat());
+              $("#BRLon").text(ne.lng());
+
+              var D2R = Math.PI / 180.0;
+              var R = 6371;
+
+              var scfY = Math.sin(ne.lat() * D2R);
+              var sctY = Math.sin(sw.lat() * D2R);
+              var ccfY = Math.cos(ne.lat() * D2R);
+              var cctY = Math.cos(sw.lat() * D2R);
+
+              var cX = Math.cos((sw.lng() - ne.lng()) * D2R);
+              var sizeX1 = Math.abs(R * Math.acos(scfY * scfY + ccfY * ccfY * cX));
+              var sizeX2 = Math.abs(R * Math.acos(sctY * sctY + cctY * cctY * cX));
+
+              sizeX = ((sizeX1 + sizeX2) / 2.0);
+              sizeY = (R * Math.acos(scfY * sctY + ccfY * cctY));
+
+              return new google.maps.Point(sizeX, sizeY);
+              }
+          }
+
+          function OnClearGrid() {
+              for (x in rectangleLng) {
+                  for (y in rectangleLng[x]) {
+
+                      if (rectangleLng[x][y]) {
+                          if (rectangleLng[x][y].setMap) {
+                              rectangleLng[x][y].setMap(null)
+                              rectangleLng[x][y] = null;
+                          }
+                      }
+
+                  }
+              }
+          }
+
+          function CopyToClipboard() {
+              navigator.clipboard.writeText(coordinates);
+          }
+
+          function Clip(val, min, max) {
+              if (val < min) return min;
+              if (val > max) return max;
+              return val;
+          }
+
+          function LatLngToTile(latLng, zoom) {
+              var sy = Math.sin(latLng.lat() * Math.PI / 180);
+              var lng = (latLng.lng() + 180) / 360;
+              var lat = 0.5 - Math.log((1 + sy) / (1 - sy)) / (Math.PI * 4);
+              var mapSize = tileSize * (1 << zoom);
+              var px = lng * mapSize + 0.5;
+              var py = lat * mapSize + 0.5;
+
+              if (px < 0) px = 0;
+              else if (px > mapSize - 1) px = mapSize - 1;
+              if (py < 0) py = 0;
+              else if (py > mapSize - 1) py = mapSize - 1;
+
+              var tx = px / tileSize;
+              var ty = py / tileSize;
+
+              return new google.maps.Point(tx, ty);
+          }
+
+          function LatLongToPixelXY(latitude, longitude, levelOfDetail,pixelX,pixelY) {
+
+              var latitude = Clip(latitude, MinLatitude, MaxLatitude);
+              var longitude = Clip(longitude, MinLongitude, MaxLongitude);
+
+              var x = (longitude + 180) / 360;
+              var sinLatitude = Math.sin(latitude * Math.PI / 180);
+              var y = 0.5 - Math.log((1 + sinLatitude) / (1 - sinLatitude)) / (4 * Math.PI);
+
+              var mapSize = MapSize(levelOfDetail);
+              pixelX = Clip(x * mapSize + 0.5, 0, mapSize - 1);
+              pixelY = Clip(y * mapSize + 0.5, 0, mapSize - 1);
+
+              return new google.maps.Point(pixelX, pixelY);
+          } 
+
+          function MapSize(levelOfDetail)
+          {
+      return 256 << levelOfDetail;
+          }
+
+          function OnChangeProvider() {
+              UpdateInfo();
+          }
+
+          function OnKeyDown(event) {
+              if (event.ctrlKey == 1) {
+                  if (m_rectangle) m_rectangle.setDraggable(true);
+                  for (i = 0; i < rectangleLng; i++) rectangleLng[i].setDraggable(true);
+              }
+          }
+
+          function OnKeyUp(event) {
+              if (event.ctrlKey == 0) {
+                  if (m_rectangle) m_rectangle.setDraggable(false);
+                  for (i = 0; i < rectangleLng; i++) rectangleLng[i].setDraggable(false);
+              }
+          }
+
+          function OnToggleGrid() {
+              if ($("#showgrid").prop("checked")) {
+
+                  UpdateInfo();
+
+              }
+              else {
+
+                  OnClearGrid();
+                  $("#m_TilesCount").text("Tile Count : ");
+              }
+              
+          }
+
+          function Repeat(value, minValue, maxValue) {
+              var range = maxValue - minValue;
+              while (value < minValue || value > maxValue) {
+                  if (value < minValue) value += range;
+                  else value -= range;
+              }
+              return value;
+          }
+ 
+          function Search() {
+              geocoder.geocode({ 'address': $("#search-address").val() },
+                  function (results, status) {
+                      if (status == google.maps.GeocoderStatus.OK) {
+                          var loc = results[0].geometry.location;
+                          map.panTo(loc);
+                      }
+                      else {
+                          alert("Not found: " + status);
+                      }
+                  }
+              );
+          }
+
+ 
+
+          function TileToLatLng(tilePos, zoom) {
+              var mapSize = tileSize << zoom;
+              var lng = 360 * (Repeat(tilePos.x * tileSize, 0, mapSize - 1) / mapSize - 0.5);
+              var lat = 90 - 360 * Math.atan(Math.exp((Clip(tilePos.y * tileSize, 0, mapSize - 1) / mapSize - 0.5) * Math.PI * 2)) / Math.PI;
+              return new google.maps.LatLng(lat, lng);
+          }
+ 
+
+
+
+          $(Initialize);
+  </script>
+
+
+
+</body>
+
+</html>
