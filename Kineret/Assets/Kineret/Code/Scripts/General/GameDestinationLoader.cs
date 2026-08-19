@@ -42,7 +42,7 @@ public class GameDestinationLoader : MonoBehaviour
         //}
 
         GenerateDestinations();
-        GenerateInterestPoints();
+        //GenerateInterestPoints();
         GenerateRoute();
         gameManager.Destinations = _destinations;
     }
@@ -227,53 +227,58 @@ public class GameDestinationLoader : MonoBehaviour
 
     private void GenerateLegCollectables(Vector3 start, Vector3 end, int bonus, int challenge, int destinationID, int leg)
     {
-        //Indices set up
-        CollectableHandler[] collectables = new CollectableHandler[5];
-        List<int> collectablesIndices = new List<int>();
-        for (int i = 0; i < collectables.Length; i++)
-        {
-            collectablesIndices.Add(i);
-        }
+        #region Depricated
+        ////Indices set up
+        //CollectableHandler[] collectables = new CollectableHandler[5];
+        //List<int> collectablesIndices = new List<int>();
+        //for (int i = 0; i < collectables.Length; i++)
+        //{
+        //    collectablesIndices.Add(i);
+        //}
 
-        //Bonus creation
-        int bonusIndex = collectablesIndices[UnityEngine.Random.Range(0, collectablesIndices.Count)];
-        collectablesIndices.Remove(bonusIndex);
-        CollectableHandler bonusPoint = Instantiate(bonusPrefab);
-        bonusPoint.Leg = leg;
-        BonusCollectableData bonusCollectableData = LocationsManager.BonusCollectables[bonus];
-        bonusPoint.Init(bonusCollectableData.CollectableData, bonusCollectableData.CollectionPopup, bonusCollectableData.NotificationPopup);
-        collectables[bonusIndex] = bonusPoint;
+        ////Bonus creation
+        //int bonusIndex = collectablesIndices[UnityEngine.Random.Range(0, collectablesIndices.Count)];
+        //collectablesIndices.Remove(bonusIndex);
+        //CollectableHandler bonusPoint = Instantiate(bonusPrefab);
+        //bonusPoint.Leg = leg;
+        //BonusCollectableData bonusCollectableData = LocationsManager.BonusCollectables[bonus];
+        //bonusPoint.Init(bonusCollectableData.CollectableData, bonusCollectableData.CollectionPopup, bonusCollectableData.NotificationPopup);
+        //collectables[bonusIndex] = bonusPoint;
+        #endregion
 
         //Challenge creation
-        int challengeIndex = collectablesIndices[UnityEngine.Random.Range(0, collectablesIndices.Count)];
-        collectablesIndices.Remove(challengeIndex);
+        CollectableHandler[] collectables = new CollectableHandler[1];
+
         ChallengeHandler challengePoint = Instantiate(challengePrefab);
         challengePoint.Leg = leg;
         ChallengeCollectableData challengeCollectableData = LocationsManager.Challenges[challenge];
         ChallengeData challengeData = new ChallengeData() { Challenge = (ChallengeType)challenge, Duration = challengeCollectableData.Duration };
         challengePoint.Init(challengeData, challengeCollectableData.FailPopupData, challengeCollectableData.CollectableData, challengeCollectableData.CollectionPopup, challengeCollectableData.NotificationPopup);
-        collectables[challengeIndex] = challengePoint;
+        #region Depricated
+        //collectables[challengeIndex] = challengePoint;
 
-        //Info points creation
-        for (int i = 0; i < 3; i++)
-        {
-            InfoPointHandler infoPoint = Instantiate(infoPointPrefab);
-            infoPoint.Leg = leg;
-            collectables[collectablesIndices[i]] = infoPoint;
-            DestinationData destination = LocationsManager.GetDestination(destinationID);
-            switch (i)
-            {
-                case 0:
-                    infoPoint.Init(destination.Data.FirstInfoPoint, LocationsManager.InfoCollectable);
-                    break;
-                case 1:
-                    infoPoint.Init(destination.Data.SecondInfoPoint, LocationsManager.InfoCollectable);
-                    break;
-                case 2:
-                    infoPoint.Init(destination.Data.ThirdInfoPoint, LocationsManager.InfoCollectable);
-                    break;
-            }
-        }
+        ////Info points creation
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    InfoPointHandler infoPoint = Instantiate(infoPointPrefab);
+        //    infoPoint.Leg = leg;
+        //    collectables[collectablesIndices[i]] = infoPoint;
+        //    DestinationData destination = LocationsManager.GetDestination(destinationID);
+        //    switch (i)
+        //    {
+        //        case 0:
+        //            infoPoint.Init(destination.Data.FirstInfoPoint, LocationsManager.InfoCollectable);
+        //            break;
+        //        case 1:
+        //            infoPoint.Init(destination.Data.SecondInfoPoint, LocationsManager.InfoCollectable);
+        //            break;
+        //        case 2:
+        //            infoPoint.Init(destination.Data.ThirdInfoPoint, LocationsManager.InfoCollectable);
+        //            break;
+        //    }
+        //}
+        #endregion
+        collectables[0] = challengePoint;
 
         float maxVarianceDistance = GameSettingsManager.GetFloat("Route Settings", "MaxVariancePointDistance", 1000);
         float minVarianceDistance = GameSettingsManager.GetFloat("Route Settings", "MinVariancePointDistance", 200);
