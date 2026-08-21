@@ -80,7 +80,7 @@ public class GameDestinationLoader : MonoBehaviour
         float x = xNormalized * terrainWidth;
         float z = zNormalized * terrainHeight;
 
-        float y = destinationData.Data.WorldPosition.y;
+        float y = destinationData.Data.WorldPosition.y + GameSettingsManager.GetFloat("Route Settings", "LineStartingYBonus", -250);
 
         return new Vector3(x, y, z);
     }
@@ -175,7 +175,7 @@ public class GameDestinationLoader : MonoBehaviour
         }
 
 
-        player.transform.position = startPosition + (Vector3.up * GameSettingsManager.GetFloat("Route Settings", "PlayerStartingYBonus", 2000));
+        player.transform.position = startPosition + (Vector3.up * GameSettingsManager.GetFloat("Route Settings", "PlayerStartingYBonus", 500));
         player.YawBody.LookAt(new Vector3(firstDestinationPosition.x, player.transform.position.y, firstDestinationPosition.z));
 
         //Initialize the line path
