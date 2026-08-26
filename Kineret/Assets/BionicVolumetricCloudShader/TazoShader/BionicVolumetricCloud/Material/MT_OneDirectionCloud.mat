@@ -15,21 +15,26 @@ MonoBehaviour:
   version: 4
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MT_OneDirectionCloud
   m_Shader: {fileID: 4800000, guid: 14f2b7e139cc6684b9e7a0fc67c084df, type: 3}
-  m_ShaderKeywords: _INVERTB_ON
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _INVERTB_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 5000
+  m_CustomRenderQueue: 2510
   stringTagMap: {}
   disabledShaderPasses:
   - SHADOWCASTER
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -198,7 +203,7 @@ Material:
     - _tile_0: 1
     - _tile_1: 7.5
     - _tile_2: 6.5
-    - _tile_all: 1
+    - _tile_all: 2
     - rimWidth: 0.45
     m_Colors:
     - _BaseColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.078431375}
@@ -206,7 +211,7 @@ Material:
     - _Color2: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color3: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MColor: {r: 1, g: 0.92252886, b: 0.9198113, a: 1}
+    - _MColor: {r: 0.4509804, g: 0.5411765, b: 0.6039216, a: 1}
     - _MColor_thin: {r: 0.8726415, g: 0.9657112, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
