@@ -10,6 +10,8 @@ using GISTech.TerrainStreaming;
 [DefaultExecutionOrder(100)]
 public class KineretTerrainBootstrap : MonoBehaviour
 {
+    public static event Action OnTerrainReady;
+
     [Header("Terrain Streaming")]
     [SerializeField] private TerrainStreamingSystem system;
     [SerializeField] private TerrainStreamingSystemPrefs prefs;
@@ -135,6 +137,7 @@ private IEnumerator FinalizeTerrain(TerrainStreamingContainer container)
             altitudeController.enabled = true;
 
         IsReady = true;
+        OnTerrainReady?.Invoke();
         Debug.Log("[KineretTerrain] READY. Legacy terrain disabled=" +
                   (disableLegacyTerrainWhenReady && legacyTerrain != null) +
                   ", world bounds XZ=" + system.customWorldMinXZ + " -> " + system.customWorldMaxXZ +

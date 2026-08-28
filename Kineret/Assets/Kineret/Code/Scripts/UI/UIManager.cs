@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -32,12 +33,14 @@ public class UIManager : MonoBehaviour
         loadPopup_EC.OnEventRaised += HandleLoadPopup;
         EventsRelay.OnLoadInfoScreen += LoadInfoScreen;
         EventsRelay.OnLoadDirectionPopup += HandleDirectionPopup;
+        KineretTerrainBootstrap.OnTerrainReady += OnTerrainReady;
     }
     private void OnDisable()
     {
         loadPopup_EC.OnEventRaised -= HandleLoadPopup;
         EventsRelay.OnLoadInfoScreen -= LoadInfoScreen;
         EventsRelay.OnLoadDirectionPopup -= HandleDirectionPopup;
+        KineretTerrainBootstrap.OnTerrainReady -= OnTerrainReady;
     }
     private void Start()
     {
@@ -55,7 +58,6 @@ public class UIManager : MonoBehaviour
         EventsRelay.OnStartScoreCountdown.Invoke();
         AudioManager.Instance.PlayFlightMusic();
         StartCoroutine(LoadRoutePopup());
-        blackPanel.gameObject.SetActive(false);
     }
     private void HandleDirectionPopup(string direction)
     {
@@ -129,6 +131,10 @@ public class UIManager : MonoBehaviour
 
         InfoScreenHandler handler = Instantiate(infoScreenPrefab, canvas.transform);
         handler.LoadData(data, isSubtitleEmpty);
+    }
+    private void OnTerrainReady()
+    {
+        blackPanel.SetTrigger("FadeOut");
     }
 
 }
