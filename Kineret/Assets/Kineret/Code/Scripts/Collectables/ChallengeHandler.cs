@@ -3,7 +3,10 @@ using Kamgam.SkyClouds;
 using UnityEngine;
 using System;
 
-public enum ChallengeType { Clouds, SideWind, Birds }
+// Order matters: GameDestinationLoader maps a challenge by its index in
+// LocationsManager.Challenges via (ChallengeType)challenge, so this must match
+// the order of ChallengeDataList in GameData.json.
+public enum ChallengeType { Clouds, Birds, SideWind }
 [Serializable]
 public struct ChallengeData
 {
@@ -15,10 +18,11 @@ public class ChallengeHandler : CollectableHandler
 {
     [SerializeField] protected PopupData _failPopupData;
     [SerializeField] protected SkyCloud _cloudVisualPrefab;
-    [SerializeField] protected GameObject _birdsVisualPrefab;
+    [SerializeField] protected BirdFlockChallengeVisual _birdsVisualPrefab;
     private Transform _playerTransform;
     private ChallengeData _challengeData;
     private Challenge _challenge;
+    private BirdFlockChallengeVisual _birdsVisual;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,17 +31,6 @@ public class ChallengeHandler : CollectableHandler
         switch (_challengeData.Challenge)
         {
             case ChallengeType.Clouds:
-                _challenge?.OnPlayerCollided();
-                break;
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (!collision.collider.CompareTag("Player")) { return; }
-
-        switch (_challengeData.Challenge)
-        {
-            case ChallengeType.Birds:
                 _challenge?.OnPlayerCollided();
                 break;
         }
@@ -71,6 +64,57 @@ public class ChallengeHandler : CollectableHandler
         StartCoroutine(ChallengeCoroutine(_challengeData.Duration));
     }
 
+    /// <summary>
+    /// Hitting any bird fails the challenge right away and throws the player back to behind where
+    /// the challenge started, so the setback is unmistakable and they have to fly the stretch again.
+    /// </summary>
+    private void HandleBirdsHit()
+    {
+        if (_challenge == null || _challenge.HasFailed) { return; }
+
+        _challenge.OnPlayerCollided();
+
+        float pushback = GameSettingsManager.GetFloat("Game Settings", "BirdsFailPushbackDistance", 2000f);
+        _playerTransform.position = _challenge.PlayerStartPosition - GetRouteDirection() * pushback;
+    }
+
+    /// <summary>Flat direction from the player toward the destination they are flying to.</summary>
+    private Vector3 GetRouteDirection()
+    {
+        Vector3 routeDirection = GameManager.CurrentDestination.position - _playerTransform.position;
+        routeDirection.y = 0f;
+
+        return routeDirection.sqrMagnitude < 0.001f ? Vector3.zero : routeDirection.normalized;
+    }
+
+    /// <summary>
+    /// Puts the flock on the route directly ahead of the player, at their current altitude, so
+    /// staying on course flies straight into it.
+    ///
+    /// The challenge marker's own position is not used: it sits off to the side of the route line
+    /// by a random Min/MaxVariancePointDistance (2000-4500 units per config.ini, in
+    /// GameDestinationLoader.GenerateLegCollectables), and it is a full NotificationRange away when
+    /// the challenge fires. The player travels legDistance/LegDuration,
+    /// roughly 670 units per second, so a flock placed at the marker would still be ahead of them
+    /// when the challenge was already scored. The spawn distance below is instead matched to the
+    /// challenge Duration in GameData.json, so the encounter always lands inside the window.
+    /// Raising one without the other breaks the challenge, so keep them in step.
+    /// </summary>
+    private Vector3 GetFlockPosition()
+    {
+        Vector3 playerPosition = _playerTransform.position;
+        Vector3 routeDirection = GetRouteDirection();
+
+        if (routeDirection == Vector3.zero)
+        {
+            return new Vector3(transform.position.x, playerPosition.y, transform.position.z);
+        }
+
+        float spawnDistance = GameSettingsManager.GetFloat("Game Settings", "BirdsSpawnDistance", 6750f);
+
+        return playerPosition + routeDirection * spawnDistance;
+    }
+
     private IEnumerator ChallengeCoroutine(float duration)
     {
         _challenge = null;
@@ -86,8 +130,9 @@ public class ChallengeHandler : CollectableHandler
                 _challenge = new WindChallenge(_playerTransform.position, GameManager.CurrentDestination.position, _challengeData.Challenge);
                 break;
             case ChallengeType.Birds:
-                float heightToClimb = GameSettingsManager.GetFloat("Game Settings", "BirdsRequiredHeightToRise ", 500);
-                _challenge = new BirdChallenge(_playerTransform.position, _playerTransform.position.y + heightToClimb);
+                _challenge = new BirdChallenge(_playerTransform.position);
+                _birdsVisual = Instantiate(_birdsVisualPrefab, GetFlockPosition(), Quaternion.identity, transform);
+                _birdsVisual.OnPlayerHit += HandleBirdsHit;
                 break;
         }
 
@@ -96,6 +141,7 @@ public class ChallengeHandler : CollectableHandler
         while (true)
         {
             if (duration <= timePassed) break;
+            if (_challenge.HasFailed) break;
             if (!GameManager.IsGamePaused)
             {
                 timePassed += Time.deltaTime;
@@ -107,6 +153,13 @@ public class ChallengeHandler : CollectableHandler
         bool result = _challenge.WasSuccessful(_playerTransform.position);
         Debug.LogError(@$"Challenge {_challengeData.Challenge} completed with result: {result}");
         _wasCollected = true;
+
+        if (_birdsVisual != null)
+        {
+            _birdsVisual.OnPlayerHit -= HandleBirdsHit;
+            Destroy(_birdsVisual.gameObject);
+            _birdsVisual = null;
+        }
 
         if (result)
         {
@@ -129,6 +182,12 @@ public abstract class Challenge
     protected Vector3 _playerStartPosition;
     protected Vector3 _destinationPosition;
 
+    /// <summary>Where the player was when the challenge was triggered.</summary>
+    public Vector3 PlayerStartPosition => _playerStartPosition;
+
+    /// <summary>True once the challenge is already lost, so it can end before its duration runs out.</summary>
+    public virtual bool HasFailed => false;
+
     public Challenge(Vector3 playerStartPosition, Vector3 destinationPosition)
     {
         _playerStartPosition = playerStartPosition;
@@ -145,19 +204,24 @@ public abstract class Challenge
 
 public class BirdChallenge : Challenge
 {
-    private float _minHeight;
-    public BirdChallenge(Vector3 playerStartPosition, float minHeight) : base(playerStartPosition, Vector3.zero)
+    private bool _playerHitFlock;
+
+    public BirdChallenge(Vector3 playerStartPosition) : base(playerStartPosition, Vector3.zero)
     {
-        _minHeight = minHeight;
+        _playerHitFlock = false;
     }
+
+    public override bool HasFailed => _playerHitFlock;
 
     public override void OnPlayerCollided()
     {
+        if (_playerHitFlock) { return; }
 
+        _playerHitFlock = true;
     }
     public override bool WasSuccessful(Vector3 playerEndPosition)
     {
-        return playerEndPosition.y >= _minHeight;
+        return !_playerHitFlock;
     }
 }
 public class CloudChallenge : Challenge

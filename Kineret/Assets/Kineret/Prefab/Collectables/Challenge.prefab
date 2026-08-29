@@ -93,7 +93,8 @@ MonoBehaviour:
     IconSprite: {fileID: 21300000, guid: 3ef30e54003457d42b158a2bfdad7ee7, type: 3}
   _cloudVisualPrefab: {fileID: 1247785787363469957, guid: f1d58fe5cce75824abc7a4724afa35e3,
     type: 3}
-  _birdsVisualPrefab: {fileID: 0}
+  _birdsVisualPrefab: {fileID: 5505298708345924347, guid: 4320eca8bce588c429355e2bd1cf1ff1,
+    type: 3}
 --- !u!54 &2996900005093039839
 Rigidbody:
   m_ObjectHideFlags: 0

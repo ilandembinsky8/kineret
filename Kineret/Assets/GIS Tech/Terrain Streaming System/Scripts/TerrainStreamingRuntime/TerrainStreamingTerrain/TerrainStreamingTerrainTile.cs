@@ -100,43 +100,60 @@ namespace GISTech.TerrainStreaming
         #region Elevation
         public IEnumerator LoadElevationFile(bool Horizon=false)
         {
+            // Random stagger so tiles that stream in together while flying do not all land in the
+            // same frame. Bulk startup calls LoadElevationImmediate directly and skips this.
             var time = UnityEngine.Random.Range(0f, 0.01f);
 
             yield return new WaitForSeconds(time);
 
+            LoadElevationImmediate(Horizon);
+
+            yield return null;
+        }
+
+        /// <summary>
+        /// The elevation load with no yields.
+        ///
+        /// LoadRawGrid and SetHeights are both fully synchronous, so the coroutine form never
+        /// overlapped anything - it only spread one tile's work over extra frames. Callers loading
+        /// many tiles at once should call this and budget their own frames instead.
+        /// </summary>
+        public void LoadElevationImmediate(bool Horizon = false)
+        {
             bool EleExist;
             var demFolder = DEMFolder;
 
             if (Horizon)
                 demFolder = HorizonDEMFolder;
 
-    var ElePath = CheckForElevationFile(demFolder, out EleExist);
+            var ElePath = CheckForElevationFile(demFolder, out EleExist);
 
             if (!EleExist)
             {
                 Debug.LogError("No Elevation File found On : " + ElePath);
                 ElevationState = LoadingState.Error;
-                yield return null;
+                return;
             }
-            else
+
+            var RawReader = new TerrainStreamingRawLoader();
+
+            RawReader.heightmapResolution = terrainData.heightmapResolution;
+
+            RawReader.LoadRawGrid(ElePath);
+
+            if (!RawReader.LoadComplet)
             {
-                var RawReader = new TerrainStreamingRawLoader();
-
-                RawReader.heightmapResolution = terrainData.heightmapResolution;
-
-                RawReader.LoadRawGrid(ElePath);
-
-                yield return new WaitUntil(() => RawReader.LoadComplet == true);
-
-                terrain.terrainData.SetHeights(0, 0, RawReader.data.floatheightData);
-
-                terrainData.SetHeights(0, 0, RawReader.data.floatheightData);
-
-                ElevationState = LoadingState.Loaded;
+                // Previously this state left the caller waiting on LoadComplet forever.
+                Debug.LogError("Failed to read elevation file : " + ElePath);
+                ElevationState = LoadingState.Error;
+                return;
             }
 
+            // terrain.terrainData and terrainData are the same TerrainData instance, so the second
+            // SetHeights the old code performed was writing the same data twice.
+            terrainData.SetHeights(0, 0, RawReader.data.floatheightData);
 
-            yield return null;
+            ElevationState = LoadingState.Loaded;
         }
         private string CheckForElevationFile(string ElevationDirectory, out bool exist)
         {
@@ -155,6 +172,14 @@ namespace GISTech.TerrainStreaming
 
         #region Textures
         public IEnumerator LoadTextureFile(TerrainStreamingTerrainTile terrainItem,bool Horizon = false)
+        {
+            LoadTextureImmediate(terrainItem, Horizon);
+
+            yield return null;
+        }
+
+        /// <summary>Same work as LoadTextureFile with no yields; see LoadElevationImmediate.</summary>
+        public void LoadTextureImmediate(TerrainStreamingTerrainTile terrainItem, bool Horizon = false)
         {
             var rasterFolder = RasterFolder;
 
@@ -210,11 +235,17 @@ NewterrainLayer.diffuseTexture = terrainTexture;
             };
             terrain.terrainData.splatPrototypes = new[] { sp };
 #endif
+        }
+
+public IEnumerator LoadLowResolutionTextureFile(TerrainStreamingTerrainTile terrainItem)
+        {
+            LoadLowResolutionTextureImmediate(terrainItem);
 
             yield return null;
         }
 
-public IEnumerator LoadLowResolutionTextureFile(TerrainStreamingTerrainTile terrainItem)
+        /// <summary>Same work as LoadLowResolutionTextureFile with no yields; see LoadElevationImmediate.</summary>
+        public void LoadLowResolutionTextureImmediate(TerrainStreamingTerrainTile terrainItem)
         {
             string lowFolder = MainDataFolder + "/RasterData_Low256";
             bool texExist;
@@ -223,9 +254,9 @@ public IEnumerator LoadLowResolutionTextureFile(TerrainStreamingTerrainTile terr
             if (!texExist)
             {
                 // Safe fallback if the proxy cache is missing for any reason.
-                yield return StartCoroutine(LoadTextureFile(terrainItem, false));
+                LoadTextureImmediate(terrainItem, false);
                 IsHighResolutionTexture = true;
-                yield break;
+                return;
             }
 
             byte[] imageBytes = File.ReadAllBytes(texPath);
@@ -234,7 +265,7 @@ public IEnumerator LoadLowResolutionTextureFile(TerrainStreamingTerrainTile terr
             {
                 Destroy(tex);
                 TextureState = LoadingState.Error;
-                yield break;
+                return;
             }
 
             tex.wrapMode = TextureWrapMode.Clamp;
@@ -245,7 +276,6 @@ public IEnumerator LoadLowResolutionTextureFile(TerrainStreamingTerrainTile terr
             ReplaceTerrainTexture(terrainItem, tex);
             TextureState = LoadingState.Loaded;
             IsHighResolutionTexture = false;
-            yield return null;
         }
 
         public IEnumerator UpgradeToHighResolutionTextureFile(TerrainStreamingTerrainTile terrainItem)

@@ -6,9 +6,6 @@ public class WaypointPathController : MonoBehaviour
 {
     public LineRenderer lr;
 
-    [Header("Curve")]
-    public int samplesPerSegment = 20;
-
     [Header("Waypoint Options")]
     public bool loopPath = true;                  // if true, put reached waypoint at end (laps)
     public bool destroyOnReach = false;           // if true, Destroy(waypoint.gameObject) when reached
@@ -76,6 +73,10 @@ public class WaypointPathController : MonoBehaviour
         }
     }*/
 
+    /// <summary>
+    /// Draws the route as straight segments: start point -> first destination -> ... -> last.
+    /// The waypoints are the only line positions, so the LineRenderer connects them directly.
+    /// </summary>
     void DrawCurve()
     {
         if (_waypoints.Count < 2)
@@ -84,58 +85,8 @@ public class WaypointPathController : MonoBehaviour
             return;
         }
 
-        // Compute automatic tangents for Bezier chaining
-        List<(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)> segments = GenerateBezierSegments(_waypoints);
-
-        // Sample curve points
-        List<Vector3> finalPoints = new List<Vector3>();
-        foreach (var (p0, p1, p2, p3) in segments)
-        {
-            for (int i = 0; i <= samplesPerSegment; i++)
-            {
-                float t = i / (float)samplesPerSegment;
-                finalPoints.Add(Bezier(p0, p1, p2, p3, t));
-            }
-        }
-
-        lr.positionCount = finalPoints.Count;
-        lr.SetPositions(finalPoints.ToArray());
-    }
-
-    Vector3 Bezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
-    {
-        float u = 1 - t;
-        return
-            u * u * u * p0 +
-            3 * u * u * t * p1 +
-            3 * u * t * t * p2 +
-            t * t * t * p3;
-    }
-
-    List<(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)> GenerateBezierSegments(List<Vector3> pts)
-    {
-        var segments = new List<(Vector3, Vector3, Vector3, Vector3)>();
-
-        for (int i = 0; i < pts.Count - 1; i++)
-        {
-            Vector3 p0 = pts[i];
-            Vector3 p3 = pts[i + 1];
-
-            // Auto tangent calculation
-            Vector3 prev = (i == 0) ? p0 : pts[i - 1];
-            Vector3 next = (i + 2 < pts.Count) ? pts[i + 2] : p3;
-
-            // Tangent directions
-            Vector3 m0 = (p3 - prev) * 0.25f;
-            Vector3 m1 = (next - p0) * 0.25f;
-
-            Vector3 p1 = p0 + m0;   // start tangent
-            Vector3 p2 = p3 - m1;   // end tangent
-
-            segments.Add((p0, p1, p2, p3));
-        }
-
-        return segments;
+        lr.positionCount = _waypoints.Count;
+        lr.SetPositions(_waypoints.ToArray());
     }
 
 }

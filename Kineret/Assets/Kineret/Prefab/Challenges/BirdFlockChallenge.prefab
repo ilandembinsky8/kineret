@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1649278953553182125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6311912737127333445}
+  m_Layer: 0
+  m_Name: Birds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6311912737127333445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649278953553182125}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2283585659563129882}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4050318792219836324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2283585659563129882}
+  - component: {fileID: 6932495218405449494}
+  - component: {fileID: 5505298708345924347}
+  - component: {fileID: 919061497093544238}
+  m_Layer: 0
+  m_Name: BirdFlockChallenge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2283585659563129882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050318792219836324}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6311912737127333445}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &6932495218405449494
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050318792219836324}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5505298708345924347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050318792219836324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0df753834c253419d37b3c6aa17242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &919061497093544238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050318792219836324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e65bc5be6c42124886444e87e9c55a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  birdPrefabs:
+  - {fileID: 7763009739784551668, guid: 89a0f26bec1f61d4ab9271790b8e1833, type: 3}
+  birdCount: 200
+  spawnOnStart: 1
+  keepBirdCountSynced: 1
+  birdsParent: {fileID: 6311912737127333445}
+  flockCenter: {fileID: 0}
+  orbitRadius: 700
+  orbitRadiusVariation: 700
+  averageHeight: 0
+  heightVariation: 450
+  clockwise: 1
+  spawnPositionJitter: 150
+  minSpeed: 120
+  maxSpeed: 180
+  maxAcceleration: 260
+  maxTurnSpeed: 130
+  visualRotationSpeed: 360
+  initialDirectionJitter: 0.15
+  neighbourRadius: 520
+  separationRadius: 220
+  separationWeight: 4
+  alignmentWeight: 0.6
+  cohesionWeight: 0.3
+  orbitWeight: 2
+  radialCorrectionWeight: 1.3
+  radialCorrectionRange: 400
+  altitudeWeight: 0.8
+  altitudeCorrectionRange: 300
+  wanderWeight: 0.25
+  wanderFrequency: 0.15
+  verticalWander: 0.3
+  maxDistanceFromCenter: 2200
+  returnToCenterWeight: 4
+  bankMultiplier: 0.7
+  maxBankAngle: 35
+  bankSpeed: 90
+  animationSpeedRange: {x: 0.9, y: 1.15}
+  disableRootMotion: 1
+  randomScaleRange: {x: 0.9, y: 1.1}
+  modelRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  steeringUpdateRate: 12

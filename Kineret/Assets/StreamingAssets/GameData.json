@@ -990,7 +990,6 @@
         "TimeForMaxScore": 5.0,
         "MaxScore": 25
       },
-
       "NotificationPopup": {
         "Type": 2,
         "PopupIconName": "Icon-Route-Challenge",
@@ -1003,7 +1002,6 @@
         "Duration": 3.0,
         "Delay": 0
       },
-
       "CollectionPopup": {
         "Type": 2,
         "PopupIconName": "Icon-General-Success",
@@ -1016,7 +1014,6 @@
         "Duration": 3.0,
         "Delay": 0.0
       },
-
       "FailPopupData": {
         "Type": 2,
         "PopupIconName": "Icon-Route-Challenge",
@@ -1029,81 +1026,28 @@
         "Duration": 5.0,
         "Delay": 0.0
       },
-
       "Duration": 10.0
     },
     {
       "CollectableData": {
         "MapIconName": "Icon-Route-Challenge",
-        "NotificationRange": 4000,
-        "CollectionRange": 0,
-        "TimeForMaxScore": 10.0,
-        "MaxScore": 25
-      },
-
-      "NotificationPopup": {
-        "Type": 2,
-        "PopupIconName": "Icon-Route-Challenge",
-        "TextData": {
-          "HebTitle": "רוח צדדית",
-          "HebDescription": "זוהתה רוח צדדית חזקה לפניכם, האיצו קדימה!",
-          "EngTitle": "",
-          "EngDescription": ""
-        },
-        "Duration": 3.0,
-        "Delay": 0
-      },
-
-      "CollectionPopup": {
-        "Type": 2,
-        "PopupIconName": "Icon-General-Success",
-        "TextData": {
-          "HebTitle": "הצלחת!",
-          "HebDescription": "עברת את האתגר וקיבלת ניקוד מלא",
-          "EngTitle": "",
-          "EngDescription": ""
-        },
-        "Duration": 3.0,
-        "Delay": 0.0
-      },
-
-      "FailPopupData": {
-        "Type": 2,
-        "PopupIconName": "Icon-Route-Challenge",
-        "TextData": {
-          "HebTitle": "האתגר נכשל",
-          "HebDescription": "לא הספקת לעבור בזמן",
-          "EngTitle": "",
-          "EngDescription": ""
-        },
-        "Duration": 5.0,
-        "Delay": 0.0
-      },
-
-      "Duration": 10.0
-    },
-    {
-      "CollectableData": {
-        "MapIconName": "Icon-Route-Challenge",
-        "NotificationRange": 4000,
+        "NotificationRange": 12000,
         "CollectionRange": 0,
         "TimeForMaxScore": 15.0,
         "MaxScore": 25
       },
-
       "NotificationPopup": {
         "Type": 2,
         "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "ציפורים!!!",
-          "HebDescription": "יש לעלות לגובה אלף רגל לפחות כדי להתחמק מהציפורים",
+          "HebDescription": "להקת ציפורים לפניכם - עקפו אותה!",
           "EngTitle": "",
           "EngDescription": ""
         },
         "Duration": 3.0,
         "Delay": 0
       },
-
       "CollectionPopup": {
         "Type": 2,
         "PopupIconName": "Icon-General-Success",
@@ -1116,21 +1060,19 @@
         "Duration": 3.0,
         "Delay": 0.0
       },
-
       "FailPopupData": {
         "Type": 2,
         "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "האתגר נכשל",
-          "HebDescription": "לא הספקת לעבור בזמן",
+          "HebDescription": "פגעת בלהקת הציפורים",
           "EngTitle": "",
           "EngDescription": ""
         },
         "Duration": 3.0,
         "Delay": 0.0
       },
-
-      "Duration": 8.0
+      "Duration": 15.0
     }
   ]
 }

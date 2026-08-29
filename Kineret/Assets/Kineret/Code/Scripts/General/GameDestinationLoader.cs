@@ -217,6 +217,23 @@ public class GameDestinationLoader : MonoBehaviour
         {
             end = waypoints[i + 1];
             start = waypoints[i] + (end - waypoints[i]) * clearLegPercentagers[i];
+
+            //Refill the pools once exhausted, so fewer collectables than legs still works.
+            if (bonusIndices.Count == 0)
+            {
+                for (int j = 0; j < LocationsManager.BonusCollectables.Length; j++)
+                {
+                    bonusIndices.Add(j);
+                }
+            }
+            if (challengeIndices.Count == 0)
+            {
+                for (int j = 0; j < LocationsManager.Challenges.Length; j++)
+                {
+                    challengeIndices.Add(j);
+                }
+            }
+
             bonusIndex = bonusIndices[UnityEngine.Random.Range(0, bonusIndices.Count)];
             challengeIndex = challengeIndices[UnityEngine.Random.Range(0, challengeIndices.Count)];
             bonusIndices.Remove(bonusIndex);

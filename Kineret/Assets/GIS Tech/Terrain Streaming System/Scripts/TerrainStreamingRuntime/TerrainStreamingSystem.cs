@@ -81,6 +81,47 @@ namespace GISTech.TerrainStreaming
             if (prefs.GenerateRoads == OptionEnabDisab.Enable)
                 prefs.GetRoadsPrefab(RoadGenerator.SimpleUnityLine);
         }
+        /// <summary>
+        /// Spends a slice of each frame on terrain loading and reports when that slice is used up.
+        ///
+        /// Tile loading is entirely synchronous main-thread work (a raw file read plus SetHeights,
+        /// or a file read plus Texture2D.LoadImage), so it cannot be overlapped with threads - the
+        /// Unity calls are main-thread only and TerrainStreamingRawLoader keeps its depth/byte-order
+        /// in static fields that concurrent readers would race on. What it can do is stop paying a
+        /// frame per tile. The slice re-sizes itself from what each frame actually costs, so a
+        /// weaker machine does fewer tiles per frame and a stronger one more, and neither drops the
+        /// loading animation below the target rate.
+        /// </summary>
+        private class TerrainLoadBudget
+        {
+            private const double TargetFrameMs = 1000.0 / 30.0;
+            private const double MinBudgetMs = 4.0;
+            private const double MaxBudgetMs = 24.0;
+
+            private readonly System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
+            private double budgetMs = 12.0;
+
+            public TerrainLoadBudget()
+            {
+                timer.Start();
+            }
+
+            public bool FrameIsFull
+            {
+                get { return timer.Elapsed.TotalMilliseconds >= budgetMs; }
+            }
+
+            public void BeginFrame()
+            {
+                double frameMs = Time.unscaledDeltaTime * 1000.0;
+                double otherWorkMs = System.Math.Max(0.0, frameMs - budgetMs);
+
+                budgetMs = System.Math.Min(MaxBudgetMs, System.Math.Max(MinBudgetMs, TargetFrameMs - otherWorkMs));
+
+                timer.Restart();
+            }
+        }
+
         public IEnumerator GenerateTerrains()
         {
             if (prefs.player)
@@ -109,6 +150,8 @@ namespace GISTech.TerrainStreaming
 
                     GenerateHorizonTerrainSectors();
 
+                    var horizonBudget = new TerrainLoadBudget();
+
                     foreach (var sector in Hr_AllSectors)
                     {
                         var terrainTile = CreateTerrain(Hr_SectorContainer.transform, Hr_SectorContainer, Hr_AllSectors, sector, sector.Number.x, sector.Number.y, SectorContainer.SubTerrainSize, SectorContainer.Scale);
@@ -124,13 +167,17 @@ namespace GISTech.TerrainStreaming
 
                         terrainTile.transform.position = new Vector3(terrainTile.transform.position.x, 0, terrainTile.transform.position.z);
                         
-                        StartCoroutine(terrainTile.LoadElevationFile(true));
-                        yield return new WaitUntil(() => terrainTile.ElevationState != LoadingState.Loading);
+                        terrainTile.LoadElevationImmediate(true);
 
                         if (prefs.GenerateTextures == OptionEnabDisab.Enable)
                         {
-                            StartCoroutine(terrainTile.LoadTextureFile(terrainTile,true));
-                            yield return new WaitUntil(() => terrainTile.TextureState != LoadingState.Loading);
+                            terrainTile.LoadTextureImmediate(terrainTile, true);
+                        }
+
+                        if (horizonBudget.FrameIsFull)
+                        {
+                            yield return null;
+                            horizonBudget.BeginFrame();
                         }
                     }
 
@@ -157,6 +204,8 @@ namespace GISTech.TerrainStreaming
 
                 m_SectorToLoadC.AddRange(m_SectorToLoad);
 
+                var terrainBudget = new TerrainLoadBudget();
+
                 foreach (var sector in m_SectorToLoad)
                 {
 
@@ -167,16 +216,18 @@ namespace GISTech.TerrainStreaming
                     GeneratedTerrains[sector.Number.x, sector.Number.y] = terrainTile;
                     terrainTile.size = SectorContainer.SubTerrainSize;
 
-                    StartCoroutine(terrainTile.LoadElevationFile());
-                    yield return new WaitUntil(() => terrainTile.ElevationState != LoadingState.Loading);
+                    terrainTile.LoadElevationImmediate();
 
                     if (prefs.GenerateTextures == OptionEnabDisab.Enable)
                     {
-                        StartCoroutine(terrainTile.LoadLowResolutionTextureFile(terrainTile));
-                        yield return new WaitUntil(() => terrainTile.TextureState != LoadingState.Loading);
+                        terrainTile.LoadLowResolutionTextureImmediate(terrainTile);
                     }
 
-            
+                    if (terrainBudget.FrameIsFull)
+                    {
+                        yield return null;
+                        terrainBudget.BeginFrame();
+                    }
                 }
 
                     foreach (var sector in m_EnvironmentToLoad)

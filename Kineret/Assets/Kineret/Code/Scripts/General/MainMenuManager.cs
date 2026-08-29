@@ -42,6 +42,7 @@ public class MainMenuManager : MonoBehaviour
 
     private int _selectedDestinationsCount;
     private bool _isWaitingForInstructionText;
+    private AsyncOperation _gameSceneLoad;
 
     private void Awake()
     {
@@ -118,11 +119,26 @@ public class MainMenuManager : MonoBehaviour
         _selectedDestinationsCount--;
     }
 
+    /// <summary>
+    /// Starts loading the Game Scene in the background as soon as the third destination is picked,
+    /// while the summary popup and tutorial are still on screen. Activation is held back until
+    /// StartGame, so the scene is already deserialized by the time the player presses start.
+    /// Terrain streaming still runs after activation - this only removes the scene load itself.
+    /// </summary>
+    private void BeginPreloadingGameScene()
+    {
+        if (_gameSceneLoad != null) { return; }
+
+        _gameSceneLoad = SceneManager.LoadSceneAsync("Game Scene");
+        _gameSceneLoad.allowSceneActivation = false;
+    }
+
     private void EndDestinationSelection()
     {
         AudioManager.Instance.StopNarration();
         IsDestinationSelectionActive = false;
         EventsRelay.OnEnableDestinationSelection.Invoke(false);
+        BeginPreloadingGameScene();
         StartCoroutine(LoadToturial());
         destinationsSummaryPopup.gameObject.SetActive(true);
 
@@ -172,7 +188,16 @@ public class MainMenuManager : MonoBehaviour
     private IEnumerator BlackFade()
     {
         yield return new WaitForSeconds(2.5f);
-        SceneManager.LoadScene("Game Scene");
+
+        if (_gameSceneLoad != null)
+        {
+            //Preloaded during destination selection; just let it swap in.
+            _gameSceneLoad.allowSceneActivation = true;
+        }
+        else
+        {
+            SceneManager.LoadScene("Game Scene");
+        }
     }
 
     private void PlayInstructionNarration()
