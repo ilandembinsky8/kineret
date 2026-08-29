@@ -58,7 +58,7 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Scale: 500
+    - _Scale: 250
     - _SpecularHighlights: 1
     - _TessEdgeLength: 7
     - _TessMax: 200000
@@ -81,12 +81,12 @@ Material:
     m_Colors:
     - _AdditionalNoiseDir: {r: 0, g: 0, b: 0, a: 0}
     - _AdditionalVoronoiDir: {r: 0.7, g: -0.3, b: -0.3, a: 0}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _DepthColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmmissiveColor: {r: 0.5482876, g: 0.6286016, b: 0.7283019, a: 0}
     - _EmmissiveVoronoi: {r: 0.54828763, g: 0.6286017, b: 0.7283019, a: 0}
-    - _Mask0: {r: -0.07034397, g: 0.48510838, b: -5.58, a: 0.7}
+    - _Mask0: {r: 56425.5, g: 824.3, b: 1792, a: 0.7}
     - _Mask1: {r: -3.69, g: -0.19, b: 1, a: 0.7}
     - _NoiseDir: {r: 1, g: 1, b: 1, a: 0}
     - _NoiseScale3D: {r: 1, g: 0.2, b: 0.6, a: 0}

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7496325448959510307}
   - component: {fileID: 1580731197291447572}
+  - component: {fileID: 2996900005093039839}
   m_Layer: 0
   m_Name: Challenge
   m_TagString: Untagged
@@ -47,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadPopup_EC: {fileID: 11400000, guid: 434ae0b1dce8a5d4c8f23f04d7878aa3, type: 2}
   playerMoved_EC: {fileID: 11400000, guid: 6c3815ed880b1b34db7f693e4a38d9a4, type: 2}
-  gotScore_EC: {fileID: 11400000, guid: d9b5e4ff6b8db82459a3f609c91c8417, type: 2}
   _collectableData:
+    MapIconName: 
     NotificationRange: 6000
     CollectionRange: 0
     TimeForMaxScore: 0
@@ -90,6 +91,36 @@ MonoBehaviour:
       Duration: 3
       Delay: 0
     IconSprite: {fileID: 21300000, guid: 3ef30e54003457d42b158a2bfdad7ee7, type: 3}
+  _cloudVisualPrefab: {fileID: 1247785787363469957, guid: f1d58fe5cce75824abc7a4724afa35e3,
+    type: 3}
+  _birdsVisualPrefab: {fileID: 0}
+--- !u!54 &2996900005093039839
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4642300130430279945}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5545363098181041322
 GameObject:
   m_ObjectHideFlags: 0

@@ -985,7 +985,7 @@
     {
       "CollectableData": {
         "MapIconName": "Icon-Route-Challenge",
-        "NotificationRange": 4000,
+        "NotificationRange": 8000,
         "CollectionRange": 0,
         "TimeForMaxScore": 5.0,
         "MaxScore": 25
@@ -995,8 +995,8 @@
         "Type": 2,
         "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
-          "HebTitle": "רוח קדמית",
-          "HebDescription": "זוהתה רוח קדמית חזקה לפניכם, האיצו קדימה!",
+          "HebTitle": "עננים לפניך",
+          "HebDescription": "התחמקו מהעננים",
           "EngTitle": "",
           "EngDescription": ""
         },
@@ -1022,7 +1022,7 @@
         "PopupIconName": "Icon-Route-Challenge",
         "TextData": {
           "HebTitle": "האתגר נכשל",
-          "HebDescription": "לא הספקת לעבור בזמן",
+          "HebDescription": "לא התחמקת מהעננים",
           "EngTitle": "",
           "EngDescription": ""
         },

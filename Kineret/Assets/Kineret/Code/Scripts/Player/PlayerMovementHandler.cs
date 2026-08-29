@@ -1,6 +1,6 @@
+using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovementHandler : MonoBehaviour
 {
@@ -47,7 +47,7 @@ public class PlayerMovementHandler : MonoBehaviour
         pitchSpeed = GameSettingsManager.GetFloat("Player Settings", "PitchSpeed   ", pitchSpeed);
         _accelerationPercentage = GameSettingsManager.GetFloat("Player Settings", "AccelerationPercentage", _accelerationPercentage);
         _maxMoveSpeedPercentage = GameSettingsManager.GetFloat("Player Settings", "MaxMoveSpeedPercentage", _maxMoveSpeedPercentage);
-        _windForcePercentage = GameSettingsManager.GetFloat("Player Settings", "WindForcePercentage", _windForcePercentage);    
+        _windForcePercentage = GameSettingsManager.GetFloat("Player Settings", "WindForcePercentage", _windForcePercentage);
     }
 
     private void OnEnable()
@@ -87,7 +87,7 @@ public class PlayerMovementHandler : MonoBehaviour
         Yaw();
         Pitch();
         Roll();
-        Move();     
+        Move();
     }
     private void Yaw()
     {
@@ -103,11 +103,11 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void Roll()
     {
-        if(_yawDirection == _priorYawDirection) return; 
+        if (_yawDirection == _priorYawDirection) return;
 
         rollBody.DOKill();
 
-        if (_yawDirection != 0 )
+        if (_yawDirection != 0)
         {
             Vector3 roll = new Vector3(0, 0, maxRoll * Mathf.Sign(-_yawDirection));
             rollBody.DOLocalRotate(roll, rollDuration);
@@ -120,7 +120,7 @@ public class PlayerMovementHandler : MonoBehaviour
         //_currentRoll = Mathf.Clamp(_currentRoll + Time.deltaTime * rollSpeed * -_yawDirection,-maxRoll,maxRoll);
         //rollBody.localRotation = Quaternion.Euler(0f, 0f, _currentRoll);
     }
-  
+
 
     private void Move()
     {
@@ -135,7 +135,7 @@ public class PlayerMovementHandler : MonoBehaviour
         {
             transform.Translate(legMoveSpeed * (1 + _windForcePercentage) * Time.deltaTime * _windDirection);
         }
-     
+
         playerMoved_EC.RaiseEvent(transform);
     }
 
@@ -160,7 +160,7 @@ public class PlayerMovementHandler : MonoBehaviour
         _moveSpeed = legMoveSpeed;
     }
 
-    private void EnableWind(ChallengeType type,bool isEnabled)
+    private void EnableWind(ChallengeType type, bool isEnabled)
     {
         _isWindEnabled = isEnabled;
 
@@ -170,15 +170,13 @@ public class PlayerMovementHandler : MonoBehaviour
         }
         else
         {
-            switch (type)
+            if (type == ChallengeType.SideWind)
             {
-                case ChallengeType.FrontWind:
-                    _windDirection = -YawBody.forward;
-                    break;
-                case ChallengeType.SideWind:
-                    _windDirection = YawBody.right;
-                    break;
+                //_windDirection = -YawBody.forward;
+                //_windDirection = -YawBody.right;
+                _windDirection = YawBody.right;
             }
-        }      
+        }
     }
+
 }
