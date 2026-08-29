@@ -188,7 +188,7 @@ public class GameDestinationLoader : MonoBehaviour
         {
             waypoints.Add(_destinations[i].transform.position);
         }
-        path.Init(waypoints);
+        path.Init(waypoints, player.transform);
 
         //Generate Collectables
         List<int> bonusIndices = new List<int>();
