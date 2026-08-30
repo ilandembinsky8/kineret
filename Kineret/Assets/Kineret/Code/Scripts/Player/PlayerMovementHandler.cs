@@ -1,6 +1,7 @@
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovementHandler : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class PlayerMovementHandler : MonoBehaviour
     private float _accelerationPercentage = 0.05f;
     private float _maxMoveSpeedPercentage = 0.2f;
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private TextMeshProUGUI moveSpeedText;
 
     private float _keyBoardYawDirection;
     private float _keyBoardPitchDirection;
@@ -129,6 +131,8 @@ public class PlayerMovementHandler : MonoBehaviour
         _moveSpeed += legMoveSpeed * _accelerationPercentage * _accelerationDirection * Time.deltaTime;
         _moveSpeed = Mathf.Clamp(_moveSpeed, legMoveSpeed * (1 - _maxMoveSpeedPercentage), legMoveSpeed * (1 + _maxMoveSpeedPercentage));
 
+        UpdateSpeedText();
+
         transform.Translate(_moveSpeed * Time.deltaTime * transform.InverseTransformDirection(pitchBody.forward));
 
         if (_isWindEnabled)
@@ -158,6 +162,7 @@ public class PlayerMovementHandler : MonoBehaviour
     {
         legMoveSpeed = newMoveSpeed;
         _moveSpeed = legMoveSpeed;
+        UpdateSpeedText();
     }
 
     private void EnableWind(ChallengeType type, bool isEnabled)
@@ -176,6 +181,14 @@ public class PlayerMovementHandler : MonoBehaviour
                 //_windDirection = -YawBody.right;
                 _windDirection = YawBody.right;
             }
+        }
+    }
+
+    private void UpdateSpeedText()
+    {
+        if (moveSpeedText != null)
+        {
+            moveSpeedText.text = $"{_moveSpeed:F2}";
         }
     }
 
