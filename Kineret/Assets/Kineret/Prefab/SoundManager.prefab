@@ -571,3 +571,5 @@ MonoBehaviour:
   _OpenUI: {fileID: 8300000, guid: 2b77e2301ed6f294aa417b25b9439090, type: 3}
   _PointCollected: {fileID: 8300000, guid: f7fa995a23586814aa885fa360922140, type: 3}
   _ArrivedDestination: {fileID: 8300000, guid: 280d76bd25d791747bf773e025a21e86, type: 3}
+  _CloudChallenge: {fileID: 8300000, guid: 4697aa6319847ba4bb96aed465f889d4, type: 3}
+  _BirdChallenge: {fileID: 8300000, guid: 81ba47010ff6d7e45ac05e48149db1ed, type: 3}

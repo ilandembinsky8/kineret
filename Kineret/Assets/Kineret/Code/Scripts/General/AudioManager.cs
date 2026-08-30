@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _OpenUI;
     [SerializeField] private AudioClip _PointCollected;
     [SerializeField] private AudioClip _ArrivedDestination;
+    [SerializeField] private AudioClip _CloudChallenge;
+    [SerializeField] private AudioClip _BirdChallenge;
 
     private void Awake()
     {
@@ -54,12 +56,33 @@ public class AudioManager : MonoBehaviour
     public void PlayOpenUI() { PlayClipInSource(_OpenUI, _NotificationSource, 0.15f); }
     public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource, 0.35f); }
     public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource, 0.2f); }
-   
-    public void PlayDestinationNarration(string destinationName) 
+
+    public void PlayChallengeNarration(ChallengeType challengeType)
+    {
+        SetLowerMusicVolume();
+
+        AudioClip challengeClip = null;
+        switch (challengeType)
+        {
+            case ChallengeType.Clouds:
+                challengeClip = _CloudChallenge;
+                break;
+            case ChallengeType.Birds:
+                challengeClip = _BirdChallenge;
+                break;
+            case ChallengeType.SideWind:
+                break;
+            default:
+                break;
+        }
+
+        PlayClipInSource(challengeClip, _NarrationSource, 0.8f);
+    }
+    public void PlayDestinationNarration(string destinationName)
     {
         SetLowerMusicVolume();
         AudioClip narration = NarrationManager.Instance.GetNarration(destinationName);
-        PlayClipInSource(narration, _NarrationSource, 0.8f); 
+        PlayClipInSource(narration, _NarrationSource, 0.8f);
     }
     public void PlayInstructionNarration()
     {
@@ -108,6 +131,7 @@ public class AudioManager : MonoBehaviour
     private void PlayClipInSource(AudioClip audioClip, AudioSource source, float volume)
     {
         if (source == null) { Debug.LogError("Source is null!"); return; }
+        if (audioClip == null) { Debug.LogError("Audio clip is null!"); return; }
         source.clip = audioClip;
         source.volume = volume;
         source.Play();

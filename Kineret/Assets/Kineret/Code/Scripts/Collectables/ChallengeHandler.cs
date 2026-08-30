@@ -136,6 +136,8 @@ public class ChallengeHandler : CollectableHandler
                 break;
         }
 
+        AudioManager.Instance.PlayChallengeNarration(_challengeData.Challenge);
+
         float timePassed = 0;
 
         while (true)
@@ -151,7 +153,7 @@ public class ChallengeHandler : CollectableHandler
         }
 
         bool result = _challenge.WasSuccessful(_playerTransform.position);
-        Debug.LogError(@$"Challenge {_challengeData.Challenge} completed with result: {result}");
+        //Debug.LogError(@$"Challenge {_challengeData.Challenge} completed with result: {result}");
         _wasCollected = true;
 
         if (_birdsVisual != null)
@@ -267,4 +269,5 @@ public class WindChallenge : Challenge
         Vector3 endDiff = _destinationPosition - playerEndPosition;
         return startDiff.sqrMagnitude > endDiff.sqrMagnitude + requiredTravelDistance;
     }
+
 }
