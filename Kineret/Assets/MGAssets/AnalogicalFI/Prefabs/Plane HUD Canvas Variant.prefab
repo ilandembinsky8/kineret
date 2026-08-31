@@ -542,6 +542,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4905632680251032902, guid: 4363e03e12a444d4f89e14e98e2b3122,
         type: 3}
+      propertyPath: followMaxSpeed
+      value: 1140
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905632680251032902, guid: 4363e03e12a444d4f89e14e98e2b3122,
+        type: 3}
       propertyPath: altitudePointer
       value: 
       objectReference: {fileID: 3721067026512370377}
