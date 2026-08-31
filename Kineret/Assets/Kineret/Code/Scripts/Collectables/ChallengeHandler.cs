@@ -16,6 +16,9 @@ public struct ChallengeData
 
 public class ChallengeHandler : CollectableHandler
 {
+    private static readonly int CloudBaseColorId = Shader.PropertyToID("_BaseColor");
+    private static readonly int CloudVertexColorStrengthId = Shader.PropertyToID("_VertexColorStrength");
+
     [SerializeField] protected PopupData _failPopupData;
     [SerializeField] protected SkyCloud _cloudVisualPrefab;
     [SerializeField] protected BirdFlockChallengeVisual _birdsVisualPrefab;
@@ -125,6 +128,7 @@ public class ChallengeHandler : CollectableHandler
             case ChallengeType.Clouds:
                 _challenge = new CloudChallenge(_playerTransform.position);
                 cloudVisual = Instantiate(_cloudVisualPrefab, transform.position + Vector3.up * 1300f, Quaternion.identity, transform);
+                StartCoroutine(FadeInCloud(cloudVisual, 2f));
                 break;
             case ChallengeType.SideWind:
                 _challenge = new WindChallenge(_playerTransform.position, GameManager.CurrentDestination.position, _challengeData.Challenge);
@@ -135,6 +139,8 @@ public class ChallengeHandler : CollectableHandler
                 _birdsVisual.OnPlayerHit += HandleBirdsHit;
                 break;
         }
+
+        AudioManager.Instance.PlayChallengeNarration(_challengeData.Challenge);
 
         float timePassed = 0;
 
@@ -151,7 +157,7 @@ public class ChallengeHandler : CollectableHandler
         }
 
         bool result = _challenge.WasSuccessful(_playerTransform.position);
-        Debug.LogError(@$"Challenge {_challengeData.Challenge} completed with result: {result}");
+        //Debug.LogError(@$"Challenge {_challengeData.Challenge} completed with result: {result}");
         _wasCollected = true;
 
         if (_birdsVisual != null)
@@ -175,6 +181,46 @@ public class ChallengeHandler : CollectableHandler
         visuals.SetActive(false);
         OnDisable();
     }
+
+    private IEnumerator FadeInCloud(SkyCloud cloud, float duration)
+    {
+        MeshRenderer renderer = cloud.GetComponent<MeshRenderer>();
+
+        if (renderer == null)
+            yield break;
+
+        Material material = renderer.material;
+
+        // Save the original value so the cloud looks exactly as intended afterward.
+        float originalVertexColorStrength = material.GetFloat(CloudVertexColorStrengthId);
+
+        // Prevent vertex color from contributing opacity during the fade.
+        material.SetFloat(CloudVertexColorStrengthId, 0f);
+
+        Color color = material.GetColor(CloudBaseColorId);
+        color.a = 0f;
+        material.SetColor(CloudBaseColorId, color);
+
+        float timePassed = 0f;
+
+        while (timePassed < duration)
+        {
+            timePassed += Time.deltaTime;
+
+            float t = Mathf.Clamp01(timePassed / duration);
+
+            color.a = t;
+            material.SetColor(CloudBaseColorId, color);
+
+            yield return null;
+        }
+
+        // Restore the original appearance.
+        color.a = 1f;
+        material.SetColor(CloudBaseColorId, color);
+        material.SetFloat(CloudVertexColorStrengthId, originalVertexColorStrength);
+    }
+
 }
 
 public abstract class Challenge
@@ -267,4 +313,5 @@ public class WindChallenge : Challenge
         Vector3 endDiff = _destinationPosition - playerEndPosition;
         return startDiff.sqrMagnitude > endDiff.sqrMagnitude + requiredTravelDistance;
     }
+
 }
