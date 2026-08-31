@@ -91,25 +91,41 @@ public class PlayerMovementHandler : MonoBehaviour
         Roll();
         Move();
     }
+    /// <summary>
+    /// Tilting the plane left or right  Swung left or right, rotating around the vertical top-to-bottom axis.
+    /// </summary>
     private void Yaw()
     {
         _yawDirection = JoystickManager.GetHorizontalAxis() + _keyBoardYawDirection;
-        YawBody.Rotate(transform.up, Time.deltaTime * yawSpeed * _yawDirection, Space.World);
+
+        if (Mathf.Abs(_yawDirection) > JoystickManager.StickDeadzone)
+        {
+            YawBody.Rotate(transform.up, Time.deltaTime * yawSpeed * _yawDirection, Space.World);
+        }
     }
+    /// <summary>
+    /// Tilting the nose up or down
+    /// </summary>
     private void Pitch()
     {
         _pitchDirection = JoystickManager.GetVerticalAxis() + _keyBoardPitchDirection;
-        pitchBody.Rotate(pitchBody.right, Time.deltaTime * pitchSpeed * _pitchDirection, Space.World);
-        cameraPitched_EC.RaiseEvent(pitchBody);
-    }
 
+        if (Mathf.Abs(_pitchDirection) > JoystickManager.StickDeadzone)
+        {
+            pitchBody.Rotate(pitchBody.right, Time.deltaTime * pitchSpeed * _pitchDirection, Space.World);
+            cameraPitched_EC.RaiseEvent(pitchBody);
+        }
+    }
+    /// <summary>
+    /// Tilting the wings left or right
+    /// </summary>
     private void Roll()
     {
         if (_yawDirection == _priorYawDirection) return;
 
         rollBody.DOKill();
 
-        if (_yawDirection != 0)
+        if (_yawDirection != 0 && Mathf.Abs(_yawDirection) > JoystickManager.StickDeadzone)
         {
             Vector3 roll = new Vector3(0, 0, maxRoll * Mathf.Sign(-_yawDirection));
             rollBody.DOLocalRotate(roll, rollDuration);
