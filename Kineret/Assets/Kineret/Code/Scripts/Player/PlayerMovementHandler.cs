@@ -92,7 +92,7 @@ public class PlayerMovementHandler : MonoBehaviour
         Move();
     }
     /// <summary>
-    /// Tilting the plane left or right  Swung left or right, rotating around the vertical top-to-bottom axis.
+    /// Rotating the plane left or right around the vertical axis.
     /// </summary>
     private void Yaw()
     {
