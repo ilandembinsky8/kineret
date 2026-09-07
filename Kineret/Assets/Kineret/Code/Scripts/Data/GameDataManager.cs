@@ -154,6 +154,10 @@ public class GameDataManager : MonoBehaviour
            VerticalAxis = GameSettingsManager.Get("Controls", "JoystickVerticalAxis", "JoystickVertical"),
            MiniHorizontalAxis = GameSettingsManager.Get("Controls", "MiniHorizontalAxis", "HatX"),
            MiniVerticalAxis = GameSettingsManager.Get("Controls", "MiniVerticalAxis", "HatY"),
+           FlatHorizontalAxis = GameSettingsManager.Get("Controls", "FlatHorizontalAxis", "FlatButtonX"),
+           FlatVerticalAxis = GameSettingsManager.Get("Controls", "FlatVerticalAxis", "FlatButtonY"),
+           RoughHorizontalAxis = GameSettingsManager.Get("Controls", "RoughHorizontalAxis", "RoughButtonX"),
+           RoughVerticalAxis = GameSettingsManager.Get("Controls", "RoughVerticalAxis", "RoughButtonY"),
            Trigger = GameSettingsManager.Get("Controls", "JoystickTrigger", "Trigger"),
            RedButton = GameSettingsManager.Get("Controls", "JoystickRedButton", "RedButton")
         };

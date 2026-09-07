@@ -52,6 +52,10 @@ public class IdleManager : MonoBehaviour
         float verticalAxis = Input.GetAxis(JoystickManager.JoystickControls.VerticalAxis);
         float miniHorizontalAxis = Input.GetAxis(JoystickManager.JoystickControls.MiniHorizontalAxis);
         float miniVerticalAxis = Input.GetAxis(JoystickManager.JoystickControls.MiniVerticalAxis);
+        float flatHorizontalAxis = Input.GetAxis(JoystickManager.JoystickControls.FlatHorizontalAxis);
+        float flatVerticalAxis = Input.GetAxis(JoystickManager.JoystickControls.FlatVerticalAxis);
+        float roughHorizontalAxis = Input.GetAxis(JoystickManager.JoystickControls.RoughHorizontalAxis);
+        float roughVerticalAxis = Input.GetAxis(JoystickManager.JoystickControls.RoughVerticalAxis);
 
         if (Input.GetKeyDown(KeyCode.LeftArrow)) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Horizontal, Sign = -1 });}
         if (Input.GetKeyDown(KeyCode.RightArrow)) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Horizontal, Sign = 1 }); }
@@ -59,7 +63,9 @@ public class IdleManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow)) { OnAnyJoystickInput?.Invoke(new JoystickInput { InputType = JoystickInputType.Main, Axis = Axis.Vertical, Sign = 1 }); }
         //If Joystick Moved
         if (horizontalAxis != 0 || verticalAxis != 0 ||
-            miniHorizontalAxis != 0 || miniVerticalAxis != 0)
+            miniHorizontalAxis != 0 || miniVerticalAxis != 0 ||
+            flatHorizontalAxis != 0 || flatVerticalAxis != 0 ||
+            roughHorizontalAxis != 0 || roughVerticalAxis != 0)
         {
             _timer = 0;
 

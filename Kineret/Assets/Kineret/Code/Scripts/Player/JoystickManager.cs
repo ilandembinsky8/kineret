@@ -8,6 +8,10 @@ public struct JoystickControls
     public string VerticalAxis;
     public string MiniHorizontalAxis;
     public string MiniVerticalAxis;
+    public string FlatHorizontalAxis;
+    public string FlatVerticalAxis;
+    public string RoughHorizontalAxis;
+    public string RoughVerticalAxis;
     public string Trigger;
     public string RedButton;
 }
