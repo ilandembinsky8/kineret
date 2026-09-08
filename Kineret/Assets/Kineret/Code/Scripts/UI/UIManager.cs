@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using System;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
+    [SerializeField] private GameObject planeHudCanvas;
 
     [SerializeField] private InfoScreenHandler infoScreenPrefab;
     [SerializeField] private PopupHandler infoPopupPrefab;
@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
         EventsRelay.OnLoadInfoScreen += LoadInfoScreen;
         EventsRelay.OnLoadDirectionPopup += HandleDirectionPopup;
         KineretTerrainBootstrap.OnTerrainReady += OnTerrainReady;
+        CameraHandler.OnAnyCameraChangedIsFirstPerson += CameraHandler_OnAnyCameraChangedIsFirstPerson;
     }
     private void OnDisable()
     {
@@ -41,6 +42,7 @@ public class UIManager : MonoBehaviour
         EventsRelay.OnLoadInfoScreen -= LoadInfoScreen;
         EventsRelay.OnLoadDirectionPopup -= HandleDirectionPopup;
         KineretTerrainBootstrap.OnTerrainReady -= OnTerrainReady;
+        CameraHandler.OnAnyCameraChangedIsFirstPerson -= CameraHandler_OnAnyCameraChangedIsFirstPerson;
     }
     private void Start()
     {
@@ -124,7 +126,10 @@ public class UIManager : MonoBehaviour
             _currentPopup.ScaleIconeSize(scaleMultiplier);
         }
     }
-
+    private void CameraHandler_OnAnyCameraChangedIsFirstPerson(bool isFirstPerson)
+    {
+        planeHudCanvas.SetActive(isFirstPerson);
+    }
     private void LoadInfoScreen(InfoScreenData data)
     {
         bool isSubtitleEmpty = data.Subtitle == "";

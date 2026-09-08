@@ -1042,6 +1042,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e997e67143048145919022d7f2fb11f, type: 3}
+--- !u!1 &162667816917707059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3721067027075414339, guid: 3e997e67143048145919022d7f2fb11f,
+    type: 3}
+  m_PrefabInstance: {fileID: 162667816917707058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1955658620373510181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2063,6 +2069,11 @@ PrefabInstance:
       propertyPath: usernameText
       value: 
       objectReference: {fileID: 2084919911513385375}
+    - target: {fileID: 3353362620417258781, guid: 57e8b52a259075840bbdcfbf7e0f409f,
+        type: 3}
+      propertyPath: planeHudCanvas
+      value: 
+      objectReference: {fileID: 162667816917707059}
     - target: {fileID: 6926826424119832472, guid: 57e8b52a259075840bbdcfbf7e0f409f,
         type: 3}
       propertyPath: path
