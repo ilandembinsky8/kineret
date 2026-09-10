@@ -7,6 +7,7 @@ public static class LocationsManager
 {
     public static int DestinationsCount;
     public static int DestinationsSelectCount;
+    public static bool IsFreeRoaming;
     public static Dictionary<string, Sprite> IconsMap { get; set; } = new(6);
     public static Dictionary<int, DestinationData> Destinations { get; set; } = new(16);
     public static Dictionary<int, InterestPointData> InterestPoints { get; set; } = new(8);

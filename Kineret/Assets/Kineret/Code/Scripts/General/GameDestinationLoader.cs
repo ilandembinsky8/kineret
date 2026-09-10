@@ -43,7 +43,10 @@ public class GameDestinationLoader : MonoBehaviour
 
         GenerateDestinations();
         //GenerateInterestPoints();
-        GenerateRoute();
+        if (LocationsManager.IsFreeRoaming)
+            bada();
+        else
+            GenerateRoute();
         gameManager.Destinations = _destinations;
     }
 
@@ -304,6 +307,17 @@ public class GameDestinationLoader : MonoBehaviour
             Debug.Log("orthogonalDirection * randomOffset: " + orthogonalDirection * randomOffset);
         }
 
+    }
+
+    private void bada()
+    {
+        //Initialize destinations
+        for (int i = 0; i < _destinations.Length; i++)
+        {
+            DestinationCollectableData destinationCollectable = LocationsManager.DestinationCollectables[0];
+            _destinations[i].Leg = 0;
+            _destinations[i].Init(destinationCollectable.RangeData, destinationCollectable.CollectionPopup);
+        }
     }
 
 }

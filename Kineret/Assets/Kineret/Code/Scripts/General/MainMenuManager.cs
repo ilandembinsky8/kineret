@@ -37,6 +37,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject startGameButton;
     [SerializeField] private Animator blackPanel;
 
+    [SerializeField] private GameObject startFreeRoamButton;
+
     [Header("Values")]
     [SerializeField] private float blackFadeDuration;
 
@@ -168,6 +170,13 @@ public class MainMenuManager : MonoBehaviour
         AudioManager.Instance.StopNarration();
         blackPanel.gameObject.SetActive(true);
         StartCoroutine(BlackFade());
+    }
+    public void StartFreeRoam()
+    {
+        LocationsManager.IsFreeRoaming = true;
+        LocationsManager.DestinationsCount = 11;
+        LocationsManager.SelectedDestinations = new int[11] {0,1,2,3,4,5,6,7,8,9,10}; //change to be dynamic with GameData
+        StartGame();
     }
     private IEnumerator BlackFade()
     {

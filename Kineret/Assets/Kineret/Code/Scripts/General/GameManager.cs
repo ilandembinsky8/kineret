@@ -25,11 +25,14 @@ public class GameManager : MonoBehaviour
 
     private Coroutine _scoreCoroutine;
 
+    private bool _isFreeRoam;
+
     private void Awake()
     {
         _camera = Camera.main;
         summmaryCanvas.gameObject.SetActive(false);
         _legDuration = GameSettingsManager.GetFloat("Game Settings", "LegDuration", 15);
+        _isFreeRoam = LocationsManager.IsFreeRoaming;
     }
 
     private void OnEnable()
@@ -93,7 +96,9 @@ public class GameManager : MonoBehaviour
             _currentDestinationScore = Destinations[_destinationsReachedCount].MaxScore;
             ChangeMoveSpeedByLeg(Destinations[_destinationsReachedCount - 1].transform.position, Destinations[_destinationsReachedCount].transform.position);
             CurrentDestination = Destinations[_destinationsReachedCount].transform;
-            EventsRelay.OnLegStart.Invoke(_destinationsReachedCount);
+            if (_isFreeRoam) { }
+            else
+                EventsRelay.OnLegStart.Invoke(_destinationsReachedCount);
         }
 
         EventsRelay.OnLoadInfoScreen.Invoke(data);
