@@ -2,6 +2,7 @@ using System.Collections;
 using Kamgam.SkyClouds;
 using UnityEngine;
 using System;
+using VolumetricClouds3;
 
 // Order matters: GameDestinationLoader maps a challenge by its index in
 // LocationsManager.Challenges via (ChallengeType)challenge, so this must match
@@ -18,6 +19,9 @@ public class ChallengeHandler : CollectableHandler
 {
     private static readonly int CloudBaseColorId = Shader.PropertyToID("_BaseColor");
     private static readonly int CloudVertexColorStrengthId = Shader.PropertyToID("_VertexColorStrength");
+    private static readonly int VolCloudTransformId = Shader.PropertyToID("_CloudTransform");
+    private static readonly int VolCloudCoverageId = Shader.PropertyToID("_Coverage");
+
 
     [SerializeField] protected PopupData _failPopupData;
     [SerializeField] protected SkyCloud _cloudVisualPrefab;
@@ -121,14 +125,19 @@ public class ChallengeHandler : CollectableHandler
     private IEnumerator ChallengeCoroutine(float duration)
     {
         _challenge = null;
-        SkyCloud cloudVisual = null;
+        //SkyCloud cloudVisual = null;
+        RaymarchedClouds volCloudVisual = null;
 
         switch (_challengeData.Challenge)
         {
             case ChallengeType.Clouds:
                 _challenge = new CloudChallenge(_playerTransform.position);
-                cloudVisual = Instantiate(_cloudVisualPrefab, transform.position + Vector3.up * 1300f, Quaternion.identity, transform);
-                StartCoroutine(FadeInCloud(cloudVisual, 2f));
+
+                //cloudVisual = Instantiate(_cloudVisualPrefab, transform.position + Vector3.up * 1300f, Quaternion.identity, transform);
+                //StartCoroutine(FadeInCloud(cloudVisual, 2f));
+
+                volCloudVisual = Camera.main.GetComponent<RaymarchedClouds>();
+                StartCoroutine(FadeInVolumetricCloud(volCloudVisual, 5f));
                 break;
             case ChallengeType.SideWind:
                 _challenge = new WindChallenge(_playerTransform.position, GameManager.CurrentDestination.position, _challengeData.Challenge);
@@ -221,6 +230,31 @@ public class ChallengeHandler : CollectableHandler
         material.SetFloat(CloudVertexColorStrengthId, originalVertexColorStrength);
     }
 
+    private IEnumerator FadeInVolumetricCloud(RaymarchedClouds cloud, float duration)
+    {
+        Material material = cloud.materialUsed;
+
+        material.SetFloat(VolCloudCoverageId, -1);
+        cloud.enabled = true;
+        
+        Vector4 current = material.GetVector(VolCloudTransformId);
+        material.SetVector(VolCloudTransformId, new(_playerTransform.position.y, current.y, current.z, current.w));
+
+        float timePassed = 0f;
+
+        while (timePassed < duration)
+        {
+            timePassed += Time.deltaTime;
+
+            float t = timePassed / duration - 1;
+
+            material.SetFloat(VolCloudCoverageId, t);
+
+            yield return null;
+        }
+
+    }
+
 }
 
 public abstract class Challenge
@@ -272,22 +306,26 @@ public class BirdChallenge : Challenge
 }
 public class CloudChallenge : Challenge
 {
-    public bool _playerEnteredClouds;
+    //public bool _playerEnteredClouds;
 
     public CloudChallenge(Vector3 playerStartPosition) : base(playerStartPosition, Vector3.zero)
     {
-        _playerEnteredClouds = false;
+        //_playerEnteredClouds = false;
     }
 
-    public override void OnPlayerCollided()
-    {
-        if (_playerEnteredClouds) { return; }
+    //public override void OnPlayerCollided()
+    //{
+    //    if (_playerEnteredClouds) { return; }
 
-        _playerEnteredClouds = true;
-    }
+    //    _playerEnteredClouds = true;
+    //}
     public override bool WasSuccessful(Vector3 playerEndPosition)
     {
-        return !_playerEnteredClouds;
+        //return !_playerEnteredClouds;
+
+        float requiredCloudDistance = 50; //get from file
+        float diff = Mathf.Abs(playerEndPosition.y - PlayerStartPosition.y);
+        return diff > requiredCloudDistance;
     }
 }
 public class WindChallenge : Challenge

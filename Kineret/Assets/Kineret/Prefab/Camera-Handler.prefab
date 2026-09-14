@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 687968762306615678}
   - component: {fileID: 6450543485665907144}
   - component: {fileID: 3532291532858803896}
+  - component: {fileID: 5562797698333920903}
   m_Layer: 0
   m_Name: Main Camera-Clouds
   m_TagString: MainCamera
@@ -188,7 +189,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 70000
+  far clip plane: 500000
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
@@ -358,6 +359,31 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446364194618401987}
   m_Enabled: 1
+--- !u!114 &5562797698333920903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446364194618401987}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef41eb2e41997d54191ca724371ad048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialUsed: {fileID: 2100000, guid: d25add9c3e7193a44aa6d0f460e72982, type: 2}
+  hidePlane: 1
+  planeOffset: 10
+  attachToEditorCam: 0
+  editorCamScript: {fileID: 0}
+  pointLights: []
+  splitShadowRendering: 0
+  materialShadows: {fileID: 0}
+  syncMaterial: 0
+  shadowRenderOffset: 0.01
+  activateHandleDrawing: 0
+  shadowPlane: {fileID: 0}
+  plane: {fileID: 0}
 --- !u!1 &1917672678910928969
 GameObject:
   m_ObjectHideFlags: 0
