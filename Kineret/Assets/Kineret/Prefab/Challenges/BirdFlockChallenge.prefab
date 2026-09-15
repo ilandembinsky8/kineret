@@ -117,9 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e65bc5be6c42124886444e87e9c55a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mode: 1
+  respawnWhenModeChanges: 1
   birdPrefabs:
   - {fileID: 7763009739784551668, guid: 89a0f26bec1f61d4ab9271790b8e1833, type: 3}
-  birdCount: 200
+  birdCount: 50
   spawnOnStart: 1
   keepBirdCountSynced: 1
   birdsParent: {fileID: 6311912737127333445}
@@ -154,6 +156,25 @@ MonoBehaviour:
   bankMultiplier: 0.7
   maxBankAngle: 35
   bankSpeed: 90
+  aircraft: {fileID: 0}
+  encounterSpawnPoint: {fileID: 6311912737127333445}
+  encounterSpawnDistanceAhead: 720
+  matchAircraftAltitude: 1
+  encounterAltitudeOffset: 0
+  aircraftSpeedFallback: 40
+  aircraftVelocitySmoothing: 8
+  minimumMeasuredAircraftSpeed: 0.5
+  encounterSpreadWidth: 600
+  encounterSpreadHeight: 300
+  encounterSpreadDepth: 300
+  encounterUseEllipsoidDistribution: 1
+  encounterMinBirdSpeed: 12
+  encounterMaxBirdSpeed: 16
+  useInterceptCourse: 1
+  maxInterceptLeadTime: 15
+  keepEncounterFormationShape: 1
+  encounterDirectionScatterDegrees: 2
+  encounterAimPointSpread: 2
   animationSpeedRange: {x: 0.9, y: 1.15}
   disableRootMotion: 1
   randomScaleRange: {x: 0.9, y: 1.1}
