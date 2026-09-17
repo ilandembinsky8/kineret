@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Volumetric Clouds HighQ
+  m_Name: Partly Cloudy Volumetric Clouds HighQ
   m_Shader: {fileID: 4800000, guid: 1e2bd19d506227b4c87d92adf5ea10c2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -46,7 +46,7 @@ Material:
     - _CloudFlatness: 1
     - _CloudLocalScale: 1.3
     - _ComplexLightingMode: 1
-    - _Coverage: -0
+    - _Coverage: 0.00009908676
     - _CoverageHigh: 1
     - _CoverageLow: -1
     - _CoverageMapOn: 0
@@ -85,7 +85,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.56, g: 0.56, b: 0.56, a: 1}
     - _CloudSpherePosition: {r: 0, g: 0, b: 0, a: 0}
-    - _CloudTransform: {r: 1002.6, g: 100, b: 0, a: 0}
+    - _CloudTransform: {r: 875, g: 100, b: 0, a: 0}
     - _CoverageChannel: {r: 0.9, g: 0, b: 0, a: 0}
     - _Shading: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}

@@ -137,7 +137,7 @@ public class ChallengeHandler : CollectableHandler
                 //StartCoroutine(FadeInCloud(cloudVisual, 2f));
 
                 volCloudVisual = Camera.main.GetComponent<RaymarchedClouds>();
-                StartCoroutine(FadeInVolumetricCloud(volCloudVisual, 5f));
+                StartCoroutine(FadeInVolumetricCloud(volCloudVisual, 8f));
                 break;
             case ChallengeType.SideWind:
                 _challenge = new WindChallenge(_playerTransform.position, GameManager.CurrentDestination.position, _challengeData.Challenge);
