@@ -1,14 +1,12 @@
 using System.Collections;
-using Kamgam.SkyClouds;
-using UnityEngine;
-using System;
 using VolumetricClouds3;
+using UnityEngine;
 
 // Order matters: GameDestinationLoader maps a challenge by its index in
 // LocationsManager.Challenges via (ChallengeType)challenge, so this must match
 // the order of ChallengeDataList in GameData.json.
 public enum ChallengeType { Clouds, Birds, SideWind }
-[Serializable]
+[System.Serializable]
 public struct ChallengeData
 {
     public ChallengeType Challenge;
@@ -24,24 +22,13 @@ public class ChallengeHandler : CollectableHandler
 
 
     [SerializeField] protected PopupData _failPopupData;
-    [SerializeField] protected SkyCloud _cloudVisualPrefab;
+    //[SerializeField] protected SkyCloud _cloudVisualPrefab;
     [SerializeField] protected BirdFlockChallengeVisual _birdsVisualPrefab;
     private Transform _playerTransform;
     private ChallengeData _challengeData;
     private Challenge _challenge;
     private BirdFlockChallengeVisual _birdsVisual;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Player")) { return; }
-
-        switch (_challengeData.Challenge)
-        {
-            case ChallengeType.Clouds:
-                _challenge?.OnPlayerCollided();
-                break;
-        }
-    }
     public void Init(ChallengeData challengeData, PopupTextData failPopupData, CollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
     {
         Init(collectableData, collectPopupData, notificationPopupData);
@@ -126,17 +113,15 @@ public class ChallengeHandler : CollectableHandler
     {
         _challenge = null;
         //SkyCloud cloudVisual = null;
-        RaymarchedClouds volCloudVisual = null;
 
         switch (_challengeData.Challenge)
         {
             case ChallengeType.Clouds:
-                _challenge = new CloudChallenge(_playerTransform.position);
-
                 //cloudVisual = Instantiate(_cloudVisualPrefab, transform.position + Vector3.up * 1300f, Quaternion.identity, transform);
                 //StartCoroutine(FadeInCloud(cloudVisual, 2f));
 
-                volCloudVisual = Camera.main.GetComponent<RaymarchedClouds>();
+                _challenge = new CloudChallenge(_playerTransform);
+                RaymarchedClouds volCloudVisual = Camera.main.GetComponent<RaymarchedClouds>();
                 StartCoroutine(FadeInVolumetricCloud(volCloudVisual, 8f));
                 break;
             case ChallengeType.SideWind:
@@ -191,44 +176,59 @@ public class ChallengeHandler : CollectableHandler
         OnDisable();
     }
 
-    private IEnumerator FadeInCloud(SkyCloud cloud, float duration)
-    {
-        MeshRenderer renderer = cloud.GetComponent<MeshRenderer>();
+    #region deprecated collision-able clouds
 
-        if (renderer == null)
-            yield break;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!other.CompareTag("Player")) { return; }
 
-        Material material = renderer.material;
+    //    switch (_challengeData.Challenge)
+    //    {
+    //        case ChallengeType.Clouds:
+    //            _challenge?.OnPlayerCollided();
+    //            break;
+    //    }
+    //}
 
-        // Save the original value so the cloud looks exactly as intended afterward.
-        float originalVertexColorStrength = material.GetFloat(CloudVertexColorStrengthId);
+    //private IEnumerator FadeInCloud(SkyCloud cloud, float duration)
+    //{
+    //    MeshRenderer renderer = cloud.GetComponent<MeshRenderer>();
 
-        // Prevent vertex color from contributing opacity during the fade.
-        material.SetFloat(CloudVertexColorStrengthId, 0f);
+    //    if (renderer == null)
+    //        yield break;
 
-        Color color = material.GetColor(CloudBaseColorId);
-        color.a = 0f;
-        material.SetColor(CloudBaseColorId, color);
+    //    Material material = renderer.material;
 
-        float timePassed = 0f;
+    //    // Save the original value so the cloud looks exactly as intended afterward.
+    //    float originalVertexColorStrength = material.GetFloat(CloudVertexColorStrengthId);
 
-        while (timePassed < duration)
-        {
-            timePassed += Time.deltaTime;
+    //    // Prevent vertex color from contributing opacity during the fade.
+    //    material.SetFloat(CloudVertexColorStrengthId, 0f);
 
-            float t = Mathf.Clamp01(timePassed / duration);
+    //    Color color = material.GetColor(CloudBaseColorId);
+    //    color.a = 0f;
+    //    material.SetColor(CloudBaseColorId, color);
 
-            color.a = t;
-            material.SetColor(CloudBaseColorId, color);
+    //    float timePassed = 0f;
 
-            yield return null;
-        }
+    //    while (timePassed < duration)
+    //    {
+    //        timePassed += Time.deltaTime;
 
-        // Restore the original appearance.
-        color.a = 1f;
-        material.SetColor(CloudBaseColorId, color);
-        material.SetFloat(CloudVertexColorStrengthId, originalVertexColorStrength);
-    }
+    //        float t = Mathf.Clamp01(timePassed / duration);
+
+    //        color.a = t;
+    //        material.SetColor(CloudBaseColorId, color);
+
+    //        yield return null;
+    //    }
+
+    //    // Restore the original appearance.
+    //    color.a = 1f;
+    //    material.SetColor(CloudBaseColorId, color);
+    //    material.SetFloat(CloudVertexColorStrengthId, originalVertexColorStrength);
+    //}
+    #endregion
 
     private IEnumerator FadeInVolumetricCloud(RaymarchedClouds cloud, float duration)
     {
@@ -236,7 +236,7 @@ public class ChallengeHandler : CollectableHandler
 
         material.SetFloat(VolCloudCoverageId, -1);
         cloud.enabled = true;
-        
+
         Vector4 current = material.GetVector(VolCloudTransformId);
         material.SetVector(VolCloudTransformId, new(_playerTransform.position.y, current.y, current.z, current.w));
 
@@ -307,21 +307,25 @@ public class BirdChallenge : Challenge
 public class CloudChallenge : Challenge
 {
     //public bool _playerEnteredClouds;
-
-    public CloudChallenge(Vector3 playerStartPosition) : base(playerStartPosition, Vector3.zero)
-    {
-        //_playerEnteredClouds = false;
-    }
-
+    //private Transform _playerTranformPointer;
+    
     //public override void OnPlayerCollided()
     //{
     //    if (_playerEnteredClouds) { return; }
 
     //    _playerEnteredClouds = true;
     //}
+
+    public CloudChallenge(Transform playerTransform) : base(playerTransform.position, Vector3.zero)
+    {
+        //_playerTranformPointer = playerTransform;
+        //_playerEnteredClouds = false;
+    }
+
     public override bool WasSuccessful(Vector3 playerEndPosition)
     {
         //return !_playerEnteredClouds;
+        //if (!_playerTranformPointer) { Debug.LogError("Player Transform pointer is null"); return false; }
 
         float requiredCloudDistance = 50; //get from file
         float diff = Mathf.Abs(playerEndPosition.y - PlayerStartPosition.y);
