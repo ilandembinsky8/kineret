@@ -113,6 +113,7 @@ public class ChallengeHandler : CollectableHandler
     {
         _challenge = null;
         //SkyCloud cloudVisual = null;
+        RaymarchedClouds volCloudVisual = null;
 
         switch (_challengeData.Challenge)
         {
@@ -121,7 +122,7 @@ public class ChallengeHandler : CollectableHandler
                 //StartCoroutine(FadeInCloud(cloudVisual, 2f));
 
                 _challenge = new CloudChallenge(_playerTransform);
-                RaymarchedClouds volCloudVisual = Camera.main.GetComponent<RaymarchedClouds>();
+                volCloudVisual = Camera.main.GetComponent<RaymarchedClouds>();
                 StartCoroutine(FadeInVolumetricCloud(volCloudVisual, 8f));
                 break;
             case ChallengeType.SideWind:
@@ -153,6 +154,11 @@ public class ChallengeHandler : CollectableHandler
         bool result = _challenge.WasSuccessful(_playerTransform.position);
         //Debug.LogError(@$"Challenge {_challengeData.Challenge} completed with result: {result}");
         _wasCollected = true;
+
+        if (volCloudVisual != null)
+        {
+            StartCoroutine(FadeOutVolumetricCloud(volCloudVisual, 5));
+        }
 
         if (_birdsVisual != null)
         {
@@ -252,9 +258,26 @@ public class ChallengeHandler : CollectableHandler
 
             yield return null;
         }
-
     }
 
+    private IEnumerator FadeOutVolumetricCloud(RaymarchedClouds cloud, float duration)
+    {
+        Material material = cloud.materialUsed;
+
+        float timePassed = 0f;
+        while (timePassed < duration)
+        {
+            timePassed += Time.deltaTime;
+
+            float t = Mathf.Lerp(0, -1.2f, timePassed / duration);
+
+            material.SetFloat(VolCloudCoverageId, t);
+
+            yield return null;
+        }
+
+        cloud.enabled = false;
+    }
 }
 
 public abstract class Challenge
@@ -308,7 +331,7 @@ public class CloudChallenge : Challenge
 {
     //public bool _playerEnteredClouds;
     //private Transform _playerTranformPointer;
-    
+
     //public override void OnPlayerCollided()
     //{
     //    if (_playerEnteredClouds) { return; }
