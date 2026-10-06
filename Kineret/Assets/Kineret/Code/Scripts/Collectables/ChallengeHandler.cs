@@ -50,7 +50,7 @@ public class ChallengeHandler : CollectableHandler
 
         base.HandlePlayerMoved(playerTransform);
     }
-    protected override void Notify()
+    protected override void Notify(bool visualsOn)
     {
         if (_hasNotified) return;
         _hasNotified = true;

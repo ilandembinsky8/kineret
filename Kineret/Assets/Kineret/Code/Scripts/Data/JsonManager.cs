@@ -157,6 +157,7 @@ public struct InfoCollectableData
 public struct InterestPointTextData
 {
     public SingleTextData Name;
+    public string AudioClipName;
     public string IconImageName;
     public GeoPosition GeoPosition;
     public Vector3 WorldPosition;

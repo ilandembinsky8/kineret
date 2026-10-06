@@ -11,11 +11,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _NarrationSource;
     [SerializeField] private AudioSource _NotificationSource;
     [SerializeField] private AudioSource _OnCollectedSource;
+    [SerializeField] private AudioClip[] _NarrationInteresetPoints;
     [SerializeField] private AudioClip _OpenUI;
     [SerializeField] private AudioClip _PointCollected;
     [SerializeField] private AudioClip _ArrivedDestination;
     [SerializeField] private AudioClip _CloudChallenge;
     [SerializeField] private AudioClip _BirdChallenge;
+    [SerializeField] private AudioClip _VAKeepHeight;
+    [SerializeField] private AudioClip _VAGolanHeights;
 
     private void Awake()
     {
@@ -56,6 +59,7 @@ public class AudioManager : MonoBehaviour
     public void PlayOpenUI() { PlayClipInSource(_OpenUI, _NotificationSource, 0.15f); }
     public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource, 0.35f); }
     public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource, 0.2f); }
+    //public void PlayInterestPointNarration() { PlayClipInSource(, _NarrationSource, 0.8f); }
 
     public void PlayChallengeNarration(ChallengeType challengeType)
     {
@@ -89,6 +93,26 @@ public class AudioManager : MonoBehaviour
         AudioClip narration = NarrationManager.Instance.InstrcutionNarration;
         PlayClipInSource(narration, _NarrationSource, 0.8f);
     }
+    public void PlayInterestPointNarration(string clipName)
+    {
+        if (string.IsNullOrEmpty(clipName))
+        {
+            Debug.LogWarning("AudioManager: Interest point audio clip name is null or empty.");
+            return;
+        }
+
+        AudioClip clip = FindAudioIPClipByName(clipName);
+        if (clip != null)
+        {
+            SetLowerMusicVolume();
+            PlayClipInSource(clip, _NarrationSource, 0.8f);
+        }
+        else
+        {
+            Debug.LogWarning($"AudioManager: Interest point narration clip '{clipName}' not found in _NarrationInteresetPoints array.");
+        }
+    }
+
     public void StopNarration()
     {
         _NarrationSource.Stop();
@@ -136,7 +160,17 @@ public class AudioManager : MonoBehaviour
         source.volume = volume;
         source.Play();
     }
-
+    private AudioClip FindAudioIPClipByName(string clipName)
+    {
+        foreach (AudioClip clip in _NarrationInteresetPoints)
+        {
+            if (clip != null && clip.name == clipName)
+            {
+                return clip;
+            }
+        }
+        return null;
+    }
     private IEnumerator WaitForTimeEnd(float waitLength, Action OnAudioFinished)
     {
         yield return new WaitForSeconds(waitLength);

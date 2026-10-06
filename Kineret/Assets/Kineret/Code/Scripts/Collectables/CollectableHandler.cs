@@ -27,7 +27,7 @@ public class CollectableHandler : MonoBehaviour
     private Coroutine _scoreCoroutine;
     public int Leg { get; set; }
 
-    public int MaxScore 
+    public int MaxScore
     {
         get => _collectableData.MaxScore;
     }
@@ -54,7 +54,7 @@ public class CollectableHandler : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetButtonDown(JoystickManager.JoystickControls.Trigger)) { HandleCollectInput(); }
+        if (Input.GetButtonDown(JoystickManager.JoystickControls.Trigger)) { HandleCollectInput(); }
     }
 #if UNITY_EDITOR
     private void OnDrawGizmos()
@@ -68,7 +68,7 @@ public class CollectableHandler : MonoBehaviour
         {
             Handles.color = Color.green;
             Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), _collectableData.CollectionRange);
-        }           
+        }
     }
 #endif
     public void Init(CollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
@@ -102,7 +102,7 @@ public class CollectableHandler : MonoBehaviour
         popupData.PopupTextData = popupTextData;
         if (!String.IsNullOrEmpty(popupTextData.PopupIconName))
         {
-            if(!LocationsManager.TryGetIconImageData(popupTextData.PopupIconName, out popupData.IconSprite))
+            if (!LocationsManager.TryGetIconImageData(popupTextData.PopupIconName, out popupData.IconSprite))
             {
                 Debug.LogError("Failed to pull image data from LocationsManager");
             }
@@ -123,14 +123,14 @@ public class CollectableHandler : MonoBehaviour
         Vector3 delta = playerPositionXZ - collectablePositionXZ;
 
         CheckNotifyRange(delta);
-        CheckCollectRange(delta);          
+        CheckCollectRange(delta);
     }
     protected virtual void CheckNotifyRange(Vector3 delta)
     {
         if (_hasNotified) return;
         if (delta.sqrMagnitude <= _collectableData.NotificationRange * _collectableData.NotificationRange)
         {
-            Notify();
+            Notify(false);
         }
     }
     protected virtual void CheckCollectRange(Vector3 delta)
@@ -151,11 +151,16 @@ public class CollectableHandler : MonoBehaviour
         HandleCollectInput();
     }
 
-    protected virtual void Notify()
+    protected virtual void Notify(bool visualsOn)
     {
         if (_hasNotified) return;
-        visuals.SetActive(true);
-        StartCoroutine(DelayedNotification(_notificationPopupData.PopupTextData.Delay));
+
+        if (visualsOn)
+        {
+            visuals.SetActive(true);
+            StartCoroutine(DelayedNotification(_notificationPopupData.PopupTextData.Delay));
+        }
+
         _hasNotified = true;
     }
 
@@ -163,16 +168,16 @@ public class CollectableHandler : MonoBehaviour
     {
         if (_wasCollected) return;
 
-        if(_scoreCoroutine != null)
+        if (_scoreCoroutine != null)
         {
             StopCoroutine(_scoreCoroutine);
             _scoreCoroutine = null;
         }
-        
+
         GainScore();
         visuals.SetActive(false);
         LoadPopup_EC.RaiseEvent(_collectPopupData);
-        _wasCollected = true;     
+        _wasCollected = true;
         OnDisable();
     }
 
@@ -191,7 +196,7 @@ public class CollectableHandler : MonoBehaviour
 
     private IEnumerator ScoreCoroutine()
     {
-        WaitForSeconds timer = new (GameSettingsManager.GetFloat("Score Settings", "TimeForScoreDeduction", 1f));
+        WaitForSeconds timer = new(GameSettingsManager.GetFloat("Score Settings", "TimeForScoreDeduction", 1f));
         float safeTime = GameSettingsManager.GetFloat("Score Settings", "TimeForMaxScore", 10f);
         //safe time to get max score
         while (safeTime > 0)

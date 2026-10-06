@@ -603,11 +603,12 @@
         "HebText": "EVAWERIF",
         "EngText": ""
       },
+      "AudioClipName": "IP-Firewave",
       "IconImageName": "Icon-Route-Forest",
       "GeoPosition": {
-       "lat": 32.9945484,
-       "lon": 35.5003673
-    },
+        "lat": 32.9945484,
+        "lon": 35.5003673
+      },
       "WorldPosition": {
         "x": 64000.0,
         "y": 1500.0,
@@ -627,11 +628,12 @@
         "HebText": "roumyeS",
         "EngText": ""
       },
+      "AudioClipName": "IP-Seymuor",
       "IconImageName": "Icon-Route-InterestPoint",
       "GeoPosition": {
-      "lat": 32.980388,
-      "lon": 35.808484
-    },
+        "lat": 32.980388,
+        "lon": 35.808484
+      },
       "WorldPosition": {
         "x": 93000.0,
         "y": 1250.0,
@@ -651,11 +653,12 @@
         "HebText": "יער שוויץ- פרוייקט שיקום קרקעות של קק\"ל",
         "EngText": ""
       },
+      "AudioClipName": "IP-Switzerland",
       "IconImageName": "Icon-Route-Forest",
-        "GeoPosition": {
-      "lat": 32.7733277,
-      "lon": 35.5299201
-    },
+      "GeoPosition": {
+        "lat": 32.7733277,
+        "lon": 35.5299201
+      },
       "WorldPosition": {
         "x": 67000.0,
         "y": 650.0,
@@ -675,6 +678,7 @@
         "HebText": "שיקום אגן נחל ציפורי",
         "EngText": ""
       },
+      "AudioClipName": "IP-Cipori",
       "IconImageName": "Icon-Route-Forest",
        "GeoPosition": {
       "lat": 32.7493006,

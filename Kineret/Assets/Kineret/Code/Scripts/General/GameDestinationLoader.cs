@@ -42,7 +42,7 @@ public class GameDestinationLoader : MonoBehaviour
         //}
 
         GenerateDestinations();
-        //GenerateInterestPoints();
+        GenerateInterestPoints();
         GenerateRoute();
         gameManager.Destinations = _destinations;
     }
