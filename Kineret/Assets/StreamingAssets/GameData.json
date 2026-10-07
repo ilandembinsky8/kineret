@@ -600,10 +600,10 @@
   "IntrestPointDataList": [
     {
       "Name": {
-        "HebText": "EVAWERIF",
-        "EngText": ""
+        "HebText": "EVAWERIF - ביריה",
+        "EngText": "EVAWERIF - ayiriB"
       },
-      "AudioClipName": "IP-Firewave",
+      "AudioClipName": "IP-Biriya",
       "IconImageName": "Icon-Route-Forest",
       "GeoPosition": {
         "lat": 32.9945484,
@@ -651,7 +651,7 @@
     {
       "Name": {
         "HebText": "יער שוויץ- פרוייקט שיקום קרקעות של קק\"ל",
-        "EngText": ""
+        "EngText": "Switzerland Forest"
       },
       "AudioClipName": "IP-Switzerland",
       "IconImageName": "Icon-Route-Forest",
@@ -691,6 +691,106 @@
       },
       "InfoText": {
         "HebText": "שיקום אגן נחל ציפורי \nפרויקט הדגמה לאומי זה הוא פרויקט שיקום הנחלים הגדול בישראל. מטרתו המרכזית היא ליצור נחל רציף, נקי ובריא שיהווה מרכיב איכותי ברשת המסדרונות האקולוגיים בישראל תוך שיפור איכות החיים באגן והעצמה של הקהילות החיות סביב הנחל. הפרויקט כולל שיקום אקולוגי באמצעות פעולות להסרת חסמים לאורך הנחל, שיקום מקטעי נחל, נטיעת צמחייה מקומית והסרת מיני צומח פולשים. בנוסף, מוקמים פתרונות לוויסות נגר ולצמצום סיכוני הצפות בדגש על פתרונות מבוססי טבע.",
+        "EngText": ""
+      },
+      "CollectText": {
+        "HebText": "כל הכבוד!",
+        "EngText": "Well done!"
+      }
+    },
+	{     
+	 "Name": {
+        "HebText": "המשך לרמת הגולן",
+        "EngText": "continue to Ramat Ha-Golan"
+      },
+      "AudioClipName": "VA-SFX-Continue_to_Golan",
+      "IconImageName": "Icon-Route-Forest",
+       "GeoPosition": {
+      "lat": 32.7493006,
+      "lon": 35.199766
+    },
+      "WorldPosition": {
+        "x": 97000.0,
+        "y": 950.0,
+        "z": 102000.0
+      },
+      "InfoText": {
+        "HebText": "",
+        "EngText": ""
+      },
+      "CollectText": {
+        "HebText": "כל הכבוד!",
+        "EngText": "Well done!"
+      }
+    },    
+	{     
+	 "Name": {
+        "HebText": "המשך לטוס בגובה זה",
+        "EngText": "Keep flight height"
+      },
+      "AudioClipName": "VA-SFX-Keep_height",
+      "IconImageName": "Icon-Route-Forest",
+       "GeoPosition": {
+      "lat": 32.7493006,
+      "lon": 35.199766
+    },
+      "WorldPosition": {
+        "x": 61070.0,
+        "y": 950.0,
+        "z": 53170.0
+      },
+      "InfoText": {
+        "HebText": "",
+        "EngText": ""
+      },
+      "CollectText": {
+        "HebText": "כל הכבוד!",
+        "EngText": "Well done!"
+      }
+    },    
+	{
+		"Name": {
+        "HebText": "מרון",
+        "EngText": "Meron"
+      },
+      "AudioClipName": "IP-Meron",
+      "IconImageName": "Icon-Route-Forest",
+       "GeoPosition": {
+      "lat": 32.7493006,
+      "lon": 35.199766
+    },
+      "WorldPosition": {
+        "x": 107500.0,
+        "y": 1500.0,
+        "z": 102000.0
+      },
+      "InfoText": {
+        "HebText": "",
+        "EngText": ""
+      },
+      "CollectText": {
+        "HebText": "כל הכבוד!",
+        "EngText": "Well done!"
+      }
+    },
+	{  
+	  "Name": {
+        "HebText": "יער אודם",
+        "EngText": "Odem Forest"
+      },
+      "AudioClipName": "IP-Odem",
+      "IconImageName": "Icon-Route-Forest",
+       "GeoPosition": {
+      "lat": 33.2078011,
+      "lon": 35.7547344
+    },
+      "WorldPosition": {
+        "x": 106500.0,
+        "y": 950.0,
+        "z": 110750.0
+      },
+      "InfoText": {
+        "HebText": "",
         "EngText": ""
       },
       "CollectText": {

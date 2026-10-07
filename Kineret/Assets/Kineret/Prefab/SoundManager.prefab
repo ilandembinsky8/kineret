@@ -573,6 +573,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7c04622e5bbd37140a7c4a6f77a5fca9, type: 3}
   - {fileID: 8300000, guid: f72b056c95370834fa9c1bbbd58bd434, type: 3}
   - {fileID: 8300000, guid: 0366822fd8547124690b9056f2fd3557, type: 3}
+  - {fileID: 8300000, guid: 9d32aba4ebdf0454a992e432f51f3cfc, type: 3}
+  - {fileID: 8300000, guid: d4c8660430cf83b4c865d83ec62eda72, type: 3}
   _OpenUI: {fileID: 8300000, guid: 2b77e2301ed6f294aa417b25b9439090, type: 3}
   _PointCollected: {fileID: 8300000, guid: f7fa995a23586814aa885fa360922140, type: 3}
   _ArrivedDestination: {fileID: 8300000, guid: 280d76bd25d791747bf773e025a21e86, type: 3}

@@ -17,8 +17,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _ArrivedDestination;
     [SerializeField] private AudioClip _CloudChallenge;
     [SerializeField] private AudioClip _BirdChallenge;
-    [SerializeField] private AudioClip _VAKeepHeight;
-    [SerializeField] private AudioClip _VAGolanHeights;
 
     private void Awake()
     {
