@@ -600,8 +600,8 @@
   "IntrestPointDataList": [
     {
       "Name": {
-        "HebText": "EVAWERIF - ביריה",
-        "EngText": "EVAWERIF - ayiriB"
+        "HebText": "roumyeS - ביריה",
+        "EngText": "roumyeS - ayiriB"
       },
       "AudioClipName": "IP-Biriya",
       "IconImageName": "Icon-Route-Forest",
@@ -613,31 +613,6 @@
         "x": 64000.0,
         "y": 1500.0,
         "z": 59650.0
-      },
-      "InfoText": {
-        "HebText": "evaweriF  מפתחת מערכת חישה חכמה המבוססת על חיישני קול וניתוח מתקדם של נתונים, המזהה שריפות יער כבר בדקות הראשונות להתפרצותן. המערכת מאפשרת התראה מוקדמת לגורמי חירום, מצמצמת נזקים סביבתיים ופגיעה בקהילות, ומציעה פתרון הניתן להטמעה רחבה לאחד מאיומי האקלים המשמעותיים של זמננו.",
-        "EngText": ""
-      },
-      "CollectText": {
-        "HebText": "כל הכבוד!",
-        "EngText": "Well done!"
-      }
-    },
-    {
-      "Name": {
-        "HebText": "roumyeS",
-        "EngText": ""
-      },
-      "AudioClipName": "IP-Seymuor",
-      "IconImageName": "Icon-Route-InterestPoint",
-      "GeoPosition": {
-        "lat": 32.980388,
-        "lon": 35.808484
-      },
-      "WorldPosition": {
-        "x": 93000.0,
-        "y": 1250.0,
-        "z": 58000.0
       },
       "InfoText": {
         "HebText": "stnemurtsnI gA roumyeS מפתחת מערכות בקרה אוטונומיות לחקלאות המתבססות על איסוף וניתוח נתוני שדה בזמן אמת. הטכנולוגיה מאפשרת ניהול יעיל יותר של השקיה, דישון ותנאי גידול, על בסיס נתונים וכלים מתקדמים.",
@@ -706,8 +681,8 @@
       "AudioClipName": "VA-SFX-Continue_to_Golan",
       "IconImageName": "Icon-Route-Forest",
        "GeoPosition": {
-      "lat": 32.7493006,
-      "lon": 35.199766
+      "lat": 33.12585,
+      "lon": 35.63515
     },
       "WorldPosition": {
         "x": 97000.0,
@@ -731,8 +706,8 @@
       "AudioClipName": "VA-SFX-Keep_height",
       "IconImageName": "Icon-Route-Forest",
        "GeoPosition": {
-      "lat": 32.7493006,
-      "lon": 35.199766
+      "lat": 32.628826,
+      "lon": 35.25882
     },
       "WorldPosition": {
         "x": 61070.0,
@@ -756,8 +731,8 @@
       "AudioClipName": "IP-Meron",
       "IconImageName": "Icon-Route-Forest",
        "GeoPosition": {
-      "lat": 32.7493006,
-      "lon": 35.199766
+      "lat": 32.9975,
+      "lon": 35.41222
     },
       "WorldPosition": {
         "x": 107500.0,
