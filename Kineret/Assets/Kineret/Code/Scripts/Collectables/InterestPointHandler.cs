@@ -4,6 +4,9 @@ using UnityEngine;
 public class InterestPointHandler : CollectableHandler
 {
     [SerializeField] protected PopupData infoPopupData;
+
+    private bool _hasInitPlayerPositionCollected = false;
+    private Vector3 _initPlayerPosition;
     private string _audioClipName;
 
     public void Init(InterestPointData interestPoint, InfoCollectableData collectableData)
@@ -37,6 +40,24 @@ public class InterestPointHandler : CollectableHandler
         if (!string.IsNullOrEmpty(_audioClipName))
         {
             AudioManager.Instance.PlayInterestPointNarration(_audioClipName);
+        }
+    }
+
+    protected override void HandlePlayerMoved(Transform playerTransform)
+    {
+        base.HandlePlayerMoved(playerTransform);
+
+        if(!_hasInitPlayerPositionCollected)
+        {
+            _initPlayerPosition = playerTransform.position;
+            _hasInitPlayerPositionCollected = true;
+        }
+
+        if(gameObject.activeInHierarchy && _initPlayerPosition != null)
+        {
+            float heightOffset = playerTransform.position.y - _initPlayerPosition.y;
+            float scaleFactor = 0.5f; //Ranges increase/decrease by 0.5 units of height offset
+            SetRangesByHeightOffset(heightOffset, scaleFactor);
         }
     }
 

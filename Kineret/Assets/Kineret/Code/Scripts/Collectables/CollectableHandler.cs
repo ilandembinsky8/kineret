@@ -26,6 +26,10 @@ public class CollectableHandler : MonoBehaviour
     private InputActions _actions;
     private Coroutine _scoreCoroutine;
     public int Leg { get; set; }
+    private float _currentNotificationRange;
+    private float _currentCollectionRange;
+    private float _initNotificationRange;
+    private float _initCollectionRange;
 
     public int MaxScore
     {
@@ -59,15 +63,15 @@ public class CollectableHandler : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        if (_collectableData.NotificationRange > 0)
+        if (_currentNotificationRange > 0)
         {
             Handles.color = _notifyColor;
-            Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), _collectableData.NotificationRange);
+            Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), _currentNotificationRange);
         }
-        if (_collectableData.CollectionRange > 0)
+        if (_currentCollectionRange > 0)
         {
             Handles.color = Color.green;
-            Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), _collectableData.CollectionRange);
+            Handles.DrawWireDisc(transform.position, new Vector3(0f, 1f, 0f), _currentCollectionRange);
         }
     }
 #endif
@@ -75,6 +79,10 @@ public class CollectableHandler : MonoBehaviour
     {
         _collectableData = collectableData;
         _score = _collectableData.MaxScore;
+        _initNotificationRange = _collectableData.NotificationRange;
+        _initCollectionRange = _collectableData.CollectionRange;
+        _currentNotificationRange = _initNotificationRange;
+        _currentCollectionRange = _initCollectionRange;
         InitPopup(ref _notificationPopupData, notificationPopupData);
         InitPopup(ref _collectPopupData, collectPopupData);
         UpdateVisual(collectableData.MapIconName);
@@ -128,7 +136,7 @@ public class CollectableHandler : MonoBehaviour
     protected virtual void CheckNotifyRange(Vector3 delta)
     {
         if (_hasNotified) return;
-        if (delta.sqrMagnitude <= _collectableData.NotificationRange * _collectableData.NotificationRange)
+        if (delta.sqrMagnitude <= _currentNotificationRange * _currentNotificationRange)
         {
             Notify(false);
         }
@@ -137,7 +145,7 @@ public class CollectableHandler : MonoBehaviour
     {
         if (_wasCollected) return;
         _isCollectable = false;
-        if (delta.sqrMagnitude <= _collectableData.CollectionRange * _collectableData.CollectionRange)
+        if (delta.sqrMagnitude <= _currentCollectionRange * _currentCollectionRange)
         {
             _isCollectable = true;
         }
@@ -185,6 +193,21 @@ public class CollectableHandler : MonoBehaviour
     {
         EventsRelay.OnScoreGain.Invoke(_score);
         AudioManager.Instance.PlayPointCollected();
+    }
+
+    protected virtual void SetRangesByHeightOffset(float heightOffset, float scaleFactor)
+    {
+        _currentNotificationRange = _initNotificationRange + (heightOffset * scaleFactor);
+        _currentCollectionRange = _initCollectionRange + (heightOffset * scaleFactor);
+
+        // Clamp to base ranges as lowest range and max as X times bigger than base range
+        _currentNotificationRange = Mathf.Clamp(_currentNotificationRange, _initNotificationRange, _initNotificationRange * 10);
+        _currentCollectionRange = Mathf.Clamp(_currentCollectionRange, _initCollectionRange, _initCollectionRange * 10);
+    }
+    protected virtual void ResetRanges()
+    {
+        _currentNotificationRange = _initNotificationRange;
+        _currentCollectionRange = _initCollectionRange;
     }
 
     private IEnumerator DelayedNotification(float delay)
