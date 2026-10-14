@@ -16,6 +16,7 @@ public class PopupTweenHandler : MonoBehaviour
 
     [SerializeField] private RectTransform background;
     [SerializeField] private RectTransform icon;
+    [SerializeField] private Image progressBar;
     [SerializeField] private TMP_Text[] TMPtexts;
     [SerializeField] private RectMask2D infoScreenMask;
 
@@ -64,6 +65,11 @@ public class PopupTweenHandler : MonoBehaviour
         foreach (var text in TMPtexts)
         {
             text.gameObject.SetActive(false);
+        }
+
+        if (progressBar != null)
+        {
+            progressBar.transform.parent.gameObject.SetActive(false);
         }
     }
 
@@ -186,6 +192,9 @@ public class PopupTweenHandler : MonoBehaviour
     {
         Queue<char>[] texts = new Queue<char>[TMPtexts.Length];
         string currentText;
+        float textLength = 0;
+        int textRevealed = 0;
+        if(progressBar != null) progressBar.transform.parent.gameObject.SetActive(true);
         for (int i = 0; i < TMPtexts.Length; i++)
         {
             TMPtexts[i].gameObject.SetActive(true);
@@ -198,6 +207,7 @@ public class PopupTweenHandler : MonoBehaviour
             }
 
             TMPtexts[i].text = "";
+            textLength += currentText.Length;
         }
 
         bool isMarkdownActive = false;
@@ -241,6 +251,12 @@ public class PopupTweenHandler : MonoBehaviour
                 else
                 {
                     TMPtexts[i].text += ch;
+                }
+
+                textRevealed++;
+                if (progressBar != null)
+                {
+                    progressBar.fillAmount = textRevealed / textLength;
                 }
                 yield return new WaitForSeconds(LETTER_DELAY);
             }
