@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  planeHudCanvas: {fileID: 0}
   infoScreenPrefab: {fileID: 6690099219044943191, guid: 579882e32e0ff5242a8c4449e5bd66bf,
     type: 3}
   infoPopupPrefab: {fileID: 8543433660853412863, guid: 837eee843736b394aaae4b818f9ad73b,
@@ -146,6 +147,54 @@ MonoBehaviour:
   finalScoreText: {fileID: 0}
   summmaryCanvas: {fileID: 0}
   summaryScoreHandler: {fileID: 0}
+--- !u!1 &4587229050147363851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1188247885482330697}
+  - component: {fileID: 608799694796354457}
+  m_Layer: 0
+  m_Name: Map Shapes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1188247885482330697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4587229050147363851}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8799919053329141205}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &608799694796354457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4587229050147363851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034261c8eb074314a93e2681975acc2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataFileName: MapShapes.json
+  lineMaterial: {fileID: 2100000, guid: 98ae4b55ede1800469ec546ec4930a53, type: 2}
+  maxSegmentLength: 60
+  showAllOnStart: 0
 --- !u!1 &7738317420825844683
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +227,7 @@ Transform:
   - {fileID: 3728528029450328443}
   - {fileID: 4860254153136959944}
   - {fileID: 2982090654458445137}
+  - {fileID: 1188247885482330697}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8251818019661858195
@@ -227,7 +277,7 @@ MonoBehaviour:
   gameManager: {fileID: 7753103378442704945}
   player: {fileID: 0}
   path: {fileID: 0}
-  terrain: {fileID: 0}
+  terrainCenterXZ: {x: 50000, y: 44707}
   destinationPrefab: {fileID: 2002420201625396977, guid: 64cd5387b0451474787f3c0e889c75d8,
     type: 3}
   interestPointPrefab: {fileID: 8584846575352165437, guid: 7c48ac09acea2c448be029d51dd60512,
