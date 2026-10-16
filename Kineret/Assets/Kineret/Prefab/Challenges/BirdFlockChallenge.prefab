@@ -121,7 +121,7 @@ MonoBehaviour:
   respawnWhenModeChanges: 1
   birdPrefabs:
   - {fileID: 8863214016391342895, guid: 9d9b8425e63858248bb6549b818d344e, type: 3}
-  birdCount: 120
+  birdCount: 360
   spawnOnStart: 1
   keepBirdCountSynced: 1
   birdsParent: {fileID: 6311912737127333445}
@@ -164,9 +164,9 @@ MonoBehaviour:
   aircraftSpeedFallback: 40
   aircraftVelocitySmoothing: 8
   minimumMeasuredAircraftSpeed: 0.5
-  encounterSpreadWidth: 800
-  encounterSpreadHeight: 800
-  encounterSpreadDepth: 800
+  encounterSpreadWidth: 2400
+  encounterSpreadHeight: 2400
+  encounterSpreadDepth: 2400
   encounterUseEllipsoidDistribution: 1
   encounterMinBirdSpeed: 12
   encounterMaxBirdSpeed: 16

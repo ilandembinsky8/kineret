@@ -1,0 +1,18 @@
+{
+  "MinMovementSpeed": 1300.0,
+  "MaxMovementSpeed": 1800.0,
+  "MinLifeTime": 90.0,
+  "MaxLifeTime": 180.0,
+
+  "MinAircraftPerSpawn": 1,
+  "MaxAircraftPerSpawn": 1,
+  "MinSpawnInterval": 1.0,
+  "MaxSpawnInterval": 20.0,
+
+  "MinSpawnHeightOffset": 10000.0,
+  "MaxSpawnHeightOffset": 15000.0,
+  "MinForwardSpawnDistance": 15000.0,
+  "MaxForwardSpawnDistance": 25000.0,
+  "MinSideSpawnDistance": 30000.0,
+  "MaxSideSpawnDistance": 45000.0
+}
