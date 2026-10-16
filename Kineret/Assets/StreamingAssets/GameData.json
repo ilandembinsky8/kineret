@@ -973,7 +973,7 @@
   "StaticInterestCollectable": {
     "RangeData": {
       "MapIconName": "Icon-Route-InterestPoint",
-      "NotificationRange": 4000,
+      "NotificationRange": 16000,
       "CollectionRange": 3000,
       "TimeForMaxScore": 0.0,
       "MaxScore": 10
