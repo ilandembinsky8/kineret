@@ -147,54 +147,6 @@ MonoBehaviour:
   finalScoreText: {fileID: 0}
   summmaryCanvas: {fileID: 0}
   summaryScoreHandler: {fileID: 0}
---- !u!1 &4587229050147363851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1188247885482330697}
-  - component: {fileID: 608799694796354457}
-  m_Layer: 0
-  m_Name: Map Shapes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1188247885482330697
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4587229050147363851}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8799919053329141205}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &608799694796354457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4587229050147363851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034261c8eb074314a93e2681975acc2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dataFileName: MapShapes.json
-  lineMaterial: {fileID: 2100000, guid: 98ae4b55ede1800469ec546ec4930a53, type: 2}
-  maxSegmentLength: 60
-  showAllOnStart: 0
 --- !u!1 &7738317420825844683
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +179,6 @@ Transform:
   - {fileID: 3728528029450328443}
   - {fileID: 4860254153136959944}
   - {fileID: 2982090654458445137}
-  - {fileID: 1188247885482330697}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8251818019661858195

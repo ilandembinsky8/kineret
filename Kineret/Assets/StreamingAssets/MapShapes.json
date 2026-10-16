@@ -1,7 +1,7 @@
 {
   "Shapes": [
     {
-      "Id": "schweitz-forest",
+      "Id": "IP-Switzerland",
       "HebName": "יער שוייץ",
       "EngName": "Schweitz Forest",
       "IsClosed": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "Id": "biriya-forest",
+      "Id": "IP-Biriya",
       "HebName": "יער ביריה",
       "EngName": "Biriya Forest",
       "IsClosed": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "Id": "meron-mountain",
+      "Id": "IP-Meron",
       "HebName": "הר מירון",
       "EngName": "Mount Meron",
       "IsClosed": true,
@@ -339,7 +339,7 @@
       ]
     },
     {
-      "Id": "odem-forest",
+      "Id": "IP-Odem",
       "HebName": "יער אודם",
       "EngName": "Odem Forest",
       "IsClosed": true,
@@ -445,7 +445,7 @@
       ]
     },
     {
-      "Id": "golan-ridge",
+      "Id": "IP-Golan",
       "HebName": "רמת הגולן",
       "EngName": "Golan Heights",
       "IsClosed": false,

@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &797728065532838938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6649310801070850380}
+  - component: {fileID: 3584096642931296209}
+  m_Layer: 0
+  m_Name: MapShapesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6649310801070850380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797728065532838938}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8131889379518821044}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3584096642931296209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797728065532838938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034261c8eb074314a93e2681975acc2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataFileName: MapShapes.json
+  lineMaterial: {fileID: 2100000, guid: 98ae4b55ede1800469ec546ec4930a53, type: 2}
+  maxSegmentLength: 60
+  showAllOnStart: 0
 --- !u!1 &3152111277249510074
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +79,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3517742750015927438}
+  - {fileID: 6649310801070850380}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6257654636846945115
@@ -45,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab48a0d8731ad348aa2d6fe07995979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentUserID: 0
 --- !u!1 &9063804594012361864
 GameObject:
   m_ObjectHideFlags: 0

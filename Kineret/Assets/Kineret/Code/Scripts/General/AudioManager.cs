@@ -104,6 +104,7 @@ public class AudioManager : MonoBehaviour
         {
             SetLowerMusicVolume();
             PlayClipInSource(clip, _NarrationSource, 0.8f);
+            StartCoroutine(PlayPolygonShape(clipName, clip.length));
         }
         else
         {
@@ -174,6 +175,12 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSeconds(waitLength);
 
         OnAudioFinished();
+    }
+    private IEnumerator PlayPolygonShape(string interestPointName, float clipTime)
+    {
+        MapShapesManager.Instance.Show(interestPointName);
+        yield return new WaitForSeconds(clipTime);
+        //MapShapesManager.Instance.Hide(interestPointName);
     }
 
 }

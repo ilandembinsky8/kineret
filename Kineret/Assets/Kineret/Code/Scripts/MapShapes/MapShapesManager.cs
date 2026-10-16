@@ -10,6 +10,8 @@ using UnityEngine;
 /// </summary>
 public class MapShapesManager : MonoBehaviour
 {
+    public static MapShapesManager Instance;
+
     public const string DataFileName = "MapShapes.json";
 
     [Header("Data")]
@@ -41,10 +43,19 @@ public class MapShapesManager : MonoBehaviour
 
     private void Start()
     {
-        if (showAllOnStart)
+        if(Instance != null && Instance != this)
         {
-            ShowAll();
+            Debug.LogWarning("MapShapesManager: duplicate instance, destroying the second one.");
+            Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+
+        //if (showAllOnStart)
+        //{
+        //    ShowAll();
+        //}
     }
 
     private void Load()
