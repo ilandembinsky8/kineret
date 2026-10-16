@@ -1,0 +1,20 @@
+{
+  "MinMovementSpeed": 600.0,
+  "MaxMovementSpeed": 1100.0,
+  "MinLifeTime": 15.0,
+  "MaxLifeTime": 25.0,
+  "MinFadeDuration": 2.0,
+  "MaxFadeDuration": 4.0,
+
+  "MinBirdsPerSpawn": 6,
+  "MaxBirdsPerSpawn": 14,
+  "MinSpawnInterval": 8.0,
+  "MaxSpawnInterval": 20.0,
+
+  "MinSpawnHeightOffset": 450.0,
+  "MaxSpawnHeightOffset": 900.0,
+  "MinForwardSpawnDistance": 7000.0,
+  "MaxForwardSpawnDistance": 12000.0,
+  "MinSideSpawnDistance": 1000.0,
+  "MaxSideSpawnDistance": 2500.0
+}

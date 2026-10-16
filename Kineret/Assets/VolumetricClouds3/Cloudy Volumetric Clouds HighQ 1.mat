@@ -47,7 +47,7 @@ Material:
     - _CloudFlatness: 1
     - _CloudLocalScale: 0.8
     - _ComplexLightingMode: 1
-    - _Coverage: 0.0007004738
+    - _Coverage: -1.2
     - _CoverageHigh: 0.7
     - _CoverageLow: 0.4
     - _CoverageMapOn: 1
@@ -86,7 +86,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
     - _CloudSpherePosition: {r: 0, g: 0, b: 0, a: 0}
-    - _CloudTransform: {r: 890.459, g: 100, b: 0, a: 0}
+    - _CloudTransform: {r: 786.1916, g: 100, b: 0, a: 0}
     - _CoverageChannel: {r: 1.03, g: 0, b: 0, a: 0}
     - _Shading: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}

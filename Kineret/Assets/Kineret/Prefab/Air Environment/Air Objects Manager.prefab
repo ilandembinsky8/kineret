@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2086980410864415973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4253256274856464417}
+  - component: {fileID: -4812420983337333063}
+  m_Layer: 0
+  m_Name: Air Objects Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4253256274856464417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086980410864415973}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4812420983337333063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086980410864415973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c920c82f2fed334a8e0775fc87f6e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aircraftsEnvironmentPrefabs:
+  - {fileID: -2920091347933946342, guid: fef2463088022aa4b86845a932322f6b, type: 3}
+  - {fileID: 3811503901509481192, guid: 1dfb50f57c7b8c14e8cdad611b59de0a, type: 3}
+  - {fileID: 1058148542111053649, guid: bb6d444d6079112469d57016ed8c2df8, type: 3}
+  - {fileID: -6683078852739600882, guid: b0e9e7cc2e107fe4e83c994157b83744, type: 3}
+  - {fileID: -3803543795877692250, guid: 7e24a8c785af8374ca1245104e5a9741, type: 3}
+  birdsEnvironmentPrefabs:
+  - {fileID: -265123250950533499, guid: aabd122f600bd6140a994289a9406cac, type: 3}
+  - {fileID: 7062068184698133676, guid: ec96375bc6f4cb94d90d8f0041adc2b8, type: 3}
+  - {fileID: 3428610206073455702, guid: d976d0fd18e56ae45b2c70c48043b91b, type: 3}
+  - {fileID: 7423170527886449423, guid: 9aad611fad66d1741982bfe8398be9cf, type: 3}
+  - {fileID: 7898766388799807057, guid: 5c90f784daa53b548a9a476966ee529b, type: 3}
+  airEnvironmentParent: {fileID: 2086980410864415973}
+  player: {fileID: 0}

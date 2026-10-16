@@ -1,0 +1,7 @@
+{
+  "waypointSphereDistance": 750,
+  "poolSize": 100,
+  "waypointReachThreshold": 0.1,
+  "waypointReAddMultiplier": 1.2,
+  "waypointSphereScale": 6
+}
