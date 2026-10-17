@@ -168,13 +168,20 @@ MonoBehaviour:
   encounterSpreadHeight: 2400
   encounterSpreadDepth: 2400
   encounterUseEllipsoidDistribution: 1
-  encounterMinBirdSpeed: 12
-  encounterMaxBirdSpeed: 16
+  encounterMinBirdSpeed: 24
+  encounterMaxBirdSpeed: 32
   useInterceptCourse: 1
   maxInterceptLeadTime: 15
   keepEncounterFormationShape: 1
   encounterDirectionScatterDegrees: 0
   encounterAimPointSpread: 2
+  encounterGradualReveal: 1
+  encounterInitialVisibleFraction: 0.33333334
+  encounterRevealDuration: 5
+  encounterRevealDelay: 0
+  encounterExpandFromCentre: 1
+  encounterInitialSpreadFraction: 0.083333336
+  encounterFadeInDuration: 1
   animationSpeedRange: {x: 0.9, y: 1.15}
   disableRootMotion: 1
   randomScaleRange: {x: 0.9, y: 1.1}

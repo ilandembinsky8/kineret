@@ -218,6 +218,34 @@ public class BirdFlockManager : MonoBehaviour
     public float encounterAimPointSpread = 2f;
 
 
+    [Header("ENCOUNTER MODE - Gradual Reveal")]
+    [Tooltip("Let the flock build up instead of arriving all at once. Every bird is still spawned together in the right place; only how many are shown changes over time.")]
+    public bool encounterGradualReveal = false;
+
+    [Tooltip("Share of the flock visible the moment it spawns. These are the birds nearest the middle of the volume.")]
+    [Range(0f, 1f)]
+    public float encounterInitialVisibleFraction = 1f / 3f;
+
+    [Tooltip("Seconds taken to go from the initial share up to the full Bird Count.")]
+    [Min(0.01f)]
+    public float encounterRevealDuration = 5f;
+
+    [Tooltip("Seconds to hold the initial share before the flock starts filling out. Useful because a ramp that finishes while the flock is still distant is not visible; delaying it lets it play out when the flock is close enough to read.")]
+    [Min(0f)]
+    public float encounterRevealDelay = 0f;
+
+    [Tooltip("Also grow the volume over the ramp. Birds start bunched near the middle and drift out to their final spread, so the flock opens up instead of only gaining members.")]
+    public bool encounterExpandFromCentre = false;
+
+    [Tooltip("Width, height and depth of the spawn volume at the start of the ramp, as a share of the final size.")]
+    [Range(0.01f, 1f)]
+    public float encounterInitialSpreadFraction = 1f / 3f;
+
+    [Tooltip("Seconds each bird takes to fade up from fully transparent as its turn to be revealed comes round. Zero makes birds pop in. Only the birds currently mid-fade are drawn transparent; once a bird is fully faded in it goes back to its original opaque materials.")]
+    [Min(0f)]
+    public float encounterFadeInDuration = 1f;
+
+
     [Header("Shared Animation")]
     [Tooltip("Random Animator.speed range assigned to each bird.")]
     public Vector2 animationSpeedRange = new Vector2(0.9f, 1.15f);
@@ -253,6 +281,26 @@ public class BirdFlockManager : MonoBehaviour
         public float bankAngle;
 
         public Animator[] animators;
+
+        //Gradual reveal: a hidden bird keeps flying, it just is not drawn yet.
+        public bool revealed = true;
+        public float revealOrder;
+        public Renderer[] renderers;
+        public Collider[] colliders;
+        public bool collidersOn = true;
+
+        //Fade-in: while a bird is fading its renderers run on transparent copies of their
+        //materials, and go back to the shared opaque originals the moment it reaches full alpha.
+        public bool fading;
+        public float fadeTimer;
+        public Material[][] opaqueMaterials;
+        public Material[][] fadeMaterials;
+        public Color[][] baseColours;
+
+        //Expansion: the bird flies its normal course from flightPosition, and is then drawn pulled
+        //in toward the middle by a share of spawnOffsetWorld that shrinks to nothing as the ramp runs.
+        public Vector3 flightPosition;
+        public Vector3 spawnOffsetWorld;
     }
 
 
@@ -260,6 +308,13 @@ public class BirdFlockManager : MonoBehaviour
 
     private float steeringTimer;
     private FlockMode lastMode;
+    private float encounterRevealTimer;
+
+    private static readonly int BaseColourId = Shader.PropertyToID("_BaseColor");
+
+    //One transparent copy per source material, shared by every bird that is mid-fade.
+    private readonly Dictionary<Material, Material> fadeVariants = new Dictionary<Material, Material>();
+    private MaterialPropertyBlock fadeBlock;
 
     // Aircraft velocity estimation.
     private Vector3 estimatedAircraftVelocity;
@@ -318,6 +373,8 @@ public class BirdFlockManager : MonoBehaviour
         if (dt <= 0f)
             return;
 
+        UpdateGradualReveal(dt);
+
         if (mode == FlockMode.OrbitBoids)
         {
             steeringTimer -= dt;
@@ -352,6 +409,7 @@ public class BirdFlockManager : MonoBehaviour
 
         ClearFlock();
         encounterContextPrepared = false;
+        encounterRevealTimer = 0f;
 
         if (mode == FlockMode.AircraftEncounter && !PrepareEncounterContext())
             return;
@@ -490,6 +548,26 @@ public class BirdFlockManager : MonoBehaviour
             encounterCenterSnapshot +
             encounterOrientationSnapshot * localOffset;
 
+        //Reveal runs from the middle of the volume outwards, fixed here at spawn rather than
+        //recomputed as the formation drifts, so birds cannot flicker back out.
+        //
+        //The offset is scaled by the half-extents so an ellipsoid spread still reads 0 at the
+        //centre and 1 at the shell. It is then cubed: Random.insideUnitSphere is uniform by
+        //VOLUME, so the share of birds within radius r is r^3. Cubing makes revealOrder uniform
+        //over 0..1, which is what the visible-fraction threshold expects - without it, asking for
+        //a third of the flock would show only about 4% of it.
+        float normalisedRadius = new Vector3(
+            localOffset.x / Mathf.Max(0.01f, encounterSpreadWidth * 0.5f),
+            localOffset.y / Mathf.Max(0.01f, encounterSpreadHeight * 0.5f),
+            localOffset.z / Mathf.Max(0.01f, encounterSpreadDepth * 0.5f)
+        ).magnitude;
+
+        bird.revealOrder = Mathf.Clamp01(normalisedRadius * normalisedRadius * normalisedRadius);
+
+        //Kept so the expansion can pull the bird in toward the middle and release it over the ramp.
+        bird.spawnOffsetWorld = encounterOrientationSnapshot * localOffset;
+        bird.flightPosition = position;
+
         float speed = Random.Range(
             Mathf.Min(encounterMinBirdSpeed, encounterMaxBirdSpeed),
             Mathf.Max(encounterMinBirdSpeed, encounterMaxBirdSpeed)
@@ -551,7 +629,8 @@ public class BirdFlockManager : MonoBehaviour
             radiusVariation = Random.Range(-1f, 1f),
             heightVariation = Random.Range(-1f, 1f),
             speedVariation = Random.value,
-            wanderSeed = Random.Range(0f, 10000f)
+            wanderSeed = Random.Range(0f, 10000f),
+            revealOrder = Random.value
         };
     }
 
@@ -598,6 +677,312 @@ public class BirdFlockManager : MonoBehaviour
             if (disableRootMotion)
                 animator.applyRootMotion = false;
         }
+
+        bird.renderers = instance.GetComponentsInChildren<Renderer>(true);
+        bird.colliders = instance.GetComponentsInChildren<Collider>(true);
+        bird.revealed = true;
+        bird.collidersOn = true;
+
+        if (UsesFadeIn())
+            CacheFadeMaterials(bird);
+
+        //revealOrder is already set by the caller: encounter mode orders it from the middle of
+        //the volume outwards, everything else leaves the random value from CreateBaseBirdState.
+        bool visible = bird.revealOrder <= GetVisibleFraction();
+
+        ApplyBirdVisibility(bird, visible);
+
+        //ApplyBirdVisibility only acts on a change, and the bird is born visible, so the first
+        //batch - the birds already on show at spawn - needs its fade kicked off here.
+        if (visible && UsesFadeIn())
+            BeginFade(bird);
+
+        ApplyBirdColliders(bird, IsRampComplete());
+
+        //Place it contracted straight away, so the first frame already shows the tight formation.
+        if (encounterGradualReveal && encounterExpandFromCentre && mode == FlockMode.AircraftEncounter)
+        {
+            bird.transform.position = bird.flightPosition - bird.spawnOffsetWorld * (1f - GetSpreadScale());
+        }
+    }
+
+
+    // ------------------------------------------------------------
+    // GRADUAL REVEAL (encounter mode)
+    // ------------------------------------------------------------
+
+    /// <summary>
+    /// How much of the flock should be on show right now. Climbs from the initial share to all
+    /// of it over Encounter Reveal Duration.
+    /// </summary>
+    private float GetVisibleFraction()
+    {
+        if (!encounterGradualReveal || mode != FlockMode.AircraftEncounter)
+            return 1f;
+
+        float elapsed = encounterRevealTimer - encounterRevealDelay;
+
+        if (elapsed <= 0f)
+            return Mathf.Clamp01(encounterInitialVisibleFraction);
+
+        float t = Mathf.Clamp01(elapsed / Mathf.Max(0.01f, encounterRevealDuration));
+
+        return Mathf.Lerp(Mathf.Clamp01(encounterInitialVisibleFraction), 1f, t);
+    }
+
+
+    /// <summary>
+    /// True once the flock is whole and at its final spread. Until then it is still assembling,
+    /// so nothing in it can be hit.
+    /// </summary>
+    private bool IsRampComplete()
+    {
+        return GetVisibleFraction() >= 1f && GetSpreadScale() >= 1f;
+    }
+
+
+    private bool UsesFadeIn()
+    {
+        return encounterGradualReveal
+            && mode == FlockMode.AircraftEncounter
+            && encounterFadeInDuration > 0f;
+    }
+
+
+    private void ApplyBirdVisibility(BirdState bird, bool visible)
+    {
+        if (bird.revealed == visible)
+            return;
+
+        bird.revealed = visible;
+
+        if (bird.renderers != null)
+        {
+            foreach (Renderer renderer in bird.renderers)
+                if (renderer != null)
+                    renderer.enabled = visible;
+        }
+
+        if (visible && UsesFadeIn())
+            BeginFade(bird);
+        else if (!visible && bird.fading)
+            EndFade(bird);
+    }
+
+
+    /// <summary>
+    /// Colliders follow the flock as a whole rather than each bird's own reveal: they come on
+    /// only once the ramp has finished. That leaves the whole assembly - birds appearing and the
+    /// volume opening out - as something the player watches rather than something that can hit
+    /// them, and the ramp finishes well before the aircraft is anywhere near the flock.
+    /// </summary>
+    private void ApplyBirdColliders(BirdState bird, bool on)
+    {
+        if (bird.collidersOn == on)
+            return;
+
+        bird.collidersOn = on;
+
+        if (bird.colliders == null)
+            return;
+
+        foreach (Collider collider in bird.colliders)
+            if (collider != null)
+                collider.enabled = on;
+    }
+
+
+    private void UpdateGradualReveal(float dt)
+    {
+        if (!encounterGradualReveal || mode != FlockMode.AircraftEncounter)
+            return;
+
+        encounterRevealTimer += dt;
+
+        float fraction = GetVisibleFraction();
+        bool armed = IsRampComplete();
+
+        for (int i = 0; i < birds.Count; i++)
+        {
+            BirdState bird = birds[i];
+
+            ApplyBirdVisibility(bird, bird.revealOrder <= fraction);
+            ApplyBirdColliders(bird, armed);
+
+            if (!bird.fading)
+                continue;
+
+            bird.fadeTimer += dt;
+
+            float alpha = bird.fadeTimer / Mathf.Max(0.0001f, encounterFadeInDuration);
+
+            if (alpha >= 1f)
+                EndFade(bird);
+            else
+                ApplyFadeAlpha(bird, alpha);
+        }
+    }
+
+
+    // ------------------------------------------------------------
+    // FADE IN (encounter mode)
+    // ------------------------------------------------------------
+
+    /// <summary>
+    /// A transparent copy of an opaque material. URP's Lit shader ignores alpha entirely while
+    /// its surface type is Opaque, so there is no way to fade the birds without a second material.
+    /// One copy per source material is enough: the per-bird alpha rides on a property block.
+    /// </summary>
+    private Material GetFadeVariant(Material source)
+    {
+        if (source == null)
+            return null;
+
+        Material variant;
+        if (fadeVariants.TryGetValue(source, out variant))
+            return variant;
+
+        variant = new Material(source);
+        variant.name = source.name + " (Fade)";
+
+        variant.SetOverrideTag("RenderType", "Transparent");
+        variant.SetFloat("_Surface", 1f);
+        variant.SetFloat("_Blend", 0f);
+        variant.SetFloat("_BlendModePreserveSpecular", 0f);
+        variant.SetFloat("_SrcBlend", (float)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        variant.SetFloat("_DstBlend", (float)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        variant.SetFloat("_SrcBlendAlpha", (float)UnityEngine.Rendering.BlendMode.One);
+        variant.SetFloat("_DstBlendAlpha", (float)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        variant.SetFloat("_ZWrite", 0f);
+
+        variant.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+        variant.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+        variant.DisableKeyword("_ALPHAMODULATE_ON");
+
+        //Depth and shadows are written by opaque geometry. A half-faded bird doing either would
+        //punch a hole in the sky behind it and drop a full-strength shadow it has not earned.
+        variant.SetShaderPassEnabled("DepthOnly", false);
+        variant.SetShaderPassEnabled("DepthNormals", false);
+        variant.SetShaderPassEnabled("ShadowCaster", false);
+
+        variant.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+
+        fadeVariants.Add(source, variant);
+
+        return variant;
+    }
+
+
+    private void CacheFadeMaterials(BirdState bird)
+    {
+        if (bird.renderers == null || bird.renderers.Length == 0)
+            return;
+
+        bird.opaqueMaterials = new Material[bird.renderers.Length][];
+        bird.fadeMaterials = new Material[bird.renderers.Length][];
+        bird.baseColours = new Color[bird.renderers.Length][];
+
+        for (int i = 0; i < bird.renderers.Length; i++)
+        {
+            Renderer renderer = bird.renderers[i];
+
+            if (renderer == null)
+                continue;
+
+            Material[] source = renderer.sharedMaterials;
+            var fade = new Material[source.Length];
+            var colours = new Color[source.Length];
+
+            for (int s = 0; s < source.Length; s++)
+            {
+                fade[s] = GetFadeVariant(source[s]);
+                colours[s] = source[s] != null && source[s].HasProperty(BaseColourId)
+                    ? source[s].GetColor(BaseColourId)
+                    : Color.white;
+            }
+
+            bird.opaqueMaterials[i] = source;
+            bird.fadeMaterials[i] = fade;
+            bird.baseColours[i] = colours;
+        }
+    }
+
+
+    private void BeginFade(BirdState bird)
+    {
+        if (bird.fadeMaterials == null)
+            return;
+
+        bird.fading = true;
+        bird.fadeTimer = 0f;
+
+        for (int i = 0; i < bird.renderers.Length; i++)
+        {
+            if (bird.renderers[i] != null && bird.fadeMaterials[i] != null)
+                bird.renderers[i].sharedMaterials = bird.fadeMaterials[i];
+        }
+
+        ApplyFadeAlpha(bird, 0f);
+    }
+
+
+    private void ApplyFadeAlpha(BirdState bird, float alpha)
+    {
+        if (bird.baseColours == null)
+            return;
+
+        if (fadeBlock == null)
+            fadeBlock = new MaterialPropertyBlock();
+
+        for (int i = 0; i < bird.renderers.Length; i++)
+        {
+            Renderer renderer = bird.renderers[i];
+
+            if (renderer == null || bird.baseColours[i] == null)
+                continue;
+
+            for (int s = 0; s < bird.baseColours[i].Length; s++)
+            {
+                Color colour = bird.baseColours[i][s];
+                colour.a *= alpha;
+
+                fadeBlock.Clear();
+                fadeBlock.SetColor(BaseColourId, colour);
+                renderer.SetPropertyBlock(fadeBlock, s);
+            }
+        }
+    }
+
+
+    private void EndFade(BirdState bird)
+    {
+        bird.fading = false;
+
+        if (bird.opaqueMaterials == null)
+            return;
+
+        for (int i = 0; i < bird.renderers.Length; i++)
+        {
+            Renderer renderer = bird.renderers[i];
+
+            if (renderer == null || bird.opaqueMaterials[i] == null)
+                continue;
+
+            for (int s = 0; s < bird.opaqueMaterials[i].Length; s++)
+                renderer.SetPropertyBlock(null, s);
+
+            renderer.sharedMaterials = bird.opaqueMaterials[i];
+        }
+    }
+
+
+    private void OnDestroy()
+    {
+        foreach (Material variant in fadeVariants.Values)
+            if (variant != null)
+                Destroy(variant);
+
+        fadeVariants.Clear();
     }
 
 
@@ -862,6 +1247,9 @@ public class BirdFlockManager : MonoBehaviour
     {
         // IMPORTANT: No steering here.
         // Each bird keeps exactly the velocity assigned at spawn time.
+        bool expanding = encounterGradualReveal && encounterExpandFromCentre;
+        float pullIn = expanding ? 1f - GetSpreadScale() : 0f;
+
         for (int i = 0; i < birds.Count; i++)
         {
             BirdState bird = birds[i];
@@ -869,8 +1257,36 @@ public class BirdFlockManager : MonoBehaviour
             if (bird.transform == null)
                 continue;
 
-            bird.transform.position += bird.velocity * dt;
+            if (!expanding)
+            {
+                bird.transform.position += bird.velocity * dt;
+                continue;
+            }
+
+            //The course is flown at full spread; the contraction is applied on top, so the flight
+            //path stays exactly what the intercept solution produced.
+            bird.flightPosition += bird.velocity * dt;
+            bird.transform.position = bird.flightPosition - bird.spawnOffsetWorld * pullIn;
         }
+    }
+
+
+    /// <summary>
+    /// Size of the volume right now as a share of its final size, on the same ramp as the reveal.
+    /// </summary>
+    private float GetSpreadScale()
+    {
+        if (!encounterGradualReveal || !encounterExpandFromCentre || mode != FlockMode.AircraftEncounter)
+            return 1f;
+
+        float elapsed = encounterRevealTimer - encounterRevealDelay;
+
+        if (elapsed <= 0f)
+            return Mathf.Clamp01(encounterInitialSpreadFraction);
+
+        float t = Mathf.Clamp01(elapsed / Mathf.Max(0.01f, encounterRevealDuration));
+
+        return Mathf.Lerp(Mathf.Clamp01(encounterInitialSpreadFraction), 1f, t);
     }
 
 
