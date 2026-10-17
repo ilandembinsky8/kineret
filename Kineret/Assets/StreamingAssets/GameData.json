@@ -678,7 +678,7 @@
         "HebText": "המשך לרמת הגולן",
         "EngText": "continue to Ramat Ha-Golan"
       },
-      "AudioClipName": "VA-SFX-Continue_to_Golan",
+      "AudioClipName": "IP-Golan",
       "IconImageName": "Icon-Route-Forest",
        "GeoPosition": {
       "lat": 33.12585,
@@ -697,32 +697,7 @@
         "HebText": "כל הכבוד!",
         "EngText": "Well done!"
       }
-    },    
-	{     
-	 "Name": {
-        "HebText": "המשך לטוס בגובה זה",
-        "EngText": "Keep flight height"
-      },
-      "AudioClipName": "VA-SFX-Keep_height",
-      "IconImageName": "Icon-Route-Forest",
-       "GeoPosition": {
-      "lat": 32.628826,
-      "lon": 35.25882
-    },
-      "WorldPosition": {
-        "x": 61070.0,
-        "y": 950.0,
-        "z": 53170.0
-      },
-      "InfoText": {
-        "HebText": "",
-        "EngText": ""
-      },
-      "CollectText": {
-        "HebText": "כל הכבוד!",
-        "EngText": "Well done!"
-      }
-    },    
+    },      
 	{
 		"Name": {
         "HebText": "מרון",

@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Animator blackPanel;
     [SerializeField] private float blackFadeDuration;
+    [SerializeField] private float flightHeightNarrationDelay = 0.35f;
 
     private PopupHandler _currentPopup;
 
@@ -140,6 +141,7 @@ public class UIManager : MonoBehaviour
     private void OnTerrainReady()
     {
         blackPanel.SetTrigger("FadeOut");
+        AudioManager.Instance.PlaySteadyFlightHeight(flightHeightNarrationDelay);
     }
 
 }

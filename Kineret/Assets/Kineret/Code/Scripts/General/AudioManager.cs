@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _ArrivedDestination;
     [SerializeField] private AudioClip _CloudChallenge;
     [SerializeField] private AudioClip _BirdChallenge;
+    [SerializeField] private AudioClip _KeepFlightHeight;
 
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class AudioManager : MonoBehaviour
     //}
     #endregion
 
+    public void PlaySteadyFlightHeight(float delay) { StartCoroutine(PlaySteadyFlightHeightDelayed(delay)); }
     public void SetIncreasedMusicVolume() { _MusicSource.volume = 0.25f; }
     public void SetLowerMusicVolume() { _MusicSource.volume = 0.1f; }
     public void PlayOpenUI() { PlayClipInSource(_OpenUI, _NotificationSource, 0.15f); }
@@ -102,8 +104,8 @@ public class AudioManager : MonoBehaviour
         AudioClip clip = FindAudioIPClipByName(clipName);
         if (clip != null)
         {
-            SetLowerMusicVolume();
             PlayClipInSource(clip, _NarrationSource, 0.8f);
+            SetLowerMusicVolume();
             StartCoroutine(PlayPolygonShape(clipName, clip.length));
         }
         else
@@ -178,9 +180,19 @@ public class AudioManager : MonoBehaviour
     }
     private IEnumerator PlayPolygonShape(string interestPointName, float clipTime)
     {
+        SetLowerMusicVolume();
         MapShapesManager.Instance.Show(interestPointName);
         yield return new WaitForSeconds(clipTime);
         //MapShapesManager.Instance.Hide(interestPointName);
+        SetIncreasedMusicVolume();
+    }
+    private IEnumerator PlaySteadyFlightHeightDelayed(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PlayClipInSource(_KeepFlightHeight, _NarrationSource, 0.15f);
+        SetLowerMusicVolume();
+        yield return new WaitForSeconds(_KeepFlightHeight.length);
+        SetIncreasedMusicVolume();
     }
 
 }
