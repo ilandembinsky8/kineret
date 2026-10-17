@@ -110,6 +110,21 @@ public class MainMenuManager : MonoBehaviour
         _selectedDestinationsCount++;
         if (_selectedDestinationsCount == LocationsManager.DestinationsSelectCount)
         {
+            bool hasGolanFound = false;
+            for (int i = 0; i < _selectedDestinationsCount; i++)
+            {
+                //Debug.Log($"Selected Destination {i}: {LocationsManager.SelectedDestinations[i]}");
+                if (i == 0) { /*Debug.Log($"first skipped");*/ continue; }
+
+                int currentDestination = LocationsManager.SelectedDestinations[i];
+                if (hasGolanFound == false && (currentDestination == 1 || currentDestination == 5))//checking for Shamir & Mei Golan
+                {
+                    AudioManager.Instance.SetGolanNarrationBeforeXIP(i);
+                    Debug.Log($"Golan Destination found {i}: {LocationsManager.SelectedDestinations[i]}");
+                    hasGolanFound = true;
+                }
+            }
+
             EndDestinationSelection();
         }
     }

@@ -19,6 +19,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _BirdChallenge;
     [SerializeField] private AudioClip _KeepFlightHeight;
 
+    private int _interestPointToPlayBeforeGolanNarration = -1;
+    private int _reachedGoalTracker = 0;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -37,6 +40,15 @@ public class AudioManager : MonoBehaviour
         _OnCollectedSource.playOnAwake = false;
         _NarrationSource.loop = false;
         _NarrationSource.playOnAwake = false;
+        _reachedGoalTracker = 0;
+    }
+    private void OnEnable()
+    {
+        EventsRelay.OnLoadDirectionPopup += TryPlayGolanNarration;
+    }
+    private void OnDisable()
+    {
+        EventsRelay.OnLoadDirectionPopup -= TryPlayGolanNarration;
     }
 
     #region for testing - can be removed after connecting to actual game
@@ -60,6 +72,26 @@ public class AudioManager : MonoBehaviour
     public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource, 0.35f); }
     public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource, 0.2f); }
     //public void PlayInterestPointNarration() { PlayClipInSource(, _NarrationSource, 0.8f); }
+
+    /// <summary>
+    /// Saving the Interest point which Golan plays narration before said flight stretch
+    /// </summary>
+    /// <param name="playBeforeInterestPoint"></param>
+    public void SetGolanNarrationBeforeXIP(int playBeforeInterestPoint) { _interestPointToPlayBeforeGolanNarration = playBeforeInterestPoint; }
+    private void TryPlayGolanNarration(string direction)
+    {
+        if (_interestPointToPlayBeforeGolanNarration == -1) { return; }// Not selected Golan interest point
+
+        _reachedGoalTracker++;
+
+        if (_interestPointToPlayBeforeGolanNarration == _reachedGoalTracker)
+        {
+            PlayInterestPointNarration("IP-Golan");
+            //reset after passing the interest point
+            _interestPointToPlayBeforeGolanNarration = -1;
+            _reachedGoalTracker = 0;
+        }
+    }
 
     public void PlayChallengeNarration(ChallengeType challengeType)
     {

@@ -673,31 +673,6 @@
         "EngText": "Well done!"
       }
     },
-	{     
-	 "Name": {
-        "HebText": "המשך לרמת הגולן",
-        "EngText": "continue to Ramat Ha-Golan"
-      },
-      "AudioClipName": "IP-Golan",
-      "IconImageName": "Icon-Route-Forest",
-       "GeoPosition": {
-      "lat": 33.12585,
-      "lon": 35.63515
-    },
-      "WorldPosition": {
-        "x": 97000.0,
-        "y": 950.0,
-        "z": 102000.0
-      },
-      "InfoText": {
-        "HebText": "",
-        "EngText": ""
-      },
-      "CollectText": {
-        "HebText": "כל הכבוד!",
-        "EngText": "Well done!"
-      }
-    },      
 	{
 		"Name": {
         "HebText": "מרון",
