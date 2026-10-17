@@ -16,6 +16,13 @@ public class MapShapeRenderer : MonoBehaviour
     /// </summary>
     private const int WidthCurveKeys = 32;
 
+    /// <summary>
+    /// Queue an always-on-top outline draws in: past everything opaque, so the terrain cannot
+    /// cover it. Anything that must still cover the outline - the aircraft in third person - has
+    /// to be drawn after this; see <see cref="DrawOverMapShapes"/>.
+    /// </summary>
+    public const int AlwaysOnTopQueue = 3100;
+
     private LineRenderer _line;
     private MapShapeEntry _shape;
     private Camera _camera;
@@ -66,7 +73,7 @@ public class MapShapeRenderer : MonoBehaviour
         }
 
         //Drawn after everything else, otherwise opaque geometry rendered later would cover it anyway.
-        _material.renderQueue = shape.AlwaysOnTop ? 3100 : 2000;
+        _material.renderQueue = shape.AlwaysOnTop ? AlwaysOnTopQueue : 2000;
         _line.sharedMaterial = _material;
 
         BuildPath(maxSegmentLength);

@@ -6,7 +6,7 @@
       "EngName": "Schweitz Forest",
       "IsClosed": true,
       "ColorHex": "#39DD20",
-      "ScreenWidthPixels": 8.0,
+      "ScreenWidthPixels": 4.0,
       "HeightAboveGround": 15.0,
       "AlwaysOnTop": true,
       "DrawDuration": 2.5,
@@ -108,7 +108,7 @@
       "EngName": "Biriya Forest",
       "IsClosed": true,
       "ColorHex": "#39DD20",
-      "ScreenWidthPixels": 8.0,
+      "ScreenWidthPixels": 4.0,
       "HeightAboveGround": 15.0,
       "AlwaysOnTop": true,
       "DrawDuration": 2.5,
@@ -278,7 +278,7 @@
       "EngName": "Mount Meron",
       "IsClosed": true,
       "ColorHex": "#39DD20",
-      "ScreenWidthPixels": 8.0,
+      "ScreenWidthPixels": 4.0,
       "HeightAboveGround": 15.0,
       "AlwaysOnTop": true,
       "DrawDuration": 2.5,
@@ -344,7 +344,7 @@
       "EngName": "Odem Forest",
       "IsClosed": true,
       "ColorHex": "#39DD20",
-      "ScreenWidthPixels": 8.0,
+      "ScreenWidthPixels": 4.0,
       "HeightAboveGround": 15.0,
       "AlwaysOnTop": true,
       "DrawDuration": 2.5,
@@ -450,15 +450,27 @@
       "EngName": "Golan Heights",
       "IsClosed": false,
       "ColorHex": "#39DD20",
-      "ScreenWidthPixels": 8.0,
+      "ScreenWidthPixels": 4.0,
       "HeightAboveGround": 15.0,
       "AlwaysOnTop": true,
       "DrawDuration": 2.5,
       "EraseDuration": 1.5,
       "Points": [
         {
-          "lat": 32.9039268,
-          "lon": 35.6031215
+          "lat": 32.68372861582409,
+          "lon": 35.62696373126963
+        },
+        {
+          "lat": 32.70805671718409,
+          "lon": 35.64499863724416
+        },
+        {
+          "lat": 32.80107633218921,
+          "lon": 35.66527666478122
+        },
+        {
+          "lat": 32.89755531355361,
+          "lon": 35.64853290488298
         },
         {
           "lat": 32.9213481,
