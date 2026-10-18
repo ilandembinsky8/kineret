@@ -29,8 +29,8 @@ public class InterestPointHandler : CollectableHandler
 
     protected override void Collect()
     {
-        base.Collect();
-        StartCoroutine(LoadInfoPopup(_collectPopupData.PopupTextData.Duration));
+        //base.Collect();
+        //StartCoroutine(LoadInfoPopup(_collectPopupData.PopupTextData.Duration));
         //AudioManager.Instance.PlayInterestPointNarration();
     }
 
