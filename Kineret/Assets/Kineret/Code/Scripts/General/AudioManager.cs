@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using System;
@@ -19,8 +20,34 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _BirdChallenge;
     [SerializeField] private AudioClip _KeepFlightHeight;
 
+    #region Clips Volume Strength
+    private float _maxMusicVolume = 0.2f;
+    private float _minMusicVolume = 0.1f;
+    private float _challengeVolume = 0.75f;
+    private float _destinationVolume = 0.7f;
+    private float _onCollectedVolume = 0.35f;
+    private float _keepFlightHeightVolume = 0.7f;
+    private float _arrivedDestinationVolume = 0.2f;
+    private float _interestPointVolume = 0.7f;
+    private float _instructionVolume = 0.15f;
+    private float _openUIVolume = 0.01f;
+    #endregion
+
     private int _interestPointToPlayBeforeGolanNarration = -1;
     private int _reachedGoalTracker = 0;
+
+    private class IPNarrationClip
+    {
+        public AudioClip Clip;
+        public float Volume;
+    }
+
+    private Queue<IPNarrationClip> _iPNarrationQueue = new Queue<IPNarrationClip>();
+    private bool _isIPNarrationPlaying = false;
+    private IPNarrationClip _pausedClip = null;
+    private float _pausedClipTime = 0f;
+    private List<IPNarrationClip> _savedQueue = null;
+    private Coroutine _narrationCoroutine = null;
 
     private void Awake()
     {
@@ -34,6 +61,7 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         _MusicSource.loop = false;
         _MusicSource.playOnAwake = false;
+        SetLowerMusicVolume();
         _NotificationSource.loop = false;
         _NotificationSource.playOnAwake = false;
         _OnCollectedSource.loop = false;
@@ -41,6 +69,8 @@ public class AudioManager : MonoBehaviour
         _NarrationSource.loop = false;
         _NarrationSource.playOnAwake = false;
         _reachedGoalTracker = 0;
+        _iPNarrationQueue.Clear();
+        _isIPNarrationPlaying = false;
     }
     private void OnEnable()
     {
@@ -66,12 +96,12 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     public void PlaySteadyFlightHeight(float delay) { StartCoroutine(PlaySteadyFlightHeightDelayed(delay)); }
-    public void SetIncreasedMusicVolume() { _MusicSource.volume = 0.25f; }
-    public void SetLowerMusicVolume() { _MusicSource.volume = 0.1f; }
-    public void PlayOpenUI() { PlayClipInSource(_OpenUI, _NotificationSource, 0.15f); }
-    public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource, 0.35f); }
-    public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource, 0.2f); }
-    //public void PlayInterestPointNarration() { PlayClipInSource(, _NarrationSource, 0.8f); }
+    public void SetIncreasedMusicVolume() { _MusicSource.volume = _maxMusicVolume; }
+    public void SetLowerMusicVolume() { _MusicSource.volume = _minMusicVolume; }
+    public void PlayOpenUI() { PlayClipInSource(_OpenUI, _NotificationSource, _openUIVolume); }
+    public void PlayPointCollected() { PlayClipInSource(_PointCollected, _OnCollectedSource, _onCollectedVolume); }
+    public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource, _arrivedDestinationVolume); }
+    //public void PlayInterestPointNarration() { PlayClipInSource(, _NarrationSource, _interestPointVolume); }
 
     /// <summary>
     /// Saving the Interest point which Golan plays narration before said flight stretch
@@ -95,8 +125,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayChallengeNarration(ChallengeType challengeType)
     {
-        SetLowerMusicVolume();
-
         AudioClip challengeClip = null;
         switch (challengeType)
         {
@@ -112,18 +140,30 @@ public class AudioManager : MonoBehaviour
                 break;
         }
 
-        PlayClipInSource(challengeClip, _NarrationSource, 0.8f);
+        StartCoroutine(PlayChallengeNarrationCoroutine(challengeClip));
+    }
+
+    private IEnumerator PlayChallengeNarrationCoroutine(AudioClip challengeClip)
+    {
+        PauseNarration();
+        SetLowerMusicVolume();
+
+        PlayClipInSource(challengeClip, _NotificationSource, _challengeVolume);
+        yield return new WaitForSeconds(challengeClip.length);
+
+        ResumeNarration();
     }
     public void PlayDestinationNarration(string destinationName)
     {
+        StopNarration();
         SetLowerMusicVolume();
         AudioClip narration = NarrationManager.Instance.GetNarration(destinationName);
-        PlayClipInSource(narration, _NarrationSource, 0.8f);
+        PlayClipInSource(narration, _NarrationSource, _destinationVolume);
     }
     public void PlayInstructionNarration()
     {
         AudioClip narration = NarrationManager.Instance.InstrcutionNarration;
-        PlayClipInSource(narration, _NarrationSource, 0.8f);
+        PlayClipInSource(narration, _NarrationSource, _instructionVolume);
     }
     public void PlayInterestPointNarration(string clipName)
     {
@@ -136,7 +176,7 @@ public class AudioManager : MonoBehaviour
         AudioClip clip = FindAudioIPClipByName(clipName);
         if (clip != null)
         {
-            PlayClipInSource(clip, _NarrationSource, 0.8f);
+            PlayClipInSource(clip, _NarrationSource, _interestPointVolume);
             SetLowerMusicVolume();
             StartCoroutine(PlayPolygonShape(clipName, clip.length));
         }
@@ -149,6 +189,56 @@ public class AudioManager : MonoBehaviour
     public void StopNarration()
     {
         _NarrationSource.Stop();
+        _iPNarrationQueue.Clear();
+        _isIPNarrationPlaying = false;
+        _pausedClip = null;
+        _savedQueue = null;
+
+        if (_narrationCoroutine != null)
+        {
+            StopCoroutine(_narrationCoroutine);
+            _narrationCoroutine = null;
+        }
+    }
+
+    public void PauseNarration()
+    {
+        if (_isIPNarrationPlaying)
+        {
+            _pausedClip = new IPNarrationClip { Clip = _NarrationSource.clip, Volume = _NarrationSource.volume };
+            _pausedClipTime = _NarrationSource.time;
+            _NarrationSource.Stop();
+            _isIPNarrationPlaying = false;
+
+            _savedQueue = new List<IPNarrationClip>(_iPNarrationQueue);
+
+            if (_narrationCoroutine != null)
+            {
+                StopCoroutine(_narrationCoroutine);
+                _narrationCoroutine = null;
+            }
+        }
+    }
+
+    public void ResumeNarration()
+    {
+        if (_pausedClip != null)
+        {
+            _iPNarrationQueue.Clear();
+            _iPNarrationQueue.Enqueue(_pausedClip);
+
+            if (_savedQueue != null)
+            {
+                foreach (IPNarrationClip clip in _savedQueue)
+                {
+                    _iPNarrationQueue.Enqueue(clip);
+                }
+                _savedQueue = null;
+            }
+
+            _pausedClip = null;
+            _narrationCoroutine = StartCoroutine(HandleNarrationQueue());
+        }
     }
 
     /// <summary>
@@ -181,7 +271,7 @@ public class AudioManager : MonoBehaviour
     {
         if (_MusicSource == null) { Debug.LogError("Music source is null!"); return; }
         _MusicSource.clip = _FlightMusic[clipID];
-        SetIncreasedMusicVolume();
+        SetLowerMusicVolume();
         _MusicSource.Play();
     }
 
@@ -189,9 +279,25 @@ public class AudioManager : MonoBehaviour
     {
         if (source == null) { Debug.LogError("Source is null!"); return; }
         if (audioClip == null) { Debug.LogError("Audio clip is null!"); return; }
-        source.clip = audioClip;
-        source.volume = volume;
-        source.Play();
+
+        SetLowerMusicVolume();
+
+        if (source == _NarrationSource)
+        {
+            IPNarrationClip recievedAudioClip = new IPNarrationClip { Clip = audioClip, Volume = volume };
+            _iPNarrationQueue.Enqueue(recievedAudioClip);
+
+            if (!_isIPNarrationPlaying)
+            {
+                _narrationCoroutine = StartCoroutine(HandleNarrationQueue());
+            }
+        }
+        else
+        {
+            source.clip = audioClip;
+            source.volume = volume;
+            source.Play();
+        }
     }
     private AudioClip FindAudioIPClipByName(string clipName)
     {
@@ -203,6 +309,35 @@ public class AudioManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private IEnumerator HandleNarrationQueue()
+    {
+        _isIPNarrationPlaying = true;
+
+        while (_iPNarrationQueue.Count > 0)
+        {
+            IPNarrationClip iPNarrationClip = _iPNarrationQueue.Dequeue();
+
+            _NarrationSource.clip = iPNarrationClip.Clip;
+            _NarrationSource.volume = iPNarrationClip.Volume;
+
+            float playClipTime = 0f;
+            if (_pausedClipTime > 0f)
+            {
+                playClipTime = Mathf.Max(0f, _pausedClipTime - 1f);
+                _pausedClipTime = 0f;
+            }
+
+            _NarrationSource.time = playClipTime;
+            _NarrationSource.Play();
+
+            yield return new WaitForSeconds(iPNarrationClip.Clip.length - playClipTime);
+        }
+
+        _isIPNarrationPlaying = false;
+        _narrationCoroutine = null;
+        SetIncreasedMusicVolume();
     }
     private IEnumerator WaitForTimeEnd(float waitLength, Action OnAudioFinished)
     {
@@ -221,7 +356,7 @@ public class AudioManager : MonoBehaviour
     private IEnumerator PlaySteadyFlightHeightDelayed(float delay)
     {
         yield return new WaitForSeconds(delay);
-        PlayClipInSource(_KeepFlightHeight, _NarrationSource, 0.15f);
+        PlayClipInSource(_KeepFlightHeight, _NarrationSource, _keepFlightHeightVolume);
         SetLowerMusicVolume();
         yield return new WaitForSeconds(_KeepFlightHeight.length);
         SetIncreasedMusicVolume();
