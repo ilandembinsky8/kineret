@@ -33,8 +33,10 @@ public class AudioManager : MonoBehaviour
     private float _openUIVolume = 0.01f;
     #endregion
 
-    private int _interestPointToPlayBeforeGolanNarration = -1;
-    private int _reachedGoalTracker = 0;
+    #region Deprecated GolanNarration
+    //private int _interestPointToPlayBeforeGolanNarration = -1;
+    //private int _reachedGoalTracker = 0;
+    #endregion
 
     private class IPNarrationClip
     {
@@ -68,17 +70,9 @@ public class AudioManager : MonoBehaviour
         _OnCollectedSource.playOnAwake = false;
         _NarrationSource.loop = false;
         _NarrationSource.playOnAwake = false;
-        _reachedGoalTracker = 0;
         _iPNarrationQueue.Clear();
         _isIPNarrationPlaying = false;
-    }
-    private void OnEnable()
-    {
-        EventsRelay.OnLoadDirectionPopup += TryPlayGolanNarration;
-    }
-    private void OnDisable()
-    {
-        EventsRelay.OnLoadDirectionPopup -= TryPlayGolanNarration;
+        //_reachedGoalTracker = 0; //Deprecated GolanNarration
     }
 
     #region for testing - can be removed after connecting to actual game
@@ -103,25 +97,36 @@ public class AudioManager : MonoBehaviour
     public void PlayArrivedDestination() { PlayClipInSource(_ArrivedDestination, _OnCollectedSource, _arrivedDestinationVolume); }
     //public void PlayInterestPointNarration() { PlayClipInSource(, _NarrationSource, _interestPointVolume); }
 
-    /// <summary>
-    /// Saving the Interest point which Golan plays narration before said flight stretch
-    /// </summary>
-    /// <param name="playBeforeInterestPoint"></param>
-    public void SetGolanNarrationBeforeXIP(int playBeforeInterestPoint) { _interestPointToPlayBeforeGolanNarration = playBeforeInterestPoint; }
-    private void TryPlayGolanNarration(string direction)
-    {
-        if (_interestPointToPlayBeforeGolanNarration == -1) { return; }// Not selected Golan interest point
+    #region Deprecated GolanNarration
+    //private void OnEnable()
+    //{
+    //    EventsRelay.OnLoadDirectionPopup += TryPlayGolanNarration;
+    //}
+    //private void OnDisable()
+    //{
+    //    EventsRelay.OnLoadDirectionPopup -= TryPlayGolanNarration;
+    //}
 
-        _reachedGoalTracker++;
+    ///// <summary>
+    ///// Saving the Interest point which Golan plays narration before said flight stretch
+    ///// </summary>
+    ///// <param name="playBeforeInterestPoint"></param>
+    //public void SetGolanNarrationBeforeXIP(int playBeforeInterestPoint) { _interestPointToPlayBeforeGolanNarration = playBeforeInterestPoint; }
+    //private void TryPlayGolanNarration(string direction)
+    //{
+    //    if (_interestPointToPlayBeforeGolanNarration == -1) { return; }// Not selected Golan interest point
 
-        if (_interestPointToPlayBeforeGolanNarration == _reachedGoalTracker)
-        {
-            PlayInterestPointNarration("IP-Golan");
-            //reset after passing the interest point
-            _interestPointToPlayBeforeGolanNarration = -1;
-            _reachedGoalTracker = 0;
-        }
-    }
+    //    _reachedGoalTracker++;
+
+    //    if (_interestPointToPlayBeforeGolanNarration == _reachedGoalTracker)
+    //    {
+    //        PlayInterestPointNarration("IP-Golan");
+    //        //reset after passing the interest point
+    //        _interestPointToPlayBeforeGolanNarration = -1;
+    //        _reachedGoalTracker = 0;
+    //    }
+    //}
+    #endregion
 
     public void PlayChallengeNarration(ChallengeType challengeType)
     {
