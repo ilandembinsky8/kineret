@@ -1102,6 +1102,52 @@
         "Delay": 0.0
       },
       "Duration": 15.0
+    },
+	{
+		"CollectableData": {
+			"MapIconName": "Icon-Route-Challenge",
+			"NotificationRange": 8000,
+			"CollectionRange": 0,
+			"TimeForMaxScore": 5.0,
+			"MaxScore": 25
+		},
+      "NotificationPopup": {
+        "Type": 2,
+        "PopupIconName": "Icon-Route-Challenge",
+        "TextData": {
+          "HebTitle": "רוח צדדית",
+          "HebDescription": "זוהתה רוח צדדית חזקה לפניכם, האיצו קדימה!",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 3.0,
+        "Delay": 0
+      },
+      "CollectionPopup": {
+        "Type": 2,
+        "PopupIconName": "Icon-General-Success",
+        "TextData": {
+          "HebTitle": "הצלחת!",
+          "HebDescription": "עברת את האתגר וקיבלת ניקוד מלא",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 3.0,
+        "Delay": 0.0
+      },
+      "FailPopupData": {
+        "Type": 2,
+        "PopupIconName": "Icon-Route-Challenge",
+        "TextData": {
+          "HebTitle": "האתגר נכשל",
+          "HebDescription": "לא הספקת לעבור בזמן",
+          "EngTitle": "",
+          "EngDescription": ""
+        },
+        "Duration": 5.0,
+        "Delay": 0.0
+      },
+      "Duration": 10.0
     }
   ]
 }

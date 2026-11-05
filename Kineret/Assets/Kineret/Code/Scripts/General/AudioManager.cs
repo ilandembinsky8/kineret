@@ -145,7 +145,8 @@ public class AudioManager : MonoBehaviour
                 break;
         }
 
-        StartCoroutine(PlayChallengeNarrationCoroutine(challengeClip));
+        if (challengeClip)
+            StartCoroutine(PlayChallengeNarrationCoroutine(challengeClip));
     }
 
     private IEnumerator PlayChallengeNarrationCoroutine(AudioClip challengeClip)
