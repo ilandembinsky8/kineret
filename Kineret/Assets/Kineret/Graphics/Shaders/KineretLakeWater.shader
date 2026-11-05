@@ -34,11 +34,27 @@ Shader "Kineret/LakeWater"
 
     SubShader
     {
+        // Queue 2500 - the very end of the opaque range - and deliberately not Transparent (3000).
+        //
+        // The water has to be drawn before anything that can stand in front of it without
+        // leaving depth behind. The volumetric cloud of the cloud challenge is a full-screen quad
+        // pinned to the near clip plane at queue 2501, the Kamgam sky clouds sit at 2999, and the
+        // transparent copies BirdFlockManager fades newly revealed birds in with are at 3000. All
+        // of them are alpha blended with ZWrite Off, so none of them puts anything in the depth
+        // buffer for this quad to fail its ZTest against. At 3000 the water was therefore drawn
+        // last and painted straight over the clouds, and over any bird still mid-fade whenever the
+        // aircraft was near the centre of the lake - the point this quad is depth-sorted by.
+        //
+        // 2500 is still inside RenderQueueRange.opaque, so the quad is drawn in the opaque pass:
+        // after the terrain at 2000, and before every one of those. Measured in the editor before
+        // the change - the blend over the terrain is identical at 2500 and at 3000, and opaque
+        // geometry in front of the water still hides it, so the shoreline silhouette that this
+        // whole approach rests on is unaffected.
         Tags
         {
             "RenderType" = "Transparent"
             "RenderPipeline" = "UniversalPipeline"
-            "Queue" = "Transparent"
+            "Queue" = "Geometry+500"
         }
 
         Pass
