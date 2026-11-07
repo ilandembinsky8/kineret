@@ -1,0 +1,13 @@
+{
+  "_comment": "Square pixels. The rect below is the texture's outer edge, so the mapping holds for the half-resolution copy too.",
+  "widthPx": 4922,
+  "heightPx": 5231,
+  "metresPerPixel": 25.0,
+  "worldXMin": 5641.619999999995,
+  "worldXMax": 128691.62,
+  "worldZMin": -1975.9800000000032,
+  "worldZMax": 128799.01999999999,
+  "uvFromWorld": "u = (worldX - worldXMin) / (worldXMax - worldXMin);  v = (worldZ - worldZMin) / (worldZMax - worldZMin)   // Unity UV, v upwards",
+  "source": "StreamingAssets/KineretTerrain/DEMData, all 1558 tiles, hillshade + elevation ramp",
+  "verification": "water mask vs the engine's own KineretWaterShore mask: IoU 0.9963, zero offset"
+}
