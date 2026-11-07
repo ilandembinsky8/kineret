@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class InterestPointHandler : CollectableHandler
 {
+    [SerializeField] protected GameObject ForestVisuals;
+    [SerializeField] protected GameObject MountainVisuals;
     [SerializeField] protected PopupData infoPopupData;
 
     private bool _hasInitPlayerPositionCollected = false;
@@ -40,6 +42,22 @@ public class InterestPointHandler : CollectableHandler
         if (!string.IsNullOrEmpty(_audioClipName))
         {
             AudioManager.Instance.PlayInterestPointNarration(_audioClipName);
+            //MapShapesManager.Instance.Show(_audioClipName);
+
+            if (_audioClipName == "IP-Meron")
+            {
+                if (MountainVisuals == null)
+                    Debug.LogError("MountainVisuals is not assigned in InterestPointHandler.");
+                else
+                    MountainVisuals.SetActive(true);
+            }
+            else
+            {
+                if (ForestVisuals == null)
+                    Debug.LogError("ForestVisuals is not assigned in InterestPointHandler.");
+                else
+                    ForestVisuals.SetActive(true);
+            }
         }
     }
 
@@ -47,13 +65,13 @@ public class InterestPointHandler : CollectableHandler
     {
         base.HandlePlayerMoved(playerTransform);
 
-        if(!_hasInitPlayerPositionCollected)
+        if (!_hasInitPlayerPositionCollected)
         {
             _initPlayerPosition = playerTransform.position;
             _hasInitPlayerPositionCollected = true;
         }
 
-        if(gameObject.activeInHierarchy && _initPlayerPosition != null)
+        if (gameObject.activeInHierarchy && _initPlayerPosition != null)
         {
             float heightOffset = playerTransform.position.y - _initPlayerPosition.y;
             float scaleFactor = 0.5f; //Ranges increase/decrease by 0.5 units of height offset

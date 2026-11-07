@@ -183,7 +183,6 @@ public class AudioManager : MonoBehaviour
         if (clip != null)
         {
             PlayClipInSource(clip, _NarrationSource, _interestPointVolume);
-            SetLowerMusicVolume();
             StartCoroutine(PlayPolygonShape(clipName, clip.length));
         }
         else
@@ -354,9 +353,7 @@ public class AudioManager : MonoBehaviour
     private IEnumerator PlayPolygonShape(string interestPointName, float clipTime)
     {
         SetLowerMusicVolume();
-        MapShapesManager.Instance.Show(interestPointName);
         yield return new WaitForSeconds(clipTime);
-        //MapShapesManager.Instance.Hide(interestPointName);
         SetIncreasedMusicVolume();
     }
     private IEnumerator PlaySteadyFlightHeightDelayed(float delay)
