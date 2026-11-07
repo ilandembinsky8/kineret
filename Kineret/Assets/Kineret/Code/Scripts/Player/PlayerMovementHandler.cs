@@ -194,8 +194,8 @@ public class PlayerMovementHandler : MonoBehaviour
             if (type == ChallengeType.SideWind)
             {
                 //_windDirection = -YawBody.forward;
-                //_windDirection = -YawBody.right;
-                _windDirection = YawBody.right;
+                _windDirection = -YawBody.right;
+                //_windDirection = YawBody.right;
             }
         }
     }

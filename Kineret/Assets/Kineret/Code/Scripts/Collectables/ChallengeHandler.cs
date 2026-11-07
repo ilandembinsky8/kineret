@@ -24,10 +24,13 @@ public class ChallengeHandler : CollectableHandler
     [SerializeField] protected PopupData _failPopupData;
     //[SerializeField] protected SkyCloud _cloudVisualPrefab;
     [SerializeField] protected BirdFlockChallengeVisual _birdsVisualPrefab;
+    [SerializeField] private GameObject _windVisualPrefab;
+
     private Transform _playerTransform;
     private ChallengeData _challengeData;
     private Challenge _challenge;
     private BirdFlockChallengeVisual _birdsVisual;
+    private GameObject _windVisual;
 
     public void Init(ChallengeData challengeData, PopupTextData failPopupData, CollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
     {
@@ -94,7 +97,7 @@ public class ChallengeHandler : CollectableHandler
     /// challenge Duration in GameData.json, so the encounter always lands inside the window.
     /// Raising one without the other breaks the challenge, so keep them in step.
     /// </summary>
-    private Vector3 GetFlockPosition()
+    private Vector3 GetFlockPosition(bool isBirdChallenge)
     {
         Vector3 playerPosition = _playerTransform.position;
         Vector3 routeDirection = GetRouteDirection();
@@ -104,7 +107,11 @@ public class ChallengeHandler : CollectableHandler
             return new Vector3(transform.position.x, playerPosition.y, transform.position.z);
         }
 
-        float spawnDistance = GameSettingsManager.GetFloat("Game Settings", "BirdsSpawnDistance", 6750f);
+        float spawnDistance = 1;
+        if (isBirdChallenge)
+            spawnDistance = GameSettingsManager.GetFloat("Game Settings", "BirdsSpawnDistance", 6750f);
+        else
+            spawnDistance = GameSettingsManager.GetFloat("Game Settings", "WindSpawnDistance", 7750f);
 
         return playerPosition + routeDirection * spawnDistance;
     }
@@ -127,10 +134,11 @@ public class ChallengeHandler : CollectableHandler
                 break;
             case ChallengeType.SideWind:
                 _challenge = new WindChallenge(_playerTransform.position, GameManager.CurrentDestination.position, _challengeData.Challenge);
+                _windVisual = Instantiate(_windVisualPrefab, GetFlockPosition(false), _playerTransform.rotation, transform);
                 break;
             case ChallengeType.Birds:
                 _challenge = new BirdChallenge(_playerTransform.position);
-                _birdsVisual = Instantiate(_birdsVisualPrefab, GetFlockPosition(), Quaternion.identity, transform);
+                _birdsVisual = Instantiate(_birdsVisualPrefab, GetFlockPosition(true), Quaternion.identity, transform);
                 _birdsVisual.OnPlayerHit += HandleBirdsHit;
                 break;
         }
@@ -165,6 +173,11 @@ public class ChallengeHandler : CollectableHandler
             _birdsVisual.OnPlayerHit -= HandleBirdsHit;
             Destroy(_birdsVisual.gameObject);
             _birdsVisual = null;
+        }
+        if (_windVisual != null)
+        {
+            Destroy(_windVisual.gameObject);
+            _windVisual = null;
         }
 
         if (result)
