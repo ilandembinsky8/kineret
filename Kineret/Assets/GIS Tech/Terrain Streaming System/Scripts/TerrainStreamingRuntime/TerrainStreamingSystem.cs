@@ -1072,6 +1072,7 @@ private void GenerateHorizonTerrainSectors()
 
             GameObject tile = Terrain.CreateTerrainGameObject(tdata);
             tile.tag = "Terrain";
+            tile.layer = LayerMask.NameToLayer("Terrain");
             tile.gameObject.SetActive(true);
             tile.name = string.Format("TerrainTile_{0}__{1}", x, y);
             tile.transform.parent = parent;
