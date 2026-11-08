@@ -579,4 +579,5 @@ MonoBehaviour:
   _ArrivedDestination: {fileID: 8300000, guid: 280d76bd25d791747bf773e025a21e86, type: 3}
   _CloudChallenge: {fileID: 8300000, guid: 73bbd7cfa605c9f41904e931ab91fc29, type: 3}
   _BirdChallenge: {fileID: 8300000, guid: 90f5e4b8785f1f64aa92a1b397be154c, type: 3}
+  _WindChallenge: {fileID: 8300000, guid: 0b963da81f3f93a4eb9136d761779bf8, type: 3}
   _KeepFlightHeight: {fileID: 8300000, guid: d4c8660430cf83b4c865d83ec62eda72, type: 3}

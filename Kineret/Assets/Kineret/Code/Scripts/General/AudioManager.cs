@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _ArrivedDestination;
     [SerializeField] private AudioClip _CloudChallenge;
     [SerializeField] private AudioClip _BirdChallenge;
+    [SerializeField] private AudioClip _WindChallenge;
     [SerializeField] private AudioClip _KeepFlightHeight;
 
     #region Clips Volume Strength
@@ -140,6 +141,7 @@ public class AudioManager : MonoBehaviour
                 challengeClip = _BirdChallenge;
                 break;
             case ChallengeType.SideWind:
+                challengeClip = _WindChallenge;
                 break;
             default:
                 break;
