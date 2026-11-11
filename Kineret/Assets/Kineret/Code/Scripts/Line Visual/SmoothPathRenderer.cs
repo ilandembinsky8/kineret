@@ -26,7 +26,7 @@ public class WaypointPathController : MonoBehaviour
     [SerializeField, Min(0f)] private float waypointReachThreshold;
     [SerializeField, Min(1f)] private float waypointReAddMultiplier;
     [SerializeField] private float waypointSphereScale;
-    [SerializeField, Min(0f)] private float interestPointDistanceClearance = 300f;
+    [SerializeField, Min(0f)] private float interestPointDistanceClearance = 6000f;
 
     private List<Vector3> _waypoints = new List<Vector3>();
     private readonly List<Vector3> _linePoints = new List<Vector3>();
@@ -239,7 +239,7 @@ public class WaypointPathController : MonoBehaviour
         int segment = 0;
         float segmentStartDistance = 0f;
 
-        for (int i = 0; i < _spheres.Count; i++)
+        for (int i = 1; i < _spheres.Count; i++)//added this to be starting from 1 so we do not ignore the points from the starting point
         {
             float targetDistance = firstDistanceFromAnchor + i * waypointSphereDistance;
             if (targetDistance > totalPathDistance + 0.01f)
