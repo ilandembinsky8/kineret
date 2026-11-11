@@ -648,38 +648,13 @@
         "EngText": "Well done!"
       }
     },
-    {
-      "Name": {
-        "HebText": "שיקום אגן נחל ציפורי",
-        "EngText": ""
-      },
-      "AudioClipName": "IP-Cipori",
-      "IconImageName": "Icon-Route-Forest",
-       "GeoPosition": {
-      "lat": 32.7493006,
-      "lon": 35.199766
-    },
-      "WorldPosition": {
-        "x": 36050.0,
-        "y": 650.0,
-        "z": 31800.0
-      },
-      "InfoText": {
-        "HebText": "שיקום אגן נחל ציפורי \nפרויקט הדגמה לאומי זה הוא פרויקט שיקום הנחלים הגדול בישראל. מטרתו המרכזית היא ליצור נחל רציף, נקי ובריא שיהווה מרכיב איכותי ברשת המסדרונות האקולוגיים בישראל תוך שיפור איכות החיים באגן והעצמה של הקהילות החיות סביב הנחל. הפרויקט כולל שיקום אקולוגי באמצעות פעולות להסרת חסמים לאורך הנחל, שיקום מקטעי נחל, נטיעת צמחייה מקומית והסרת מיני צומח פולשים. בנוסף, מוקמים פתרונות לוויסות נגר ולצמצום סיכוני הצפות בדגש על פתרונות מבוססי טבע.",
-        "EngText": ""
-      },
-      "CollectText": {
-        "HebText": "כל הכבוד!",
-        "EngText": "Well done!"
-      }
-    },
 	{
 		"Name": {
         "HebText": "מרון",
         "EngText": "Meron"
       },
       "AudioClipName": "IP-Meron",
-      "IconImageName": "Icon-Route-Forest",
+      "IconImageName": "Icon-Route-Mountain",
        "GeoPosition": {
       "lat": 32.9975,
       "lon": 35.41222
