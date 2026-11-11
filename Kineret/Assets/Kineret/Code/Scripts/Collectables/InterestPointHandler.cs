@@ -38,6 +38,10 @@ public class InterestPointHandler : CollectableHandler
 
     protected override void Notify(bool visualsOn)
     {
+        visuals.SetActive(!visualsOn);//this is marked not as it's alawys sent as false.
+        
+        if (GameManager.IsPlayerCloseToAChallenge) return;
+
         base.Notify(visualsOn);
         if (!string.IsNullOrEmpty(_audioClipName))
         {

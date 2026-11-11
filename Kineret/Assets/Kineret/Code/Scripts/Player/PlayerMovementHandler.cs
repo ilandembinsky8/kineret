@@ -24,6 +24,7 @@ public class PlayerMovementHandler : MonoBehaviour
     private float _accelerationDirection;
     private float _accelerationPercentage = 0.05f;
     private float _maxMoveSpeedPercentage = 0.2f;
+    public float CurrentMoveSpeed { get => _moveSpeed; private set => _moveSpeed = value; }
     [SerializeField] private float _moveSpeed;
     [SerializeField] private TextMeshProUGUI moveSpeedText;
 
@@ -204,7 +205,7 @@ public class PlayerMovementHandler : MonoBehaviour
     {
         if (moveSpeedText != null)
         {
-            moveSpeedText.text = $"{_moveSpeed:F2}";
+            moveSpeedText.text = $"{CurrentMoveSpeed:F2}";
         }
     }
 

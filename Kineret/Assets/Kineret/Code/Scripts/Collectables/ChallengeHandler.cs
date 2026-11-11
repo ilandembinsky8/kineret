@@ -31,10 +31,12 @@ public class ChallengeHandler : CollectableHandler
     private Challenge _challenge;
     private BirdFlockChallengeVisual _birdsVisual;
     private GameObject _windVisual;
+    private float _secondsThreshold;
 
     public void Init(ChallengeData challengeData, PopupTextData failPopupData, CollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
     {
         Init(collectableData, collectPopupData, notificationPopupData);
+        _secondsThreshold = GameSettingsManager.GetFloat("Game Settings", "ChallengeProximityThreshold", 10f);
 
         _challengeData = challengeData;
 
@@ -51,6 +53,9 @@ public class ChallengeHandler : CollectableHandler
     {
         if (_playerTransform == null) { _playerTransform = playerTransform; }
 
+        if (gameObject.activeInHierarchy && !GameManager.IsPlayerCloseToAChallenge)
+            UpdatePlayerDistanceToChallenge(playerTransform);
+
         base.HandlePlayerMoved(playerTransform);
     }
     protected override void Notify(bool visualsOn)
@@ -59,6 +64,23 @@ public class ChallengeHandler : CollectableHandler
         _hasNotified = true;
         LoadPopup_EC.RaiseEvent(_notificationPopupData);
         StartCoroutine(ChallengeCoroutine(_challengeData.Duration));
+    }
+
+    private void UpdatePlayerDistanceToChallenge(Transform playerTransform)
+    {
+        Vector3 playerXZ = new Vector3(playerTransform.position.x, 0f, playerTransform.position.z);
+        Vector3 challengeXZ = new Vector3(transform.position.x, 0f, transform.position.z);
+        float distance = Vector3.Distance(playerXZ, challengeXZ);
+
+        PlayerMovementHandler playerMovementHandler = playerTransform.GetComponent<PlayerMovementHandler>();
+        if (playerMovementHandler == null) { Debug.LogError("Player Movement Handler is null"); return; }
+
+        float playerSpeed = playerMovementHandler.CurrentMoveSpeed;
+        if (playerSpeed <= 0) return;
+
+        float timeToReachChallenge = distance / playerSpeed;
+        if (timeToReachChallenge <= _secondsThreshold)
+            GameManager.SetIsPlayerCloseToAChallenge(true);
     }
 
     /// <summary>

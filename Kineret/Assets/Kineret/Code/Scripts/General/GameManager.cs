@@ -1,12 +1,13 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static bool IsGamePaused { get; set; }
     public static Transform CurrentDestination;
+    public static bool IsPlayerCloseToAChallenge = false;
 
     [SerializeField] private Transform player;
     [Header("Event Channels")]
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         _camera = Camera.main;
         summmaryCanvas.gameObject.SetActive(false);
         _legDuration = GameSettingsManager.GetFloat("Game Settings", "LegDuration", 15);
+        SetIsPlayerCloseToAChallenge(false);
     }
 
     private void OnEnable()
@@ -59,9 +61,10 @@ public class GameManager : MonoBehaviour
         CurrentDestination = Destinations[0].transform;
         _currentDestinationScore = Destinations[0].MaxScore;
         EventsRelay.OnGamePause.Invoke(true);
-        EventsRelay.OnLegStart.Invoke(_destinationsReachedCount);     
+        EventsRelay.OnLegStart.Invoke(_destinationsReachedCount);
     }
 
+    public static void SetIsPlayerCloseToAChallenge(bool isClose) { IsPlayerCloseToAChallenge = isClose; }
     public void GoToMainMenu(bool _isLoadingDestinationSelection)
     {
         MainMenuManager.IsLoadingDestinationSelection = _isLoadingDestinationSelection;
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour
         _totalScore += score;
         EventsRelay.OnScoreChange.Invoke(_totalScore);
     }
-   
+
     private void HandleDestinationReached(int destination)
     {
         _destinationsReachedCount++;
@@ -83,13 +86,14 @@ public class GameManager : MonoBehaviour
             StopCoroutine(_scoreCoroutine);
             _scoreCoroutine = null;
         }
-           
+
         EventsRelay.OnScoreGain.Invoke(_currentDestinationScore);
 
         bool isFinal = _destinationsReachedCount == LocationsManager.DestinationsCount;
         InfoScreenData data = LocationsManager.GetInfoScreenData(destination, isFinal);
         if (!isFinal)
         {
+            SetIsPlayerCloseToAChallenge(false);
             _currentDestinationScore = Destinations[_destinationsReachedCount].MaxScore;
             ChangeMoveSpeedByLeg(Destinations[_destinationsReachedCount - 1].transform.position, Destinations[_destinationsReachedCount].transform.position);
             CurrentDestination = Destinations[_destinationsReachedCount].transform;
@@ -102,16 +106,16 @@ public class GameManager : MonoBehaviour
     {
         Vector2 flatPlayerForward = new Vector2(_camera.transform.forward.x, _camera.transform.forward.z);
         float peripheralAngle = GameSettingsManager.GetFloat("Player Settings", "PeripheralAngle", 45f);
-        
+
         Vector3 nextDestinationDirection = (Destinations[_destinationsReachedCount].transform.position - _camera.transform.position).normalized;
         Vector2 flatNextDestinationDirection = new Vector2(nextDestinationDirection.x, nextDestinationDirection.z);
 
-      /*  Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(flatPlayerForward.x, 0f, flatPlayerForward.y), Color.blue, 500000f);
-        Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(flatNextDestinationDirection.x, 0f, flatNextDestinationDirection.y), Color.yellow, 500000f);*/
+        /*  Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(flatPlayerForward.x, 0f, flatPlayerForward.y), Color.blue, 500000f);
+          Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(flatNextDestinationDirection.x, 0f, flatNextDestinationDirection.y), Color.yellow, 500000f);*/
 
         float destinationAngle = Vector2.Angle(flatPlayerForward, flatNextDestinationDirection);
 
-        if(destinationAngle < peripheralAngle)
+        if (destinationAngle < peripheralAngle)
         {
             return;
         }
@@ -119,8 +123,8 @@ public class GameManager : MonoBehaviour
         Vector2 leftPeripheral = RotateVector(flatPlayerForward, peripheralAngle);
         Vector2 rightPeripheral = RotateVector(flatPlayerForward, -peripheralAngle);
 
-       /* Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(leftPeripheral.x, 0f, leftPeripheral.y), Color.red, 500000f);
-        Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(rightPeripheral.x, 0f, rightPeripheral.y), Color.green, 500000f); */
+        /* Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(leftPeripheral.x, 0f, leftPeripheral.y), Color.red, 500000f);
+         Debug.DrawLine(_camera.transform.position, _camera.transform.position + new Vector3(rightPeripheral.x, 0f, rightPeripheral.y), Color.green, 500000f); */
 
         float leftAngle = Vector2.Angle(leftPeripheral, flatNextDestinationDirection);
         float rightAngle = Vector2.Angle(rightPeripheral, flatNextDestinationDirection);
@@ -148,7 +152,7 @@ public class GameManager : MonoBehaviour
     {
         IsGamePaused = isPaused;
     }
- 
+
     private void HandleGameOver()
     {
         HighscoresManager.Instance.UpdateUserHighscore(HighscoresManager.Instance.CurrentUserID, _totalScore);
@@ -160,7 +164,7 @@ public class GameManager : MonoBehaviour
         summaryScoreHandler.CreateNewScoreTab(1, HighscoresManager.Instance.GetUsername(firstPlace.ID), firstPlace.Highscore);
         summaryScoreHandler.CreateNewScoreTab(2, HighscoresManager.Instance.GetUsername(secondPlace.ID), secondPlace.Highscore);
         summaryScoreHandler.CreateNewScoreTab(3, HighscoresManager.Instance.GetUsername(thirdPlace.ID), thirdPlace.Highscore);
-        summaryScoreHandler.CreateNewScoreTab(HighscoresManager.Instance.GetPosition(currentUser.ID), HighscoresManager.Instance.GetUsername(currentUser.ID), currentUser.Highscore,true);
+        summaryScoreHandler.CreateNewScoreTab(HighscoresManager.Instance.GetPosition(currentUser.ID), HighscoresManager.Instance.GetUsername(currentUser.ID), currentUser.Highscore, true);
 
         finalScoreText.text = string.Format("{0:0000}", _totalScore);
         summmaryCanvas.gameObject.SetActive(true);
