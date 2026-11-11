@@ -5,6 +5,7 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
+    const float FADE_DURATION = 1.5f;
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] private AudioSource _MusicSource;
@@ -153,7 +154,7 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator PlayChallengeNarrationCoroutine(AudioClip challengeClip)
     {
-        PauseNarration();
+        yield return StartCoroutine(PauseNarration());
         SetLowerMusicVolume();
 
         PlayClipInSource(challengeClip, _NotificationSource, _challengeVolume);
@@ -208,11 +209,20 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PauseNarration()
+    private IEnumerator PauseNarration()
     {
         if (_isIPNarrationPlaying)
         {
-            _pausedClip = new IPNarrationClip { Clip = _NarrationSource.clip, Volume = _NarrationSource.volume };
+            float startVolume = _NarrationSource.volume;
+            float currentTime = 0;
+            while (currentTime < FADE_DURATION)
+            {
+                _NarrationSource.volume = Mathf.Lerp(startVolume, 0f, currentTime / FADE_DURATION);
+                currentTime += Time.deltaTime;
+                yield return null;
+            }
+            _NarrationSource.volume = 0f;
+            _pausedClip = new IPNarrationClip { Clip = _NarrationSource.clip, Volume = startVolume };
             _pausedClipTime = _NarrationSource.time;
             _NarrationSource.Stop();
             _isIPNarrationPlaying = false;
