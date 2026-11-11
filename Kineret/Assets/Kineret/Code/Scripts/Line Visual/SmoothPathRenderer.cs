@@ -26,6 +26,7 @@ public class WaypointPathController : MonoBehaviour
     [SerializeField, Min(0f)] private float waypointReachThreshold;
     [SerializeField, Min(1f)] private float waypointReAddMultiplier;
     [SerializeField] private float waypointSphereScale;
+    [SerializeField, Min(0f)] private float interestPointDistanceClearance = 300f;
 
     private List<Vector3> _waypoints = new List<Vector3>();
     private readonly List<Vector3> _linePoints = new List<Vector3>();
@@ -241,12 +242,11 @@ public class WaypointPathController : MonoBehaviour
         for (int i = 0; i < _spheres.Count; i++)
         {
             float targetDistance = firstDistanceFromAnchor + i * waypointSphereDistance;
-            bool visible = targetDistance <= totalPathDistance + 0.001f;
-
-            _spheres[i].gameObject.SetActive(visible);
-
-            if (!visible)
+            if (targetDistance > totalPathDistance + 0.01f)
+            {
+                _spheres[i].gameObject.SetActive(false);
                 continue;
+            }
 
             while (segment < _points.Count - 2)
             {
@@ -264,7 +264,14 @@ public class WaypointPathController : MonoBehaviour
 
             float selectedSegmentLength = Vector3.Distance(segmentStart, segmentEnd);
             float interpolation = selectedSegmentLength > 0f ? (targetDistance - segmentStartDistance) / selectedSegmentLength : 0f;
-            _spheres[i].transform.position = Vector3.Lerp(segmentStart, segmentEnd, Mathf.Clamp01(interpolation));
+            Vector3 spherePosition = Vector3.Lerp(segmentStart, segmentEnd, Mathf.Clamp01(interpolation));
+
+            bool insideClearance = IsInsideInterestPointClearance(spherePosition);
+            _spheres[i].gameObject.SetActive(!insideClearance);
+
+            if (!insideClearance)
+                _spheres[i].transform.position = spherePosition;
+
         }
     }
 
@@ -312,10 +319,25 @@ public class WaypointPathController : MonoBehaviour
 
         string json = File.ReadAllText(filePath);
         WaypointPathSettings settings = JsonUtility.FromJson<WaypointPathSettings>(json);
-        waypointReachThreshold = Mathf.Max(0f, settings.waypointReachThreshold); 
+        waypointReachThreshold = Mathf.Max(0f, settings.waypointReachThreshold);
         poolSize = Mathf.Max(1, (int)settings.poolSize);
         waypointSphereDistance = Mathf.Max(0.1f, settings.waypointSphereDistance);
         waypointReachThreshold = Mathf.Max(0f, settings.waypointReachThreshold);
         waypointSphereScale = Mathf.Max(0f, settings.waypointSphereScale);
+    }
+
+    private bool IsInsideInterestPointClearance(Vector3 position)
+    {
+        if (interestPointDistanceClearance <= 0f)
+            return false;
+
+        float clearanceSqr = interestPointDistanceClearance * interestPointDistanceClearance;
+        for (int i = 0; i < _waypoints.Count; i++)
+        {
+            float distanceSqr = (position - _waypoints[i]).sqrMagnitude;
+            if (distanceSqr <= clearanceSqr)
+                return true;
+        }
+        return false;
     }
 }
