@@ -36,7 +36,7 @@ public class ChallengeHandler : CollectableHandler
     public void Init(ChallengeData challengeData, PopupTextData failPopupData, CollectableData collectableData, PopupTextData collectPopupData, PopupTextData notificationPopupData = new PopupTextData())
     {
         Init(collectableData, collectPopupData, notificationPopupData);
-        _secondsThreshold = GameSettingsManager.GetFloat("Game Settings", "ChallengeProximityThreshold", 10f);
+        _secondsThreshold = GameSettingsManager.GetFloat("Game Settings", "ChallengeRadioSilenceProximityThreshold", 10f);
 
         _challengeData = challengeData;
 

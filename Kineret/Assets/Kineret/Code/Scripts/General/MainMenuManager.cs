@@ -152,7 +152,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void EndDestinationSelection()
     {
-        AudioManager.Instance.StopNarration();
+        AudioManager.Instance.StopNarration(true);
         IsDestinationSelectionActive = false;
         EventsRelay.OnEnableDestinationSelection.Invoke(false);
         BeginPreloadingGameScene();
@@ -198,7 +198,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void StartGame()
     {
-        AudioManager.Instance.StopNarration();
+        AudioManager.Instance.StopNarration(true);
         blackPanel.gameObject.SetActive(true);
         StartCoroutine(BlackFade());
     }

@@ -5,7 +5,6 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-    const float FADE_DURATION = 1.5f;
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] private AudioSource _MusicSource;
@@ -52,6 +51,8 @@ public class AudioManager : MonoBehaviour
     private float _pausedClipTime = 0f;
     private List<IPNarrationClip> _savedQueue = null;
     private Coroutine _narrationCoroutine = null;
+    private Coroutine _stopNarrationCoroutine;
+    private float AUDIO_FADE_DURATION;
 
     private void Awake()
     {
@@ -75,6 +76,7 @@ public class AudioManager : MonoBehaviour
         _iPNarrationQueue.Clear();
         _isIPNarrationPlaying = false;
         //_reachedGoalTracker = 0; //Deprecated GolanNarration
+        AUDIO_FADE_DURATION = GameSettingsManager.GetFloat("Game Settings", "AUDIO_FADE_DURATION", 1.5f);
     }
 
     #region for testing - can be removed after connecting to actual game
@@ -154,17 +156,18 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator PlayChallengeNarrationCoroutine(AudioClip challengeClip)
     {
-        yield return StartCoroutine(PauseNarration());
+        yield return StopNarrationCoroutine(true);
+        //yield return StartCoroutine(PauseNarration());
         SetLowerMusicVolume();
 
         PlayClipInSource(challengeClip, _NotificationSource, _challengeVolume);
         yield return new WaitForSeconds(challengeClip.length);
 
-        ResumeNarration();
+        //ResumeNarration();
     }
     public void PlayDestinationNarration(string destinationName)
     {
-        StopNarration();
+        StopNarration(false);
         SetLowerMusicVolume();
         AudioClip narration = NarrationManager.Instance.GetNarration(destinationName);
         PlayClipInSource(narration, _NarrationSource, _destinationVolume);
@@ -194,8 +197,26 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void StopNarration()
+    public void StopNarration(bool isUsingFadeOut)
     {
+        if (_stopNarrationCoroutine == null)
+            _stopNarrationCoroutine = StartCoroutine(StopNarrationCoroutine(isUsingFadeOut));
+    }
+    private IEnumerator StopNarrationCoroutine(bool isUsingFadeOut)
+    {
+        float startVolume = _NarrationSource.volume;
+        if (isUsingFadeOut)// Fade out the narration if it was stopped due to a challenge narration
+        {
+            float currentTime = 0;
+            while (currentTime < AUDIO_FADE_DURATION)
+            {
+                _NarrationSource.volume = Mathf.Lerp(startVolume, 0f, currentTime / AUDIO_FADE_DURATION);
+                currentTime += Time.deltaTime;
+                yield return null;
+            }
+            _NarrationSource.volume = 0f;
+        }
+
         _NarrationSource.Stop();
         _iPNarrationQueue.Clear();
         _isIPNarrationPlaying = false;
@@ -207,6 +228,9 @@ public class AudioManager : MonoBehaviour
             StopCoroutine(_narrationCoroutine);
             _narrationCoroutine = null;
         }
+
+        _stopNarrationCoroutine = null;
+        _NarrationSource.volume = startVolume;
     }
 
     private IEnumerator PauseNarration()
@@ -215,9 +239,9 @@ public class AudioManager : MonoBehaviour
         {
             float startVolume = _NarrationSource.volume;
             float currentTime = 0;
-            while (currentTime < FADE_DURATION)
+            while (currentTime < AUDIO_FADE_DURATION)
             {
-                _NarrationSource.volume = Mathf.Lerp(startVolume, 0f, currentTime / FADE_DURATION);
+                _NarrationSource.volume = Mathf.Lerp(startVolume, 0f, currentTime / AUDIO_FADE_DURATION);
                 currentTime += Time.deltaTime;
                 yield return null;
             }
