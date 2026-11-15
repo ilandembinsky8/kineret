@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 using System.IO;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -20,6 +20,7 @@ public class WaypointPathController : MonoBehaviour
     public bool deactivateOnReach = true;         // if true, waypoint.gameObject.SetActive(false) when reached
 
     [Header("Waypoint Settings")]
+    [SerializeField] private int isActiveVisual;
     [SerializeField] private Waypoint waypointSpherePrefab; // prefab for the spheres to be drawn along the line
     [SerializeField, Min(0.1f)] private float waypointSphereDistance; // distance between spheres along the line
     [SerializeField] private int poolSize;
@@ -42,6 +43,8 @@ public class WaypointPathController : MonoBehaviour
     void Awake()
     {
         LoadWaypointPathSettings();
+        if (isActiveVisual != 1) { return; }
+
         lr.startWidth = 10;
         lr.endWidth = 10;
         InitializeSpheres();
@@ -147,6 +150,7 @@ public class WaypointPathController : MonoBehaviour
     /// </summary>
     void DrawCurve()
     {
+        if (isActiveVisual != 1) { return; }
         if (_waypoints.Count < 2)
         {
             lr.positionCount = 0;
@@ -184,6 +188,7 @@ public class WaypointPathController : MonoBehaviour
 
     private void AlignAllWaypoints()
     {
+        if (isActiveVisual != 1) { return; }
         if (waypointSphereDistance <= 0f || _spheres.Count == 0 || lr.positionCount < 2)
             return;
 
@@ -319,6 +324,7 @@ public class WaypointPathController : MonoBehaviour
 
         string json = File.ReadAllText(filePath);
         WaypointPathSettings settings = JsonUtility.FromJson<WaypointPathSettings>(json);
+        isActiveVisual = (int)Mathf.Max(0, settings.isActiveVisual);
         waypointReachThreshold = Mathf.Max(0f, settings.waypointReachThreshold);
         poolSize = Mathf.Max(1, (int)settings.poolSize);
         waypointSphereDistance = Mathf.Max(0.1f, settings.waypointSphereDistance);
@@ -340,4 +346,5 @@ public class WaypointPathController : MonoBehaviour
         }
         return false;
     }
+
 }

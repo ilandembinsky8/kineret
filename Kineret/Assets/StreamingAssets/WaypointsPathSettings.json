@@ -1,4 +1,5 @@
 {
+  "isActiveVisual": 0,
   "waypointSphereDistance": 500,
   "poolSize": 100,
   "waypointReachThreshold": 0.1,

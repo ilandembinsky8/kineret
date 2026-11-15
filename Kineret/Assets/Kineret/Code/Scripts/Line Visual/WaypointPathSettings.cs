@@ -3,6 +3,7 @@ using System;
 [Serializable]
 public class WaypointPathSettings
 {
+    public float isActiveVisual;
     public float waypointSphereDistance;
     public float poolSize;
     public float waypointReachThreshold;
